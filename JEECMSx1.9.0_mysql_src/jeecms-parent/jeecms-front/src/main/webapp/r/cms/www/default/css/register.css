@@ -1,0 +1,382 @@
+body {
+    background-color: #ebeced;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100%;
+}
+.main {
+    position: fixed;
+    top: 50%;
+    margin-top: -329px;
+    left: 50%;
+    margin-left: -495px;
+}
+
+.main .register {
+    width: 990px;
+    height: 558px;
+    background-color: #fff;
+    margin: auto;
+    border-radius: 4px;
+    behavior: url(../src/pie/PIE.htc);
+}
+.main #registerForm{
+    height: 410px;
+    overflow-y: auto;
+}
+.main #registerForm::-webkit-scrollbar {
+    display: none;
+}
+
+.main .register .register-left {
+    width: 537px;
+    padding: 0 40px 40px;
+}
+
+.main .register .register-left .reg {
+    height: 62px;
+    margin-bottom: 38px;
+    position: relative;
+}
+
+.main .register .register-left .reg span {
+    color: #333;
+    font-size: 20px;
+    position: absolute;
+    top: 35px;
+    left: 0;
+}
+
+.main .register .register-left .reg a {
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    width: 86px;
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    behavior: url(../src/pie/PIE.htc);
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
+.main .register .register-left form .model{
+	display: none;
+}
+.main .register .register-left .reg a:hover {
+    color: #E30B20;
+    border-color: #E30B20;
+}
+
+.main .register .register-left form input::-webkit-input-placeholder {
+    font-weight: 300;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .register .register-left form input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    font-weight: 300;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .register .register-left form input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    font-weight: 300;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .register .register-left form input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    font-weight: 300;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .register .register-left form div.input {
+    line-height: 28px;
+    position: relative;
+}
+.main .register .register-left form div.errors{
+    color: #E30B20;
+    margin-left: 118px;
+    height: 20px;
+}
+.main .register .register-left form div.errors P{
+    font-size: 14px !important;
+}
+.main .register .register-left form div label {
+    font-size: 14px;
+    color: #666;
+    display: inline-block;
+    width: 110px!important;
+    text-align: right;
+    margin-right: 2px;
+}
+
+.main .register .register-left form div label .icon {
+    color: #E30B20;
+    margin-right: 5px;
+}
+.main .register .register-left form div .help{
+    font-size: 12px;
+    color: #999;
+    margin-left: 102px;
+    line-height: 16px;
+}
+.main .register .register-left form div #getEmail{
+    font-size: 14px;
+    color: #333;
+    position: absolute;
+    right: 5px;
+    top: 0px;
+}
+.main .register .register-left form div.get-time:hover{
+	color: #E30B20 !important;
+	cursor: pointer;
+}
+.main .register .register-left form div #getTelephone{
+    font-size: 14px;
+    color: #333;
+    position: absolute;
+    right: 5px;
+    top: 0px;
+}
+.main .register .register-left form div input {
+    height: 28px;
+    width: 330px;
+    border: 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.main .register .register-left form div.code {
+    position: relative;
+}
+
+.main .register .register-left form div.code .letter {
+    width: 125px;
+    height: 37px;
+    line-height: 37px;
+    position: absolute;
+    right: 0;
+    top: -15px;
+    font-weight: bolder;
+}
+
+.main .register .register-left form div.agreementBox {
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    margin-top: 5px;
+}
+
+.main .register .register-left form div.agreementBox input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    left: 72px;
+    top: 1px;
+}
+
+.main .register .register-left form div.agreementBox input[type="checkbox"]::after {
+    width: 13px;
+    height: 13px;
+    content: "";
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: 18px;
+    border: 0;
+    color: #fff;
+    background-image: url(../images/login-register/yes.png);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main .register .register-left form div.agreementBox span {
+    color: #999;
+    font-size: 14px;
+    position: absolute;
+    left: 100px;
+}
+
+.main .register .register-left form div.agreementBox span a {
+    color: #2676B5;
+}
+
+.main .register .register-left form input[type="submit"] {
+    width: 368px;
+    height: 43px;
+    line-height: 43px;
+    background-color: #E30B20;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 22px;
+    border: 0;
+    behavior: url(../src/pie/PIE.htc);
+    margin-left: 76px;
+    margin-top: 37px;
+}
+.main .register .register-left form input[type="submit"]:hover {
+    background-color: #FB0C23;
+}
+
+.main .register .register-right {
+    width: 453px;
+    height: 558px;
+    position: relative;
+}
+
+.main .register .register-right .lunbo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    behavior: url(../src/pie/PIE.htc);
+}
+
+.main .register .register-right .lunbo .jSlider .navigator .prev {
+    display: none;
+    margin-left: -30px;
+}
+
+.main .register .register-right .lunbo .jSlider .navigator .next {
+    display: none;
+    margin-right: -30px;
+}
+
+.main .register .register-right .lunbo .jSlider img {
+    width: 453px;
+    height: 558px;
+}
+
+/* .main .register .register-right .lunbo .jSlider .controller {
+    display: none;
+} */
+
+.main .register .register-right .lunbo .jSlider .controller .indicator span {
+    width: 8px;
+    height: 8px;
+    opacity: 0.2;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000, endColorstr=#66000000);
+}
+
+.main .register .register-right .lunbo .jSlider .controller .indicator .selected {
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+.main .register .register-right .logo-img {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.protocol{
+	position: fixed;
+	width: 1200px;
+	height: 625px;
+	top:50%;
+	margin-top: -339px;
+	left: 50%;
+	margin-left: -600px;
+	background-color: #fff;
+	padding: 49px 105px;
+	border-radius: 2px;
+	display: none;
+}
+.protocol h3{
+	font-size: 18px;
+	text-align: center;
+	margin-bottom: 79px;
+}
+.protocol .protocol-title{
+	font-size: 14px;
+}
+.protocol .protocol-text{
+	margin-top: 40px;
+	font-size: 14px;
+	text-indent: 2em;
+	line-height: 28px;
+}
+.protocol i{
+	position: absolute;
+	top: 20px;
+	right: 25px;
+	font-size: 20px;
+	opacity: 0.8;
+	display: none;
+}
+.protocol:hover i{
+	display: block;
+}
+/* 注册成功弹窗 */
+.main .mode .mode-box {
+    width: 545px;
+    min-height: 257px;
+}
+.main .mode .mode-box .mode-close-login {
+    position: absolute;
+    left: 117px;
+    top: 65px;
+}
+.main .mode .mode-box .mode-close-login i {
+    color: green;
+    font-size: 26px;
+}
+.main .mode .mode-box .mode-close-login .dialog-title{
+    padding-left: 12px;
+    font-size: 20px;
+    font-weight: normal;
+    color: #333333;
+    line-height: 14px;
+    vertical-align: text-top;
+}
+.main .mode .mode-box .mode-close-login:hover {
+    color:green;
+}
+.main .mode .mode-box .mode-title-login {
+    padding: 110px 0  0 163px;
+}
+.main .mode .mode-box .mode-title-login .mode-message-login {
+    font-size: 18px;
+    font-weight: normal;
+    color: #333333;
+    line-height: 18px;
+}
+.main .mode .mode-box .btns {
+    margin-left: 117px;
+    margin-top: 35px;
+}
+.main .mode .mode-box .btns .mode-btn-cancel{
+    float: left;
+    width: 148px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 40px;
+    text-align: center;
+}
+.main .mode .mode-box .btns .mode-btn-cancel:hover {
+    border-color: #E30B20;
+}
+.main .mode .mode-box .btns .mode-btn {
+    margin-left: 16px;
+    float: left;
+    width: 148px;
+    height: 40px;
+    background: #E30B20;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+/*# sourceMappingURL=register.css.map */

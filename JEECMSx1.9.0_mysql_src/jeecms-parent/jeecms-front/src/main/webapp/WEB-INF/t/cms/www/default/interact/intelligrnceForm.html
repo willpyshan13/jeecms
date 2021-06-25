@@ -1,0 +1,78 @@
+<head>
+	<link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css"/>
+    <link rel="stylesheet" href="${res}/lib/layui/css/layui.css"/>
+    <link rel="stylesheet" href="${res}/lib/layui/css/modules/layui-icon-extend/iconfont.css"/>
+    <link rel="stylesheet" href="${res}/lib/PDemo.css"/>
+</head>
+<div class="body">
+
+		<div class="t-smart-wrap t-show" >
+			<div class="t-smart-bg"></div>
+			<!-- 背景 -->
+			<div class="container" style="border-radius: 4px;">
+				<!-- 页眉 -->
+				<div class="t-smart-head">
+					<!-- <img class="t-img" src="" alt=""> -->
+				</div>
+				<div class="t-smart-cont">
+					<!-- 自定义表单1 -->
+					<div class="p-itemData">
+							<!-- 单选按钮 -->
+							<form id="fieldForm" class="layui-form" action="" >
+											<!-- 插入列表 -->
+							</form>
+							<!-- 提交按钮 -->
+							<div class="sub-btn-wrap"><div class="sub-btn"></div></div>
+					</div>
+				</div>
+			</div>
+			<!-- 成功弹窗 -->
+			<div class="mode mode-result">
+				<div class="mode-box">
+					<div class="mode-close"><i class="layui-icon iconfont jee-quxiao"></i></div>
+					<div class="mode-title"><i class="layui-icon iconfont jee-liulangwanbi"></i>
+						<span class="mode-message">提交成功！</span></div>
+						<a rel="noopener noreferrer" class="mode-btn" >确定</a>
+				</div>
+			</div>
+			<!-- 成功弹窗 over -->
+			<div class="layerBgShow" onclick="bandLayerBgHide()"></div>
+				<div class="layertextBgShow">
+					<div class="p-text-title">
+						<label>视频</label>
+						<i class="layui-icon iconfont jee-quxiao"  onclick="bandLayerBgHide()"></i>
+					</div>
+					<div class="p-video-all">
+						<video id="p-showVideo" controls="controls" autoplay></video>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="t-nothing">您需要到微信上打开才能参与
+			<div class="nothing-img"></div>
+		</div>
+		<script src="${res}/js/jquery-1.12.4.js"></script>
+		<script src="${res}/lib/layui/layui.js"></script>
+		<script src="${res}/lib/intelligrnce.js"></script>
+		<script src="${res}/lib/intelligrnceItem.js"></script>
+		<script src="${res}/lib/selectItems.js"></script>
+		<script src="${res}/js/moment.min.js"></script>
+		<script src="${res}/js/chinese.js"></script>
+		
+		<script>
+			layUiUse('${id!}'||1,'${base}','${res}','${formId!}')
+			$(function(){
+				if(localStorage.getItem('typeface') && localStorage.getItem('typeface')=='简体'){
+					$('.typeface>span').text('简体');
+					zh_tran('s')
+				}else if(localStorage.getItem('typeface') && localStorage.getItem('typeface')=='繁体'){
+					$('.typeface>span').text('繁体');
+					zh_tran('t')
+				}else{
+					$('.typeface>span').text('简体');
+					zh_tran('s')
+				}
+			})
+    </script>
+</div>

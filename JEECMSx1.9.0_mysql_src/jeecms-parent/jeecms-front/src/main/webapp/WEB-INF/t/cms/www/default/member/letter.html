@@ -1,0 +1,642 @@
+<link rel="stylesheet" href="${res}/lib/layui/css/modules/layui-icon-extend/iconfont.css"/>
+<link rel="stylesheet" href="${res}/lib/letter.css"/>
+
+<div>
+  <div class="my-letter">
+    <span class="interact Bold t-24">我的信件</span>
+    <div class="btns"><button class="btn" onclick="delMailbox()">批量删除</button></div>
+    <div class="mailbox overflow">
+        <div class="fl">
+            <span class="Semilight">回复状态：</span>
+            <select name="hasReply" id="hasReply">
+                <option value="">全部</option>
+                <option value="0">未回复</option>
+                <option value="1">已回复</option>
+            </select>
+        </div>
+        <div class="date fl">
+            <span class="Semilight">发件时间：</span>
+            <input type="text" name="date6" id="date6" class="form-control" placeholder="请选择日期"/>
+            <input type="hidden" id="queryTimeBegin" name="queryTimeBegin" class="form-control" />
+            <input type="hidden" id="queryTimeEnd" name="queryTimeEnd" class="form-control" />
+            <i class="iconfont iconshijian"></i>
+        </div>
+        <div class="collect-title fl Semilight">
+            <span>搜索：</span>
+            <input type="text" name="mailTitle" id="mailTitle" placeholder="请输入留言标题" />
+        </div>
+        <div class="mailboxSearch fl"><a rel="noopener noreferrer" class="Regular block" href="#">搜索</a></div>
+    </div>
+    <div class="mailsearch Semilight">
+        <table class="table">
+            <tr>
+                <th class="check">
+                    <input class="check-input check-all" type="checkbox"  data-type="parant" data-id="" />
+                </th>
+                <th class="first">序号</th>
+                <th class="second">信件标题</th>
+                <th class="third">回复状态</th>
+                <th class="forth">发信时间</th>
+                <th class="fifth">回复时间</th>
+                <th class="seven">操作</th>
+            </tr>
+        </table>
+        <div class="letter-none">暂无数据</div>
+    </div>
+    <div class="pageDiv"></div>
+</div>
+<div class="letter-detail none">
+    <a rel="noopener noreferrer" class="callback block Regular" href="#"><span><i class="iconfont iconjiaodiantujiantouzuo"></i></span>返回</a>
+    <div class="letter-view">
+        <form id="myLetterForm"  method="post" autocomplete="off">
+            <div class="letter-form"></div>
+            <div class="letter-reply"></div>
+            <input class="save6 Regular pointer" type="submit" value="提交" />
+        </form>
+    </div>
+    <!-- <div class="success none Semilight"><div class="text"><i class="iconfont iconliulangwanbi"></i>提交成功</div></div> -->
+</div>
+<div class="infoimgbox"><img src="${res}/images/info/xinjian.jpg" alt=""></div>
+<!-- 成功弹窗 s -->
+<div class="mode mode-result">
+    <div class="mode-box">
+        <div class="mode-close"><i class="iconfont iconguanbi1"></i></div>
+        <div class="mode-title"><i class="iconfont iconliulangwanbi"></i>
+            <span class="mode-message">提交成功</span></div>
+            <a rel="noopener noreferrer" class="mode-btn" >确定</a>
+    </div>
+</div>
+<!-- 成功弹窗 e -->
+  <!-- 预览 -->
+  <div class="layerBgShow" onclick="bandLayerBgHide()"></div>
+  <div class="layertextBgShow">
+      <div class="p-text-title">
+          <label>视频</label>
+          <i class="layui-icon iconfont jee-quxiao"  onclick="bandLayerBgHide()"></i>
+      </div>
+      <div class="p-video-all">
+          <video id="p-showVideo" controls="controls" autoplay></video>
+      </div>
+  </div>
+  <audio class="showAudio" src="${base}/resource/place.ogg" ></audio>
+  <!-- 预览 -->
+</div>
+<script>
+   var checkArr = []
+        var mailboxData = []
+        var mailboxPage = 1
+        var mailboxPages = Number
+        //我的信件-hyt
+        function getMailboxPage(p) {
+            var page = ''
+            if (p) {
+                page = p
+                mailboxPage = p
+            } else {
+                page = mailboxPage
+            }
+
+            api.GET('/member/letter/page', {
+                'hasReply':$('#hasReply').val(),
+                'queryTimeBegin': $('#queryTimeBegin').val(),
+                'queryTimeEnd': $('#queryTimeEnd').val(),
+                'title':$('#mailTitle').val(),
+                'page': page,
+                'size': 5
+            }, function (result) {
+                if (result.code == 200) {
+                    $('.six table .content').remove()
+                    var cont = mailboxData = result.data.content;
+                    checkArr = []
+                    console.log(result.data.totalElements)
+                    if(result.data.totalElements<=0){
+                        $('.infoimgbox').removeClass('none')
+                    }else{
+                        $('.infoimgbox').addClass('none')
+                    }
+                    if(cont.length == 0&&page>1){
+                        getMailboxPage(1);
+                        return
+                      }
+                    if (result.data.totalElements <= 0) {
+                        $('.six .letter-none').css('display', 'block');
+                        $('.six .pageDiv').css('display', 'none');
+                        
+                    } else {
+                        $('.six .letter-none').css('display', 'none');
+                        $('.six .pageDiv').css('display', 'block');
+                        for (var i = 0; i < cont.length; i++) {
+                            var html = ""
+                            // 1待办理 2已回复 3流转中 (已回复 已评价 已选登 用2 已删除用空) 4未回复
+                            // var arr = ['','待办理','已回复','流转中','未回复']
+                            var arr = ['','未回复','已回复','未回复','未回复']
+                            var status = arr[Number(cont[i].status)]
+                            var createTime = cont[i].createTime?cont[i].createTime:'-'
+                            var replyTime = cont[i].finishTime?cont[i].finishTime:(cont[i].replyTime||'-')
+                            html+='<tr class="content">'+
+                                '<td class="check" ><input class="check-input" type="checkbox"  data-type="child" data-id="'+cont[i].id+'"/></td>'+
+                                '<td class="num"><span>' + ((page - 1) * 5 + (i + 1)) +'</span></td>'+
+                                '<td class="content-text"><div class="top overflow" onclick="showLetter(' +cont[i].id + ')">'+cont[i].title+'</div></td>'+
+                                '<td><div>'+status+'</div></td>'+
+                                '<td><div class="time"><span>' + createTime + '</span></div></td>'+
+                                '<td><div class="time"><span>' + replyTime + '</span></div></td>'+
+                                '<td><div class="operate"><div class="item right fl pointer hover">'+
+                                '<i class="iconfont icondelete-bin-line"></i>'+
+                                '<span style="margin-left:10px;" onclick="noneMailbox(' +cont[i].id + ')">删除</span></div>'+
+                                '<div class="clearfix"></div></div></td></tr>'
+
+                            $('.six table').append(html);
+                        }
+                        $('.six table .content .check .check-input').change(function (e){
+                            var checkId = Number($(this).attr('data-id'))
+                            var isCheck = e.target.checked
+                            if(checkArr.indexOf(checkId) > -1&&!isCheck){
+                                checkArr.splice(checkArr.indexOf(checkId),1)
+                            } else if(isCheck) {
+                                checkArr.push(checkId)
+                            }
+                            if(checkArr.length === 5){
+                                $('.six table .check .check-all')[0].checked = true
+                            } else {
+                                $('.six table .check .check-all').attr('checked',false)
+                            }
+                        })
+                        if (mailboxPages != result.data.totalPages) {
+                            mailboxPages = result.data.totalPages
+                            $(".six .pageDiv").createPage({
+                                pageCount: mailboxPages, //总页数
+                                current: page, //当前页
+                                turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                backFn: function (p) {
+                                    getMailboxPage(p)
+                                }
+                            });
+                        } else {
+                            $(".six .pageDiv").createPage({
+                                pageCount: mailboxPages, //总页数
+                                current: page, //当前页
+                                turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                backFn: function (p) {
+                                    // interaction(p)
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+       // 全选
+        $('.six table .check .check-all').change(function (e){
+            var isCheck = e.target.checked
+            if(isCheck){
+                var idArr = []
+                for(var i = 0;i<mailboxData.length;i++){
+                    idArr.push(mailboxData[i].id)
+                    $('.six table .content .check .check-input')[i].checked = true
+                }
+                checkArr = idArr
+            } else {
+                checkArr = []
+                $('.six table .content .check .check-input').attr('checked',false)
+            }
+        })
+        // 初始调取
+        // getMailboxPage()
+        //我的信件-查询
+        $('.six .mailbox .mailboxSearch a').click(function () {
+            mailboxPage = 1
+            getMailboxPage();
+        });
+        //我的信件
+        $("input[name='date6']").daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                format: "YYYY-MM-DD",
+                separator: " - ",
+                applyLabel: "确认",
+                cancelLabel: "清空",
+                fromLabel: "开始时间",
+                toLabel: "结束时间",
+                customRangeLabel: "自定义",
+                daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月",
+                    "十二月"
+                ],
+            }
+        }).on('cancel.daterangepicker', function (ev, picker) {
+            $("#date6").val("请选择日期范围");
+            $("#queryTimeBegin").val("");
+            $("#queryTimeEnd").val("");
+        }).on('apply.daterangepicker', function (ev, picker) {
+            $("#queryTimeBegin").val(picker.startDate.format('YYYY-MM-DD'));
+            $("#queryTimeEnd").val(picker.endDate.format('YYYY-MM-DD'));
+            $("#date6").val(picker.startDate.format('YYYY-MM-DD') + " 至 " + picker.endDate.format('YYYY-MM-DD'));
+        });
+        //我的信件-删除
+        function noneMailbox(id, ev) {
+            var e = ev || window.event;
+            e.path[4].remove();
+            deleteMail([id])
+        };
+        function delMailbox(e){
+            if(checkArr.length){
+                deleteMail(checkArr)
+                $('.six table .check .check-all')[0].checked = false
+            } else {
+                myMessage.add('请至少选择一项操作', 'warning');
+            }
+        };
+        function deleteMail(ids){
+            api.POST(('/member/letter/delete'), {ids:ids}, function (result) {
+                if (result.code == 200) {
+                    $('.six .content').remove();
+                    getMailboxPage();
+                }
+            });
+        };
+        var detail = {}
+        // 查看详情
+        function showLetter(id){
+            $('.my-letter').addClass('none');
+            $('.letter-detail').removeClass('none');
+            api.GET(('/letter/'+id), {}, function (result) {
+                if (result.code == 200) {
+                    $('#myLetterForm .letter-content').remove();
+                    var cont = result.data.datas;
+                    var formData = result.data.attrMap;
+                    detail = result.data;
+                    $('#myLetterForm .letter-form').append('<div class="letter-content"><div class="t-lable">发信时间： </div><div class="t-cont">'+detail.createTime+' </div></div>' )
+                    for (var i = 0; i < cont.length; i++) {
+                        var _html = ''
+                        var fieldType = typeFilter(cont[i].dataType)
+                        // var layoutTypes = ['bar','line','desc']; // 布局组件
+                        var formItemHtml = '';
+                        var classItem = '';
+                        var content = '';
+                        /*不同类别添加class*/
+                        /*表单组件*/
+                        
+                        var fieldVal = cont[i].val;
+                        var base = '${base}';
+                        if(fieldVal){
+                            switch(fieldType){
+                                case 'imageUpload':// 图片
+                                    content = '<div class="upload-show"><div class="t-img-show">'+
+                                        '<div class="img-box" data-src="'+base+fieldVal.url+'">'+
+                                            '<img class=" t-img" src="'+base+fieldVal.url+'"/></div>'+
+                                    '</div></div>'
+                                break
+                                case 'multiImageUpload':// 多图
+                                    if(fieldVal.length){
+                                        for(var m=0;m<fieldVal.length;m++){
+                                            content += '<div class="upload-show"><div class="t-img-show">'+
+                                                '<div class="img-box" data-src="'+base+fieldVal[m].url+'">'+
+                                                    '<img class=" t-img" src="'+base+fieldVal[m].url+'"/></div>'+
+                                            '</div></div>'
+                                        }
+                                    }
+                                break
+                                case 'videoUpload':// 视频
+                                    content = '<div class="p-video-list upload-list videoListItem upload-show">'+
+                                          '<div class="p-video-show">'+
+                                              '<div class="p-video-play" data-src="'+base+fieldVal.url+'">'+
+                                              '<i class="layui-icon iconfont  jee-bofang video-list-play p-jee-play"></i>'+
+                                              '</div>'+
+                                              '<p class="alias">'+fieldVal.alias+'</p>'+
+                                              
+                                          '</div>'+
+                                          '<div  class="p-video-showhide">'+
+                                              '<video  src="'+base+fieldVal.url+'" ></video>'+
+                                          '</div>'+
+                                      '</div>'
+                                break
+                                case 'audioUpload':// 音频
+                                    content = '<div class="p-video-list audioListItem upload-list '+cont[i].field+m+'">'+
+                                        '<div class="p-video-show">'+
+                                            '<div class="p-video-play"  data-name="'+(cont[i].field)+'">'+
+                                            '<i class="layui-icon iconfont p-jee-play jee-bofang video-list-play"></i></div>'+
+                                            '<p class="alias">'+fieldVal.alias+'</p>'+
+                                            '<audio class="'+(cont[i].field+'Audio')+'" src="'+base+fieldVal.url+'" ></audio>'+
+                                            
+                                        '</div>'+
+                                        '<div class="p-audioItem p-audio-showhide">'+
+                                            '<div class="p-audio-play" data-name="'+(cont[i].field)+'">'+
+                                            '<i class="layui-icon iconfont jee-bofang audio-list-play p-jee-play"></i></div>'+
+                                            '<p class="alias">'+fieldVal.alias+'</p>'+
+                                            '<audio class="'+(cont[i].field+'Audio')+'" src="'+base+fieldVal.url+'" ></audio>'+
+                                            '<div class="p-audio-add">'+
+                                                '<div class="audio-add-bg">'+
+                                                '<i class="layui-icon iconfont jee-tingzhianniu p-jee-play"></i>'+
+                                                '<div class="bg-audio-icon">'+
+                                                    '<img src="${res}/lib/img/progress.png">'+
+                                                    '<div class="gray-div"></div>'+
+                                                    '<div class="audioBgShow"></div>'+
+                                                '</div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'
+                                break
+                                case 'fileUpload':// 文件
+                                    if(fieldVal.length){
+                                        for(var m=0;m<fieldVal.length;m++){
+                                            var resType = fieldVal[m].resourceType
+                                            switch(resType){
+                                                case 1://图片
+                                                content += '<div class="upload-show"><div class="t-img-show">'+
+                                                    '<div class="img-box" data-src="'+base+fieldVal[m].url+'">'+
+                                                        '<img class=" t-img" src="'+base+fieldVal[m].url+'"/></div>'+
+                                                '</div></div>'
+                                                break
+                                                case 2://视频
+                                                content += '<div class="p-video-list upload-list upload-show videoListItem" >'+
+                                                    '<div class="p-video-show">'+
+                                                        '<div class="p-video-play" data-src="'+base+fieldVal[m].url+'">'+
+                                                        '<i class="layui-icon iconfont p-jee-play jee-bofang video-list-play"></i>'+
+                                                        '</div>'+
+                                                        '<p class="alias">'+fieldVal[m].alias+'</p>'+
+                                                    '</div>'+
+                                                    '<div  class="p-video-showhide">'+
+                                                        '<video  src="'+base+fieldVal[m].url+'" ></video>'+
+                                                    '</div>'+
+                                                '</div>'
+                                                break
+                                                case 3:// 音频
+                                                content += '<div class="p-video-list audioListItem upload-list '+cont[i].field+m+'">'+
+                                                  '<div class="p-video-show">'+
+                                                      '<div class="p-video-play"  data-name="'+(cont[i].field+m)+'">'+
+                                                      '<i class="layui-icon iconfont p-jee-play jee-bofang video-list-play"></i></div>'+
+                                                      '<p class="alias">'+fieldVal[m].alias+'</p>'+
+                                                      '<audio class="'+(cont[i].field+m+'Audio')+'" src="'+base+fieldVal[m].url+'" ></audio>'+
+                                                      
+                                                  '</div>'+
+                                                  '<div class="p-audioItem p-audio-showhide">'+
+                                                      '<div class="p-audio-play" data-name="'+(cont[i].field+m)+'">'+
+                                                      '<i class="layui-icon iconfont jee-bofang audio-list-play p-jee-play"></i></div>'+
+                                                      '<p class="alias">'+fieldVal[m].alias+'</p>'+
+                                                      '<audio class="'+(cont[i].field+m+'Audio')+'" src="'+base+fieldVal[m].url+'" ></audio>'+
+                                                      '<div class="p-audio-add">'+
+                                                          '<div class="audio-add-bg">'+
+                                                          '<i class="layui-icon iconfont jee-tingzhianniu p-jee-play"></i>'+
+                                                          '<div class="bg-audio-icon">'+
+                                                              '<img src="${res}/lib/img/progress.png">'+
+                                                              '<div class="gray-div"></div>'+
+                                                              '<div class="audioBgShow"></div>'+
+                                                          '</div>'+
+                                                          '</div>'+
+                                                      '</div>'+
+                                                  '</div>'+
+                                              '</div>'
+                                                break
+                                                case 4:// 文档
+                                                content += '<div><div class="file-text-list upload-list">'+
+                                                    '<span class="file-show" data-src="'+(fieldVal[m].pdfPath||fieldVal[m].url)+'">'+base+fieldVal[m].alias+'</span>'+
+                                                '</div></div>'
+                                                break
+                                                default:// 压缩包-其他
+                                                content += '<div><div class="file-text-list upload-list">'+
+                                                    '<span class="file-down" data-src="'+fieldVal[m].url+'">'+base+fieldVal[m].alias+'</span>'+
+                                                '</div></div>'
+                                            }
+                                            
+                                        }
+                                    }
+                                break
+                                case 'imageRadio':// 图片单选
+                                    content = '<div style="display:inline-block;vertical-align:top;">'+
+                                    '<div class="upload-show"><div class="t-img-show">'+
+                                        '<div class="img-box" data-src="'+base+fieldVal.url+'"><img class=" t-img" src="'+base+fieldVal.url+'"/></div>'+
+                                    '</div></div><div class="check-text">'+fieldVal.label+'</div></div>'
+                                break
+                                case 'imageCheckbox':// 图片多选
+                                    if(fieldVal.length){
+                                        for(var c=0;c<fieldVal.length;c++){
+                                            content += '<div style="display:inline-block;vertical-align:top;">'+
+                                                '<div class="upload-show"><div class="t-img-show">'+
+                                                '<div class="img-box" data-src="'+base+fieldVal[c].url+'"><img class=" t-img" src="'+base+fieldVal[c].url+'"/></div>'+
+                                            '</div></div><div class="check-text">'+fieldVal[c].label+'</div></div>'
+                                        }
+                                    }
+                                break
+                                default:
+                                    content = (cont[i].val||'-')
+                            }
+                            
+                        }
+                        
+                        _html += '<div class="letter-content '+cont[i].field+'">'+
+                        '<div class="t-lable">'+cont[i].label+'： </div>'+
+                        '<div class="t-cont '+fieldType+'">'+(content||'-')+' </div></div>' 
+                        // getItemData(cont[i],fieldType);
+                        $('#myLetterForm .letter-form').append(_html)
+                    }
+                    /*鼠标点击查看大图*/
+                    $(".t-cont").viewer();
+                     /*文件处理逻辑 start*/
+                    // 鼠标移动显示隐藏播放键
+                    $('.audioListItem').hover(function() {
+                        $(this).children('.p-video-show').css('display','block');
+                        $(this).children('.p-audio-showhide').css('display','none');
+                    }, function() {
+                        $(this).children('.p-video-show').css('display','none');
+                        $(this).children('.p-audio-showhide').css('display','block');
+                    });
+                    var audioValue;
+                    // 点击播放按钮-音频
+                    $(".audioListItem .p-jee-play").on("click",function () {
+                        var name = $(this).parent().attr('data-name')
+                        audioValue = $(this).parent().siblings('.'+name+'Audio')[0]
+                        // console.log(audioValue)
+                        if(audioValue.paused){
+                            // audioValue.src = audioSrcItem
+                            $(this).addClass('jee-zanting').removeClass('jee-bofang')
+                            $("."+name+' .p-jee-play').addClass('jee-zanting').removeClass('jee-bofang')
+                            audioValue.play();
+                            getTimeWidth(audioValue,true,name)
+                        }else{
+                            $(this).addClass('jee-bofang').removeClass('jee-zanting ')
+                            $("."+name+' .p-jee-play').addClass('jee-bofang').removeClass('jee-zanting')
+                            audioValue.pause();
+                            getTimeWidth(audioValue,false,name)
+                        }
+                    });
+                    // 鼠标移动显示隐藏播放键
+                    $('.videoListItem').hover(function() {
+                        $(this).children('.p-video-show').css('display','block');
+                    }, function() {
+                        $(this).children('.p-video-show').css('display','none');
+                    });
+                    // 点击播放按钮弹出弹窗
+                    $('.videoListItem .video-list-play').on("click",function () {
+                        var videoSrcItem = $(this).parent().attr('data-src')
+                        $('.layertextBgShow').css('display','block');
+                        $('.layerBgShow').css('display','block');
+                        bandLayerBgShow(videoSrcItem)
+                    });
+                    // pdf预览
+                    $('.file-text-list .file-show').click(function () {
+                      var url = $(this).attr('data-src');
+                      if (/^http/.test(url)){
+                        window.open(url)
+                      } else {
+                        window.open('${base}'+url)
+                      };
+                    });
+                    // 压缩包下载
+                    $('.file-text-list .file-down').click(function () {
+                      var url = $(this).attr('data-src');
+                      if (/^http/.test(url)){
+                        window.open(url)
+                      } else {
+                        window.open('${base}'+url)
+                      };
+                    });
+                    /*文件处理逻辑 end*/
+                    var replyHtml = ''
+                    if(detail.status === 2){
+                        replyHtml += '<div class="letter-content"><div class="t-lable">回复状态： </div><div class="t-cont">已回复 </div></div>'+
+                        '<div class="letter-content"><div class="t-lable">回复时间： </div><div class="t-cont">'+(detail.finishTime?detail.finishTime:(detail.replyTime||'-'))+'</div></div>'+
+                        '<div class="letter-content"><div class="t-lable">回复内容： </div><div class="t-cont">'+detail.replyContent+' </div></div>'
+                        if(detail.scoreSet!=3){
+                            replyHtml+='<div class="letter-content"><div class="t-lable">您对答复是否满意： </div><div class="t-cont evaluate-score">'
+                            var evaluateTxts = ['','非常不满意','不满意','基本满意','比较满意','非常满意']
+                            var evaluateNum = Number(detail.score||0)/2
+                            var evaluateTxt = evaluateTxts[evaluateNum]
+                            if(evaluateNum){
+                                $('#myLetterForm .save6').css('display','none')
+                            } else {
+                                $('#myLetterForm .save6').css('display','block')
+                            }
+                            for(var j = 0;j<5;j++){
+                                if(!evaluateNum){
+                                    replyHtml+='<i class="iconfont evaluate iconpingfenshezhi_h t-cur" onclick="setScore(\''+j+'\');"></i>'
+                                } else {
+                                    replyHtml+='<i class="iconfont evaluate iconpingfenshezhi_h '+(evaluateNum&&evaluateNum>=(j+1)?'active':'')+'"></i>'
+                                }
+                            }
+                            replyHtml+='<span class="evaluate-txt evaluate">'+evaluateTxt+'</span></div></div>'
+                        } else {
+                            $('#myLetterForm .save6').css('display','none')
+                        }
+                    } else {
+                        $('#myLetterForm .save6').css('display','none')
+                        replyHtml += '<div  class="letter-content"><div class="t-lable">回复状态： </div><div class="t-cont">未回复 </div></div>'
+                    }
+                    $('#myLetterForm .letter-reply').append(replyHtml)
+                    
+                }
+            });
+        };
+        function getItemData(item,type){
+            console.log(item)
+            console.log(type)
+        };
+        // 音频定时器------
+        var audioWidth; // 播放音频进度条的宽度
+        var timer; //定时器
+        function getTimeWidth (audio, status,name) {
+            if (status) {
+              timer = setInterval(function() {
+                audioWidth = ((audio.currentTime || 0) / audio.duration) * 100 + '%'
+                $('.'+name+' .audioBgShow').css('width',audioWidth);
+                // console.log(audioWidth)
+                if(audioWidth == '100%'){
+                    clearInterval(timer)
+                    $('.'+name+' .p-jee-play').addClass('jee-bofang').removeClass('jee-zanting')
+                }
+              }, 3000)
+            } else {
+              clearInterval(timer);
+            }
+        };
+        // 评分------
+        var satisfactionScore = 10
+        // 选中评分
+        function setScore(num){
+            $('#myLetterForm .letter-reply .evaluate-score .evaluate').remove();
+            var replyHtml = ''
+            var evaluateTxts = ['非常满意','非常不满意','不满意','基本满意','比较满意','非常满意']
+            var evaluateNum = Number(num||0)+1
+            satisfactionScore = evaluateNum*2
+            var evaluateTxt = evaluateTxts[evaluateNum]
+            for(var j = 0;j<5;j++){
+                if(!evaluateNum){
+                    replyHtml+='<i class="iconfont evaluate iconpingfenshezhi_h active t-cur" onclick="setScore(\''+j+'\');"></i>'
+                } else {
+                    replyHtml+='<i class="iconfont evaluate iconpingfenshezhi_h t-cur '+(evaluateNum&&evaluateNum>=(j+1)?'active':'')+'" onclick="setScore(\''+j+'\');"></i>'
+                }
+            }
+            replyHtml+='<span class="evaluate-txt evaluate">'+evaluateTxt+'</span>'
+
+            $('#myLetterForm .letter-reply .evaluate-score').append(replyHtml)
+        };
+        //表单验证
+        $('#myLetterForm').validate({
+          submitHandler: function () {
+              console.log(satisfactionScore)
+              api.POST('/member/letter/score',{
+                  id:detail.id,
+                  score:satisfactionScore
+              },function(result){
+                //   if(result.code === 200){
+                    $('.mode-result').css('display','block');
+                //   }
+              })
+          }
+      });
+    function typeFilter(type){
+        /*获取类型type*/
+        switch(type){
+            case 'imageCheckbox':// 图片多选
+                return 'imageCheckbox'
+            case 'imageRadio':// 图片单选
+                return 'imageRadio'
+            case 'imageUpload':// 单图上传
+                return 'imageUpload'
+            case 'multiImageUpload':// 多图上传
+                return 'multiImageUpload'
+            case 'fileUpload':// 附件上传
+                return 'fileUpload'
+            case 'videoUpload':// 视频上传
+                return 'videoUpload'
+            case 'audioUpload':// 音频上传
+                return 'audioUpload'
+            default:
+                return 'text'
+        }
+    };
+    /*关闭弹窗*/
+    $('.mode-btn').click(function(){
+        $('.mode-result').css('display','none')
+        setTimeout(function(){
+            $('.my-letter').removeClass('none');
+            $('.letter-detail').addClass('none');
+            getMailboxPage(1);
+            // location.reload()
+        }, 50);
+    });
+    $('.mode-close').click(function(){
+        $('.mode-result').css('display','none')
+        showLetter(detail.id);
+    });
+  // 播放视频
+function bandLayerBgShow(serUrl){
+    console.log(serUrl)
+    $('.layertextBgShow').css('display','block');
+    $('.layerBgShow').css('display','block');
+    document.getElementById("p-showVideo").src = serUrl
+}
+//关闭视频弹窗
+function bandLayerBgHide() {
+    var video = document.getElementById('p-showVideo');
+        if(video.paused){
+        //如果已暂停则播放
+            video.play(); //播放控制
+        }else{ // 已播放点击则暂停
+            video.pause(); //暂停控制
+        }
+    $('.layertextBgShow').css('display','none');
+    $('.layerBgShow').css('display','none');
+
+}
+</script>

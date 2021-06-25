@@ -1,0 +1,7 @@
+[#if site.globalConfig.memberOpen??&&site.globalConfig.memberOpen]
+[#if user??]
+<i class="toLogin"><a href="${base}/h5center/index.html#/pages/personal/index/index"><img src="${mobileRes}/images/icon/geren.png"></a></i>
+[#else]
+<i class="toLogin"><a href="${base}/h5center/index.html#/pages/login/login"><img src="${mobileRes}/images/icon/geren.png"></a></i>
+[/#if]
+[/#if]

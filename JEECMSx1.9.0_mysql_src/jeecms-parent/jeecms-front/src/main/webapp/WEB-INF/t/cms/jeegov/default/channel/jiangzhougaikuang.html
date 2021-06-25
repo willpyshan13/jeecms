@@ -1,0 +1,87 @@
+<!-- 走进江州- 江州概况页 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/jiangzhougaikuang.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <div class="main w clearfix">
+
+            <div class="menus fl">
+                <div class="m-title ">江州概况</div>
+                <ul class="uu" id="gmenu">
+                    [@cms_channel_list parentId='2478']
+                    [#list tag_list as c]
+                    <li [#if channel.id==c.id]class="getcolor currentli"[/#if] aa="d${c_index+1}" onclick="f1(this)">${c.name!}</li>
+                    [/#list]
+                    [/@cms_channel_list]
+                </ul>
+            </div>
+            <div class="contents fl">
+                [@cms_channel_list parentId='2478']
+                [#list tag_list as c]
+                [#if c_index==0]
+                <div id="d1">
+                    <div class="contents-title">
+                        ${c.name!}
+                        <div class="linestyle"></div>
+                    </div>
+                    <div class="contents-text">
+                        ${c.txtMap.customTxt!}
+                    </div>
+                </div>
+                [#else]
+                <div id="d${c_index+1}" class="hide">
+                    <div class="contents-title">
+                        ${c.name!}
+                        <div class="linestyle"></div>
+                    </div>
+                    <div class="contents-text">
+                        ${c.txtMap.customTxt!}
+                    </div>
+                </div>
+                [/#if]
+                [/#list]
+                [/@cms_channel_list]
+            </div>
+        </div>
+        [#include "../includes/footerCommon.html"/]
+    </div>
+</body>
+<script>
+    // 点击改变背景色颜色
+    $("#gmenu li").click(function() {
+        $(this).addClass("currentli").siblings().removeClass();
+    })
+    点击切换右侧内容
+
+    function f1(self) {
+        $(self).addClass("getcolor").siblings().removeClass("getcolor");
+
+        var getele = $(self).attr("aa");
+
+        $("#" + getele).removeClass("hide").siblings().addClass("hide");
+    }
+</script>
+
+</html>

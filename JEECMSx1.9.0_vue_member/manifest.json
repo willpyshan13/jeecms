@@ -1,0 +1,31 @@
+{
+    "name" : "JeeCmsH5",
+    "appid" : "__UNI__E9AB803",
+    "description" : "JeeCmsH5",
+    "versionName" : "x1",
+    "versionCode" : 1,
+    "transformPx" : false,
+    "h5" : {
+        "devServer" : {
+            "port" : 8081,
+            "disableHostCheck" : true,
+            "proxy" : {
+                "/api" : {
+                    "target" : "http://192.168.0.200:8700/",
+                    "changeOrigin" : true,
+                    "secure" : false,
+                    "pathRewrite" : {
+                        "^/api" : ""
+                    }
+                }
+            },
+            "https" : false
+        },
+        "title" : "jeecms",
+        "domain" : "www.jeecms.com",
+        "router" : {
+            "base" : "/h5center/",
+            "mode" : "hash"
+        }
+    }
+}

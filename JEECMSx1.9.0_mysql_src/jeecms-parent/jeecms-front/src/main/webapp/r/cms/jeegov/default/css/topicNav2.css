@@ -1,0 +1,205 @@
+/* <!-- 专题内容样式2 --> */
+body {
+    height:100%;
+}
+.header-topic {
+    height: 80px;
+}
+.logo {
+    margin-top: 22px;
+}
+.btnItem {
+    padding: 0 12.5px;
+}
+.titleBtn {
+    margin-top: 32px;
+}
+.btnItem a {
+    color: #666;
+    font-weight: 300;
+    font-size: 18px;
+}
+.focusPicture {
+    position: relative;
+    width: 100%;
+    height: 536px;
+}
+.focusPicture img {
+    width: 100%;
+    height: 100%;
+}
+ .title {
+     text-align: center;
+    font-size:30px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+}
+.subTitle {
+    padding: 0 44px 0 51px;
+    margin-top: 29px;
+    font-size:16px;
+    font-weight:normal;
+    color:rgba(153,153,153,1);
+    text-indent: 2em;
+    line-height: 25px;
+}
+.slider {
+    margin-top: 40px;
+    width: 100%;
+    height: 560px;
+}
+.carousel-inner .item img {
+    width: 100% !important;
+    height: 560px !important;
+}
+
+.carousel-example-generic {
+    position: relative;
+}
+.carousel-indicators {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    bottom: 15px;
+    left: 99%;
+    transform: translate(-100%);
+    text-align: right;
+}
+.carousel-indicators li {
+    width: 14px;
+    height: 14px;
+    margin: 0 5px;
+    background-color: #999;
+    border: none;
+}
+.carousel-caption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0 0 0 29px;
+    width: 100%;
+    height: 55px;
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0 !important;
+    font-size:16px;
+    font-weight:normal;
+    line-height: 55px;
+    text-align: left;
+    
+}
+.carousel-caption a {
+    color:#FFFFFF;
+
+}
+.carousel-indicators .active {
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+}
+.main {
+    margin-bottom: 58px;
+}
+.media {
+    margin-top: 55px;
+}
+.mediaTitle {
+    position: relative;
+    margin-bottom: 50px;
+    width: 100%;
+    height: 57px;
+    font-size:24px;
+    font-weight:300;
+    color:rgba(234,53,38,1);
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+.line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 50%;
+    transform: translate(-50%);
+    width: 92px;
+    height: 2px;
+    background-color: #EA3526;
+}
+.menuIten {
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+.listyle {
+    color: #EA3526;
+    margin-right: 7px;
+}
+.menu {
+    margin-right: 31px;
+    width: 310px;
+}
+
+.menuText a{
+    color: #333;
+}
+.menuText a:hover {
+    color: #333;
+    cursor: pointer;
+}
+.theory {
+    margin-top: 28px;
+}
+.theoryItem {
+    width: 100%;
+}
+.itemBox {
+    margin:0  20px 20px 0;
+    padding: 40px 23px 39px;
+    width: 320px;
+    height: 180px;
+    background-color: #F5F5F5;
+    border: 1px solid #e6e6e6;
+}
+.itemBox:hover div {
+    color: #002a66;
+}
+.itemBox:hover {
+    background-color: #fff;
+}
+ .theoryTitle {
+    font-size:16px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    margin-bottom: 21px;
+}
+.itemBox .theoryText {
+    font-size: 14px;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    line-height:25px;
+}
+.education {
+    margin-top: 34px;
+    width: 100%;
+}
+.educationImg {
+    width: 230px;
+    height: 152px;
+}
+.educationImg img {
+    width: 100%;
+    height: 100%;
+}
+.educationText {
+    margin-top: 21px;
+    width: 192px;
+    font-size:16px;
+    font-weight:400;
+}
+.educationText a {
+    color:rgba(51,51,51,1);
+
+}
+.educationText:hover a {
+    color: #002a66;
+}
+.educationItem {
+    margin-right: 25px;
+}
+ /* 页脚样式 */

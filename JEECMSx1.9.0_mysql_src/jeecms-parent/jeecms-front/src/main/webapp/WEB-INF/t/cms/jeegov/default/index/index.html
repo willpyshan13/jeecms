@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${site.name!}</title>
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/index.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+    [#include "../includes/header.html"/]
+    <div class="section w">
+        <div class="section-text">
+            <!-- 要问栏目下 头条类型-->
+            [@cms_content_list channelPath='ywdt' channelOption='1' typeId='149' orderBy='29'  count='1']
+            [#list tag_list as a]
+            <div class="section-text-sub01">
+                <a href="${a.url!}">${a.title!?html}</a>
+            </div>
+            <div class="section-text-sub02">
+                [@text_cut s=a.description  append='...' /]
+            </div>
+            [/#list]
+            [/@cms_content_list]
+        </div>
+
+        <div class="section-overall">
+            <div class="section-main">
+                <!-- 左轮播图区域 -->
+                <div class="section-main-left">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <!-- 要问栏目下 焦点类型-->
+                            [@cms_content_list channelPath='ywdt' channelOption='1' typeId='186' orderBy='29'  count='5']
+                            [#list tag_list as a]
+                            [#if a_index==0]
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            [#else]
+                            <li data-target="#carousel-example-generic" data-slide-to="${a_index}"></li>
+                            [/#if]
+                            [/#list]
+                            [/@cms_content_list]
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            [@cms_content_list channelPath='ywdt' channelOption='1' typeId='186' orderBy='29'  count='5']
+                            [#list tag_list as a]
+                            [#if a_index==0]
+                            <div class="item active">
+                                <img src="${(a.attr.singleImg.resUrl)!}">
+                                <div class="carousel-caption">
+                                    <a href="${a.url!}">${a.title!}</a>
+                                </div>
+                            </div>
+                            [#else]
+                            <div class="item">
+                                <img src="${(a.attr.singleImg.resUrl)!}">
+                                <div class="carousel-caption">
+                                    <a href="${a.url!}">${a.title!}</a>
+                                </div>
+                            </div>
+                            [/#if]
+                            [/#list]
+                            [/@cms_content_list]
+
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="prev">
+                            <span class="" aria-hidden="true"></span>
+                            <span class="sr-only"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="next">
+                            <span class="" aria-hidden="true"></span>
+                            <span class="sr-only"></span>
+                        </a>
+                    </div>
+                </div>
+                <!-- 右小标题区域 -->
+                <div class="section-main-right">
+                    <div class="section-common-title" id="title-change1">
+                        [@cms_channel path='jzyw' ]
+                        [#if tag_bean??]
+                        <div class="titleText fl line-active">${tag_bean.name!}</div>
+                        [/#if]
+                        [/@cms_channel]
+                        [@cms_channel path='gwyxx' ]
+                        [#if tag_bean??]
+                        <div class="titleText fl">${tag_bean.name!}</div>
+                        [/#if]
+                        [/@cms_channel]
+                        [@cms_channel path='bmdt' ]
+                        [#if tag_bean??]
+                        <div class="titleText fl">${tag_bean.name!}</div>
+                        [/#if]
+                        [/@cms_channel]
+                    </div>
+                    <div class="index-tab-1">
+                        <div class="section-main-nav index-tab-item1">
+                            [@cms_content_list channelPath='jzyw' channelOption='1'  orderBy='29'  count='6']
+                            [#list tag_list as a]
+                            [#if a_index!=tag_list?size-1]
+                            <div class="listBox">
+                                <a href="${a.url!}">
+                                    <span class="listItem list_item1">•</span>
+                                    <span class="listItem list_item2">[@text_cut s=a.title len=18 append='...' /]</span>
+                                </a>
+                                <span class="list_item2 fr">${a.releaseTime!?string("yyyy-MM-dd")}</span>
+                            </div>
+                            [#else]
+                            <div class="listBox marginStyle">
+                                <a href="">
+                                    <span class="listItem list_item1">•</span>
+                                    <span class="listItem list_item2">[@text_cut s=a.title len=18 append='...' /]</span>
+
+                                </a>
+                                <span class="list_item2 fr">${a.releaseTime!?string("yyyy-MM-dd")}</span>
+                            </div>
+                            [/#if]
+                            [/#list]
+                            [/@cms_content_list]
+                        </div>
+                        <div class="section-main-nav index-tab-item1 none">
+                            [@cms_content_list channelPath='gwyxx' channelOption='1'  orderBy='29'  count='6']
+                            [#list tag_list as a]
+                            [#if a_index!=tag_list?size-1]
+                            <div class="listBox">
+                                <a href="${a.url!}">
+                                    <span class="listItem list_item1">•</span>
+                                    <span class="listItem list_item2">[@text_cut s=a.title len=18 append='...' /]</span>
+                                </a>
+                                <span class="list_item2 fr">${a.releaseTime!?string("yyyy-MM-dd")}</span>
+                            </div>
+                            [#else]
+                            <div class="listBox marginStyle">
+                                <a href="">
+                                    <span class="listItem list_item1">•</span>
+                                    <span class="listItem list_item2">[@text_cut s=a.title len=18 append='...' /]</span>
+
+                                </a>
+                                <span class="list_item2 fr">${a.releaseTime!?string("yyyy-MM-dd")}</span>
+                            </div>
+                            [/#if]
+                            [/#list]
+                            [/@cms_content_list]
+                        </div>
+                        <div class="section-main-nav index-tab-item1 none">
+                            [@cms_content_list channelPath='bmdt' channelOption='1'  orderBy='29'  count='6']
+                            [#list tag_list as a]
+                            [#if a_index!=tag_list?size-1]
+                            <div class="listBox">
+                                <a href="${a.url!}">
+                                    <span class="listItem list_item1">•</span>
+                                    <span class="listItem list_item2">[@text_cut s=a.title len=18 append='...' /]</span>
+                                </a>
+                                <span class="list_item2 fr">${a.releaseTime!?string("yyyy-MM-dd")}</span>
+                            </div>
+                            [#else]
+                            <div class="listBox marginStyle">
+                                <a href="">
+                                    <span class="listItem list_item1">•</span>
+                                    <span class="listItem list_item2">[@text_cut s=a.title len=18 append='...' /]</span>
+
+                                </a>
+                                <span class="list_item2 fr">${a.releaseTime!?string("yyyy-MM-dd")}</span>
+                            </div>
+                            [/#if]
+                            [/#list]
+                            [/@cms_content_list]
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- 焦点图区域 -->
+            <div class="focus-map">
+                <div class="row">
+                    [@cms_channel_list parentId='2340' count=4]
+                    [#list tag_list as c]
+                    [#if c.attr.singleImg??]
+                    [#if c_index==tag_list?size-1]
+                    <div class="col-md-3 marginStyle" >
+                    [#else]
+                    <div class="col-md-3">
+                    [/#if]
+                        <a href="${c.url!}">
+                            <img src="${c.attr.singleImg.resUrl!}" alt="">
+                        </a>
+                    </div>
+                    [/#if]
+                    [/#list]
+                    [/@cms_channel_list]
+                </div>
+            </div>
+            <!-- 中部政策区域 -->
+            <div class="policybox">
+                <div class="policy-left fl">
+                    <div class="section-common-title" id="title-change2">
+                        [@cms_channel path='zcwj']
+                        <div class="titleText fl line-active"> [#if tag_bean??]${tag_bean.name!}[/#if] </div>
+                        [/@cms_channel]
+                        [@cms_channel path='zcjd']
+                        <div class="titleText fl">[#if tag_bean??]${tag_bean.name!}[/#if]</div>
+                        [/@cms_channel]
+                        [@cms_channel path='tzgg']
+                        <div class="titleText fl">[#if tag_bean??]${tag_bean.name!}[/#if]</div>
+                        [/@cms_channel]
+                    </div>
+                    <div class="index-tab2">
+                        <div class="index-tab-item2">
+                            <div class="section-main-nav ">
+                                [@cms_content_list channelPath='zcwj' channelOption='1'  orderBy='29'  count='6']
+                                [#list tag_list as a]
+                                <div class="listBox">
+                                    <a href="${a.url!}">
+                                        <span class="listItem list_item1">•</span>
+                                        <span class="listItem list_item2">[@text_cut s=a.title len=18 append='...' /] </span>
+                                    </a>
+                                    <span class="list_item2 fr">${a.releaseTime!?string("yyyy-MM-dd")}</span>
+                                </div>
+                                [/#list]
+                                [/@cms_content_list]
+                            </div>
+                            <div class="policybox-search">
+                                <div class="policybox-search-a fl">
+                                    <div class="text">标题</div>
+                                    <input type="text" class="searchItem">
+                                </div>
+                                <div class="policybox-search-b fl">
+                                    <div class="text">正文</div>
+                                    <input type="text" class="searchItem">
+                                </div>
+                                <div class="search-button fl">
+                                    <button class="iconfont iconsousuo">政策</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="index-tab-item2 none">
+                            [@cms_content_list channelPath='zcjd' channelOption='1'  orderBy='29'  count='6']
+                            [#list tag_list as a]
+                            <div class="listBox">
+                                <a href="${a.url!}">
+                                    <span class="listItem list_item1">•</span>
+                                    <span class="listItem list_item2">[@text_cut s=a.title len=18 append='...' /] </span>
+                                </a>
+                                <span class="list_item2 fr">${a.releaseTime!?string("yyyy-MM-dd")}</span>
+                            </div>
+                            [/#list]
+                            [/@cms_content_list]
+                        </div>
+                        <div class="index-tab-item2 none">
+                            [@cms_content_list channelPath='tzgg' channelOption='1'  orderBy='29'  count='6']
+                            [#list tag_list as a]
+                            <div class="listBox">
+                                <a href="${a.url!}">
+                                    <span class="listItem list_item1">•</span>
+                                    <span class="listItem list_item2">[@text_cut s=a.title len=18 append='...' /] </span>
+                                </a>
+                                <span class="list_item2 fr">${a.releaseTime!?string("yyyy-MM-dd")}</span>
+                            </div>
+                            [/#list]
+                            [/@cms_content_list]
+                        </div>
+                    </div>
+
+                </div>
+                <div class="policy-right fl">
+                    <div class="right-squire clearfix">
+                        <div class="squire-item fl">
+                            <a href="${base}/zfldsc.jhtml">
+                                <div class="squire-item-btn iconfont iconzhengfulingdao" style="font-size: 32px;">
+
+                                </div>
+                                <div class="squire-item-text">政府领导</div>
+                            </a>
+                        </div>
+                        <div class="squire-item fl">
+                            <a href="${base}/zwgkzfjg.jhtml">
+                                <div class="squire-item-btn iconfont iconzhengfujigou" style="font-size: 35px;">
+
+                                </div>
+                                <div class="squire-item-text">政府机构</div>
+                            </a>
+                        </div>
+                        <div class="squire-item fl">
+                            <a href="${base}/zfgz.jhtml">
+                                <div class="squire-item-btn iconfont iconzhengfuguizhang" style="font-size: 32px;">
+
+                                </div>
+                                <div class="squire-item-text">政府规章</div>
+                            </a>
+                        </div>
+                        <div class="squire-item fl">
+                            <a href="${base}/xxgkzn.jhtml">
+                                <div class="squire-item-btn iconfont iconxinxigongkaizhinan"
+                                     style="font-size: 35px;">
+
+                                </div>
+                                <div class="squire-item-text">信息公开指南</div>
+                            </a>
+                        </div>
+                        <div class="squire-item fl">
+                            <a href="${base}/zgxxgkml.jhtml">
+                                <div class="squire-item-btn iconfont iconxinxigongkaimulu" style="font-size: 32px;">
+
+                                </div>
+                                <div class="squire-item-text">信息公开目录</div>
+                            </a>
+                        </div>
+                        <div class="squire-item fl">
+                            <a href="#">
+                                <div class="squire-item-btn iconfont iconyishenqinggongkai"
+                                     style="font-size: 35px;">
+
+                                </div>
+                                <div class="squire-item-text">依申请公开</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="right-squire-subtitle">
+                        <div class="squire-subtitle fl" style="margin-right: 12px;">
+                            <a href="${base}/hygq.jhtml">
+                                <img src="${res}/static/upload/回应关切.png" alt="">
+                            </a>
+                        </div>
+                        <div class="squire-subtitle fl">
+                            <a href="${base}/zdlyxxgk.jhtml">
+                                <img src="${res}/static/upload/重点领域.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 通栏服务模块 -->
+    <div class="service">
+        <div class="service-box w">
+            <div class="service-left fl">
+
+                <div class="section-common-title" id="title-change3">
+                    <div class="titleText fl line-active">个人服务 </div>
+                    <div class="titleText fl">法人服务 </div>
+                    <div class="getMore fr">
+                        <a href="#" style="margin-right: 10px;">更多</a>
+                        <div class="iconfont icongengduo fr" style="margin-top: 2px;"></div>
+                    </div>
+                </div>
+                <div class="index-tab3">
+                    <div class="index-tab-item3">
+                        <div class="service-item">
+                            <div class="service-item-box fl">
+                                <a href="${base}/sysy.jhtml">
+                                    <div class="iconfont iconshengyu" style="font-size: 30px;"></div>
+                                    <div class="service-item-text">生育收养 </div>
+                                </a>
+                            </div>
+                            <div class="service-item-box fl">
+                                <a href="${base}/grfwhjbl.jhtml">
+                                    <div class="iconfont iconhuji" style="font-size: 29px;"></div>
+                                    <div class="service-item-text">户籍办理</div>
+                                </a>
+                            </div>
+                            <div class="service-item-box fl">
+                                <a href="${base}/mzzj.jhtml">
+                                    <div class="iconfont iconminzu" style="font-size: 30px;"></div>
+                                    <div class="service-item-text">民族宗教</div>
+                                </a>
+                            </div>
+                            <div class="service-item-box fl">
+                                <a href="${base}/rwtw.jhtml">
+                                    <div class="iconfont iconruwu" style="font-size: 32px;"></div>
+                                    <div class="service-item-text">入伍退伍</div>
+                                </a>
+                            </div>
+                            <div class="service-item-box fl" style="margin: 0;">
+                                <a href="${base}/jyky.jhtml">
+                                    <div class="iconfont iconjiaoyu" style="font-size: 28px;"></div>
+                                    <div class="service-item-text">教育科研</div>
+                                </a>
+                            </div>
+                            <div class="service-item-box fl">
+                                <a href="${base}/grfwdyzy.jhtml">
+                                    <div class="iconfont icondiya" style="font-size: 31px;"></div>
+                                    <div class="service-item-text">抵押质押 </div>
+                                </a>
+                            </div>
+                            <div class="service-item-box fl">
+                                <a href="${base}/zyzg.jhtml">
+                                    <div class="iconfont iconzhiye" style="font-size: 32px;"></div>
+                                    <div class="service-item-text">职业资格</div>
+                                </a>
+                            </div>
+                            <div class="service-item-box fl">
+                                <a href="${base}/grxzjf.jhtml">
+                                    <div class="iconfont iconxingzheng" style="font-size: 30px;"></div>
+                                    <div class="service-item-text">行政缴费</div>
+                                </a>
+                            </div>
+                            <div class="service-item-box fl">
+                                <a href="${base}/grhydj.jhtml">
+                                    <div class="iconfont iconhunyin" style="font-size: 31px;"></div>
+                                    <div class="service-item-text">婚姻登记</div>
+                                </a>
+                            </div>
+                            <div class="service-item-box fl" style="margin: 0;">
+                                <a href="${base}/hjbl.jhtml">
+                                    <div class="iconfont iconyoudai" style="font-size: 29px;"></div>
+                                    <div class="service-item-text">优待抚恤</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="index-tab-item3 none">法人服务</div>
+                </div>
+
+            </div>
+            <div class="service-right fl">
+
+                <div class="section-common-title">
+                    <div class="titleText fl"><a href="">热门服务</a> </div>
+
+                    <div class="getMore fr">
+                        <a href="#" style="margin-right: 10px;">刷新</a>
+                        <div class="iconfont iconshuaxin fr" style="margin-top: 2px;"></div>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-right-box">
+                        <div class="fl service-right-boxItem">
+                            <div class="iconfont iconjiuye" style="font-size: 30px;"></div>
+                            <div class="service-itemText"><a href="${base}/frjycy.jhtml">就业创业</a></div>
+                        </div>
+                        <div class="fl service-right-boxItem">
+                            <div class="iconfont iconsheli" style="font-size: 31px;"></div>
+                            <div class="service-itemText"><a href="${base}/fwslbg.jhtml">设立变更 </a></div>
+                        </div>
+                        <div class="fl service-right-boxItem" style="margin: 0;">
+                            <div class="iconfont iconzhunying" style="font-size: 29px;"></div>
+                            <div class="service-itemText"><a href="${base}/fwzyzb.jhtml">准营准办</a></div>
+                        </div>
+                        <div class="fl service-right-boxItem">
+
+                            <div class="iconfont iconguihua" style="font-size: 24px;"></div>
+                            <div class="service-itemText" style="margin-left: 0;"><a href="${base}/frghjs.jhtml">规划建设</a></div>
+                        </div>
+                        <div class="fl service-right-boxItem">
+                            <div class="iconfont iconzhufang" style="font-size: 30px;"></div>
+                            <div class="service-itemText"><a href="${base}/frzfbz.jhtml"> 住房保障 </a></div>
+                        </div>
+                        <div class="fl service-right-boxItem" style="margin: 0;">
+                            <div class="iconfont iconshehuibaozhang" style="font-size: 31px;"></div>
+                            <div class="service-itemText"><a href="${base}/fwshbz.jhtml">社会保障</a></div>
+                        </div>
+                    </div>
+                    <div class="service-right-tag">
+                        <div class="service-tag"><a href="${base}/fwzzrz.jhtml">资质认证</a></div>
+                        <div class="service-tag"><a href="${base}/fwnjns.jhtml">年检年审</a></div>
+                        <div class="service-tag" style="margin-right: 0;"><a href="${base}/fwsscw.jhtml">税收财务</a></div>
+                        <div class="service-tag"><a href="${base}/fwrlzy.jhtml">人力资源</a></div>
+                        <div class="service-tag"><a href="${base}/fwtzsp.jhtml">投资审批</a></div>
+                        <div class="service-tag" style="margin-right: 0;"><a href="${base}/fwswmy.jhtml">商务贸易</a></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 来信选登模块 -->
+    <div class="letter w clearfix">
+        <div class="letter-left fl">
+
+            <div class="section-common-title clearfix">
+                <div class="titleText fl "><a href="">来信选登</a> </div>
+
+                <div class="getMore fr">
+                    <a href="#" style="margin-right: 10px;">更多</a>
+                    <div class="iconfont icongengduo fr" style="margin-top: 3px;"></div>
+                </div>
+            </div>
+            <div class="section-main-nav">
+                <div class="listBox">
+                    <a href="">
+                        <span class="listItem list_item1">•</span>
+                        <span class="list_item3">
+                                【已回复】
+                            </span>
+                        <span class="listItem list_item2">
+
+                                在异地缴纳公积金，到户籍所在地买房能不能用公积金贷款？
+
+                            </span>
+
+                    </a>
+                    <span class="list_item2 fr">2019-10-10 </span>
+                </div>
+                <div class="listBox">
+                    <a href="">
+                        <span class="listItem list_item1">•</span>
+                        <span class="list_item3">
+                                【已回复】
+                            </span>
+                        <span class="listItem list_item2">
+                                关于中小学开学时间的咨询？
+                            </span>
+
+                    </a>
+                    <span class="list_item2 fr">2019-10-10 </span>
+                </div>
+                <div class="listBox">
+                    <a href="">
+                        <span class="listItem list_item1">•</span>
+                        <span class="list_item3">
+                                【已回复】
+                            </span>
+                        <span class="listItem list_item2">公积金如何进行网上提取或转移</span>
+
+                    </a>
+                    <span class="list_item2 fr">2019-10-10 </span>
+                </div>
+                <div class="listBox">
+                    <a href="">
+                        <span class="listItem list_item1">•</span>
+                        <span class="list_item3">
+                                【已回复】
+                            </span>
+                        <span class="listItem list_item2">
+                                关于专升本考试延后的建议”的留言？
+                            </span>
+
+                    </a>
+                    <span class="list_item2 fr">2019-10-10 </span>
+                </div>
+                <div class="listBox" style="margin-bottom: 59px;">
+                    <a href="">
+                        <span class="listItem list_item1">•</span>
+                        <span class="list_item3">
+                                【已回复】
+                            </span>
+                        <span class="listItem list_item2">关于车辆灯光整治的建议”的留言</span>
+
+                    </a>
+                    <span class="list_item2 fr">2019-10-10 </span>
+                </div>
+
+            </div>
+            <!--  -->
+            <div class="section-common-title">
+                <div class="titleText fl"><a href="">大家都在问</a> </div>
+                <div class="znwd fr">
+                    <a href="" class="iconfont iconzhinengwenda"></a>
+                    <a href="" class="fr znwd-text" style="font-size: 16px;color: #002A66;">进入智能问答</a>
+                </div>
+            </div>
+            <div class="letterList">
+                <div class="letterLeftList fl">
+                    <div class="listBox">
+                        <a href="">
+                            <span class="listItem list_item1">•</span>
+                            <span class="listItem list_item2">关于重点优抚对象免费乘坐市内公交车</span>
+                        </a>
+                    </div>
+                    <div class="listBox">
+                        <a href="">
+                            <span class="listItem list_item1">•</span>
+                            <span class="listItem list_item2">关于江西养老金调整并轨的建议</span>
+                        </a>
+                    </div>
+                    <div class="listBox">
+                        <a href="">
+                            <span class="listItem list_item1">•</span>
+                            <span class="listItem list_item2">关于激活农村闲置宅基地政策的咨询</span>
+                        </a>
+                    </div>
+                    <div class="listBox marginStyle">
+                        <a href="">
+                            <span class="listItem list_item1">•</span>
+                            <span class="listItem list_item2">关于党政机关适当时段开放内部运动场</span>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="letterRightList fr">
+                    <div class="listBox">
+                        <a href="">
+                            <span class="listItem list_item1">•</span>
+                            <span class="listItem list_item2">关于滕王阁文化旅游区人行交通的建议</span>
+                        </a>
+                    </div>
+                    <div class="listBox">
+                        <a href="">
+                            <span class="listItem list_item1">•</span>
+                            <span class="listItem list_item2">关于乡镇使用电子屏公开基层政务建议</span>
+                        </a>
+                    </div>
+                    <div class="listBox">
+                        <a href="">
+                            <span class="listItem list_item1">•</span>
+                            <span class="listItem list_item2">关于激活农村闲置宅基地政策的咨询</span>
+                        </a>
+                    </div>
+                    <div class="listBox marginStyle">
+                        <a href="">
+                            <span class="listItem list_item1">•</span>
+                            <span class="listItem list_item2">关于江西养老金调整并轨的建议</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="letter-right fl">
+
+
+            <div class="section-common-title">
+                <div class="titleText fl "><a href="">在线访谈</a> </div>
+
+                <div class="getMore fr">
+                    <a href="#" style="margin-right: 10px;">往期回顾</a>
+                    <div class="iconfont iconshuaxin fr" style="margin-top: 2px;"></div>
+                </div>
+            </div>
+
+            <div class="letter-rightLIst" style="overflow: hidden;">
+                <div class="letterRightLIst">
+                    <div class="listImg fl">
+                        <a href="#"> <img src="${res}/static/upload/_r2_c2.png" alt=""></a>
+                    </div>
+                    <div class="listNav fl">
+                        <ul>
+                            <li>
+                                <div class="fl" style="color: #333;margin-right: 5px;">主题 : </div>
+                                <div class="fl">
+                                    <a href="#"> 江州由景点景区迈向全域旅游</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="fl" style="color: #333;margin-right: 5px;">单位 : </div>
+                                <div class="fl">
+
+                                    江州省文化和旅游厅副厅长 郎道先
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="fl" style="color: #333;margin-right: 5px;">时间 : </div>
+                                <div class="fl">
+
+                                    2019-11-12 10:30
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="listBox">
+                <a href="">
+                    <span class="listItem list_item1">•</span>
+                    <span class="list_item3" style="color: #666;">
+
+                            【往期回顾】
+
+                        </span>
+                    <span class="listItem list_item2" style="color: #999;">
+                            公积金提取后不还银行可以吗？
+                        </span>
+
+                </a>
+                <span class="list_item2 fr">2019-10-10 </span>
+            </div>
+            <div class="listBox">
+                <a href="">
+                    <span class="listItem list_item1">•</span>
+                    <span class="list_item3" style="color: #666;">
+
+                            【往期回顾】
+
+                        </span>
+                    <span class="listItem list_item2" style="color: #999;">
+                            开展安全生产专项整治三年行动访谈
+                        </span>
+
+                </a>
+                <span class="list_item2 fr">2019-10-10 </span>
+            </div>
+            <div class="letterRightBtns">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="#">
+                            <p>领导信箱</p>
+                            <i class="iconfont iconlingdaoxinxiang" style="font-size: 27px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 marginStyle">
+                        <a href="#">
+                            <p>调查</p>
+                            <i class="iconfont icontiaocha" style="font-size: 32px;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="#">
+                            <p>征集 </p>
+                            <i class="iconfont iconzhengji" style="font-size: 32px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 marginStyle">
+                        <a href="#">
+                            <p>咨询</p>
+                            <i class="iconfont iconzixun" style="font-size: 31px;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="#">
+                            <p>建议</p>
+                            <i class="iconfont iconjianyi" style="font-size: 43px; margin-right: 6px;top: 5px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 marginStyle">
+                        <a href="#">
+                            <p>举报</p>
+                            <i class="iconfont iconjubao" style="font-size: 33px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- 通栏数据模块 -->
+    <div class="dataBox">
+        <div class="data w">
+            <div class="row">
+                <div class="col-md-4 dataBoxItem bgc1">
+                    <div class="dataBoxTitle">
+                        信件数据
+                    </div>
+
+
+                    <div class="showLine"> </div>
+                    <div class="dataShow">
+                        <div class="dataItem fl">756</div>
+                        <div class="dataItem fl">132</div>
+                        <div class="dataItem fl marginStyle">98</div>
+                    </div>
+                    <div class="dataSubTitle">
+                        <div class="subTitle fl">信件汇总 </div>
+                        <div class="subTitle fl">待办理 </div>
+                        <div class="subTitle fl marginStyle">满意度</div>
+                    </div>
+                </div>
+                <div class="col-md-4 dataBoxItem bgc2">
+                    <div class="dataBoxTitle">
+                        信件数据
+                    </div>
+                    <div class="showLine"> </div>
+                    <div class="dataShow">
+                        <div class="dataItem fl">756</div>
+                        <div class="dataItem fl">132</div>
+                        <div class="dataItem fl marginStyle">98</div>
+                    </div>
+                    <div class="dataSubTitle">
+                        <div class="subTitle fl">信件汇总 </div>
+                        <div class="subTitle fl">待办理 </div>
+                        <div class="subTitle fl marginStyle">满意度</div>
+                    </div>
+                </div>
+                <div class="col-md-4 dataBoxItem marginStyle bgc3">
+                    <div class="dataBoxTitle">
+                        信件数据
+                    </div>
+                    <div class="showLine"> </div>
+                    <div class="dataShow">
+                        <div class="dataItem fl">756</div>
+                        <div class="dataItem fl">132</div>
+                        <div class="dataItem fl marginStyle">98</div>
+                    </div>
+                    <div class="dataSubTitle">
+                        <div class="subTitle fl">信件汇总 </div>
+                        <div class="subTitle fl">待办理 </div>
+                        <div class="subTitle fl marginStyle">满意度</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- 底部图片展示模块 -->
+    <div class="showImg w">
+        <div class="row">
+            [@cms_content_list channelPath='tsjz' channelOption='1' typeId='186' orderBy='29'  count='4']
+            [#list tag_list as a]
+            [#if a_index==3]
+            <div class="col-md-3 imgItem marginStyle">
+            [#else]
+            <div class="col-md-3 imgItem">
+            [/#if]
+                <div class="img">
+                <a href="${a.url!}">
+                    <img src="${(a.attr.singleImg.resUrl)!}" alt="">
+                </a>
+            </div>
+                <div class="imgTitle"><a href="${a.url!}">[@text_cut s=a.title len=15 append='...' /] </a></div>
+            </div>
+            [/#list]
+            [/@cms_content_list]
+        </div>
+    </div>
+    <!-- 页脚网站信息模块-->
+    [#include "../includes/footer.html"/]
+</div>
+<script>
+    // 鼠标移动头部分类按钮出现耳机菜单栏
+    window.onload = function () {
+        var lis = document.querySelectorAll('.section-main-right .section-item')
+        var lis1 = document.querySelector('.policybox .policy-left .section-item')
+        var lis2 = document.querySelector('.service .service-box .section-item')
+        var headerBtn = document.getElementsByClassName('header-menu')
+        var titleBox = document.getElementById('showTitle')
+        for (var i = 0; i < headerBtn.length; i++) {
+            var timer = null;
+            headerBtn[i].onmouseover = titleBox.onmouseover = function () {
+                titleBox.style.display = 'block';
+                clearTimeout(timer);
+            }
+
+            headerBtn[i].onmouseout = titleBox.onmouseout = function () {
+                //开定时器
+                timer = setTimeout(function () {
+                    titleBox.style.display = 'none';
+                }, 500);
+            }
+        }
+
+
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].onclick = function (event) {
+
+                let li = document.getElementsByClassName('line-active')[0]
+                li.classList.remove('line-active')
+                event.target.classList.add('line-active')
+
+            }
+        }
+
+    }
+    // 搜索模块控制
+    $(function () {
+        var height = $(document).height()
+        $('#index-search').click(function () {
+            $('.mask').css('height', height)
+            $(".mask-box ").removeClass('none').addClass('block')
+
+
+        })
+        $(".close-search").click(function () {
+            $(".mask-box ").removeClass('block').addClass('none')
+        })
+    })
+    // 选项卡切换
+    // 今日江州
+    $(function () {
+        $('#title-change1 .titleText').click(function () {
+
+            $('#title-change1 .titleText').eq($(this).index()).addClass("line-active").siblings().removeClass('line-active');
+            $(".index-tab-item1").hide().eq($(this).index()).show();
+        })
+
+    })
+    // 政策文件
+    $(function () {
+        $('#title-change2 .titleText').click(function () {
+            $('#title-change2 .titleText').eq($(this).index()).addClass("line-active").siblings().removeClass('line-active');
+            $(".index-tab-item2").hide().eq($(this).index()).show();
+        })
+
+    })
+    // 个人服务
+    $(function () {
+        $('#title-change3 .titleText').click(function () {
+            $('#title-change3 .titleText').eq($(this).index()).addClass("line-active").siblings().removeClass('line-active');
+            $(".index-tab-item3").hide().eq($(this).index()).show();
+        })
+
+    })
+    // $(function () {
+    //     $('#tab-change .section-item').click(function () {
+    //         $('#tab-change .section-item').eq($(this).index()).addClass("line-active").siblings().removeClass('line-active');
+    //         $(".tab-card").hide().eq($(this).index()).show();
+    //     })
+    // })
+</script>
+
+</body>
+
+</html>

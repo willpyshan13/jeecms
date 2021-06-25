@@ -1,0 +1,196 @@
+<!-- 政务服务-办事指南模板-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${site.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/serve_banshizhinan.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <div class="section-feature">
+            <div class="section-content w">
+                <div class="section-title">${content.title!}</div>
+                <div class="section-btn">
+                    <div class="section-btn-item fl"><a href="javascript:;">在线办理</a></div>
+                    <div class="section-btn-item fl"><a href="javascript:;">我要咨询</a></div>
+                    <div class="section-btn-item fl"><a href="javascript:;">我要收藏</a></div>
+                    <div class="section-btn-item fl"><a href="javascript:;">查看评价</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="main w" style="margin-bottom: 86px;">
+            <div class="floorBox">
+                <div class="floor-item floor-active ">
+                    基本信息
+                    <div class="active-box">
+                        <span class="floor-line"></span>
+                        <span class="floor-active1"></span>
+                    </div>
+                </div>
+                <div class="floor-item">
+                    受理条件
+                    <div class="active-box none">
+                        <span class="floor-line"></span>
+                        <span class="floor-active1"></span>
+                    </div>
+                </div>
+                <div class="floor-item">
+                    所需材料
+                    <div class="active-box none">
+                        <span class="floor-line"></span>
+                        <span class="floor-active1"></span>
+                    </div>
+                </div>
+                <div class="floor-item">
+                    办理流程
+                    <div class="active-box none">
+                        <span class="floor-line"></span>
+                        <span class="floor-active1"></span>
+                    </div>
+                </div>
+                <div class="floor-item">
+                    收费依据
+                    <div class="active-box none">
+                        <span class="floor-line"></span>
+                        <span class="floor-active1"></span>
+                    </div>
+                </div>
+                <div class="floor-item">
+                    法律依据
+                    <div class="active-box none">
+                        <span class="floor-line"></span>
+                        <span class="floor-active1"></span>
+                    </div>
+                </div>
+                <div class="floor-item">
+                    常见问题
+                    <div class="active-box none">
+                        <span class="floor-line"></span>
+                        <span class="floor-active1"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 有左内边距的主体区域 -->
+            <div class="mainContent">
+                <!-- 信息 -->
+                <div class="xinxi f">
+                    <div class="mainContentTitle">基本信息</div>
+                    <!-- 表格 -->
+                    <div class="mainContentTable">
+                       ${txt!}
+                    </div>
+                </div>
+                <div class="tiaojian f">
+                    <div class="mainContentTitle" style="margin-top: 58px;">受理条件</div>
+                    <div class="mainContentText">
+                       [#if content.attr.sltj??] ${content.attr.sltj.attrValue!}[/#if]
+                    </div>
+                </div>
+                <div class="cailiao f">
+                    <div class="mainContentTitle" style="margin-top: 48px;">所需材料</div>
+                    <div class="subTable">
+                        ${content.txtAttr.content1!}
+                    </div>
+                </div>
+                <div class="licheng f">
+                    <div class="mainContentTitle" style="margin-top: 58px;">办理流程</div>
+                    <div class="flow-path">
+                        ${content.txtAttr.content7!}
+                    </div>
+                </div>
+                <div class="shoufei f">
+                    <div class="mainContentTitle" style="margin-top: 58px;">收费依据</div>
+                    <div class="flow-path">
+                        ${content.txtAttr.content2!}
+                    </div>
+                </div>
+                <div class="falv f">
+                    <div class="mainContentTitle" style="margin-top: 49px;">法律依据</div>
+                    <div class="flow-path">
+                        ${content.txtAttr.content3!}
+                    </div>
+                    <div class="mainContentTitle" style="margin-top: 59px;">法律依据</div>
+                    <div class="legal-basis">
+                        <img src="${res}/static/upload/flyj.png" alt="">
+                    </div>
+                </div>
+                <div class="wenti f">
+                    <div class="mainContentTitle" style="margin-top: 58px;">常见问题</div>
+                    <div class="FAQ">
+                        <!--
+                        <div class="FAQ-title">
+                            <span class="zimu">Q</span>
+                            <span class="FAQ-text">《缺陷消费品召回管理办法》中“自主召回”和“责令召回”有什么区别？</span>
+                        </div>
+                        <div class="FAQ-content clearfix">
+                            <div class="fl zimu">A</div>
+                            <div class="FAQ-text fl" style="color:#666">
+                                自主召回与责令召回，也称自愿召回与强制召回。两者同是“召回”活动，但性质有所不同，后者表现了召回的行政强制性，属于被动召回。现代科技的发展，使产品缺陷的发现变得越来越困难，如果要消费者和政府主管机关从外部来发现企业产品的缺陷，未免困难，效果也不好，只有生产者对其自己产品的性能、质量状况最了解，也最容易发现其产品的缺陷。因此，产品的召回主要是由企业主动负责对其有缺陷的产品实施召回，可以说依靠企业自主召回，是缺陷产品召回的常态。只有在企业的产品存在严重危及消费者人身、财产安全的缺陷，企业仍不主动召回时，也就是企业不主动作为的情况下，才由主管机关责令召回，而这是缺陷产品召回的非常态措施。
+                            </div>
+                        </div>
+                        -->
+                        ${content.txtAttr.content5!}
+                    </div>
+                </div>
+            </div>
+        </div>
+        [#include "../includes/footerCommon.html"/]
+    </div>
+    <script>
+        $(function () {
+            var flag = true
+            $(window).scroll(function () {
+                // 3. 页面滚动到某个内容区域，左侧电梯导航小li相应添加和删除current类名
+                if (flag) {
+                    $(".mainContent .f").each(function (i, ele) {
+                        if ($(document).scrollTop() >= $(ele).offset().top - 400) {
+                            // console.log(i);
+                            $(".floorBox .floor-item").eq(i).addClass("floor-active").siblings().removeClass('floor-active');
+                            $(".floorBox .floor-item").eq(i).children().removeClass('none').addClass('block')
+                            $(".floorBox .floor-item").eq(i).siblings().children().removeClass('block').addClass('none')
+                        }
+                    })
+                }
+            });
+            // 1. 点击电梯导航页面可以滚动到相应内容区域
+            $(".floorBox .floor-item").click(function () {
+                flag = false
+                console.log($(this).index());
+                // 当我们每次点击小li 就需要计算出页面要去往的位置 
+                // 选出对应索引号的内容区的盒子 计算它的.offset().top
+                var current = $(".mainContent .f").eq($(this).index()).offset().top - 400; // 多加一点，防止往回滚动
+                // 页面动画滚动效果
+                $("html").stop().animate({
+                    scrollTop: current
+                }, function () {
+                    flag = true;
+                });
+                // 点击之后，让当前的小li 添加current 类名 ，姐妹移除current类名
+                $(this).addClass("floor-active").siblings().removeClass('floor-active');
+                $(this).children().removeClass('none').addClass('block')
+                $(this).siblings().children().removeClass('block').addClass('none')
+            })
+        })
+    </script>
+</body>
+
+</html>

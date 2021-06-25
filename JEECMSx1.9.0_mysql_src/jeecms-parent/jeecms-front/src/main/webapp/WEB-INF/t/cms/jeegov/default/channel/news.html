@@ -1,0 +1,227 @@
+<!-- 要闻动态首页面 -->
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/news.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+</head>
+
+<body>
+<div class="container">
+    [#include "../includes/header.html"/]
+    <!-- /* 二级标题 */ -->
+    <div class="secondTitle">
+        <div class="title w">
+            [@cms_channel_list count='10' parentId=channel.id]
+            [#list tag_list as c]
+            <div class="item fl"><a href="${c.url!}">${c.name!}</a></div>
+            [/#list]
+            [/@cms_channel_list]
+        </div>
+    </div>
+    <!-- /* 动态新闻 */ -->
+    <div class="topNav w">
+        <!--这里只有一个结构，我先这么套了，应该多份图片的结构，其他隐藏的实现-->
+        [@cms_content_list channelPath='ywdt' channelOption='1' typeId='186' orderBy='29'  count='1']
+        [#list tag_list as a]
+        <div class="largeImg fl">
+            [#if a.attr.singleImg??]
+            <img src="${a.attr.singleImg.resUrl!}" alt="">
+            [/#if]
+        </div>
+        <div class="dynamicNews fl">
+            <div class="newsTitle">
+                <a href="${a.url!}">${a.title!?html}</a>
+            </div>
+            <div class="newsContent">
+                [@text_cut s=a.description  append='...' /]
+            </div>
+            [/#list]
+            [/@cms_content_list]
+            <div class="newsTag">
+                <ul>
+                    <!--要问动态下的焦点内容-->
+                    [@cms_content_list channelPath='ywdt' channelOption='1' typeId='186' orderBy='29'  count='5']
+                    [#list tag_list as a]
+                    [#if a_index==0]
+                    <li class="tagItem fl tagItemActive"><a href="#javascript">${a_index+1}</a></li>
+                    [#else]
+                    <li class="tagItem fl"><a href="#javascript">${a_index+1}</a></li>
+                    [/#if]
+                    [/#list]
+                    [/@cms_content_list]
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 页面主体 -->
+    <div class="main w clearfix">
+        <div class="leftNewsList fl">
+            <div class="section-main-title" style="margin-bottom: 0;" id="tab-change">
+                [@cms_channel path='jzyw' ]
+                [#if tag_bean??]
+                <div class="section-item fl line-active section-item-active">${tag_bean.name!}</div>
+                [/#if]
+                [/@cms_channel]
+                [@cms_channel path='gwyxx' ]
+                [#if tag_bean??]
+                <div class="section-item fl">${tag_bean.name!}</div>
+                [/#if]
+                [/@cms_channel]
+                [@cms_channel path='bmdt' ]
+                [#if tag_bean??]
+                <div class="section-item fl">${tag_bean.name!}</div>
+                [/#if]
+                [/@cms_channel]
+                <div class="getMore fr">
+                    [@cms_channel path='jzyw' ]
+                    [#if tag_bean??]
+                    <a href="${tag_bean.url!}" style="padding-right: 8px;">更多</a>
+                    <a href="${tag_bean.url!}" class="iconfont icongengduo"></a>
+                    [/#if]
+                    [/@cms_channel]
+                </div>
+            </div>
+            <div class="tab-card">
+                <!-- 左侧内容 -->
+                [@cms_content_list channelPath='jzyw' channelOption='1'  orderBy='29'  count='6']
+                [#list tag_list as a]
+                <div class="result-list">
+                    <div class="list-title">
+                        <div class="title"><a href="${a.url!}">[@text_cut s=a.title len=25 append='...' /]</a></div>
+                    </div>
+                    <div class="result-intro">
+                        <a href="${a.url!}">
+                            [@text_cut s=a.description  append='...' /]
+                        </a>
+                    </div>
+                    <!-- 发布时间-->
+                    <div class="promulgator">
+                        <i class="iconfont icondanyehuaban fl" style="margin-right: 7px;"></i>
+                        <div class="datetime fl">${a.releaseTime!?string("yyyy-MM-dd")}</div>
+                    </div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+            <div class="tab-card" style="display: none;">
+                [@cms_content_list channelPath='gwyxx' channelOption='1'  orderBy='29'  count='6']
+                [#list tag_list as a]
+                <div class="result-list">
+                    <div class="list-title">
+                        <div class="title"><a href="${a.url!}">[@text_cut s=a.title len=25 append='...' /]</a></div>
+                    </div>
+                    <div class="result-intro">
+                        <a href="${a.url!}">
+                            [@text_cut s=a.description  append='...' /]
+                        </a>
+                    </div>
+                    <!-- 发布时间-->
+                    <div class="promulgator">
+                        <i class="iconfont icondanyehuaban fl" style="margin-right: 7px;"></i>
+                        <div class="datetime fl">${a.releaseTime!?string("yyyy-MM-dd")}</div>
+                    </div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+            <div class="tab-card" style="display: none;">
+                [@cms_content_list channelPath='bmdt' channelOption='1'  orderBy='29'  count='6']
+                [#list tag_list as a]
+                <div class="result-list">
+                    <div class="list-title">
+                        <div class="title"><a href="${a.url!}">[@text_cut s=a.title len=25 append='...' /]</a></div>
+                    </div>
+                    <div class="result-intro">
+                        <a href="${a.url!}">
+                            [@text_cut s=a.description  append='...' /]
+                        </a>
+                    </div>
+                    <!-- 发布时间-->
+                    <div class="promulgator">
+                        <i class="iconfont icondanyehuaban fl" style="margin-right: 7px;"></i>
+                        <div class="datetime fl">${a.releaseTime!?string("yyyy-MM-dd")}</div>
+                    </div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+        </div>
+        <div class="rightNewsList fl">
+            <div class="section-main-title">
+                [@cms_channel path='ztbg' ]
+                [#if tag_bean??]
+                <div class="section-item fl">
+                    <a href="${tag_bean.url!}">${tag_bean.name!}</a>
+                </div>
+                <div class="getMore fr">
+                    <a href="${tag_bean.url!}" style="padding-right: 8px;">更多</a>
+                    <a href="${tag_bean.url!}" class="iconfont icongengduo"></a>
+                </div>
+                [/#if]
+                [/@cms_channel]
+            </div>
+            <div class="subjectImg">
+                <!--专题报告下的栏目-->
+                [@cms_channel_list count='3' parentId='2340']
+                [#list tag_list as c]
+                <div class="subjectImg-item">
+                    <a href="${c.url!}">[#if c.attr.singleImg??]<img src="${c.attr.singleImg.resUrl!}" alt="">[/#if]</a>
+                </div>
+                [/#list]
+                [/@cms_channel_list]
+            </div>
+            <div class="section-main-nav">
+                <ul>
+                    [@cms_channel_list count='3' parentId='2340']
+                    [#list tag_list as c]
+                    <!--从第4条开始，上面已经取了三条-->
+                    [#if c_index gt 3]
+                    <li class="subtitle">
+                        <div class="fl li-style"></div>
+                        <div class="fl reply-style">
+                            【往期回顾】</div>
+                        <div class="fl subtitle-item">
+                            <a href="${c.url!}">
+                                ${c.url!}
+                            </a> </div>
+                    </li>
+                    [/#if]
+                    [/#list]
+                    [/@cms_channel_list]
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 页脚网站信息模块-->
+    [#include "../includes/footer.html"/]
+    <!-- 页脚 -->
+
+</div>
+<script>
+    $(function () {
+        $('#tab-change .section-item').click(function () {
+            $('#tab-change .section-item').eq($(this).index()).addClass("line-active").siblings().removeClass('line-active');
+            $(".tab-card").hide().eq($(this).index()).show();
+        })
+    })
+</script>
+</body>
+
+</html>

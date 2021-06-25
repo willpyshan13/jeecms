@@ -1,0 +1,540 @@
+.assetsBox .first{
+    padding: 33px 0 8px;
+}
+.assetsBox .inBlock{
+    display: inline-block !important;
+}
+.assetsBox .right{
+    padding-left: 76px;
+}
+.assetsBox .fontT{
+    font-size: 30px;
+    color: #333;
+    font-weight: 400;
+    line-height: 30px;
+    vertical-align: bottom;
+}
+
+.assetsBox #Withdrawal{
+    padding-left: 10px;
+    color:#E60012;
+    font-size: 14px;
+}
+.assetsBox #Withdrawal:hover{
+    color: #FE0012;
+}
+.assetsBox .none{
+    display: none !important;
+}
+.pointer{
+    cursor: pointer;
+}
+.Popup{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+}
+.Popup .title{
+    font-size: 20px;
+    color: #333;
+}
+.Popup .Pbody{
+    margin-top: 33px;
+}
+.Pbody .inleft{
+    font-size: 14px ;
+    color: #666;
+    text-align: right;
+    display: inline-block;
+    width: 100px;
+    margin-right: 10px;
+}
+.Pbody .moneyO{
+    font-size: 14px;
+    color: #333;
+    margin-left: -3px;
+}
+.Pbody .radioP{
+    display: inline-block;
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    box-sizing: border-box;
+    border: 1px solid #CCCCCC;
+    border-radius: 50%;
+    margin-right: 3px;
+    margin-left: -3px;
+}
+.layui-laypage a:hover {
+    color: #333 !important;
+}
+.Pbody .check{
+    border: 5px solid #E60012;
+}
+.Pbody #Withdrawal-amount,.Pbody .zfbH{
+    padding: 8px 20px;
+    font-size: 14px;
+    /* color: #999; */
+    width: 325px;
+    border: 1px solid #E8E8E8;
+    border-radius: 4px;
+}
+.Pbody #Withdrawal-amount::-webkit-input-placeholder{
+    color: #999;
+}
+.Pbody #Withdrawal-amount{
+    color: #333;
+}
+.Pbody #name{
+    font-size: 14px;
+    color: #333;
+}
+.inLine{
+    padding-bottom: 25px;
+}
+.inLine img{
+    border-radius:50% ;
+    width: 36px;
+    height: 36px;
+    vertical-align: middle;
+}
+.Popup .title .layui-icon{
+    font-size: 22px;
+    color: #999;
+}
+.Popup .ewm .layui-icon{
+    color: #999;
+}
+.Popup .ewm .layui-icon:hover{
+    color: #E60012;
+}
+.Popup .title i:hover{
+    color: #E60012;
+}
+.Popup .Pcontent{
+    width: 574px;
+    height: auto;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 30px;
+    position: relative;
+    margin: 230px auto;
+}
+.Popup .close{
+    float: right;
+    opacity: 1;
+}
+.Pfooter{
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
+}
+.Pfooter button{
+    float: right;
+    width: 128px;
+    height: 40px;
+    border-radius: 20px;
+    color: #fff;
+    border: 1px solid #E5E5E5;
+    font-weight: 400;
+}
+.Pfooter button:nth-child(2){
+    margin-right: 15px;
+    color: #333333;
+    background-color: #fff;
+}
+
+.Pfooter button:nth-child(1){
+    border: none;
+    background-color: #E60012;
+}
+.Pfooter button:nth-child(1):hover{
+    background-color: #FE0012;
+}
+.red{
+    color: red;
+    padding-right: 3px;
+}
+.blueO{
+    color: #1EC6DF;
+    cursor: pointer;
+    font-size: 14px;
+    color: #E60012;
+    padding-left: 10px;
+    cursor: pointer;
+}    
+.blueO:hover{
+    color: #FE0012;
+}
+.PopupO .formtable {
+    width: 285px;
+    border-bottom: 1px solid #E5E5E5;
+    margin-left: 34px;
+}
+.PopupO .formtable input::-webkit-input-placeholder {
+    font-weight: 400;
+    color: #999;
+    font-size: 14px;
+}
+.PopupO .formtable input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    font-weight: 400;
+    color: #999;
+    font-size: 14px;
+}
+.PopupO .formtable input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    font-weight: 400;
+    color: #999;
+    font-size: 14px;
+}
+.PopupO .formtable input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    font-weight: 400;
+    color: #999;
+    font-size: 14px;
+}
+.PopupO .formtable .ago {
+    font-size: 15px;
+    color: #999;
+}
+.PopupO .formtable div {
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 22px;
+    position: relative;
+}
+.PopupO .formtable div i {
+    font-size: 15px;
+    color: #999;
+}
+.PopupO .formtable div .ago {
+    position: absolute;
+    left: 4px;
+}
+.PopupO .formtable div input {
+    padding-left: 26px;
+    height: 28px;
+    width: 283px;
+    border: 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+.PopupO .formtable div .look ,.PopupO  .formtable div .close{
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+.PopupO .formtable div p {
+    color: #E30B20;
+    font-size: 14px;
+    position: absolute;
+    left: 25px;
+    top: 22px;
+}
+.PopupO .formtable div.code {
+    position: relative;
+}
+.PopupO .formtable div.code .letter {
+    width: 125px;
+    height: 35px;
+    position: absolute;
+    right: 0;
+    top: -10px;
+    font-weight: bolder;
+}
+.PopupO .formtable div.box {
+    height: 20px;
+    line-height: 20px;
+    margin-top: -4px;
+    position: relative;
+}
+.PopupO .formtable div.box input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    left: -4px;
+    top: 0;
+}
+.PopupO .formtable div.box input[type="checkbox"]::after {
+    width: 12px;
+    height: 12px;
+    content: " ";
+    background-color: #fff;
+    color: #333;
+    display: inline-block;
+    visibility: visible;
+    border-radius: 2px;
+    /* behavior: url(../src/pie/PIE.htc); */
+    border: 1px solid #E5E5E5;
+    position: absolute;
+    top: 0;
+    
+}
+.PopupO .formtable div.box input[type=checkbox]:checked:after {
+	width: 12px;
+	height: 12px;
+    content: "";
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: 18px;
+    border: 0;
+    color: #fff;
+	/* background-image: url(../images/login-register/denglulogo.png); */
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.PopupO .formtable div.box span {
+    color: #999;
+    font-size: 14px;
+    position: absolute;
+    left: 20px;
+}
+.PopupO .formtable div.box a {
+    font-size: 14px;
+    color: #2676B5;
+    position: absolute;
+    right: 0;
+}
+.PopupO .formtable .alogin{
+    width: 285px;
+    height: 43px;
+    line-height: 43px;
+    text-align: center;
+    background-color: #E30B20;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 22px;
+    /* behavior: url(../src/pie/PIE.htc); */
+    margin-top: 31px;
+    margin-bottom: 56px;
+}
+.PopupO .formtable .alogin:hover{
+    background-color: #FB0C23;
+}
+.sixteen{
+    font-size: 16px ;
+    color: #333;
+}
+.layui-table-main tr{
+    border: none !important;
+    border-bottom: 1px dashed #E5E5E5 !important;
+    
+}
+.layui-table-main tr:hover{
+    background-color: #fff !important;
+}
+.layui-table-main tr td{
+    padding: 15px 0 !important;
+}
+.layui-table-header{
+    border-color: transparent !important;
+}
+.layui-table-header th{
+    padding: 10px 0 !important;
+}
+.assetsBox .layui-form {
+    border-color: transparent !important;
+}
+.assetsBox .layui-tab-title li{
+    font-size: 16px !important;
+    color: #333 ;
+    text-align: left !important;
+    padding: 0 !important;
+    font-weight: 400 !important;
+    margin-right: 36px !important;
+    line-height: 54px !important;
+}
+.assetsBox .layui-this{
+    color: #E60012 !important;
+}
+.assetsBox .layui-this::after{
+    border-color: #E60012 !important;
+}
+.assetsBox .layui-tab-content{
+    padding: 0 !important;
+    margin-top: 30px !important;
+}
+.assetsBox .one,.assetsBox .two{
+    margin-top: -6px;
+    padding: 0 0 15px;
+    font-size: 14px;
+    color: #999;
+}
+.assetsBox .layui-table thead tr{
+    background-color: #f5f5f5 !important;
+    color: #333!important;
+}
+.assetsBox .gray{
+    color: #333;
+    padding-right: 22px;
+}
+.assetsBox .layui-table-sort i{
+    border-top-color: #777777;
+    border-bottom-color: #777777;
+}
+.assetsBox .layui-table-sort[lay-sort=asc] .layui-table-sort-asc{
+    border-bottom-color: #E60012;
+}
+.assetsBox .layui-table-sort[lay-sort=desc] .layui-table-sort-desc{
+    border-top-color: #E60012;
+}
+
+.assetsBox .layui-table-cell, .layui-table-tool-panel li{
+    text-overflow: clip;
+}
+.assetsBox .layui-table-box{
+    overflow: visible;
+}
+#demo2{
+    overflow: hidden;
+    margin-top: 19px;
+}
+#demo2 .layui-box{
+    text-align: right !important;
+    float: right;
+}
+.m_content{
+    display: inline-block !important;
+    margin-top: 350px !important;
+}
+.c-message-notice{
+    text-align: center !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    /* display: block !important; */
+}
+#demo2 .layui-laypage-btn{
+    display: none;
+}
+#demo2 select{
+    width: 88px !important;
+    height: 20px !important;
+    color: #666 !important;
+    font-size: 12px !important;
+    /* background: url("https://raw.githubusercontent.com/ourjs/static/gh-pages/2015/arrow.png") no-repeat scroll right 0.03rem  transparent ; */
+    background-position: 5px;
+}
+#demo2 .layui-laypage .layui-laypage-prev,#demo2 .layui-laypage .layui-laypage-next{
+    height: 26px !important;
+    padding: 0 14px !important;
+    /* margin: 0 -1px 5px 0 !important; */
+}
+.layui-laypage a{
+    margin: 0 5px 5px 5px !important;
+    padding: 0 11px !important;
+}
+.layui-laypage-curr{
+    margin: 0 5px 5px 5px !important;
+    padding: 0 11px !important;
+    height: 26px !important;
+}
+.layui-laypage input{
+    width: 49px !important;
+    height: 28px !important;
+}
+.Popup .ewm{
+    padding: 15px;
+    width: 265px;
+    background-color: #fff;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 30px;
+    border-radius: 4px;
+    height: 308px;
+}
+.ewm h2{
+    text-align: center;
+    padding: 20px 0 20px;
+    font-size: 16px;
+    color: #3A3A3A;
+}
+#qrcode{
+    width: 205px;
+    margin: 0 auto;
+}
+.pay4 .contentTitle{
+    max-width: 235px;
+}
+
+.contentTitle{
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 195px;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    color: #cccccc;
+}
+.deletedFlag{
+    color: #CCCCCC;
+}
+.channelName{
+    color: #cccccc;
+}
+.channelNameL{
+    color: #2075B7 !important;
+}
+.pay1{
+    color: #333;
+    font-size: 14px;
+}
+.pay2{
+    cursor:no-drop;
+}
+.pay4{
+    cursor: pointer !important;
+}
+.pay4 .channelName{
+    color: #999 !important;
+}
+.pay1 img{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.layui-table-cell{
+    height: auto !important;
+}
+.Approved{
+    color: #6AC043;
+}
+.reviewed{
+    color: #FF9300;
+}
+.reject{
+    color: #FF0000;
+}
+.pay3{
+    color: #333;
+    width: 210px;
+    /* white-space: normal !important; */
+    line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    cursor: pointer;
+    position: relative;
+}
+.tiss{
+    display: inline-block;
+    width: 210px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+.pay3:hover .tiss{
+    display: block !important;
+}

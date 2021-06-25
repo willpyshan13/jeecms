@@ -1,0 +1,502 @@
+<!-- 在线访谈主页模板 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <script src="../../static/bootstrap/jquery.min.js"></script>
+    <script src="../../static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../../static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static//common/base.css">
+    <link rel="stylesheet" href="../../static/common/common.css">
+    <link rel="stylesheet" href="../../css/zaixianfangtan.css">
+    <link rel="stylesheet" href="../../static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="../../static/html5shiv.js"></script>
+    <script src="../../static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="search w">
+
+            <!-- <div class="change-languange">简体</div> -->
+            <div class="dropdown fl">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    简体
+                    <span class="iconfont iconarrow"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li> 简体</li>
+                    <li> 繁体</li>
+                </ul>
+
+            </div>
+
+            <div class="searchSubBtn fl">
+                <div class="fl">
+                    <a href="#" class="iconfont iconwuzhangaiyuedu"></a>
+                </div>
+                <div class="fl">
+                    <a href="" class="iconfont iconrss"></a>
+                </div>
+                <div class="fl">
+                    <a href="./html/search.html" class="iconfont iconsousuo"></a>
+                </div>
+            </div>
+            <div class="register fr">
+                <div class="registerBtn fl"><a href="#">注册</a></div>
+
+                <div class="loginBtn fl"><a href="">登录</a></div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="header-warry">
+                <div class="header-logo">
+                    <a href="./jiangzhou/index.html">
+                        <div class="header-logo-img"> </div>
+                    </a>
+                </div>
+                <div class="header-nav">
+                    <div class="header-menu"><a href="../../index.html">首页</a></div>
+                    <div class="header-menu"><a href="../news.html">要闻动态</a></div>
+                    <div class="header-menu"><a href="../zhengwugongkai/zwgk_index.html">政务公开</a></div>
+                    <div class="header-menu"><a href="../zhengfufuwu/serve_index.html">政府服务</a></div>
+                    <div class="header-menu active"><a href="../zhengminhudong/zhengminhudong.html">政民互动</a></div>
+                    <div class="header-menu"><a href="../zoujinjiangzhou/zjjz_index.html">走进江州</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="main w" style="width: 1221px;">
+            <div class="main-top-left fl">
+                <div class="common-tag clearfix">
+                    <div class="tag1 fl"></div>
+                    <div class="tag2 fl">正在访谈</div>
+                </div>
+                <div class="main-video">
+                    <div class="video">
+                        <!-- <a href="#"><img src="../static/upload/video.png" alt=""></a> -->
+                        <video width="100%" height="100%" muted controls vjs-fluid class="video-st">
+                            <source src="../../static/video/movie.mp4" type="video/mp4">
+                            抱歉，您的浏览器不支持内嵌视频
+                        </video>
+                    </div>
+                    <a href="javascript:;" class="iconfont iconB video-play" id="goplay"></a>
+
+                </div>
+            </div>
+            <div class="main-top-right fl">
+                <div class="top-right-title clearfix">
+                    <div class="title-text fl">主题：</div>
+                    <div class="title-content fl"><a
+                            href="../zhengminhudong/fangtanxiangqing.html">北京市新型冠状病毒肺炎疫情防控工作新闻发布会(5月21日) </a></div>
+                </div>
+                <div class="top-right-content clearfix" style="margin-top: 30px;">
+                    <div class="content-title fl">嘉宾：</div>
+                    <div class="right-content-text fl">
+                        <p style="margin-bottom: 19px;line-height: 24px;">李　辉　 北京市质量技术监督局组织机构代码管理中心主任</p>
+                        <p style="margin-bottom: 0;">邓慧敏　 北京市工商行政管理局登记注册处处长</p>
+                    </div>
+                </div>
+                <div class="top-right-content clearfix" style="margin-top: 25px;">
+                    <div class="content-title fl">单位：</div>
+                    <div class="right-content-text fl">
+                        <p style="margin-bottom: 0;">北京市工商行政管理局登记注册处</p>
+                    </div>
+                </div>
+                <div class="top-right-content clearfix" style="margin-top: 25px;">
+                    <div class="content-title fl" style="font-size: 14px;">时间：</div>
+                    <div class="right-content-text fl">
+                        <p style="margin-bottom: 0;" style="font-size: 14px;">2020-05-21</p>
+                    </div>
+                </div>
+                <div class="top-right-content" style="margin-top: 25px;">
+                    <div class="content-title fl" style="font-size: 14px;">简介：</div>
+                    <div class="right-content-text fl p-text" style="line-height: 24px;">
+                        <p style="margin-bottom: 0;font-size: 14px;line-height: 21px;">
+                            北京市人民政府新闻办公室于2020年5月12日下午4点，在北京市人民政府新闻办公室新闻发布厅召开“北京市新型冠状病毒肺炎疫情防控工作”新闻发布会。北京市相关部门负责同志介绍情况并回答记者提问。超出...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="news w clearfix" style="width: 1221px;">
+            <div class="news-left fl">
+                <div class="common-tag clearfix line-border" style="margin-top:0;padding-bottom: 24px;">
+                    <div class="tag1 fl"></div>
+                    <div class="tag2 fl">正在访谈</div>
+                    <div class="icon-tag fr">
+                        <a href="javascript:;">
+                            <span class="tag-text">更多</span>
+                            <span class="iconfont icongengduo"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="left-news-list">
+                    <div class="news-list-item">
+                        <div class="news-img fl">
+                            <a href="../zhengminhudong/fangtanxiangqing.html"> <img src="../../static/upload/001.jpg"
+                                    alt=""></a>
+                        </div>
+                        <div class="news-text fl">
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">主题：</div>
+                                <div class="news-text-content fl p-text"><a
+                                        href="javascript:;">市民对话一把手：市发展改革委谈“聚焦优化营商...</a></div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">时间：</div>
+                                <div class="news-text-content fl p-text">2020-05-12 10:30 </div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">嘉宾：</div>
+                                <div class="news-text-content fl p-text">李　辉　 北京市质量技术监督局组织机构代码管理...</div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">单位：</div>
+                                <div class="news-text-content fl p-text">北京市工商行政管理局登记注册处</div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">简介：</div>
+                                <div class="news-text-content fl p-text">上海作为一座容纳了2400万常住人口的超大型城市</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="news-list-item">
+                        <div class="news-img fl">
+                            <a href="../zhengminhudong/fangtanxiangqing.html"> <img src="../../static/upload/002.jpg"
+                                    alt=""></a>
+
+                        </div>
+                        <div class="news-text fl">
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">主题：</div>
+                                <div class="news-text-content fl p-text"><a
+                                        href="javascript:;">市民对话一把手：市发展改革委谈“聚焦优化营商...</a></div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">时间：</div>
+                                <div class="news-text-content fl p-text">2020-05-12 10:30 </div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">嘉宾：</div>
+                                <div class="news-text-content fl p-text">李　辉　 北京市质量技术监督局组织机构代码管理...</div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">单位：</div>
+                                <div class="news-text-content fl p-text">北京市工商行政管理局登记注册处</div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">简介：</div>
+                                <div class="news-text-content fl p-text">上海作为一座容纳了2400万常住人口的超大型城市</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="news-list-item">
+                        <div class="news-img fl">
+                            <a href="../zhengminhudong/fangtanxiangqing.html"> <img src="../../static/upload/004.jpg"
+                                    alt=""></a>
+
+                        </div>
+                        <div class="news-text fl">
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">主题：</div>
+                                <div class="news-text-content fl p-text"><a
+                                        href="javascript:;">市民对话一把手：市发展改革委谈“聚焦优化营商...</a></div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">时间：</div>
+                                <div class="news-text-content fl p-text">2020-05-12 10:30 </div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">嘉宾：</div>
+                                <div class="news-text-content fl p-text">李　辉　 北京市质量技术监督局组织机构代码管理...</div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">单位：</div>
+                                <div class="news-text-content fl p-text">北京市工商行政管理局登记注册处</div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">简介：</div>
+                                <div class="news-text-content fl p-text">上海作为一座容纳了2400万常住人口的超大型城市</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="news-list-item">
+                        <div class="news-img fl">
+                            <a href="../zhengminhudong/fangtanxiangqing.html"> <img src="../../static/upload/003.jpg"
+                                    alt=""></a>
+
+                        </div>
+                        <div class="news-text fl">
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">主题：</div>
+                                <div class="news-text-content fl p-text"><a
+                                        href="javascript:;">市民对话一把手：市发展改革委谈“聚焦优化营商...</a></div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">时间：</div>
+                                <div class="news-text-content fl p-text">2020-05-12 10:30 </div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">嘉宾：</div>
+                                <div class="news-text-content fl p-text">李　辉　 北京市质量技术监督局组织机构代码管理...</div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">单位：</div>
+                                <div class="news-text-content fl p-text">北京市工商行政管理局登记注册处</div>
+                            </div>
+                            <div class="news-text-item clearfix">
+                                <div class="news-text-title fl">简介：</div>
+                                <div class="news-text-content fl p-text">上海作为一座容纳了2400万常住人口的超大型城市</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-right fl">
+                <div class="common-tag clearfix line-border" style="margin-top:0;padding-bottom: 24px;">
+                    <div class="tag1 fl"></div>
+                    <div class="tag2 fl">访谈预告</div>
+                    <div class="icon-tag fr">
+                        <a href="javascript:;">
+                            <span class="tag-text">更多</span>
+                            <span class="iconfont icongengduo"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="news-right-item">
+
+                    <span class="right-item-1">主题：</span>
+                    <span class="right-item-1"><a href="javascript:;">江州重污染天气应急有关情况</a></span>
+                    <p class="right-item-date">
+                        <span>时间：</span>
+                        <span>2019-12-25</span>
+                    </p>
+                </div>
+                <div class="news-right-item">
+
+                    <span class="right-item-1">主题：</span>
+                    <span class="right-item-1"><a href="javascript:;">江州重污染天气应急有关情况</a></span>
+                    <p class="right-item-date">
+                        <span>时间：</span>
+                        <span>2019-12-25</span>
+                    </p>
+                </div>
+                <div class="news-right-item">
+
+                    <span class="right-item-1">主题：</span>
+                    <span class="right-item-1"><a href="javascript:;">江州重污染天气应急有关情况</a></span>
+                    <p class="right-item-date">
+                        <span>时间：</span>
+                        <span>2019-12-25</span>
+                    </p>
+                </div>
+                <div class="news-right-item">
+
+                    <span class="right-item-1">主题：</span>
+                    <span class="right-item-1"><a href="javascript:;">江州重污染天气应急有关情况</a></span>
+                    <p class="right-item-date">
+                        <span>时间：</span>
+                        <span>2019-12-25</span>
+                    </p>
+                </div>
+                <div class="news-right-item">
+
+                    <span class="right-item-1">主题：</span>
+                    <span class="right-item-1"><a href="javascript:;">江州重污染天气应急有关情况</a></span>
+                    <p class="right-item-date">
+                        <span>时间：</span>
+                        <span>2019-12-25</span>
+                    </p>
+                </div>
+                <div class="news-right-item">
+
+                    <span class="right-item-1">主题：</span>
+                    <span class="right-item-1"><a href="javascript:;">江州重污染天气应急有关情况</a></span>
+                    <p class="right-item-date">
+                        <span>时间：</span>
+                        <span>2019-12-25</span>
+                    </p>
+                </div>
+                <div class="news-right-item">
+
+                    <span class="right-item-1">主题：</span>
+                    <span class="right-item-1"><a href="javascript:;">江州重污染天气应急有关情况</a></span>
+                    <p class="right-item-date">
+                        <span>时间：</span>
+                        <span>2019-12-25</span>
+                    </p>
+                </div>
+                <div class="news-right-item">
+
+                    <span class="right-item-1">主题：</span>
+                    <span class="right-item-1"><a href="javascript:;">江州重污染天气应急有关情况</a></span>
+                    <p class="right-item-date">
+                        <span>时间：</span>
+                        <span>2019-12-25</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="siteinfoBox" style="margin-top: 21px;">
+            <div class="siteinfo w">
+                <div class="siteinfoItem fl" style="text-align: left;">
+                    <!-- <div class="siteinfoText fl">
+                            中国政府网及国务院部门网站
+                        </div> -->
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            中国政府网及国务院部门网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                            <li> 国务院台湾事务办公室</li>
+                            <li> 国务院发展研究中心</li>
+                            <li> 国家国防科技工业局</li>
+                            <li> 国家文物局</li>
+                            <li> 国家公园管理局</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            省（区市）政府网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市级政府部门网站
+                            <div class="triangle fl" style="right: 18px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市县政府网站
+                            <div class="triangle fl" style="right: 21px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl marginStyle" style="border: 0;">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            新闻媒体网站
+                            <div class="triangle fl" style="right: 25px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="fotter">
+            <div class="contactUs clearfix">
+                <div class="contactUsText fl"><a href="#">关于我们</a></div>
+                <div class="contactUsText fl"><a href="#">建议意见</a></div>
+                <div class="contactUsText fl"><a href="#">站点地图</a></div>
+                <div class="contactUsText fl" style="border: none;"><a href="#">联系我们</a></div>
+
+                <div class="share">
+                    <div class="shareImg fl">
+                        <a href="">
+                            <img src="../../static/img/_r4_c3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="shareImg fl" style="margin-left: 22px;">
+                        <a href="">
+                            <img src="../../static/img/矢量智能对象.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="siteinfo-legal">
+                ICP备案号：赣ICP备 18000538号-1 2007-2019 www.jeecms.com;All Rights
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        $(function () {
+            $('.main-video').hover(function () {
+                $('.video-play').fadeIn()
+            }, function () {
+                $('.video-play').fadeOut()
+            })
+            $('#goplay').on('click', function () {
+                $(this).fadeOut()
+                $('video').trigger('play');
+
+            })
+
+        })
+
+    </script>
+</body>
+
+</html>

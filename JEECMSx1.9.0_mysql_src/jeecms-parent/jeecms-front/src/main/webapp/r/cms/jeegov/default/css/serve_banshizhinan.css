@@ -1,0 +1,257 @@
+/* 政务服务-办事指南模板 */
+
+body {
+    height:100%;
+}
+.search {
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 9999;
+}
+.searchContent {
+    width: 1200px;
+    height: 50px;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+.header {
+    position: fixed;
+    top: 50px;
+    z-index: 9998;
+}
+/* .section-feature {
+    position: fixed;
+    top: 150px;
+    z-index: 9998;
+} */
+
+.section-feature {
+    margin-top: 150px;
+    padding-top: 60px;
+    width: 100%;
+    height: 220px;
+    background-color: #F5F5F5;
+}
+.section-title {
+    font-size:30px;
+    line-height: 30px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+}
+.section-btn {
+    margin-top: 28px;
+}
+.section-btn-item {
+    margin-right: 18px;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #004099;
+    font-size:16px;
+    font-weight:normal;
+    color:rgba(255,255,255,1);
+}
+.section-btn-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color:rgba(255,255,255,1);
+
+}
+.main {
+    padding-left: 144px;
+    margin-top: 40px;
+}
+.floorBox {
+    position: fixed;
+    top: 407px ;
+    left: 360px;
+    width: 114px;
+    height: 320px;
+    border-right: 2px solid #DDDDDD;
+}
+.floor-item {
+    position: relative;
+    margin-bottom: 18px;
+    width: 95px;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+    color: #333;
+}
+
+.floor-active {
+    background-color: #002A66;
+    color: #fff;
+}
+.floor-active1 {
+    display: block;
+    position: absolute;
+    top: 7px;
+    right: -6px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 7px solid #002A66;
+}
+
+.floor-line {
+    position: absolute;
+    top: 4px;
+    right: -20px;
+    display: inline-block;
+    width:4px;
+    height:20px;
+    background-color: #002A66;
+    position: absolute;
+}
+.mainContentTitle {
+    font-size:20px;
+    font-weight:600;
+    color:rgba(51,51,51,1);
+    line-height: 20px;
+}
+.mainContentTable {
+    margin-top: 23px;
+}
+.mainContentTable table {
+    width: 100%;
+}
+.mainContentTable td {
+    border:1px solid rgba(229,229,229,1);
+}
+.mainContentTable tr {
+    width: 100%;
+}
+.t-header {
+    width:175px;
+    height:50px;
+    background:rgba(245,245,245,1);
+    background-color: #F5F5F5;
+    font-size:16px;
+    font-weight:normal;
+    color:rgba(102,102,102,1);
+    line-height:50px;
+    text-align: center;
+}
+.t-content1 ,.t-content2 ,.t-content3 {
+    padding-left: 21px;
+    font-size:16px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+    line-height:50px;
+    background:rgba(255,255,255,1);
+
+
+}
+.t-content1 {
+    width:363px;
+    height:50px;
+}
+.t-content2 {
+    width:345px;
+    height:50px;
+}
+.t-content3 {
+    margin-top: -1px;
+    margin-left: -1px;
+    width: 882px;
+    position: absolute;
+}
+.mainContentText {
+    margin-top: 24px;
+    font-size:14px;
+    font-weight:normal;
+    color:rgba(102,102,102,1);
+    line-height:30px;
+}
+.subTable {
+    margin-top: 23px;
+}
+.subTable th {
+    width: 100px;
+    height: 50px;
+    background-color: #F5F5F5;
+    border:1px solid rgba(229,229,229,1);
+    text-align: center;
+    font-size:14px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+}
+.subTable td {
+    width: 100px;
+    height: 80px;
+    background-color: #fff;
+    border:1px solid rgba(229,229,229,1);
+    text-align: center;
+    font-size:14px;
+    font-weight:normal;
+    color:#666;
+}
+.flow-path {
+    margin-top: 24px;
+    font-size:14px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+    line-height:30px;
+}
+.flow-path p {
+    margin: 0;
+}
+.legal-basis {
+    margin-top: 24px;
+    width:1056px;
+    height:570px;
+}
+.legal-basis img{
+  width: 500px;
+  height: 560px;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+.FAQ {
+    margin-top: 24px;
+}
+.FAQ .zimu {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: #004099;
+    border-radius:5px;
+    font-size: 10px;
+    text-align: center;
+    color: #E9F1FB;
+}
+.FAQ-title .FAQ-text {
+    font-size:16px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+}
+.FAQ-content {
+    padding-left: 30px;
+    position: relative;
+    width: 100%;
+    margin-top: 21px;
+}
+.FAQ-content .zimu {
+    position: absolute;
+    left: 0;
+    background-color: #ccc; 
+    color: #fff;
+}
+.FAQ-content .FAQ-text {
+    width: 1024px;
+    line-height: 30px;
+}
+
+.block {
+    display: block;
+}
+.none {
+    display: none;
+}

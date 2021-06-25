@@ -1,0 +1,729 @@
+
+<head>
+    <title>智能机器人</title>
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/index.css">
+    <link rel="stylesheet" href="${res}/css/robot.css">
+    <link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css"/>
+    <!-- <link rel="stylesheet" href="${res}/static/icon2/iconfont.css"> -->
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+    <script src="${res}/js/moment.min.js"></script>
+
+</head>
+
+<body >
+  <div class="container" id="robot">
+    <!-- 头部 -->
+    <div class="robot-container">
+      <div class="robot-wrap">
+        <div class="robot-head">
+          <div class="robot-portrait">
+            <img class="t-img" :src="robotSet.robotImage" />
+          </div>
+          <div class="robot-head-cont t-inline">
+            <div class="title" v-text="title"></div>
+            <div class="time" v-text="time"></div>
+          </div>
+        </div>
+        <div class="robot-cont" >
+          <div class="robot-left" :style="{width:problemList.length?'850px':'100%'}">
+            <div ref="robotBox"class="robot-box" oncontextmenu=self.event.returnValue=false>
+
+              <div class="robot-say">
+                <div class="head">
+                  <img class="t-img" :src="robotSet.robotImage" />
+                </div>
+                <p class="text" v-text="robotSet.robotGreeting"></p>
+              </div>
+              <div v-for="(say,index) in sayList" :key="index">
+                <div class="robot-say" v-if="say.type === 'robot'">
+                  <div class="head">
+                    <img class="t-img" :src="robotSet.robotImage" />
+                  </div>
+                  <div class="text">
+                    <div  v-html="say.text"></div>
+                    <ul class="guide-list" v-if="say.guides">
+                      <li v-for="(info,infoIndex) in say.guides" :key="infoIndex">
+                        <a v-if="info.link" :href="info.link" v-text="info.name" target="_blank" class="t-color"></a>
+                        <span v-else  v-text="info.name" class="t-color" @click="submitQues(info.name)"></span>
+                      </li>
+                    </ul>
+                    <div class="t-label" v-if="say.robotQuestionRelations&&say.robotQuestionRelations.length">您好，您是不是还想咨询：</div>
+                    <ul class="guide-list" v-if="say.robotQuestionRelations&&say.robotQuestionRelations.length">
+                      <li v-for="(info,infoIndex) in say.robotQuestionRelations" :key="infoIndex">
+                        <span v-text="info.question" class="t-color" @click="submitQues(info.question)"></span>
+                      </li>
+                    </ul>
+                    <div class="t-lebel" v-if="say.anotherQuestions">您好，您想问的是不是：</div>
+                    <ul class="guide-list" v-if="say.anotherQuestions&&say.anotherQuestions.length">
+                      <li v-for="(info,infoIndex) in say.anotherQuestions" :key="infoIndex">
+                        <span v-text="info.problem" class="t-color" @click="submitRelation(info,say)"></span>
+                      </li>
+                    </ul>
+                    <div v-if="say.questionType == 2&&say.options&&say.options.length" class="sel-items">
+                      <span class="t-cursor sel-item"  @click="selItemAnwer(opt,say)"
+                      :class="say.selTxt?'active':''"
+                        v-for="(opt,optIndex) in say.options" :key="optIndex">{{opt}}</span>
+                    </div>
+                  </div>
+                  <div v-if="say.evaluate&&say.questionType !=3" class="evaluate">
+                    <span class="mar-20">你对以上问题是否满意？</span>
+                    <div class="t-inline evaluate-txt" @click="setRobotGood(say,true)" v-show="!say.evaluateText||say.evaluateText == 1">
+                      <span class="icon1" :class="say.evaluateText == 1?'active':''"><a href="javascript:;" class="iconfont icon-thumb-up-line"></a></span>
+                      <span class="mar-20">满意</span>
+                    </div>
+                    <div class="t-inline evaluate-txt" @click="setRobotGood(say,false)" v-show="!say.evaluateText||say.evaluateText == 2">
+                      <span class="icon2" :class="say.evaluateText == 2?'active':''"><a href="javascript:;" class="iconfont icon-thumb-down-line"></a></span>
+                      <span>不满意</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="my-say" v-else-if="say.type === 'user'">
+                    <div class="text" v-html="say.text"></div>
+                    <div class="head"><img class="t-img" :src="robotSet.userImage" /></div>
+                </div>
+                <div class="robot-say" v-else-if="say.type === 'waiting'">
+                  <div class="head">
+                    <img class="t-img" :src="robotSet.robotImage" />
+                  </div>
+                  <div class="text">
+                    <span v-text="timeOutMessage"></span>
+                    <div class="t-color" v-if="say.activate">
+                      <span class="t-cursor" @click="keepWaiting"
+                      >继续等待 <i class="t-label" v-if="say.activate&&isWait">（{{waitNumber}}S）</i></span>&nbsp;&nbsp;&nbsp;
+                      <span class="t-cursor" @click="showThank">稍后咨询</span>
+                    </div>
+                    <div class="disabled" v-else>
+                      <span >继续等待 </span>&nbsp;&nbsp;&nbsp;
+                      <span >稍后咨询</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="robot-say" v-if="saying">
+                <div class="head">
+                  <img class="t-img" :src="robotSet.robotImage" />
+                </div>
+                <p class="text">
+                  <span class="round" v-for="(cur,index) of 5" :key="index"
+                  :class="{'cur':curIndex == index}"></span> 
+                </p>
+              </div>
+            </div>
+            <div class="robot-tall">
+              <div class="robot-tall-cont">
+                <div class="overtime" v-if="outTime"><span v-text="robotSet.timeOutMessage"></span>，请 <a class="t-href" href="">刷新页面</a> 后再发送 </div>
+                <!-- <textarea v-else v-model="quesText" :maxlength="tallLength"
+                @keydown.enter.native="submitQues(quesText)"
+                  class="robot-input" placeholder="请输入您想咨询的问题......" ></textarea> -->
+                  <input
+                  v-else
+                    type="textarea"
+                    autofocus="true"
+                    class="robot-input" placeholder="请输入您想咨询的问题......"
+                    @keydown="submitQues(quesText,$event)"
+                    resize="none"
+                    v-model="quesText" :maxlength="tallLength"
+                  >
+                  </input>
+                <div class="t-label t-14">您还可以输入<span class="t-red" v-text="tallLength-quesText.length"></span>个字符</div>
+              </div>
+              <div class="robot-submit" :class="{'disabled':outTime||!quesText.length}" 
+                @click="submitQues(quesText)">发送</div>
+            </div>
+          </div>
+          <div class="robot-right" v-if="problemList.length">
+            <div class="title">常见问题 </div>
+            <ul class="common-problem">
+              <li class="problem-item" v-for="(item,index) in problemList" :key="index"
+              v-text="item.question" @click="submitQues(item.question)"
+              ></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 页脚网站信息模块-->
+  </div>
+
+  
+</body>
+<script src="${res}/js/jquery.my-message.1.1.js"></script>
+<script src="${res}/js/vue.js"></script>
+<script type="text/javascript">
+var base2 = window.location.protocol+'://api.jeecms.com'
+// var base = 'http://192.168.0.135:9900'
+var base = '${base}'
+var myMessage = new MyMessage.message({
+    /*默认参数，下面为默认项*/
+    iconFontSize: "26px", //图标大小,默认为20px
+    messageFontSize: "14px", //信息字体大小,默认为12px
+    showTime: 2000, //消失时间,默认为3000
+    align: "center", //显示的位置类型center,right,left
+    positions: { //放置信息距离周边的距离,默认为10px
+        top: "50px",
+        bottom: "50px",
+        right: "150px",
+        left: "0px"
+    },
+    message: "这是一条消息", //消息内容,默认为"这是一条消息"
+    // type: "normal", //消息的类型，还有success,error,warning等，默认为normal
+})
+var that = null
+var robot = new Vue({
+  el: '#robot',
+  data: {
+    tallLength:30,// 最多可输入
+    loading:false,//
+    quesText:'',// 用户提问输入
+    problemList:[],// 常见问题列表
+    robotSet:{},// 机器人设置
+    title:'',
+    time:'',// 时间
+    outTime:false,
+    timeout:null,
+    sayList:[],// 聊天记录
+    saying:false,//是否正在查询接口
+    curIndex:0,// 显示加载
+    waiting:0,//接口调取时间
+    waitNumber:10,// 等待时间
+    isWait:false,
+    productInfo:{},
+    timeOutMessage:'当前咨询人数过多，小磊正在逐一回复，您可以选择：'
+  },
+  mounted:function(){
+      that = this
+
+      setInterval(function(){
+        that.time = '现在时间'+moment(new Date().getTime()).format('HH:mm:ss YYYY年MM月DD日')
+        if(!that.outTime){
+          if(that.isWait&&that.waitNumber>0){
+            that.waitNumber = that.waitNumber-1
+          } else if(that.isWait) {
+            that.isWait = false
+            that.isWait = false
+            that.waitNumber = 10
+            that.showThank(true)
+          }
+        }
+      },1000)
+      that.getProductInfo()
+      clearTimeout(that.timeout);
+      that.setHeight()
+  },
+  methods: {
+    staticQues:function(){
+      $.ajax({
+        type:'GET',
+          url: base2+"/MODULE-ROBOT/client/robot",
+          data:{
+            productAppId:that.productInfo.productAppId,
+          },
+          success: function (res) {
+            if (res.code == 200) {
+              
+            }
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            myMessage.add(errorThrown, 'error');
+          }
+        });
+    },
+    getProductInfo:function(){// 获取产品信息
+      $.ajax({
+        type:'GET',
+        url: base+"/cmsmanager/authorizations/product",
+        data:{},
+        success: function (res) {
+          if(res.code===200){
+            that.productInfo = res.data
+            that.getProblemList()
+            that.staticQues()
+            that.getRobotSet()
+          }
+        }
+      });
+    },
+    submitQues:function(ques,e){// 发送
+      if (!e||e.keyCode == 13) {  
+        var text = ques.replace(/(^\s*)|(\s*$)/g, "");
+        console.log(text)
+        if(text){
+          if(that.robotSet.oneToOne&&that.sayList.length&&that.sayList[that.sayList.length-1].type === 'user'&&!that.sayList[that.sayList.length-1].isNext){
+            myMessage.add(that.robotSet.repetitionMessage, 'warning')
+          } else {
+            that.addTall(text)
+          }
+        } else {
+          myMessage.add('不能发送空消息')
+          return false
+        }
+      }
+    },
+    submitRelation:function(info,item){
+      if(that.sayList[that.sayList.length-1]){
+        that.sayList[that.sayList.length-1].activate = false
+      }
+      that.waitNumber = 10
+      that.sayList.push({
+        type:'user',
+        text:info.problem
+      });
+      that.setHeight()
+      that.quesText = ''
+      that.saying = true
+      that.showCur()
+      $.ajax({
+        type:'GET',
+        url: base2+"/MODULE-ROBOT/client/robot/relation",
+        data:{
+          id:info.id,
+          question:item.ques,
+          productAppId:that.productInfo.productAppId,
+          siteId:localStorage.getItem('siteId'),
+          siteName:localStorage.getItem('siteName'),
+          mobile:that.productInfo.mobile
+        },
+        success: function (res) {
+          if(res.code===200){
+            // guides
+            that.saying = false
+            that.waiting = 0
+            clearInterval(that.curLoading);
+            if(res.data.questionType!=2){
+              if(res.data.answers&&res.data.answers[0].answer){
+                var ques = ''
+                if(res.data.answers instanceof Array){
+                  for(var i =0;i<res.data.answers.length;i++){
+                    ques += res.data.answers[i].answer
+                  }
+                } else {
+                  ques = res.data.answers
+                }
+                that.sayList.push({
+                  type:'robot',
+                  id:res.data.id,
+                  evaluate:that.robotSet.robotEvaluate,
+                  evaluateText:null,
+                  questionType:res.data.questionType,
+                  text:ques,
+                  robotQuestionRelations:res.data.robotQuestionRelations
+                });
+                that.setHeight()
+              } else {
+                if(res.data.anotherQuestions&&res.data.anotherQuestions.length){
+                 var anotherQuestions = []
+                 that.sayList.push({
+                    type:'robot',
+                    guides:guides,
+                    questionType:res.data.questionType,
+                    text:'',
+                    robotQuestionRelations:res.data.robotQuestionRelations,
+                    anotherQuestions:res.data.anotherQuestions,
+                    ques:text
+                  });
+                } else {
+                  var guides = []
+                  if(that.robotSet.guides){
+                    guides = that.robotSet.guides ? JSON.parse(that.robotSet.guides) : []
+                  }
+                  that.sayList.push({
+                    type:'robot',
+                    guides:guides,
+                    questionType:res.data.questionType,
+                    text:res.data.notMatchingAnswer ||'未匹配到答案',
+                    robotQuestionRelations:res.data.robotQuestionRelations
+                  });
+                }
+                
+              }
+            } else if(res.data.questionType == 2) {
+              that.sayList.push({
+                type:'robot',
+                id:res.data.id,
+                rank:res.data.rank||1,
+                text:res.data.oneQuestion,
+                questionType:res.data.questionType,
+                options:res.data.oneQuestionGuide&&res.data.oneQuestionGuide.length?res.data.oneQuestionGuide.split(','):[],
+                selTxt:'',
+                robotQuestionRelations:res.data.robotQuestionRelations
+              });
+              that.setHeight()
+            }
+          }
+        },
+        error:function(res){
+          console.log(res)
+        }
+      });
+    },
+    setHeight:function(){
+      console.log(this);// 内容框自动升高
+      setTimeout(function(){
+        console.log(that);
+        var div = that.$refs.robotBox;
+        div.scrollTop = div.scrollHeight;
+      }, 300);
+    },
+    showThank:function(status){// 感谢理解
+      if(that.sayList[that.sayList.length-1]){
+        that.sayList[that.sayList.length-1].activate = false
+      }
+      var arr = [
+        {
+          type:'user',
+          text:'稍后咨询'
+        },
+        {
+          type:'robot',
+          text:that.robotSet.laterMessage
+        }
+      ]
+      that.sayList = that.sayList.concat(arr);
+      that.saying = false
+      clearInterval(that.curLoading);
+      that.setHeight()
+    },
+    showCur:function(){// 显示加载
+      that.curLoading = setInterval(function(){
+        if(that.curIndex<5){
+          that.curIndex = that.curIndex+1
+        } else {
+          that.curIndex = 0
+        }
+        if(that.waiting > 5000){
+          that.saying = false
+          that.waiting = 0
+          that.sayList.push({
+            type:'waiting',
+            activate:true
+          });
+          that.isWait = true
+          that.setHeight()
+          clearInterval(that.curLoading);
+        } else if(that.saying) {
+          that.waiting += 80
+        }
+      },80)
+
+      // waiting
+    },
+    addTall:function(text){// 提出问题
+      if(that.sayList[that.sayList.length-1]){
+        that.sayList[that.sayList.length-1].activate = false
+      }
+      that.waitNumber = 10
+      that.sayList.push({
+        type:'user',
+        text:text
+      });
+      that.setHeight()
+      that.quesText = ''
+      that.saying = true
+      that.showCur()
+      $.ajax({
+        type:'GET',
+        url: base2+"/MODULE-ROBOT/client/robot/start",
+        data:{
+          question:text,
+          productAppId:that.productInfo.productAppId,
+          siteId:localStorage.getItem('siteId'),
+          siteName:localStorage.getItem('siteName'),
+          mobile:that.productInfo.mobile
+        },
+        success: function (res) {
+          if(res.code===200){
+            // guides
+            that.saying = false
+            that.waiting = 0
+            clearInterval(that.curLoading);
+            if(res.data.questionType!=2){
+              if(res.data.answers&&res.data.answers[0].answer){
+                var ques = ''
+                
+                
+                if(res.data.answers instanceof Array){
+                  var le = Math.floor(Math.random()*res.data.answers.length)
+                  ques = res.data.answers[le].answer
+                  // for(let i =0;i<res.data.answers.length;i++){
+                  //   ques += res.data.answers[i].answer
+                  // }
+                } else {
+                  ques = res.data.answers
+                }
+                that.sayList.push({
+                  type:'robot',
+                  id:res.data.id,
+                  evaluate:that.robotSet.robotEvaluate,
+                  evaluateText:null,
+                  questionType:res.data.questionType,
+                  text:ques,
+                  robotQuestionRelations:res.data.robotQuestionRelations
+                });
+                that.setHeight()
+              } else {
+                if(res.data.anotherQuestions&&res.data.anotherQuestions.length){
+                 var anotherQuestions = []
+                 that.sayList.push({
+                    type:'robot',
+                    guides:guides,
+                    questionType:res.data.questionType,
+                    text:'',
+                    robotQuestionRelations:res.data.robotQuestionRelations,
+                    anotherQuestions:res.data.anotherQuestions,
+                    ques:text
+                  });
+                } else {
+                  var guides = []
+                  if(that.robotSet.guides){
+                    guides = that.robotSet.guides ? JSON.parse(that.robotSet.guides) : []
+                  }
+                  that.sayList.push({
+                    type:'robot',
+                    guides:guides,
+                    questionType:res.data.questionType,
+                    text:res.data.notMatchingAnswer ||'未匹配到答案',
+                    robotQuestionRelations:res.data.robotQuestionRelations
+                  });
+                }
+                
+              }
+            } else if(res.data.questionType == 2) {
+              that.sayList.push({
+                type:'robot',
+                id:res.data.id,
+                rank:res.data.rank||1,
+                id:res.data.id,
+                evaluate: res.data.rank<0?that.robotSet.robotEvaluate:false,
+                evaluateText:null,
+                text:res.data.oneQuestion,
+                questionType:res.data.questionType,
+                options:res.data.oneQuestionGuide&&res.data.oneQuestionGuide.length?res.data.oneQuestionGuide.split(','):[],
+                selTxt:'',
+                robotQuestionRelations:res.data.robotQuestionRelations
+              });
+              that.setHeight()
+            }
+          } else {
+            console.log(res)
+          }
+        },
+        error:function(res){
+          console.log(res)
+        }
+      });
+    },
+    selItemAnwer:function(text,item){// 选择多轮答案
+      if(item.selTxt){
+        return false
+      } else if(text) {
+        item.selTxt = text
+        if(that.sayList[that.sayList.length-1]){
+          that.sayList[that.sayList.length-1].activate = false
+        }
+        that.waitNumber = 10
+        
+        that.sayList.push({
+          type:'user',
+          text:text,
+          isNext:true
+        });
+        that.setHeight()
+        that.quesText = ''
+        that.saying = true
+        that.showCur()
+        $.ajax({
+          type:'GET',
+          url: base2+"/MODULE-ROBOT/client/robot/more",
+          data:{
+            guide:text,
+            questionId:item.id,
+            rank:item.rank
+          },
+          success: function (res) {
+            if(res.code==200){
+              // guides
+              that.saying = false
+              that.waiting = 0
+              clearInterval(that.curLoading);
+              
+              if(res.data.rank < 0){
+                if(res.data.problem){
+                  that.sayList.push({
+                  type:'robot',
+                  id:res.data.id,
+                  id:res.data.id,
+                  evaluate:that.robotSet.robotEvaluate,
+                  evaluateText:null,
+                  rank:res.data.rank||1,
+                  text:res.data.problem,
+                  questionType:2,
+                  options:res.data.guide&&res.data.guide.length?res.data.guide.split(','):[],
+                  selTxt:'',
+                  robotQuestionRelations:res.data.robotQuestionRelations||[]
+                });
+                } else {
+                  return false
+                }
+                
+              } else {
+                that.sayList.push({
+                  type:'robot',
+                  id:res.data.id,
+                  evaluate:that.robotSet.robotEvaluate,
+                  evaluateText:null,
+                  rank:res.data.rank||1,
+                  text:res.data.problem,
+                  questionType:2,
+                  options:res.data.guide&&res.data.guide.length?res.data.guide.split(','):[],
+                  selTxt:'',
+                  robotQuestionRelations:res.data.robotQuestionRelations||[]
+                });
+              }
+              
+              that.setHeight()
+            } else {
+              console.log(res)
+            }
+          },
+          error:function(res){
+            console.log(res)
+          }
+        });
+      }
+    },
+    getProblemList:function(){// 获取常见问题列表
+      $.ajax({
+        type:'GET',
+        url: base2+"/MODULE-ROBOT/client/robot/list",
+        data:{
+          type:1,
+          productAppId:that.productInfo.productAppId,
+        },
+        success: function (res) {
+          if(res.code===200){
+            that.problemList = res.data
+          }
+        }
+      });
+    },
+    getRobotSet:function(){ // 获取机器人设置
+      $.ajax({
+        type:'GET',
+        url: base2+"/MODULE-ROBOT/client/robot/set",
+        data:{
+          type:1,
+          productAppId:that.productInfo.productAppId,
+        },
+        success: function (res) {
+          if(res.code===200){
+            that.robotSet = res.data
+            that.timeOutMessage = res.data.timeOutMessage
+            that.getTitle()
+            that.getOutTime()
+          }
+        }
+      });
+    },
+    getTitle:function(){
+      var date = new Date();
+      var hour = date.getHours();
+      var showTime = '上午'
+      if (hour < 4) {
+        showTime = "晚上";
+      } else if (hour < 9) {
+        showTime = "早上";
+      } else if (hour < 12) {
+        showTime = "上午";
+      } else if (hour < 14) {
+        showTime = "中午";
+      } else if (hour < 18) {
+        showTime = "下午";
+      } else {
+        showTime = "晚上";
+      }
+      that.title = showTime+'好！'+that.robotSet.robotName+'智能助手正在为您服务~'
+    },
+    getOutTime:function(){// 获取超时
+      if(that.robotSet.time){
+        var timeout = Number(that.robotSet.time)*60000
+        that.timeout = setTimeout(function(that){
+          that.outTime = true
+        }, timeout);
+      }
+    },
+    setRobotGood:function(data,good){// 给回复评分（满意or不满意）
+    if(data.evaluateText) return false
+      data.evaluateText = good?1:2
+      $.ajax({
+        type:'GET',
+        url: base2+"/MODULE-ROBOT/client/robot/good",
+        data:{
+          good:good,
+          questionId:data.id,
+          productAppId:that.productInfo.productAppId,
+        },
+        success: function (res) {
+          var text = good?that.robotSet.goodMessage:that.robotSet.badMessage
+          if(res.code===200){
+            that.sayList.push({
+                type:'robot',
+                text:text
+              });
+            // console.log('评价成功')
+            // myMessage.add(good?that.robotSet.goodMessage:that.robotSet.badMessage, 'success')
+          } else {
+            that.sayList.push({
+                type:'robot',
+                text:text
+              });
+            // myMessage.add(good?that.robotSet.goodMessage:that.robotSet.badMessage, 'success')
+          }
+        }
+      });
+    },
+    keepWaiting:function(){// 继续等待
+      if(that.sayList[that.sayList.length-1]){
+        that.sayList[that.sayList.length-1].activate = false
+      }
+      that.sayList.push({
+        type:'user',
+        text:'继续等待'
+      });
+      that.isWait = false
+      that.waitNumber = 10
+      that.setHeight()
+      that.saying = true
+      that.showCur()
+    }
+  }
+})
+
+  // 找回密码
+  function findPassword(){
+    $.ajax({
+      type:'GET',
+        url: "${base}/register/addition/model",
+        success: function (res) {
+              if(res.code===200){
+                  var data = res.data.enableJson.formListBase
+                  var array = []
+                  for(var i =0;i<data.length;i++){
+                      array.push(data[i].value.name)
+                  }
+                  if(array.indexOf('email') > 0){
+                      location.href='./content-loginfindpsword.htm'
+                  }
+              }
+          }
+      });
+  };
+  
+</script>

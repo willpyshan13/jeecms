@@ -1,0 +1,132 @@
+
+/* 二级标题 */
+.secondTitle {
+    width: 100%;
+    height: 60px;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    background-color: #F5F5F5;
+}
+.title .item {
+    text-align: center;
+    font-size:16px;
+
+    line-height:60px ;
+    padding: 0 45px;
+}
+
+.secondActive{
+    color: #002A66 !important;
+}
+.aStyle {
+    color: #666;
+}
+.newsList {
+    clear: both;
+}
+ /* title */
+ .newsTitle {
+     margin-top: 45px;
+ }
+ .newTitle {
+    text-align: center;
+     font-size:30px;
+     font-weight:400;
+     color:rgba(51,51,51,1);
+     clear: both;
+ }
+ .titleTag {
+     width: 100%;
+     height: 20px;
+     margin-top: 47px;
+ }
+ .admin {
+    font-size:14px;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    
+ }    
+ .data {
+     margin-right: 16px;
+ }   
+ .rightTag {
+    color:rgba(153,153,153,1);
+ } 
+ .rightTag .iconfont{
+    font-size: 12px;
+    color: #fff;
+ }
+ /* tag背景样式类 */
+ .rightTag .qq:hover{
+    background-color: #FDA343;
+ }
+  .rightTag .wx:hover{
+    background-color: #57C436;
+ } 
+ .rightTag .weibo:hover{
+    background-color: #F85446;
+ } 
+ .rightTag .kongjian:hover{
+    background-color: #46B0DD;
+ }
+ .rightTag .tex {
+     vertical-align: middle;
+ }
+ .titleTagItem {
+     display: inline-block;
+     margin-right: 7px;
+     width: 20px;
+     height: 20px;
+     padding:1px 0px 0px 3px ;
+     background-color: #ccc;
+     border-radius:50%;
+ }   
+ .newsdetails {
+     position: relative;
+     margin-bottom: 80px;
+ }                                     
+ .newsdetails p {
+     font-size: 16px;
+     color: #333;
+     line-height: 40px;
+    text-indent: 2em;
+    font-weight: 400;
+    text-align: justify;
+ }
+ .cut-off-rule img{
+    width: 100%;
+    height: 9px;
+    margin-top: 26px;
+    margin-bottom: 40px;
+    }
+    /* 返回顶部 */
+    .back-to-top {
+        position: absolute;
+        bottom: 0;
+        right: -180px;
+        padding:19px 0;
+        width: 80px;
+        height: 80px;
+        background-color: #eee;
+        cursor: pointer;
+    }
+    .back-to-top .iconfont {
+        padding: 0 25px;
+
+    }
+
+    .goText {
+        
+        padding-left: 20px;
+        width: 80px; 
+        height: 14px;
+        font-size:14px;
+        font-weight:300;
+        color:rgba(153,153,153,1);
+    }
+    .back-to-top:hover .iconfont {
+        color: #002A66;
+    }
+    .back-to-top:hover .goText {
+        color: #002A66;
+    }

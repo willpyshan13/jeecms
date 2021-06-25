@@ -1,0 +1,191 @@
+/* 政务服务-政府服务列表样式 */
+body {
+    height: 100%;
+}
+.topNav {
+    margin-top: 59px;
+}
+/* 标签栏样式 */
+.title {
+    width: 100%;
+    height: 55px;
+    border-bottom: 1px solid #E5E5E5;
+}
+.titleLine {
+    padding-bottom: 19px;
+    border-bottom: 2px solid #002A66;
+}
+.titleLine a {
+    color: #002A66;
+
+}
+.title .titleText {
+    margin-right: 41px;
+    font-size:24px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+}
+.titleText a:hover {
+    /* color:rgba(51,51,51,1); */
+
+}
+
+/* end */
+.topNavBox .row {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 22px;
+}
+.topNavBox .row .topNavItem:last-child {
+    margin-right: 0;
+}
+.topNavBox {
+    margin-top: 24px;
+    width: 100%;
+    height: 112px;
+    overflow: hidden;
+}
+.topNavItem {
+    padding-left: 0;
+    padding-right: 0;
+   margin-right: 22px;
+    /* margin-bottom: 22px;  */
+    width: 130px;
+    height: 45px;
+    background-color: #F5F5F5;
+    text-align: center;
+    line-height: 45px;
+    font-size:16px;
+    font-weight:400;
+}
+.topNavItem a {
+    color:rgba(51,51,51,1);
+ 
+}
+.topNavItem:hover a {
+    color:#fff;
+ 
+} 
+.topNavItem:hover{
+  background-color: #002A66;
+ 
+}  
+.getMore {
+    margin-top: 31px;
+    width: 100%;
+    height: 35px;
+    line-height: 35PX;
+    text-align: center;
+    background-color: #F5F5F5;
+}
+.getMore span {
+    font-weight:400;
+    font-size:14px;
+    color:rgba(0,64,153,1);
+}
+.getMore a {
+    margin: 0 auto;
+    display: block;
+    width: 100px;
+    height: 35px;
+}
+.getMore .iconarrow:before {
+    font-size: 5px;
+}
+.getMore .iconcaidanjiantou:before {
+    font-size: 5px;
+}
+.main {
+    margin-top: 60px;
+}
+.mainTitle {
+    padding: 0 19px 0 13px;
+    width: 100%;
+    height: 70px;
+    background-color: #F5F5F5;
+}
+.mainTitle .mainTitleText {
+    font-size:24px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+    line-height: 70px;
+}
+.mainTitle .mainTitleSum {
+    margin-left: 55px;
+    font-size:16px;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    line-height: 70px;
+}
+.main-search {
+    position: relative;
+    margin-top: 9px;
+    width:300px;
+    height:50px;
+}
+.main-search input {
+    padding: 12px 0 12px 17px;
+    width: 100%;
+    height: 100%;
+    font-size:16px;
+    font-weight:300;
+    color:#333;
+    background-color: #fff;
+    border: none;
+    border-radius: none;
+}
+.main-search .iconfont {
+    font-size: 20px;
+    color: #999;
+}
+.main-search .iconfont:hover {
+    color: #002A66;
+}
+.main-search-btn {
+    position: absolute;
+    right: 9px;
+    top: 14px;
+}
+.form-control:focus{
+    color: #333;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075)'
+}
+.mainList {
+    margin-top: 31px;
+}
+.mainListItem span{
+    line-height: 16px;
+    display: inline-block;
+
+}
+.mainListItem .listTag {
+    margin-right: 14px;
+    width:5px;
+    height:14px;
+    background:rgba(0,64,153,1);
+}
+.mainListItem .listContent {
+    font-size:16px;
+    font-weight:normal;
+    color:#333
+
+}
+.mainListItem .listContent a{
+    color:#333
+}
+.mainListItem .listContent a:hover {
+  color: #004099;
+
+}
+
+.mainListItem {
+    margin-bottom: 28px;
+    padding-bottom: 29px;
+    border-bottom: 1px dashed #DDD;
+}
+/* 分页 */
+#myPage {
+    margin : 40px 0 60px 240px;
+  }
+/* 结束 */

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="${mobileRes}/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="${mobileRes}/css/searchResult.css" />
+		<script src="${mobileRes}/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${mobileRes}/js/vue.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${mobileRes}/js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${mobileRes}/js/app.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+<body>
+<div id="searchResult" >
+    <div class="head">
+        <div class="head-left" @click="goHome"><img src="${mobileRes}/images/icon/houtui.png"></div>
+        <div class="head-center">查询结果</div>
+        <div class="head-right" @click="goSearch"><img src="${mobileRes}/images/icon/search.png"></div>
+    </div>
+    <div class="main" v-if="isShow">
+        <!-- 内容区域 -->
+        <div class="container">
+            <div class="container-list" v-for="(item,index) in QueryList" :key="index">
+                <div class="container-title">
+                    {{item.content}}
+                </div>
+                <div class="container-foot">
+                    <span style="margin-right: 1.59375rem;color: #333;">{{item.type.name}}</span>
+                    <span>办结日期：</span><span>{{item.finishTime | timeStamp}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main" v-else>
+        <div class="no-data">
+            <img src="${mobileRes}/images/blank/wusousuo.png" alt="">
+        </div>
+        <div class="hint">
+            查询无结果，换个别的再试试吧~
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var baseUrl='${base}'
+    new Vue({
+    el: '#searchResult',
+    data: {
+        QueryList:[],
+        isShow:false
+    },
+    mounted() {
+            let QueryLetters=window.localStorage.getItem('QueryLetters')
+            this.QueryList=JSON.parse(QueryLetters)
+            if (this.QueryList&&this.QueryList.length) {
+                this.isShow=true
+            }
+    },
+    filters: {
+        timeStamp: function(value) {//具体到时分秒
+            if (!value) return '';
+            var date = new Date(value); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var year = date.getFullYear();
+            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            var sdate = ("0" + date.getDate()).slice(-2);
+            var hour = ("0" + date.getHours()).slice(-2);
+            var minute = ("0" + date.getMinutes()).slice(-2);
+            var second = ("0" + date.getSeconds()).slice(-2);
+            // 拼接
+            var result = year + "-" + month + "-" + sdate + " " + hour + ":" + minute + ":" + second;
+            // 返回
+            return result;
+        }
+	},
+    methods: {
+        //跳转首页
+        goHome(){
+            window.location.href=('/channel-letterBox.htm')
+        },
+        //跳转搜索
+        goSearch(){
+            window.location.href=('/interact-letterList-letterSearch.htm')
+        },
+    }
+	});
+</script>
+</html>

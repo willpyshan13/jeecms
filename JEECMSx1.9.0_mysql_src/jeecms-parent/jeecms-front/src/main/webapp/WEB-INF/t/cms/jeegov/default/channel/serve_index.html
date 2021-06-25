@@ -1,0 +1,227 @@
+<!-- 政务服务-政府服务模板-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/serve_index.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <!-- 焦点图 -->
+        <div class="focusImg">
+            <img src="${res}/static/upload/zffw_banner.png" alt="">
+        </div>
+        <!-- 主体 -->
+        <div class="main-nav w">
+
+            <!-- 个人服务 -->
+            <div class="titleBox">
+                <!-- 标题标签 -->
+                <div class="title" style="background-color: transparent;">
+                    <!--这里需要调整下？滑动切换个人 法人服务，点击跳转到服务列表分页-->
+                    <div class="titleText fl titleLine"><a href="${base}/grfw.jhtml">个人服务</a></div>
+                    <div class="titleText fl"><a href="${base}/frfw.jhtml">法人服务</a></div>
+                    <!-- <div class="status">
+                        <span class="goBack iconfont iconxiangzuofanye-copy"></span>
+                        <span class="goNext iconfont iconxiangyoufanye go-active"></span>
+                    </div> -->
+                </div>
+                <div class="navBox-tab">
+                    <!-- 个人服务 -->
+                    <div class="navBox clearfix">
+                        [@cms_channel_list parentId='2413' count='8']
+                        [#list tag_list as c]
+                        [#if c_index%4==3]
+                        <div class="navItem fl marginStyle">
+                        [#else]
+                        <div class="navItem fl">
+                        [/#if]
+                            [#if c.id==2417]
+                            <div class="fontBox iconfont iconshengyu"></div>
+                            [#elseif c.id==2601]
+                            <div class="fontBox iconfont iconhuji"></div>
+                            [#elseif c.id==2419]
+                            <div class="fontBox iconfont iconminzu"></div>
+                            [#elseif c.id==2420]
+                            <div class="fontBox iconfont iconjiaoyu"></div>
+                            [#elseif c.id==2602]
+                            <div class="fontBox iconfont iconruwu"></div>
+                            [#elseif c.id==2603]
+                            <div class="fontBox iconfont icondiya"></div>
+                            [#elseif c.id==2604]
+                            <div class="fontBox iconfont iconnianduzhongdianrenwu"></div>
+                            [#elseif c.id==2605]
+                            <div class="fontBox iconfont iconxingzheng"></div>
+                            [/#if]
+                            <div class="fontText1"><a href="${c.url!}">${c.name!}</a></div>
+                            <!--取第一条内容的标题-->
+                            [@cms_content_list channelId=c.id channelOption='1' orderBy='29'  count='1']
+                            [#list tag_list as a]
+                            <div class="fontText2"><a href="${a.url!}">[@text_cut s=a.title len=18 append='...' /]</a> </div>
+                            [/#list]
+                            [/@cms_content_list]
+                        </div>
+                        [/#list]
+                        [/@cms_channel_list]
+                    </div>
+                    <!-- 法人服务 -->
+                    <div class="navBox" style="display: none;">
+                        <p>法人服务区域</p>
+                        <p>法人服务区域</p>
+                        <p>法人服务区域</p>
+                        <p>法人服务区域</p>
+                        <p>法人服务区域</p>
+                        <p>法人服务区域</p>
+                        <p>法人服务区域</p>
+                        <p>法人服务区域</p>
+                        <p>法人服务区域</p>
+                        <p>法人服务区域</p>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- 热门服务标题 -->
+            <div class="title" style="background-color: transparent;margin-top: 24px;">
+                <div class="titleText fl">热门服务</a></div>
+                <!-- <div class="status">
+                    <span class="goBack iconfont iconxiangzuofanye-copy"></span>
+                    <span class="goNext iconfont iconxiangyoufanye"></span>
+                </div> -->
+            </div>
+            <!-- 热门服务分类 -->
+            <div class="subnav clearfix">
+                <div class="subnavItem fl"><a href="${base}/sysy.jhtml">生育收养</a></div>
+                <div class="subnavItem fl"><a href="${base}/hjbl.jhtml">优待抚恤</a></div>
+                <div class="subnavItem fl"><a href="${base}/lztx.jhtml">离职退休</a></div>
+                <div class="subnavItem fl marginStyle"><a href="${base}/dyzy.jhtml">就业创业</a></div>
+                <div class="subnavItem fl"><a href="${base}/ylws.jhtml">医疗卫生</a></div>
+                <div class="subnavItem fl"><a href="${base}/fwslbg.jhtml">设立变更</a></div>
+                <div class="subnavItem fl"><a href="${base}/fwzyzb.jhtml">准营准办</a></div>
+                <div class="subnavItem fl marginStyle"><a href="${base}/fwzzrz.jhtml">资质认证</a></div>
+                <div class="subnavItem fl"><a href="${base}/fwnjns.jhtml">年检年审</a></div>
+                <div class="subnavItem fl"><a href="${base}/fwsscw.jhtml">税收财务</a></div>
+                <div class="subnavItem fl"><a href="${base}/fwrlzy.jhtml">人力资源</a></div>
+                <div class="subnavItem fl marginStyle"><a href="${base}/fwshbz.jhtml">社会保障</a></div>
+            </div>
+            <!-- 办件公示标题 -->
+            <div class="title" style="background-color: transparent;margin-top: 24px;">
+                <div class="titleText fl"><a href="javascript:;">办件公示</a></div>
+
+            </div>
+            <!-- 办件公示区域 -->
+            <div class="publicityTitle w">
+                <div class="titleBox">
+                    <div class="publicityTitleItem fl" style="width: 331px;">办件编号</div>
+                    <div class="publicityTitleItem fl" style="width: 531px;">项目名称</div>
+                    <div class="publicityTitleItem fl" style="width: 178px;">受理时间</div>
+                    <div class="publicityTitleItem fl" style="width: 50px;">状态</div>
+                </div>
+            </div>
+            <div class="publicityBox w clearfix">
+                <div class="publicity">
+                    <div class="publicityItem pad fl" style="padding-left: 44px;width: 374px;">
+                        <a >2431010000061276351191211X181</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 530px;">
+                        <a >设置大型户外广告及在城市建筑物、设施上悬挂、张贴宣传品审批</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 178px;">
+                        2015-06-18
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 80px;">
+                        办理中
+                    </div>
+                </div>
+                <div class="publicity">
+                    <div class="publicityItem pad fl" style="padding-left: 44px;width: 374px;">
+                        <a >2431010000061276351191211X181</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 530px;">
+                        <a>设置大型户外广告及在城市建筑物、设施上悬挂、张贴宣传品审批</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 178px;">
+                        2015-06-18
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 80px;">
+                        办理中
+                    </div>
+                </div>
+                <div class="publicity">
+                    <div class="publicityItem pad fl" style="padding-left: 44px;width: 374px;">
+                        <a >2431010000061276351191211X181</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 530px;">
+                        <a >设置大型户外广告及在城市建筑物、设施上悬挂、张贴宣传品审批</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 178px;">
+                        2015-06-18
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 80px;">
+                        办理中
+                    </div>
+                </div>
+                <div class="publicity">
+                    <div class="publicityItem pad fl" style="padding-left: 44px;width: 374px;">
+                        <a >2431010000061276351191211X181</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 530px;">
+                        <a >设置大型户外广告及在城市建筑物、设施上悬挂、张贴宣传品审批</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 178px;">
+                        2015-06-18
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 80px;">
+                        办理中
+                    </div>
+                </div>
+                <div class="publicity">
+                    <div class="publicityItem pad fl" style="padding-left: 44px;width: 374px;">
+                        <a >2431010000061276351191211X181</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 530px;">
+                        <a >设置大型户外广告及在城市建筑物、设施上悬挂、张贴宣传品审批</a>
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 178px;">
+                        2015-06-18
+                    </div>
+                    <div class="publicityItem pad fl" style="width: 80px;">
+                        办理中
+                    </div>
+                </div>
+            </div>
+        </div>
+        [#include "../includes/footerCommon.html"/]
+    </div>
+    <script>
+        $(function () {
+            $('.title .titleText').click(function () {
+
+                $('.title .titleText').eq($(this).index()).addClass("titleLine").siblings().removeClass('titleLine');
+                $(".navBox").hide().eq($(this).index()).show();
+            })
+
+        })
+    </script>
+</body>
+
+</html>

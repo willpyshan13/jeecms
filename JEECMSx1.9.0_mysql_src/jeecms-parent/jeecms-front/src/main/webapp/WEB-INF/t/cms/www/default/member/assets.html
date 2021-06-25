@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="${res}/lib/assets.css"/>
+    <link rel="stylesheet" href="${res}/lib/layui/css/layui.css" />
+    <style>
+        body::-webkit-scrollbar{
+            width: 0px;
+            height: 131px !important;
+            padding: 0;
+        }
+        body::-webkit-scrollbar-thumb{
+            width: 0px;
+            height: 131px !important;
+            background: #DBDBDB;
+            /* border-radius: 4px; */
+        }
+        .pay1{
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="assetsBox">
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">收益统计</li>
+                <li>收支明细</li>
+                <li>购买记录</li>
+                <li>打赏记录</li>
+                <li>提现记录</li>
+            </ul>
+            <div class="layui-tab-content" >
+                <div class="layui-tab-item layui-show">
+                    <p class="one"><span>累计总收益(元)：</span><span id="paidAmountAll" class="gray">5000.0000</span> <span >打赏总收益(元)：</span><span id="paidAmount" class="gray">5000.0000 </span><span >内容付费总收益(元)：</span><span class="gray" id="rewardAmount">5000.0000</span></p>
+                    <p class="two none"><span>累计总提现(元)：</span><span id="withdrawAmount" class="gray">5000.0000</span></p>
+                    <table  class="layui-hide" id="test" lay-skin="line" lay-filter="testT"></table>
+                    <div class="pages">
+                        <div id="demo2"></div>
+                    </div>
+                    <!-- 自定义表格内容 -->
+                    <script type="text/html" id="channelName1">
+                        <p class="pay2" onclick = {{d.deletedFlag?'':d.isRecycle?'':d.status===5?"linkTo(\'"+d.url+"\')":''}}>
+                            <span class='channelName'>[{{d.channelName}}]</span>
+                            <span class='contentTitle'>{{d.contentTitle}}</span>
+                            <span class='deletedFlag'>{{d.deletedFlag?'(已删除)':d.isRecycle?'(已删除)':d.status===5?'':'(未发布)'}}</span>
+                        </p>
+                    </script>
+                    <script type="text/html" id="channelName2">
+                        <p class="pay2 " onclick = {{d.deletedFlag?'':d.recycle?'':d.status===5?"linkTo(\'"+d.url+"\')":''}}>
+                            <span class='channelName'>[{{d.channelName}}]</span>
+                            <span class='contentTitle'>{{d.contentTitle}}</span>
+                            <span class='deletedFlag'>{{d.deletedFlag?'(已删除)':d.recycle?'(已删除)':d.status===5?'':'(未发布)'}}</span>
+                        </p>
+                    </script>
+                    <script type="text/html" id="payPrice1">
+                        <p class="pay1">{{returnFloat(d.payPrice)}}</p>
+                    </script>
+                    <script type="text/html" id="totalAmount1">
+                        <p class="pay1">{{returnFloat(d.totalAmount)}}</p>
+                    </script> 
+                    <script type="text/html" id="rewardAmount1">
+                        <p class="pay1">{{returnFloat(d.rewardAmount)}}</p>
+                    </script> 
+                    <script type="text/html" id="paidAmount1">
+                        <p class="pay1">{{returnFloat(d.paidAmount)}}</p>
+                    </script>
+                    <script type="text/html" id="amount1">
+                        <p class="pay1">{{returnFloat(d.amount)}}</p>
+                    </script>
+                    <script type="text/html" id="createTime1">
+                        <p class="pay1">{{d.createTime}}</p>
+                    </script>
+                    <script type="text/html" id="price1">
+                        <p class="pay1">{{returnFloat(d.price)}}</p>
+                    </script>
+                    <script type="text/html" id="payExplain1">
+                        <p class="pay1">{{d.payExplain}}{{d.payExplain==='提现'?'':'('+d.payType+')'}}</p>
+                    </script>
+                    <script type="text/html" id="type1">
+                        <p class="pay1">{{d.type}}</p>
+                    </script>
+                    <script type="text/html" id="payType1">
+                        <p class="pay1">{{d.payType===1?'支付宝':d.payType===2?'微信':'余额'}}</p>
+                    </script>
+                    <script type="text/html" id="releaseTime1">
+                        <p class="pay1">{{d.payTime}}</p>
+                    </script>
+                    <script type="text/html" id="withdrawType1">
+                        <p class="pay1">{{d.withdrawType}}</p>
+                    </script>
+                    <script type="text/html" id="account1">
+                        <p class="pay1"><img src="{{d.headimgurl?d.headimgurl:'${res}/images/touxiang.jpg'}}" alt="">{{d.account}}</p>
+                    </script>
+                    <script type="text/html" id="checkStatus1">
+                        
+                        <p class="pay1 {{d.checkStatus==='审核通过'?'Approved':'none'}}">
+                            <span class="{{d.status==='提现成功'?'':'none'}}">提现成功</span>
+                            <span class="{{d.status==='提现失败'?'reject':'none'}}">提现失败</span>
+                        </p>
+                        <p class="pay1 {{d.checkStatus==='待审核'?'reviewed':'none'}}">
+                            <span>待审核</span>
+                        </p>
+                        <p class="pay1 {{d.checkStatus==='驳回'?'reject':'none'}}">
+                            <span>驳回</span>
+                        </p>
+                        <p class="pay3" title="{{d.remark}}">{{d.remark}}
+                        </p>
+                        <!-- <span class="tiss none">{{d.remark}}</span> -->
+                    </script>
+                </div>
+            </div>
+        </div> 
+    </div>
+</body>
+</html>
+
+<script src="${res}/lib/layui/layui.all.js"></script>
+<script src="${res}/js/jquery-1.12.4.js"></script>
+<script src="${res}/js/sm.js"></script>
+<script src="${res}/js/crypto-js.js"></script>
+<script src="${res}/js/jquery.my-message.1.1.js"></script>
+<script src="${res}/js/jquery.validate.js"></script>
+<script src="${res}/js/jquery.page.js"></script>
+<!-- <script src="${res}/js/chinese.js"></script> -->
+<script src="${res}/js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="${res}/js/app.js"></script>
+<script src="${res}/js/permCheck.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    function linkTo(url){
+        window.parent.location.href = "${base}"+url
+    }
+    var sortType = 4
+    var $ = layui.jquery
+    ,element = layui.element//Tab的切换功能，切换事件监听等，需要依赖element模块
+    ,table = layui.table
+    ,objO = null
+    ,pageO=1
+    ,sizeO=10
+    ,cols = [[
+                {field:'channelName', width	:337, toolbar: '#channelName1',title: '内容'}
+                ,{field:'payPrice', width	:160,toolbar: '#payPrice1', title: '售价(元)', sort: true}
+                ,{field:'totalAmount', width	:160,toolbar: '#totalAmount1', title: '总收益(元)', sort: true}
+                ,{field:'rewardAmount', width	:160,toolbar: '#rewardAmount1', title: '打赏(元)', sort: true}
+                ,{field:'paidAmount', title: '付费阅读',toolbar: '#paidAmount1', width	: 110, sort: true}
+            ]]
+    ,url = '/member/memberAssetDisplay/getProfitCount',
+    where={
+            "page":pageO,
+            "size":sizeO,
+            "sortType":sortType
+        }
+    element.on('tab(docDemoTabBrief)', function(data){
+        if(data.index===0){
+            sortType = 4
+            $('.one').removeClass('none')
+            $('.two').addClass('none')
+            cols = [[
+                {field:'channelName', width	:337, toolbar: '#channelName1',title: '内容'}
+                ,{field:'payPrice', width	:160,toolbar: '#payPrice1', title: '售价(元)', sort: true}
+                ,{field:'totalAmount', width	:160,toolbar: '#totalAmount1', title: '总收益(元)', sort: true}
+                ,{field:'rewardAmount', width	:160,toolbar: '#rewardAmount1', title: '打赏(元)', sort: true}
+                ,{field:'paidAmount', title: '付费阅读',toolbar: '#paidAmount1', width	: 110, sort: true}
+            ]]
+            where={
+                "page":pageO,
+                "size":sizeO,
+                "sortType":sortType
+            }
+            pageO=1
+            sizeO=10
+            url = '/member/memberAssetDisplay/getProfitCount'
+            RenderTable()
+        }else if(data.index===1){
+            $('.one').addClass('none')
+            $('.two').addClass('none')
+            cols = [[
+                {field:'createTime', width	:302, toolbar: '#createTime1',title: '时间' , sort: true}
+                ,{field:'price', width	:250,toolbar: '#price1', title: '金额(元)', sort: true}
+                ,{field:'type', width	:250,toolbar: '#type1', title: '类型'}
+                ,{field:'payExplain',toolbar: '#payExplain1', title: '说明', width	: 120}
+            ]]
+            url = '/member/memberAssetDisplay/getPayIncomDetailPage'
+            pageO=1
+            sizeO=10
+            where={
+                "page":pageO,
+                "size":sizeO,
+                "sortType":2
+            }
+            sortType = 2
+            RenderTable()
+        }else if(data.index===2){
+            $('.one').addClass('none')
+            $('.two').addClass('none')
+            cols = [[
+                {field:'id', width	:407, toolbar: '#channelName2',title: '内容'}
+                ,{field:'price', width	:170,toolbar: '#price1',  title: '金额(元)'}
+                ,{field:'title', width	:170,toolbar: '#payType1' , title: '支付方式'}
+                ,{field:'payTime', title: '支付时间',toolbar: '#releaseTime1', width	: 180}
+            ]]
+            url = '/member/memberAssetDisplay/getPayRecordPage'
+            where={
+                "page":pageO,
+                "size":sizeO,
+                "type":1
+            }
+            pageO=1
+            sizeO=10
+            RenderTable()
+        }else if(data.index===3){
+            $('.one').addClass('none')
+            $('.two').addClass('none')
+            cols = [[
+                {field:'id', width	:407, toolbar: '#channelName2',title: '内容'}
+                ,{field:'price', width	:170,toolbar: '#price1',  title: '金额(元)'}
+                ,{field:'title', width	:170,toolbar: '#payType1' , title: '支付方式'}
+                ,{field:'payTime', title: '支付时间',toolbar: '#releaseTime1', width	: 180}
+            ]],
+            where={
+                "page":pageO,
+                "size":sizeO,
+                "type":2
+            }
+            sortType = 2
+            url = '/member/memberAssetDisplay/getPayRecordPage'
+            pageO=1
+            sizeO=10
+            RenderTable()
+        }else if(data.index===4){
+            $('.two').removeClass('none')
+            $('.one').addClass('none')
+            cols = [[
+                {field:'createTime', width	:209,  toolbar: '#createTime1',title: '申请时间'}
+                ,{field:'amount', width	:150,toolbar: '#amount1', title: '提现金额(元)'}
+                ,{field:'withdrawType', width	:130, toolbar: '#withdrawType1',title: '提现方式'}
+                ,{field:'account', title: '提现账号',toolbar: '#account1', width	: 200}
+                ,{field:'checkStatus', title: '状态', toolbar: '#checkStatus1',width	: 238}
+            ]]
+            url = '/member/memberAssetDisplay/getWithdrawOrder'
+            pageO=1
+            sizeO=10
+            where={
+                "page":pageO,
+                "size":sizeO,
+                "sortType":''
+            }
+            sortType = ''
+            RenderTable()
+        }
+    });
+    //渲染表格
+    function RenderTable(){
+        table.render({
+            elem: '#test'
+            ,url:url
+            ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.message, //解析提示文本
+                    "count": res.data.totalElements, //解析数据长度
+                    "data": res.data.content //解析数据列表
+                };
+            }
+            ,page:false
+            ,where:where
+            ,id:'idTest'
+            ,cols: cols,
+            limit:sizeO,
+            response: {
+                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            },
+            skin: 'nob',
+            autoSort: false
+            ,done: function(res, curr, count){
+                //得到数据总量
+                status()
+                layui2(count)
+            }
+        })
+    }
+    RenderTable()
+    //监听排序事件 
+    table.on("sort(testT)", function(obj){ //注：sort 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+        objO = obj  
+        sortT(objO)
+        table.reload('idTest', {
+            initSort: objO //记录初始排序，如果不设的话，将无法标记表头的排序状态。
+            ,where: { //请求参数（注意：这里面的参数可任意定义，并非下面固定的格式）
+                field: obj.field //排序字段
+                ,order: obj.type //排序方式
+                ,sortType:sortType
+            }
+        });
+    });
+    function sortT(obj){
+        if(obj.field==='payPrice'){
+            if(obj.type==='asc'){
+                sortType = 1
+            }else if (obj.type==='desc') {
+                sortType = 2
+            }else{
+                sortType = 4
+            }
+        }else if(obj.field==='totalAmount'){
+            if(obj.type==='asc'){
+                sortType = 3
+            }else if (obj.type==='desc') {
+                sortType = 4
+            }else{
+                sortType = 4
+            }
+        }else if(obj.field==='rewardAmount'){
+            if(obj.type==='asc'){
+                sortType = 5
+            }else if (obj.type==='desc') {
+                sortType = 6
+            }else{
+                sortType = 4
+            }
+        }else if(obj.field==='paidAmount'){
+            if(obj.type==='asc'){
+                sortType = 7
+            }else if (obj.type==='desc') {
+                sortType = 8
+            }else{
+                sortType = 4
+            }
+        }else if(obj.field==='createTime'){
+            if(obj.type==='asc'){
+                sortType = 1
+            }else if (obj.type==='desc') {
+                sortType = 2
+            }else{
+                sortType = 2
+            }
+        }else if(obj.field==='price'){
+            if(obj.type==='asc'){
+                sortType = 3
+            }else if (obj.type==='desc') {
+                sortType = 4
+            }else{
+                sortType = 2
+            }
+        }
+    };
+    function layui2(count){
+        var laypage = layui.laypage,layer = layui.layer;
+        laypage.render({
+            elem: 'demo2'
+            ,count: count
+            ,layout: ['count','limit', 'prev', 'page', 'next', 'skip']
+            ,limit: sizeO
+            ,curr : pageO
+            ,theme: '#E60012'
+            ,jump: function(obj, first){
+                if(pageO===obj.curr&&obj.limit===sizeO){
+                    return
+                }
+                console.log(obj);
+                pageO = obj.curr
+                sizeO = obj.limit
+                if(objO){
+                    table.reload('idTest', {
+                        initSort: objO //记录初始排序，如果不设的话，将无法标记表头的排序状态。
+                        ,where: { //请求参数（注意：这里面的参数可任意定义，并非下面固定的格式）
+                            page:pageO
+                            ,size:sizeO
+                            ,sortType:sortType
+                        }
+                    });
+                }else{
+                    table.reload('idTest', {
+                        where: { //请求参数（注意：这里面的参数可任意定义，并非下面固定的格式）
+                            page:pageO
+                            ,size:sizeO
+                            ,sortType:sortType
+                        }
+                    });
+                }
+            }
+        });
+    }
+    function status(){
+        for (var index = 0; index < $('.deletedFlag').length; index++) {
+            if($('.deletedFlag').eq(index).html() === ''){
+                $('.pay2').eq(index).addClass('pay4')
+                $('.contentTitle').eq(index).addClass('channelNameL')
+            }
+        }
+        // $('.pay3').off('mouseover')
+        // $('.pay3').off('mouseout')
+        // $('.pay3').on('mouseover',function(){
+        //     if($('.pay3').text()>14){
+        //         $(this).next().removeClass('none')
+        //     }
+        // })
+        // $('.pay3').on('mouseout',function(){
+        //     if($('.pay3').text()>14){
+        //         $(this).next().addClass('none')
+        //     }
+        // })
+    }
+</script>
+
+<script>
+    // 获取我的资产信息
+    api.GET('/member/memberAssetDisplay/getAssetDisplayData',{},function(result){
+        if(result.code===200){
+            var sum = parseFloat(result.data.rewardAmount) +parseFloat(result.data.paidAmount)
+            $('#paidAmountAll').html(returnFloat(result.data.payAmount))
+            $('#rewardAmount').html(returnFloat(result.data.paidAmount))
+            $('#paidAmount').html(returnFloat(result.data.rewardAmount))
+            $('#withdrawAmount').html(returnFloat(result.data.withdrawAmount))
+            if(!result.data.withdrawalButton){
+                $('.layui-tab-title li').last().addClass('none')
+            }
+        }
+    })
+    function returnFloat(value){
+    var num2 = parseFloat(value)
+    var ary = []
+    if(isNaN(num2)){
+        num2 = ''
+    }else{
+        num2 = num2.toString()
+        if(num2.includes('.')){
+            ary = num2.split('.')
+            if(ary.length>=2){
+                if(ary[1].length>=4){
+                    ary[1] = ary[1].substring(0,4)
+                    num2=ary.join('.')
+                }
+            }
+        }
+    }
+    return num2
+}
+</script>

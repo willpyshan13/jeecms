@@ -1,0 +1,501 @@
+<!-- 政务公开-政府文件搜索列表模板-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <script src="../../static/bootstrap/jquery.min.js"></script>
+    <script src="../../static/bootstrap/bootstrap.min.js"></script>
+    <script src="../../static/page/jquery.sPage.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="../../static/html5shiv.js"></script>
+    <script src="../../static/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../../static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static//common/base.css">
+    <link rel="stylesheet" href="../../static/common/common.css">
+    <link rel="stylesheet" href="../../css/zwgk_search-list.css">
+    <link rel="stylesheet" href="../../static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <link rel="stylesheet" href="../../static/page/jquery.sPage.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="search w">
+
+            <!-- <div class="change-languange">简体</div> -->
+            <div class="dropdown fl">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    简体
+                    <span class="iconfont iconarrow"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li> 简体</li>
+                    <li> 繁体</li>
+                </ul>
+
+            </div>
+
+            <div class="searchSubBtn fl">
+                <div class="fl">
+                    <a href="#" class="iconfont iconwuzhangaiyuedu"></a>
+                </div>
+                <div class="fl">
+                    <a href="" class="iconfont iconrss"></a>
+                </div>
+                <div class="fl">
+                    <a href="./html/search.html" class="iconfont iconsousuo"></a>
+                </div>
+            </div>
+            <div class="register fr">
+                <div class="registerBtn fl"><a href="#">注册</a></div>
+
+                <div class="loginBtn fl"><a href="">登录</a></div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="header-warry">
+                <div class="header-logo">
+                    <a href="./jiangzhou/index.html">
+                        <div class="header-logo-img"> </div>
+                    </a>
+                </div>
+                <div class="header-nav">
+                    <div class="header-menu"><a href="../../index.html">首页</a></div>
+                    <div class="header-menu"><a href="../news.html">要闻动态</a></div>
+                    <div class="header-menu active"><a href="./zwgk_index.html">政务公开</a></div>
+                    <div class="header-menu"><a href="../zhengfufuwu/serve_index.html">政府服务</a></div>
+                    <div class="header-menu"><a href="../zhengminhudong/zhengminhudong.html">政民互动</a></div>
+                    <div class="header-menu"><a href="../zoujinjiangzhou/zjjz_index.html">走进江州</a></div>
+                </div>
+            </div>
+        </div>
+        <!-- 标题区域 -->
+        <div class="subTitle w clearfix">
+            <div class="fl title">政府信息公开目录</div>
+            <div class="fr result">相关结果 <span class="num">2，243</span> 个</div>
+        </div>
+        <!-- 搜索区域 -->
+        <div class="searchBox w">
+            <div class="search-left fl">
+                <div class="search-left-item1 clearfix">
+                    <span>文件标题</span>
+                    <input type="text" class="input1">
+                </div>
+                <div class="search-left-item2 clearfix">
+                    <div class="fl">
+                        <span style="margin-right: 24px;">发文字号</span>
+                    </div>
+                    <div class="fl select-box1">
+                        <ul class="select-style">
+                            <li>
+                                <a href="javascript:;" class="selectBtn">
+                                    全部
+                                    <i class="caret"></i>
+                                </a>
+                                <ul class="year-style">
+                                    <li>全部</li>
+                                    <li>赣府</li>
+                                    <li>赣府厅</li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fl select-box2">
+                        <ul class="select-style">
+                            <li>
+                                <a href="javascript:;" class="selectBtn">
+                                    年份
+                                    <i class="caret"></i>
+                                </a>
+                                <ul style="height: 325px;bottom: -334px;" class="year-style">
+                                    <li>2020</li>
+                                    <li>2019</li>
+                                    <li>2018</li>
+                                    <li>2017</li>
+                                    <li>2016</li>
+                                    <li>2015</li>
+                                    <li>2014</li>
+                                    <li>2013</li>
+                                    <li>2012</li>
+                                    <li>2011</li>
+                                    <li>2010</li>
+                                    <li>2010</li>
+                                    <li>2010</li>
+                                    <li>2010</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fl">
+                        <input type="text" class="input2">
+                    </div>
+                    <div>
+                        <span style="margin-right: 0;padding-left: 9px;">号</span>
+                    </div>
+                </div>
+            </div>
+            <div class="search-right fl">
+                <div class="search-right-item1 clearfix">
+                    <span style="margin-right: 52px;">正文</span>
+                    <input type="text" class="input3">
+                </div>
+                <div class="search-right-item2">
+                    <div class="fl">
+                        <span style="margin-right: 24px;line-height: 56px;">公文种类</span>
+                    </div>
+                    <div class="select-box3 fl">
+                        <ul class="select-style">
+                            <li>
+                                <a href="javascript:;" class="selectBtn">
+                                    全部
+                                    <i class="caret"></i>
+                                </a>
+                                <ul style="bottom: -112px;" class="year-style">
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="search-btn-box fl">
+                <div class="go-search">
+                    <button>搜索</button>
+                </div>
+                <div class="reset">
+                    <button>重置</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="mainnav w">
+            <div class="row">
+                <div class="col-md-4">索引号</div>
+                <div class="col-md-4">标题</div>
+                <div class="col-md-2" style="padding-left: 25px;">发文字号</div>
+                <div class="col-md-2" style="padding-right: 0;">发布时间</div>
+            </div>
+        </div>
+        <div class="main w">
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pad" style="padding-left: 44px;">
+                    014500815/2015-12992
+                </div>
+                <div class="col-md-5 pad">
+                    <a href="../zhengwugongkai/zwgk_search-detail.html"> 关于表彰2010年度全省环境保护工作先进设社区的决定</a>
+                </div>
+                <div class="col-md-2 pad">
+                    赣府字[2011]10号
+                </div>
+                <div class="col-md-2 pad">
+                    2015-06-18
+                </div>
+            </div>
+        </div>
+        <!-- 分页 -->
+        <div class="page w">
+            <div id="myPage"></div>
+        </div>
+
+        <div class="siteinfoBox">
+            <div class="siteinfo w">
+                <div class="siteinfoItem fl" style="text-align: left;">
+                    <!-- <div class="siteinfoText fl">
+                            中国政府网及国务院部门网站
+                        </div> -->
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            中国政府网及国务院部门网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                            <li> 国务院台湾事务办公室</li>
+                            <li> 国务院发展研究中心</li>
+                            <li> 国家国防科技工业局</li>
+                            <li> 国家文物局</li>
+                            <li> 国家公园管理局</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            省（区市）政府网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市级政府部门网站
+                            <div class="triangle fl" style="right: 18px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市县政府网站
+                            <div class="triangle fl" style="right: 21px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl marginStyle" style="border: 0;">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            新闻媒体网站
+                            <div class="triangle fl" style="right: 25px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="fotter">
+            <div class="contactUs clearfix">
+                <div class="contactUsText fl"><a href="#">关于我们</a></div>
+                <div class="contactUsText fl"><a href="#">建议意见</a></div>
+                <div class="contactUsText fl"><a href="#">站点地图</a></div>
+                <div class="contactUsText fl" style="border: none;"><a href="#">联系我们</a></div>
+
+                <div class="share">
+                    <div class="shareImg fl">
+                        <a href="">
+                            <img src="../../static/img/_r4_c3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="shareImg fl" style="margin-left: 22px;">
+                        <a href="">
+                            <img src="../../static/img/矢量智能对象.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="siteinfo-legal">
+                ICP备案号：赣ICP备 18000538号-1 2007-2019 www.jeecms.com;All Rights
+            </div>
+        </div>
+    </div>
+    <script>
+
+        $(function () {
+            $("#myPage").sPage({
+                page: 1,//当前页码，必填
+                total: 150,//数据总条数，必填
+                pageSize: 10,//每页显示多少条数据，默认10条
+                totalTxt: "共{total}条",//数据总条数文字描述，{total}为占位符，默认"共{total}条"
+                showTotal: true,//是否显示总条数，默认关闭：false
+                showSkip: true,//是否显示跳页，默认关闭：false
+                showPN: true,//是否显示上下翻页，默认开启：true
+                prevPage: "上一页",//上翻页文字描述，默认“上一页”
+                nextPage: "下一页",//下翻页文字描述，默认“下一页”
+                backFun: function (page) {
+                    //点击分页按钮回调函数，返回当前页码
+                    console.log(page);
+                }
+            });
+            var flag = 0
+            $('.selectBtn').click(function () {
+                if (flag == 0) {
+                    $(this).siblings().fadeIn()
+                    flag = 1
+                } else {
+                    $(this).siblings().fadeOut()
+                    flag = 0
+                }
+            })
+            $('.year-style li').click(function () {
+                var value = $(this).text()
+                $(this).parent().siblings().html(value + ' <i class="caret"></i>')
+                $(this).parent().hide()
+            })
+        })
+    </script>
+</body>
+
+</html>

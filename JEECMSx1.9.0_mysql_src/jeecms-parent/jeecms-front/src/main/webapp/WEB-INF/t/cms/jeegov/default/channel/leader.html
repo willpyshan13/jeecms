@@ -1,0 +1,204 @@
+<!-- 政府领导页 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/leader.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <div class="main w clearfix">
+            <div class="characters-info fl">
+                <div class="photo">
+                    <img src="${res}/static/img/QQ图片20200616171455.png" alt="">
+                </div>
+                <h2 class="name">省长 易炼红</h2>
+                <div class="nameBox">
+                    <div class="name2">市&nbsp;&nbsp;&nbsp;&nbsp;长 </div>
+                    <div class="name3">王元琮</div>
+                    <div class="name4">副市长</div>
+                    <div class="name3">珂&nbsp;&nbsp;&nbsp;&nbsp;川</div>
+                    <div class="name3">盛&nbsp;&nbsp;&nbsp;&nbsp;贤</div>
+                    <div class="name3">胡川荣</div>
+                </div>
+            </div>
+            <div class="main-detail fl">
+                <div class="title" style="background-color: transparent;">
+                    <div class="tag fl"></div>
+                    <div class="titleText fl">领导简历</div>
+                </div>
+                <div class="introduce">
+                    ${channel.txtMap.customTxt!}
+                </div>
+                <div class="title" style="background-color: transparent;margin-top: 37px;">
+                    <div class="tag fl"></div>
+                    <div class="titleText fl">领导活动</div>
+                </div>
+                <!-- 领导活动区域 -->
+                <div class="leader-activity">
+                    [@cms_content_list channelPath='ldhd' channelOption='1'   orderBy='29'  count='3']
+                    [#list tag_list as a]
+                    [#if a_index==0]
+                    <div class="menuItemBox" style="margin-top: 25px;">
+                    [#else]
+                    <div class="menuItemBox">
+                    [/#if]
+                        <div class="circle fl">
+                            <div class="circleStyle"></div>
+                        </div>
+                        <div class="fl mainmenuText"> <a href="${a.url!}">[@text_cut s=a.title len=35 append='...' /]</a></div>
+                    </div>
+                    [/#list]
+                    [/@cms_content_list]
+                </div>
+            </div>
+        </div>
+        <div class="siteinfoBox" style="margin-top: 61px;">
+            <div class="siteinfo w">
+                <div class="siteinfoItem fl" style="text-align: left;">
+                    <!-- <div class="siteinfoText fl">
+                            中国政府网及国务院部门网站
+                        </div> -->
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            中国政府网及国务院部门网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                            <li> 国务院台湾事务办公室</li>
+                            <li> 国务院发展研究中心</li>
+                            <li> 国家国防科技工业局</li>
+                            <li> 国家文物局</li>
+                            <li> 国家公园管理局</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            省（区市）政府网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市级政府部门网站
+                            <div class="triangle fl" style="right: 18px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市县政府网站
+                            <div class="triangle fl" style="right: 21px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl marginStyle" style="border: 0;">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            新闻媒体网站
+                            <div class="triangle fl" style="right: 25px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="fotter">
+            <div class="contactUs clearfix">
+                <div class="contactUsText fl"><a href="#">关于我们</a></div>
+                <div class="contactUsText fl"><a href="#">建议意见</a></div>
+                <div class="contactUsText fl"><a href="#">站点地图</a></div>
+                <div class="contactUsText fl" style="border: none;"><a href="#">联系我们</a></div>
+
+                <div class="share">
+                    <div class="shareImg fl">
+                        <a href="">
+                            <img src="${res}/static/img/_r4_c3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="shareImg fl" style="margin-left: 22px;">
+                        <a href="">
+                            <img src="${res}/static/img/矢量智能对象.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="siteinfo-legal">
+                ICP备案号：赣ICP备 18000538号-1 2007-2019 www.jeecms.com;All Rights
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

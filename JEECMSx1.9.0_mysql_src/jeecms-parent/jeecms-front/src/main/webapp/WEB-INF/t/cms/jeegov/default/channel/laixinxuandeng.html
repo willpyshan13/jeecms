@@ -1,0 +1,425 @@
+<!-- 来信选登页面模板 -->
+<!-- 政民互动模块-建议内容页 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <script src="../../static/bootstrap/jquery.min.js"></script>
+    <script src="../../static/bootstrap/bootstrap.min.js"></script>
+    <script src="../../static/page/jquery.sPage.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="../../static/html5shiv.js"></script>
+    <script src="../../static/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../../static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static//common/base.css">
+    <link rel="stylesheet" href="../../static/common/common.css">
+    <link rel="stylesheet" href="../../css/laixinxuandeng.css">
+    <link rel="stylesheet" href="../../static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <link rel="stylesheet" href="../../static/page/jquery.sPage.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="search w">
+
+            <!-- <div class="change-languange">简体</div> -->
+            <div class="dropdown fl">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    简体
+                    <span class="iconfont iconarrow"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li> 简体</li>
+                    <li> 繁体</li>
+                </ul>
+
+            </div>
+
+            <div class="searchSubBtn fl">
+                <div class="fl">
+                    <a href="#" class="iconfont iconwuzhangaiyuedu"></a>
+                </div>
+                <div class="fl">
+                    <a href="" class="iconfont iconrss"></a>
+                </div>
+                <div class="fl">
+                    <a href="./html/search.html" class="iconfont iconsousuo"></a>
+                </div>
+            </div>
+            <div class="register fr">
+                <div class="registerBtn fl"><a href="#">注册</a></div>
+
+                <div class="loginBtn fl"><a href="">登录</a></div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="header-warry">
+                <div class="header-logo">
+                    <a href="./jiangzhou/index.html">
+                        <div class="header-logo-img"> </div>
+                    </a>
+                </div>
+                <div class="header-nav">
+                    <div class="header-menu"><a href="../../index.html">首页</a></div>
+                    <div class="header-menu"><a href="../news.html">要闻动态</a></div>
+                    <div class="header-menu"><a href="../zhengwugongkai/zwgk_index.html">政务公开</a></div>
+                    <div class="header-menu"><a href="../zhengfufuwu/serve_index.html">政府服务</a></div>
+                    <div class="header-menu active"><a href="../zhengminhudong/zhengminhudong.html">政民互动</a></div>
+                    <div class="header-menu"><a href="../zoujinjiangzhou/zjjz_index.html">走进江州</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="main w clearfix">
+            <div class="main-left fl">
+                <!-- 标题 -->
+                <div class="title">来信选登</div>
+                <div class="left-contentbox">
+
+                    <div class="left-search">
+                        <input type="number" class="form-control number" id="exampleInputEmail1" placeholder="请输入信件编号">
+                        <input type="password" class="form-control password" id="exampleInputEmail1"
+                            placeholder="请输入查询密码">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">查询</button>
+                    </div>
+                    <div class="left-content-tab">
+                        <div class="fl line-active" style="margin-right:24px;">信件统计</div>
+                    </div>
+                    <div class="left-content-item" style="margin-top: 24px;">
+                        <span class="item-text"> 信件总数：</span>
+                        <span class="item-sum">645</span>
+                        <span class="item-text">件</span>
+                    </div>
+                    <div class="left-content-item">
+                        <span class="item-text"> 办&nbsp;结&nbsp;&nbsp;数：</span>
+                        <span class="item-sum">645</span>
+                        <span class="item-text">件</span>
+                    </div>
+                    <div class="left-content-item">
+                        <span class="item-text"> 在&nbsp;办&nbsp;&nbsp;数：</span>
+                        <span class="item-sum">645</span>
+                        <span class="item-text">件</span>
+                    </div>
+                    <!-- 写信按钮 -->
+                    <div class="write">
+                        <button type="button" data-toggle="modal" data-target="#myModal"
+                            class="btn-active">我要写信</button>
+                    </div>
+                </div>
+            </div>
+            <div class="main-right fl">
+                <div class="main-right-title">
+                    <div class="fl title1">信件编号</div>
+                    <div class="fl title2">类型</div>
+                    <div class="fl title3">标题</div>
+                    <div class="fl title4">写信日期</div>
+                    <div class="fl title5">办结日期</div>
+                </div>
+                <div class="main-right-content">
+                    <div class="right-content-item">
+                        <div class="item-num fl">014500815</div>
+                        <div class="item-type fl">建议</div>
+                        <div class="item-title fl overfow-text1"><a href="javascript:;">平头乡四合院村集中修建新农村成烂尾工...</a></div>
+                        <div class="item-date-start fl"> 2015-06-18</div>
+                        <div class="item-date-end fl"> 2015-06-18</div>
+                    </div>
+                    <div class="right-content-item">
+                        <div class="item-num fl">014500815</div>
+                        <div class="item-type fl">建议</div>
+                        <div class="item-title fl overfow-text1"><a
+                                href="javascript:;">平头乡四合院村集中修建乡四合院村集中修建新农村成烂尾工...</a></div>
+                        <div class="item-date-start fl"> 2015-06-18</div>
+                        <div class="item-date-end fl"> 2015-06-18</div>
+                    </div>
+                    <div class="right-content-item">
+                        <div class="item-num fl">014500815</div>
+                        <div class="item-type fl">建议</div>
+                        <div class="item-title fl overfow-text1"><a href="javascript:;">平头乡四合院村集中修建新农村成烂尾工...</a></div>
+                        <div class="item-date-start fl"> 2015-06-18</div>
+                        <div class="item-date-end fl"> 2015-06-18</div>
+                    </div>
+                    <div class="right-content-item">
+                        <div class="item-num fl">014500815</div>
+                        <div class="item-type fl">建议</div>
+                        <div class="item-title fl overfow-text1"><a href="javascript:;">平头乡四合院村集中修建新农村成烂尾工...</a></div>
+                        <div class="item-date-start fl"> 2015-06-18</div>
+                        <div class="item-date-end fl"> 2015-06-18</div>
+                    </div>
+                    <div class="right-content-item">
+                        <div class="item-num fl">014500815</div>
+                        <div class="item-type fl">建议</div>
+                        <div class="item-title fl overfow-text1"><a href="javascript:;">平头乡四合院村集中修建新农村成烂尾工...</a></div>
+                        <div class="item-date-start fl"> 2015-06-18</div>
+                        <div class="item-date-end fl"> 2015-06-18</div>
+                    </div>
+                    <div class="right-content-item">
+                        <div class="item-num fl">014500815</div>
+                        <div class="item-type fl">建议</div>
+                        <div class="item-title fl overfow-text1"><a href="javascript:;">平头乡四合院村集中修建新农村成烂尾工...</a></div>
+                        <div class="item-date-start fl"> 2015-06-18</div>
+                        <div class="item-date-end fl"> 2015-06-18</div>
+                    </div>
+                    <div class="right-content-item">
+                        <div class="item-num fl">014500815</div>
+                        <div class="item-type fl">建议</div>
+                        <div class="item-title fl overfow-text1"><a href="javascript:;">平头乡四合院村集中修建新农村成烂尾工...</a></div>
+                        <div class="item-date-start fl"> 2015-06-18</div>
+                        <div class="item-date-end fl"> 2015-06-18</div>
+                    </div>
+                    <div class="right-content-item">
+                        <div class="item-num fl">014500815</div>
+                        <div class="item-type fl">建议</div>
+                        <div class="item-title fl overfow-text1"><a href="javascript:;">平头乡四合院村集中村成成烂尾工...</a></div>
+                        <div class="item-date-start fl"> 2015-06-18</div>
+                        <div class="item-date-end fl"> 2015-06-18</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 分页 -->
+        <div class="page w">
+            <div id="myPage"></div>
+        </div>
+        <div class="siteinfoBox">
+            <div class="siteinfo w">
+                <div class="siteinfoItem fl" style="text-align: left;">
+                    <!-- <div class="siteinfoText fl">
+                            中国政府网及国务院部门网站
+                        </div> -->
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            中国政府网及国务院部门网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                            <li> 国务院台湾事务办公室</li>
+                            <li> 国务院发展研究中心</li>
+                            <li> 国家国防科技工业局</li>
+                            <li> 国家文物局</li>
+                            <li> 国家公园管理局</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            省（区市）政府网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市级政府部门网站
+                            <div class="triangle fl" style="right: 18px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市县政府网站
+                            <div class="triangle fl" style="right: 21px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl marginStyle" style="border: 0;">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            新闻媒体网站
+                            <div class="triangle fl" style="right: 25px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="fotter">
+            <div class="contactUs clearfix">
+                <div class="contactUsText fl"><a href="#">关于我们</a></div>
+                <div class="contactUsText fl"><a href="#">建议意见</a></div>
+                <div class="contactUsText fl"><a href="#">站点地图</a></div>
+                <div class="contactUsText fl" style="border: none;"><a href="#">联系我们</a></div>
+
+                <div class="share">
+                    <div class="shareImg fl">
+                        <a href="">
+                            <img src="../../static/img/_r4_c3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="shareImg fl" style="margin-left: 22px;">
+                        <a href="">
+                            <img src="../../static/img/矢量智能对象.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="siteinfo-legal">
+                ICP备案号：赣ICP备 18000538号-1 2007-2019 www.jeecms.com;All Rights
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+    <!-- 普通弹窗一 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:872px;
+        height:702px;">
+                <div class="modal-header" style="padding-top: 30px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="iconfont iconguanbi"></span>
+                    </button>
+                    <div class="modal-title">给市长写信</div>
+                    <div class="modal-sub-title">写信须知</div>
+                </div>
+                <div class="modal-body">
+                    <!-- 模态框黑体加粗字段 -->
+                    <div class="modal-body-warning">
+                        <p> 1.“市长信箱”是市政府面向社会公众设立的专用电子信箱，委托市信访办负责接收和转送。
+                        </p>
+                        <p> 2.“市长信箱”来邮，由市信访办登记后交转我市行政机关、社会团体和提供公共服务的企事业单位办理。
+                        </p>
+                        <p> 3. “市长信箱”不予处理的范围：
+                        </p>
+                    </div>
+                    <div class="modal-body-content">
+
+
+                        <p> （一）已受理或正在办理中仍重复提出内容相同的邮件；
+                        </p>
+                        <p> （二）已经进入司法、仲裁、复议和信访等法定程序或应通过法定途径解决的邮件（告知向法定途径提出）；
+                        </p>
+                        <p> （三）反映各级党政干部和企事业单位有关负责人违反法规和党纪政纪问题的邮件（告知向纪检监察部门提出）；
+                        </p>
+                        <p> （四）内容不完整、表述不清楚，导致无法回答或开展调查的邮件；
+                        </p>
+                        <p> （五）内容非我市管辖范围的邮件；
+                        </p>
+                        <p> （六）其它不在市政府职权范围内的内容。
+                        </p>
+                    </div>
+                    <!-- 模态框黑体加粗字段 -->
+                    <div class="modal-body-warning">
+                        <p>
+                            4.向“市长信箱”提交邮件应遵守下列规定:
+
+                        </p>
+                    </div>
+                    <div class="modal-body-content">
+                        <p> （一）严格遵守宪法、法律、法规和社会公德，如实反映情况，不得捏造、歪曲事实，诽谤、诬告、陷害他人，不得涉及国家机密。
+                        </p>
+                        <p> （二）邮件应署真实姓名，并注明本人的具体联系方式，以便保持联系、核实内容、反馈结果。
+                        </p>
+                        <p> （三）邮件要简明扼要，主题明确，表述清楚，按照“一邮一事”撰写提交。
+                        </p>
+                        <p> （四）提交邮件后将获得邮件编号和查询码，请妥善保管，可在“市长信箱”首页查询邮件办理情况。
+                        </p>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="checked-state">
+                            我已阅读并接受用户须知和条款
+                        </label>
+                    </div>
+                    <button type="button" class="btn-1" data-dismiss="modal" disabled>我要写信</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(function () {
+        //监控checkbox代码
+        $("input[name='checked-state']").on("change", function () {
+            var change = $("input[type='checkbox']").is(':checked'); //checkbox选中判断
+            console.log(change);
+            if (change) {
+                $('.btn-1').addClass('modal-btn-active')
+                $(".btn-1").attr('disabled', false);
+            } else {
+                $('.btn-1').removeClass('modal-btn-active')
+                $(".btn-1").attr('disabled', true);
+
+            }
+        })
+    })
+    $("#myPage").sPage({
+        page: 1,//当前页码，必填
+        total: 150,//数据总条数，必填
+        pageSize: 10,//每页显示多少条数据，默认10条
+        totalTxt: "共{total}条",//数据总条数文字描述，{total}为占位符，默认"共{total}条"
+        showTotal: true,//是否显示总条数，默认关闭：false
+        showSkip: true,//是否显示跳页，默认关闭：false
+        showPN: true,//是否显示上下翻页，默认开启：true
+        prevPage: "上一页",//上翻页文字描述，默认“上一页”
+        nextPage: "下一页",//下翻页文字描述，默认“下一页”
+        backFun: function (page) {
+            //点击分页按钮回调函数，返回当前页码
+            console.log(page);
+        }
+    });
+</script>
+
+</html>

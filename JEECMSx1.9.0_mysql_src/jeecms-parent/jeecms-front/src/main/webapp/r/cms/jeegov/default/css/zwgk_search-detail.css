@@ -1,0 +1,115 @@
+/* 政务公开-搜索详情页样式 */
+.topnav {
+    margin-top: 47px;
+}
+.topnav1 {
+    margin-right: 2px;
+}
+.index {
+    width: 135px;
+    height: 60px;
+    background-color: #E9F1FB;
+    margin-right: 2px;
+    font-size:16px;
+    font-weight:400;
+    color:rgba(0,49,102,1);
+}
+.indexText {
+    width: 446px;
+    height: 60px;
+    background-color: #E9F1FB;
+    font-size:16px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+}
+.index,.indexText {
+    line-height: 60px;
+    
+}
+.index {
+    text-align: center;
+
+}
+.indexText {
+    padding-left: 25px;
+    text-align: left;
+
+}
+.topnavItem {
+    
+    margin-bottom: 2px;
+}
+/* title */
+.newsTitle {
+    margin-top: 50px;
+}
+.newTitle {
+
+    width: 100%;
+   text-align: center;
+    font-size:30px;
+    font-weight:400;
+    color:#002A66;
+    clear: both;
+}
+.titleTag {
+    width: 100%;
+    height: 20px;
+    margin-top: 47px;
+}
+.admin {
+   font-size:14px;
+   font-weight:400;
+   color:rgba(153,153,153,1);
+   
+}    
+.data {
+    margin-right: 16px;
+}   
+.rightTag {
+   color:rgba(153,153,153,1);
+} 
+.rightTag  .tex {
+   vertical-align: middle;
+}
+.rightTag .iconfont{
+   font-size: 12px;
+   color: #fff;
+}
+/* tag背景样式类 */
+.rightTag .qq:hover{
+   background-color: #FDA343;
+}
+ .rightTag .wx:hover{
+   background-color: #57C436;
+} 
+.rightTag .weibo:hover{
+   background-color: #F85446;
+} 
+.rightTag .kongjian:hover{
+   background-color: #46B0DD;
+}
+.titleTagItem {
+    display: inline-block;
+    margin-right: 7px;
+    width: 20px;
+    height: 20px;
+    padding:1px 0px 0px 3px ;
+    background-color: #ccc;
+    border-radius:50%;
+} 
+.cut-off-rule img{
+    width: 100%;
+    height: 9px;
+    margin-top: 26px;
+    }   
+.newsDetails {
+    margin-top: 41px;
+    margin-bottom: 48px;
+}
+.newsDetails p{
+    font-size:16px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:40px;
+}

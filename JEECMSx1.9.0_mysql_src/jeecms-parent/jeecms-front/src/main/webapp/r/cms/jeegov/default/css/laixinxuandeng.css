@@ -1,0 +1,285 @@
+/* 来信选登页面样式 */
+
+body {
+    height: 100%;
+}
+
+.main {
+    margin-top: 0;
+}
+
+.main-left {
+    width: 300px;
+    margin-right: 61px;
+}
+
+.main-right {
+    margin-top: 98px;
+}
+
+.title {
+    margin: 40px auto 37px;
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 24px;
+}
+
+.left-contentbox {
+    padding: 20px 23px 0 20px;
+    width: 300px;
+    height: 500px;
+    background-color: #F5F5F5;
+}
+
+.left-content-tab {
+    margin-top: 30px;
+    height: 36px;
+    line-height: 16px;
+    border-bottom: 1px solid #DDDDDD;
+    color: #002A66;
+}
+
+.line-active {
+    padding-bottom: 19px;
+    border-bottom: 2px solid #002A66;
+}
+
+.left-search input {
+    padding-left: 20px;
+    width: 260px;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(229, 229, 229, 1);
+    border-radius: 2px;
+    color: #333;
+}
+
+.number {
+    margin-bottom: 20px;
+}
+
+.left-search .btn {
+    margin-top: 20px;
+    width: 260px;
+    height: 40px;
+    background-color: #002A66;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    border-radius: 0;
+}
+
+.left-search .btn:hover {
+    background-color: #003580;
+    color: #fff;
+}
+
+.left-content-item {
+    clear: both;
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(51, 51, 51, 1);
+    margin-bottom: 15px;
+}
+
+.item-title a:hover {
+    color: #004099;
+}
+
+.item-text {
+    color: #333;
+}
+
+.item-sum {
+    color: #004099;
+}
+
+.write {
+    margin-top: 50px;
+    width: 100%;
+    height: 40px;
+}
+
+.write button {
+    display: block;
+    margin: 0 auto;
+    width: 176px;
+    height: 40px;
+    background: #002A66;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+}
+
+.main-right {
+    width: 838px;
+    background-color: #F5F5F5;
+}
+
+.main-right-title {
+    padding-left: 26px;
+    /* padding-right: 25px; */
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(51, 51, 51, 1);
+}
+
+.title1,
+.item-num {
+    margin-right: 67px;
+    width: 71px;
+}
+
+.title2,
+.item-type {
+    margin-right: 67px;
+    width: 35px;
+}
+
+.title3 {
+    margin-right: 65px;
+    width: 300px;
+    text-align: left;
+}
+
+.title4 {
+    margin-right: 41px;
+    width: 75px;
+    text-align: center;
+}
+
+.title5 {
+    width: 75px;
+    text-align: right;
+}
+
+.main-right-content {
+    background-color: #fff;
+}
+
+.right-content-item {
+    height: 73px;
+    line-height: 73px;
+    padding-left: 20px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgba(51, 51, 51, 1);
+}
+
+.item-num {}
+
+.item-type {}
+
+.item-title {
+    margin-right: 65px;
+    width: 300px;
+    text-align: left; 
+}
+
+.item-date-start {
+    width: 90px;
+    margin-right: 30px;
+}
+
+.item-date-end {
+    width: 90px;
+}
+
+
+/* 分页 */
+#myPage {
+    margin : 40px 0 60px 420px;
+  }
+/* 结束 */
+
+.modal {
+    margin-right: 170px;
+    margin-top: 100px;
+    top: 0;
+    transform: translateY(0);
+    border-radius: 4px;
+    padding-left: 30px;
+    padding-right: 38px;
+}
+
+.modal-header {
+    padding-left: 30px;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 24px;
+}
+
+.modal-sub-title {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 18px;
+}
+
+.modal-body {
+    padding-top: 30px;
+    padding-bottom: 0;
+}
+
+.modal-body-warning {
+    padding-left: 15px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 400;
+    text-align: left;
+}
+.modal-body-warning p {
+    font-weight: 600;
+}
+.modal-body-content {
+    padding-left: 15px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 300;
+    text-align: left;
+}
+
+.checkbox,
+.radio {
+    margin-bottom: 30px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(51, 51, 51, 1);
+    line-height: 21px;
+}
+
+.modal-footer .btn-1 {
+    width: 136px;
+    height: 40px;
+    background: rgba(204, 204, 204, 1);
+    border-radius: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+}
+
+.modal-footer .btn-1:hover {
+    border: 0;
+}
+
+.modal-footer .modal-btn-active {
+    background-color: #002A66;
+}
+
+.modal-footer .modal-btn-active:hover {
+    background-color: #003580;
+    outline: none;
+}
+.modal-footer {
+    padding: 10px;
+}

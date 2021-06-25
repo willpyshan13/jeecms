@@ -1,0 +1,201 @@
+/* 登陆主页面样式 */
+.login-header {
+    height: 100px;
+}
+.logo {
+    padding-top: 22px;
+    width: 209px;
+    height: 56px;
+}
+.login-header h1 {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  
+}
+.logo-tit {
+    display: block;
+    background: url(../static/img/logo-black@2x.png)no-repeat;
+    background-size: 100%;
+    width: 209px;
+    height: 56px;
+    font-size: 0;
+}
+.r-border {
+    margin-top: 31px;
+    margin-left: 34px;
+    width:1px;
+    height:45px;
+    background:#E5E5E5;
+}
+.login-bt {
+    margin-left: 33px;
+    margin-top: 31px;
+    line-height: 24px;
+    font-size:24px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+}
+.register {
+    margin-top: 44px;
+}
+.register-item {
+    font-size:14px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+.register-item a {
+    color:#EB3627;
+}
+.register-item a:hover {
+    color:#EB3627;
+}
+.login-container {
+    padding-top: 109px;
+    position: relative;
+    width: 100%;
+    height: 657px;
+    background: url(../static/img/sign-bg@2x.png)no-repeat;
+    background-size: cover;
+}
+.login-box {
+    margin-left: 1110px;
+    right: 360px;
+    width: 450px;
+    height: 360px;
+    background-color: #fff;
+    border-radius: 0 0 8px 8px;
+}
+.login-box-title {
+    padding-left: 30px;
+    width:450px;
+    height:60px;
+    line-height: 60px;
+    font-size:18px;
+    font-weight:300;
+    color:rgba(255,255,255,1);
+    background:rgba(0,42,102,1);
+    border-radius: 8px 8px 0 0;
+}
+.login-form {
+    padding:36px 30px 0;
+    width:449px;
+    height:300px;
+    background-color: #fff;
+    box-shadow: 0px 3px 8px 0px rgba(217, 217, 217, 0.3);    border-radius:0px 0px 8px 8px;
+}
+.name {
+    position: relative;
+    width: 100%;
+    height: 36px;
+    border-bottom:1px solid #E5E5E5 ;
+}
+.name input {
+    padding-left: 3px;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+.password {
+    position: relative;
+    margin-top: 4px;
+    width: 100%;
+    height: 36px;
+    border-bottom:1px solid #E5E5E5 ;
+
+}
+.password input {
+    padding-left: 3px;
+    width: 100%;
+    height: 100%;
+ }
+ .error {
+    margin-left: 4px;
+    height: 21px;
+    line-height: 26px;
+    font-size:12px;
+    font-weight:300;
+    color:rgba(234,54,38,1);
+}
+.error-state {
+    font-size: 12px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size:16px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size:16px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+
+input:-ms-input-placeholder {
+    font-size:16px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+
+input::-webkit-input-placeholder {
+    font-size:16px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+.login-form .login-btn {
+    margin-top: 30px;
+    width:390px;
+    height:50px;
+    line-height: 50px;
+    background:rgba(0,42,102,1);
+    border-radius:2px;
+    font-size:18px;
+    text-align: center;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    cursor: pointer;
+}
+.login-form .login-btn:hover {
+    background-color: #003580;
+}
+.forget {
+    margin-top: 11px;
+    width: 100%;
+    text-align: right;
+
+}
+.forget a {
+    font-size:14px;
+    font-weight:300;
+    color:rgba(0,64,153,1);
+}
+.reset {
+    display: block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    position: absolute;
+    bottom: 8px;
+    right: 0;
+    cursor: pointer;
+    text-align: center;
+}
+.change-input {
+    display: block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    position: absolute;
+    bottom: 8px;
+    right: 0;
+    text-align: center;
+    cursor: pointer;
+
+}
+.password .iconfont,.name .iconfont {
+    color: #ddd;
+}
+
+

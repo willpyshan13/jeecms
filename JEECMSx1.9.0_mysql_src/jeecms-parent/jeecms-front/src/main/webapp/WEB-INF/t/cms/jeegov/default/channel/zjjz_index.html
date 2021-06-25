@@ -1,0 +1,254 @@
+<!-- 走进江州- 首页 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+    <!-- 轮播图插件 -->
+    <script src="${res}/js/swiper/jqueryPhoto.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/zjjz_index.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <!-- 概况江州 -->
+        <div class="topnav">
+            <div class="topnav-content w">
+                <!-- 轮播 -->
+                <div class="slider-box fl">
+
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- data-ride="carousel" -->
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            [@cms_content_list channelPath='zjjz' channelOption='1' typeId='186'  orderBy='29'  count='4']
+                            [#list tag_list as a]
+                            [#if a_index==0]
+                            <div class="item active">
+                            [#else]
+                            <div class="item">
+                            [/#if]
+                                <img src="${(a.attr.singleImg.resUrl)!}">
+                                <div class="carousel-caption">
+                                    <a href="${a.url!}">[@text_cut s=a.title len=15 append='...' /]</a>
+                                </div>
+                            </div>
+                            [/#list]
+                            [/@cms_content_list]
+                        </div>
+                        <!-- Controls -->
+                        <!-- <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                            data-slide="prev">
+                            <span class="" aria-hidden="true"></span>
+                            <span class="sr-only"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                            data-slide="next">
+                            <span class="" aria-hidden="true"></span>
+                            <span class="sr-only"></span>
+                        </a> -->
+                    </div>
+                </div>
+                <div class="topnav-content-text fl">
+                    <div class="text">
+                        [@cms_channel id='2482']
+                        [#if tag_bean??]
+                        [@text_cut s=tag_bean.txtMap.customTxt len=280 append='...' /]
+                        <span class="get-details">
+                            <a href="${tag_bean.url!}"> ［ 查看详情 ］</a>
+                        </span>
+                        [/#if]
+                        [/@cms_channel]
+                    </div>
+                    <div class="topnav-subnav clearfix">
+                        [@cms_channel_list parentId='2478' ]
+                        [#list tag_list as c]
+                        [#if c_index>0]
+                        [#if c_index%3==1]
+                        <div class="row">
+                        [/#if]
+                            <div class="col-md-4 topnav-subnav-item"><a href="${c.url!}">${c.name!}</a></div>
+                        [#if c_index%3==0]
+                        </div>
+                        [/#if]
+                        [/#if]
+                        [/#list]
+                        [/@cms_channel_list]
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 人文江州 -->
+        <div class="mainnav-box">
+            <div class="mainnav w">
+                <div class="mainnav-title">
+                    <img src="${res}/static/img/2标题@2x.png" alt="">
+                </div>
+                <div class="mainnav-content">
+                    <div class="row">
+                        <div class="col-md-4 mainnav-content-item">
+                            <div class="item-style">
+                                <a href="${base}/txq.jhtml"><img src="${res}/static/img/01pic@2x.png" alt=""></a>
+                            </div>
+                            <div class="sub-circle">
+                                <div class="sub-circle-item">听</div>
+                                <div class="sub-circle-item">戏</div>
+                                <div class="sub-circle-item">曲</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mainnav-content-item">
+                            <div class="item-style">
+                                <a href="${base}/pwx.jhtml"> <img src="${res}/static/img/02pic@2x.png" alt=""></a>
+                            </div>
+                            <div class="sub-circle">
+                                <div class="sub-circle-item">品</div>
+                                <div class="sub-circle-item">文</div>
+                                <div class="sub-circle-item">学</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mainnav-content-item marginStyle">
+                            <div class="item-style">
+                                <a href="${base}/cms.jhtml"> <img src="${res}/static/img/03pic@2x.png" alt=""></a>
+                            </div>
+                            <div class="sub-circle">
+                                <div class="sub-circle-item">尝</div>
+                                <div class="sub-circle-item">美</div>
+                                <div class="sub-circle-item">食</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 69px;">
+                        <div class="col-md-4 mainnav-content-item">
+                            <div class="item-style">
+                                <a href="${base}/jfy.jhtml"> <img src="${res}/static/img/04pic@2x.png" alt=""></a>
+                            </div>
+                            <div class="sub-circle">
+                                <div class="sub-circle-item">讲</div>
+                                <div class="sub-circle-item">方</div>
+                                <div class="sub-circle-item">言</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mainnav-content-item">
+                            <div class="item-style">
+                                <a href="${base}/gms.jhtml"> <img src="${res}/static/img/05pic@2x.png" alt=""></a>
+                            </div>
+                            <div class="sub-circle">
+                                <div class="sub-circle-item">观</div>
+                                <div class="sub-circle-item">民</div>
+                                <div class="sub-circle-item">俗</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mainnav-content-item marginStyle">
+                            <div class="item-style">
+                                <a href="${base}/sgy.jhtml"> <img src="${res}/static/img/06pic@2x.png" alt=""></a>
+                            </div>
+                            <div class="sub-circle">
+                                <div class="sub-circle-item">赏</div>
+                                <div class="sub-circle-item">工</div>
+                                <div class="sub-circle-item">艺</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 旅游江州 -->
+        <div class="travel-box">
+            <div class="travel w">
+                <div class="mainnav-title" style="height: 97px;" onclick="location.href='${base}/jzly.jhtml'">
+                    <img src=" ${res}/static/img/03标题@2x.png" alt="">
+                </div>
+                <div class="travel-content">
+                    <div class="row">
+                        [@cms_content_list channelPath='jzly' channelOption='1' typeId='186' orderBy='29'  count='4']
+                        [#list tag_list as a]
+                        [#if a_index==3]
+                        <div class="col-md-3 travel-content-item marginStyle">
+                        [#else]
+                        <div class="col-md-3 travel-content-item">
+                        [/#if]
+                            <div class="travel-img">
+                                <a href="${a.url!}"><img src="${(a.attr.singleImg.resUrl)!}" alt=""></a>
+                            </div>
+                            <div class="travel-text">
+                                <p class="text1">[@text_cut s=a.title  len=18  append='...' /]</p>
+                                <p class="text2">江州景色</p>
+                            </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 图说江州 -->
+        <div class="description">
+            <div class="description-content w" onclick="location.href='${base}/tsjz.jhtml'">
+                <!-- 轮播图 -->
+
+                <div class="mod18">
+                    <span id="prev" class="btn prev" style="display: none;"></span>
+                    <span id="next" class="btn next" style="display: none;"></span>
+                    <span id="prevTop" class="btn prev iconfont iconjiantouzuo"></span>
+                    <span id="nextTop" class="btn next iconfont iconjiantouyou"></span>
+                    <div id="picBox" class="picBox">
+                        <ul class="cf clearfix">
+                            [@cms_content_list channelPath='tsjz' channelOption='1' typeId='186' orderBy='29'  count='5']
+                            [#list tag_list as a]
+                            <li>
+                                <a href="${a.url!}"><img src="${(a.attr.singleImg.resUrl)!}" alt=""></a>
+                                <p href="javascript:;"><a href="${a.url!}">[@text_cut s=a.title  len=18  append='...' /]</a></p>
+                            </li>
+                            [/#list]
+                            [/@cms_content_list]
+
+                        </ul>
+                    </div>
+                    <div id="listBox" class="listBox">
+                        <ul class="cf clearfix" style="padding-left: 0;">
+                            [@cms_content_list channelPath='tsjz' channelOption='1' typeId='186' orderBy='29'  count='5']
+                            [#list tag_list as a]
+                            [#if a_index==0]
+                            <li class="on">
+                            [#else]
+                            <li>
+                            [/#if]
+                                <i class="arr2"></i><img src="${(a.attr.singleImg.resUrl)!}" alt="">
+                            </li>
+                            [/#list]
+                            [/@cms_content_list]
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <!-- -- -->
+            </div>
+        </div>
+        [#include "../includes/footerCommon.html"/]
+    </div>
+</body>
+
+</html>

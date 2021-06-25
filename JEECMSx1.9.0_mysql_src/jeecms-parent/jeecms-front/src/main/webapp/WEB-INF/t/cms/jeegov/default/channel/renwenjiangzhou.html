@@ -1,0 +1,96 @@
+<!-- 走进江州- 江州概况页 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+    <script src="${res}/static/page/jquery.sPage.js"></script>
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/renwenjiangzhou.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <link rel="stylesheet" href="${res}/static/page/jquery.sPage.css">
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <div class="main w clearfix">
+
+            <div class="menus fl">
+                <div class="m-title ">人文江州</div>
+                <ul class="uu" id="gmenu">
+                    [@cms_channel_list parentId='2480']
+                    [#list tag_list as c]
+                    <li [#if c.id==channel.id]class="getcolor currentli" [/#if] aa="d${c_index+1}" onclick="f1(this)"><a href="${c.url!}" target="_self">${c.name!}</a></li>
+                    [/#list]
+                    [/@cms_channel_list]
+                </ul>
+            </div>
+            <div class="contents fl">
+                <div id="d1">
+                    <div class="contents-title">
+                        ${channel.name!}
+                        <div class="linestyle"></div>
+                    </div>
+                    [@cms_content_page channelId=channel.id channelOption='1' orderBy='29'  count='15']
+                    <!--分页数据-->
+                    [#assign p=tag_pagination/]
+                    [#list tag_pagination.content  as a]
+                    <div class="contents-text">
+                        <span class="circle"> •</span>
+                        <span class="text"><a href="${a.url!}">${a.title!}</a></span>
+                    </div>
+                    [/#list]
+                </div>
+            </div>
+        </div>
+        <div class="page w">
+            <div id="myPage"></div>
+        </div>
+        [#include "../includes/footerCommon.html"/]
+    </div>
+</body>
+<script>
+    // 点击改变背景色颜色
+    $("#gmenu li").click(function () {
+        $(this).addClass("currentli").siblings().removeClass();
+    })
+
+
+    function f1(self) {
+        $(self).addClass("getcolor").siblings().removeClass("getcolor");
+
+        var getele = $(self).attr("aa");
+
+        $("#" + getele).removeClass("hide").siblings().addClass("hide");
+    }
+    $("#myPage").sPage({
+        page: ${p.number + 1!},//当前页码，必填
+        total: ${p.totalElements!},//数据总条数，必填
+        pageSize: 15,//每页显示多少条数据，默认10条
+        totalTxt: "共${p.totalElements!}条",//数据总条数文字描述，{total}为占位符，默认"共{total}条"
+        showTotal: true,//是否显示总条数，默认关闭：false
+        showSkip: true,//是否显示跳页，默认关闭：false
+        showPN: true,//是否显示上下翻页，默认开启：true
+        prevPage: "上一页",//上翻页文字描述，默认“上一页”
+        nextPage: "下一页",//下翻页文字描述，默认“下一页”
+        backFun: function (page) {
+            //点击分页按钮回调函数，返回当前页码
+            location.href='${hrefFormer}_'+page+'${hrefLatter}';
+        }
+    });
+</script>
+[/@cms_content_page]
+
+</html>

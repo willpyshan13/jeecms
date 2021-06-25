@@ -1,0 +1,125 @@
+{
+    "pages" : [
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"登录"
+			}
+		},	
+		
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"首页",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		{
+			"path": "pages/login/findpswd",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"找回密码"
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"注册"
+			}
+		},
+		{
+			"path": "pages/register/agreement",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"协议"
+			}
+		},
+		{
+			"path": "pages/personal/index/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"个人中心"
+			}
+		},
+		{
+			"path": "pages/personal/collections/collections",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"我的收藏"
+			}
+		},
+		{
+			"path": "pages/personal/contribution/contribution",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"我的投稿"
+			}
+		},
+		{
+			"path": "pages/personal/like/like",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"我的点赞"
+			}
+		},
+		{
+			"path": "pages/personal/interaction/interaction",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"我的互动"
+			}
+		},
+		{
+			"path": "pages/personal/user/details",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"个人信息"
+			}
+		},
+		{
+			"path": "pages/personal/email/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"邮箱"
+			}
+		},
+		{
+			"path": "pages/personal/email/amend",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"修改邮箱"
+			}
+		},
+		{
+			"path": "pages/personal/password/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"修改密码"
+			}
+		},
+		{
+			"path": "pages/login/thirdParty",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText":"快速登录"
+			}
+		}
+    ],
+    "tabBar" : {
+        "color" : "#808080",
+        "selectedColor" : "#005AC0",
+        "backgroundColor" : "#ffffff",
+        "borderStyle" : "#717273",
+        "list" : [
+        ]
+    },
+	"globalStyle" : {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "Hello uniapp",
+        "navigationBarBackgroundColor": "#FFFFFF",
+		"onReachBottomDistance": 50
+    }
+}

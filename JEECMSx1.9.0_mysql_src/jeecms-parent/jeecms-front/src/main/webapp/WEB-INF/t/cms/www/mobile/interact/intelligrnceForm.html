@@ -1,0 +1,2239 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>智能表单</title>
+		<!-- 引入样式和js文件 -->
+		<!-- https://dev.dcloud.net.cn/mui/ -->
+		<link rel="stylesheet" href="${mobileRes}/css/mui.min.css">
+		<link rel="stylesheet" href="${mobileRes}/css/mui.picker.css">
+		<link rel="stylesheet" href="${mobileRes}/css/mui.poppicker.css">
+		<link rel="stylesheet" href="${mobileRes}/css/mui.picker.min.css">
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/intelligrnceForm.css">
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type=6 contentTitle="智能表单"/]
+		[#include "../includes/header.html"]
+		<!-- 图片处理js -->
+		<script src="${mobileRes}/js/exif.js"></script>
+		<!-- <script src="${mobileRes}/js/uploadImage.js"></script> -->
+		<!-- 引入mui组件库 -->
+		<script src="${mobileRes}/js/mui.min.js"></script>
+		<script src="${mobileRes}/js/mui.picker.js"></script>
+		<script src="${mobileRes}/js/mui.poppicker.js"></script>
+		<script src="${mobileRes}/js/mui.picker.min.js"></script>
+		<script src='https://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+		<div id="intelligrnceForm">
+			<div v-cloak v-if='bgImageUrlSelect' class='heder-img' :style='{backgroundImage: "url(" + bgImageUrlSelect + ")"}'>
+				
+			</div>
+			<div v-for='(item,index) in list' :key='index' v-show='list.length>0' style="display: none;">
+				<!-- 单图上传 -->
+				<div class='form-item' v-if='item.content.type=="imageUpload"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='form-item-hint'>
+						<p v-if='item.content.value.type.length>0'>
+							支持
+							<template v-for="(its,inx) in item.content.value.type">
+								<span :key="inx" v-if="inx < item.content.value.type.length-1">
+									{{its}},
+								</span>
+								<span :key="inx" v-else>{{its}} </span>
+							</template>
+							等图片格式
+						</p>
+						<p v-if='item.content.value.size'>(文件大小不超过{{item.content.value.size}}{{item.content.value.unit}})</p>
+					</div>
+					<div :class="item.pictures?'imageUpload-box no-line':'imageUpload-box'">
+						<div>
+							<div class='imageUpload-icon'>
+								<img class="iconfont" src=" ${mobileRes}/images/form/imageUpload.png">
+							</div>
+							<p class='imageUpload-box-tip'>点击上传图片</p>
+							<p class='imageUpload-box-tip' v-if="item.content.value.width&&item.content.value.height">建议{{item.content.value.width}}*{{item.content.value.height}}PX</p>
+						</div>
+						<input type="file" accept="image/*" ref="imageUpload" @change="tirggerFile($event,item)" />
+						<div class='pictures' v-if='item.pictures'>
+							<img class='pictures-box' :src="item.pictures">
+							<div class="delete-box" @click.stop="deleteImageFile(item)">
+								<img class="delete-icon" src=" ${mobileRes}/images/icon/delete.png">
+							</div>
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 多图上传 -->
+				<div class='form-item' v-else-if='item.content.type=="multiImageUpload"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='form-item-hint'>
+						<p v-if='item.content.value.type.length>0'>
+							支持
+							<template v-for="(its,inx) in item.content.value.type">
+								<span :key="inx" v-if="inx < item.content.value.type.length-1">
+									{{its}},
+								</span>
+								<span :key="inx" v-else>{{its}} </span>
+							</template>
+							等图片格式
+						</p>
+						<p v-if='item.content.value.size || (item.content.value.width&&item.content.value.height)'>(
+							<span v-if="item.content.value.size">文件大小不超过{{item.content.value.size}}{{item.content.value.unit}}</span>
+							<span v-if='item.content.value.size && item.content.value.width&&item.content.value.height'>，</span>
+							<span v-if="item.content.value.width&&item.content.value.height">建议{{item.content.value.width}}*{{item.content.value.height}}PX</span>)
+						</p>
+					</div>
+					<div class='multiImageUpload-box'>
+						多图上传
+						<input ref="multiImageUpload" multiple="multiple" accept="image/*" type="file" @change="tirggerFileMap($event,item)" />
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+					<div class='pictures-list' v-if='item.picturesList.length'>
+						<div class='pictures' v-for='(int,inx) in item.picturesList'>
+							<img class='pictures-box' :src="int">
+							<div class="delete-box" @click.stop="deleteMultiImageUpload(inx,item)">
+								<img class="delete-icon" src=" ${mobileRes}/images/icon/delete.png">
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<!-- 视频上传 -->
+				<div class='form-item' v-else-if='item.content.type=="videoUpload"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='form-item-hint'>
+						<p v-if='item.content.value.type.length>0'>
+							支持
+							<template v-for="(its,inx) in item.content.value.type">
+								<span :key="inx" v-if="inx < item.content.value.type.length-1">
+									{{its}},
+								</span>
+								<span :key="inx" v-else>{{its}} </span>
+							</template>
+							等视频格式
+						</p>
+						<p v-if='item.content.value.size'>(文件大小不超过{{item.content.value.size}}{{item.content.value.unit}})</p>
+					</div>
+					<div :class="item.videoSrc?'imageUpload-box no-line':'imageUpload-box'">
+						<div>
+							<div class='imageUpload-icon'>
+								<img class="iconfont" src="${mobileRes}/images/form/videoUpload.png">
+							</div>
+							<p class='imageUpload-box-tip'>点击上传视频</p>
+							<p class='imageUpload-box-tip' v-if="item.content.value.width&&item.content.value.height">建议{{item.content.value.width}}*{{item.content.value.height}}PX</p>
+						</div>
+						<input type="file" accept="video/*" ref="videoUpload" @change="tirggerVideoFile($event,item)" />
+						<div class='pictures' v-if='item.videoSrc'>
+							<video class="pictures-video" @click.stop='clickStop($event,item)' loop="loop" :src="item.videoSrc"></video>
+							
+							<img v-if='!item.player' class='video-paly' class='video-paly' @click.stop='clickPlay($event,item)' src="${mobileRes}/images/form/bofangbai.png" >
+							<div class="delete-box" @click.stop="deleteVideoSrc(item)">
+								<img class="delete-icon" src=" ${mobileRes}/images/icon/delete.png">
+							</div>
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 音频上传 -->
+				<div class='form-item' v-else-if='item.content.type=="audioUpload"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='form-item-hint'>
+						<p v-if='item.content.value.type.length>0'>
+							支持
+							<template v-for="(its,inx) in item.content.value.type">
+								<span :key="inx" v-if="inx < item.content.value.type.length-1">
+									{{its}},
+								</span>
+								<span :key="inx" v-else>{{its}} </span>
+							</template>
+							等音频格式
+						</p>
+						<p v-if='item.content.value.size'>(文件大小不超过{{item.content.value.size}}{{item.content.value.unit}})</p>
+					</div>
+					<div  :class="item.videoSrc?'imageUpload-box audioUpload-box no-line':'imageUpload-box audioUpload-box'">
+						<div>
+							<div class='imageUpload-icon'>
+								<img class="iconfont" src="${mobileRes}/images/form/audioUpload.png">
+							</div>
+							<p class='imageUpload-box-tip'>点击上传音频</p>
+							<p class='imageUpload-box-tip' v-if="item.content.value.width&&item.content.value.height">建议{{item.content.value.width}}*{{item.content.value.height}}PX</p>
+						</div>
+						<input type="file" accept="audio/*" ref="audioUpload" @change="tirggerAudioFile($event,item)" />
+						<div class='pictures audio-pictures' v-if='item.audioSrc'>
+							<audio class="pictures-audio" :ref="item.field" loop="loop" :src="item.audioSrc"></audio>
+							<img v-if='!item.player' class='video-paly' @click.stop='clickPlay($event,item)' src="${mobileRes}/images/form/audiobofang.png" >
+							<img v-if='item.player' class='video-paly' @click.stop='audioClickStop($event,item)' src="${mobileRes}/images/form/audiostop.png" >
+							<p class='video-name'>{{item.name}}</p>
+							<div class="delete-box" @click.stop="deleteAudioSrc(item)">
+								<img class="delete-icon" src=" ${mobileRes}/images/icon/delete.png">
+							</div>
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 附件上传 -->
+				<div class='form-item' v-else-if='item.content.type=="fileUpload"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='form-item-hint'>
+						<p v-if='item.content.value.enableType&&item.content.value.typeLimit==2'>支持{{item.content.value.enableType}}格式文件</p>
+						<p v-if='item.content.value.disableType&&item.content.value.typeLimit==3'>不支持{{item.content.value.disableType}}格式文件</p>
+						<p v-if='item.content.value.size || (item.content.value.width&&item.content.value.height)'>(
+							<span v-if="item.content.value.size">文件大小不超过{{item.content.value.size}}{{item.content.value.unit}}</span>
+							<span v-if='item.content.value.size && item.content.value.width&&item.content.value.height'>，</span>
+							<span v-if="item.content.value.width&&item.content.value.height">建议{{item.content.value.width}}*{{item.content.value.height}}PX</span>)
+						</p>
+					</div>
+					<div class='multiImageUpload-box'>
+						上传附件
+						<input ref="fileUpload" type="file" multiple="multiple" @change="tirggerFileUpload($event,item)" />
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+					<div class='pictures-list' v-if='item.fileList.length'>
+						<template v-for='(int,inx) in item.fileList'>
+							<div class='pictures' v-if='int.type=="img"'>
+								<img class='pictures-box' :src="int.value">
+								<div class="delete-box" @click.stop="deleteFileList(inx,item)">
+									<img class="delete-icon" src=" ${mobileRes}/images/icon/delete.png">
+								</div>
+							</div>
+							<div v-else class='file-box'>
+								<span>{{int.value}}</span>
+								<img class="delete-icon" @click.stop="deleteFileList(inx,item)" src="${mobileRes}/images/icon/cancel.png">
+							</div>
+						</template>
+						
+					</div>
+					
+				</div>
+				<!-- 输入框 -->
+				<div class='form-item' v-else-if='item.content.type=="input"||item.content.type=="fax"||item.content.type=="age"||item.content.type=="email"||item.content.type=="identity"||item.content.type=="link"||item.content.type=="mobile"||item.content.type=="realname"||item.content.type=="phone"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<img class='delete-icon' src="${mobileRes}/images/form/delete.png" @click="shanchu(item)">
+						<input @blur="mouseOver(item)" @focus="inputDeleteShow(item)" @input="inputDelete(item)" @change="verification(item)" class="input-content fontkey-content" :ref="item.field" :maxlength="item.content.value.isLengthLimit?item.content.value.max:120" v-model="form[item.field].value" :placeholder="item.content.value.placeholder"/>
+						
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 多行输入框 -->
+				<div class='form-item' v-else-if='item.content.type=="textarea"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<img class='delete-icon' src="${mobileRes}/images/form/delete.png" @click="shanchu(item)">
+						<textarea @blur="mouseOver(item)" @focus="inputDeleteShow(item)" @input="inputDelete(item)" @change="verification(item)" class="textarea-content fontkey-content"  :ref="item.field" :maxlength="item.content.value.isLengthLimit?item.content.value.max:120" v-model="form[item.field].value" :placeholder="item.content.value.placeholder"></textarea>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 单选 -->
+				<div class='form-item' v-else-if='item.content.type=="radio"||item.content.type=="sex"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="t-flex">
+							<div v-for="(itm,inx) in item.content.value.options"  :class="item.radio == itm.value ? 't-cont-radios active':'t-cont-radios'">
+								<span class="t-radio t-radius radio" @click.stop='chagerRadio(itm,item)'>
+									<div class="iconfont"></div>
+								</span>
+								<label>
+									{{itm.label}}
+								</label>
+							</div>
+							<div v-if='item.content.value.isOtherOption' :class="item.radio == item.content.value.otherOption.value ? 't-cont-radios active':'t-cont-radios'">
+								<span class="t-radio t-radius radio" @click.stop='chagerRadio(item.content.value.otherOption,item)'>
+									<div class="iconfont"></div>
+								</span>
+								<label>
+									{{item.content.value.otherOptionLabel}}
+								</label>
+								
+							</div>
+							<input class="other-input" v-if="item.radio == item.content.value.otherOption.value" maxlength="50" type="text" v-model="form[item.field+'Txt']" />
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 多选 -->
+				<div class='form-item' v-else-if='item.content.type=="checkbox"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="t-flex">
+							<div v-for="(itm,inx) in item.content.value.options" :class="itm.isPitch?'active t-cont-radios':'t-cont-radios'">
+								<span class='t-radio' @click.stop='chagerCheckbox(itm,item)'>
+									<img v-if='itm.isPitch' src="${mobileRes}/images/icon/gouxuan.png" alt="" class="t-img ">
+									<div class="iconfont"></div>
+								</span>
+								<label>
+									{{itm.label}}
+								</label>
+							</div>
+							<div v-if='item.content.value.isOtherOption' :class="item.content.value.otherOption.isPitch ?'active t-cont-radios':'t-cont-radios'">
+								<span class="t-radio" @click.stop='chagerCheckbox(item.content.value.otherOption,item)'>
+									<img v-if='item.content.value.otherOption.isPitch' src="${mobileRes}/images/icon/gouxuan.png" alt="" class="t-img ">
+									<div class="iconfont"></div>
+								</span>
+								<label>
+									{{item.content.value.otherOptionLabel}}
+								</label>
+								
+							</div>
+							<input class="other-input" v-if="item.content.value.otherOption.isPitch" type="text" maxlength="50" v-model="form[item.field+'Txt']" />
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 下拉选框 -->
+				<div class='form-item' v-else-if='item.content.type=="select"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="relative">
+							<div class='select-box' @click.stop='openSelect(item)'>
+								<span v-if='!item.selectText' class='select-placeholder'>请选择</span>
+								<span>{{item.selectText}}</span>
+								<img class="t-img " src="${mobileRes}/images/icon/arrow_down.png" alt="">
+							</div>
+						    
+						</div>
+					</div>
+					<input class="select-input" v-if="form[item.field].value == 999" maxlength="50" type="text" v-model="form[item.field+'Txt']" />
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 联级选框 -->
+				<div class='form-item' v-else-if='item.content.type=="cascade"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="relative">
+							<div class='select-box' @click.stop='openCascade(item)'>
+								<span v-if='!item.cascadeText' class='select-placeholder' >请选择</span>
+								<span>{{item.cascadeText}}</span>
+								<img class="t-img " src="${mobileRes}/images/icon/arrow_down.png" alt="">
+							</div>
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 图片单选 -->
+				<div class='form-item' v-else-if='item.content.type=="imageRadio"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="t-flex">
+							<div v-for="(itm,inx) in item.options" :class="item.radio == itm.value ? 't-cont-radios active active-radio':'t-cont-radios active-radio'">
+								<div class="radio-img"><img :src="itm.picUrl" alt="" class="t-img"></div>
+								<div class='margin-top10'>
+									<span class="t-radio t-radius radio" @click.stop='chagerRadio(itm,item)'>
+										<div class="iconfont"></div>
+									</span>
+									<label>
+										{{itm.label}}
+									</label>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 图片多选 -->
+				<div class='form-item' v-else-if='item.content.type=="imageCheckbox"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="t-flex">
+							<div v-for="(itm,inx) in item.content.value.options" :class="itm.isPitch?'active t-cont-radios active-radio':'t-cont-radios active-radio'">
+								<div class="radio-img"><img :src="itm.picUrl" alt="" class="t-img"></div>
+								<div class='margin-top10'>
+									<span class='t-radio' @click.stop='chagerCheckbox(itm,item)'>
+										<img v-if='itm.isPitch' src="${mobileRes}/images/icon/gouxuan.png" alt="" class="t-img ">
+										<div class="iconfont"></div>
+									</span>
+									<label>
+										{{itm.label}}
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 日期时间 -->
+				<div class='form-item' v-else-if='item.content.type=="datetime"||item.content.type=="birthday"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="relative">
+							<div class='select-box' @click.stop='openDatetime(item)'>
+								<span>
+								<img class="s-img " src="${mobileRes}/images/icon/time.png" alt="">
+								<span v-if='!item.datetimeText' class='select-placeholder'>请选择</span>
+								<span class='fontkey-content'>{{item.datetimeText}}</span>
+								</span>
+								
+								<img class="t-img " src="${mobileRes}/images/icon/arrow_down.png" alt="">
+							</div>
+						    
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 日期区间 -->
+				<div class='form-item' v-else-if='item.content.type=="datetimerange"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="relative">
+							<div class='select-box'>
+								<img class="s-img " src="${mobileRes}/images/icon/data.png" alt="">
+								<p class='datetimerange-box'>
+									<span v-if='!item.startData' @click.stop='openDatetimerange(item,1)'>请选择</span>
+									<span class='data-text fontkey-content' @click.stop='openDatetimerange(item,1)'>{{item.startData}}</span>
+									<span class='line'>至</span>
+									<span v-if='!item.endData' @click.stop='openDatetimerange(item,2)'>请选择</span>
+									<span class='data-text fontkey-content' @click.stop='openDatetimerange(item,2)'>{{item.endData}}</span>
+								</p>
+							</div>
+						    
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 验证码 -->
+				<div class='form-item' v-else-if='item.content.type=="code"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='code-box'>
+						<img @click='form.captcha="";item.deleteIcon=false' class='delete-icon' src="${mobileRes}/images/form/delete.png">
+						<input  @focus="item.deleteIcon=true" class="input-code fontkey-content" v-model="form.captcha" :placeholder="item.content.value.placeholder" maxlength="4"/>
+						<img id='capatchImg' @click.stop='genCapatch()'>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 地址 -->
+				<div class='form-item' v-else-if='item.content.type=="address"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="relative">
+							<div class='select-box' @click.stop='openAddress(item)'>
+								<span v-if='!item.addressText' class='select-placeholder'>请选择</span>
+								<span v-if='item.addressText'>{{item.addressText}}</span>
+								<img class="t-img " src="${mobileRes}/images/icon/arrow_down.png" alt="">
+							</div>
+						    
+						</div>
+						<div class='input-box' style='margin-top: 0.2rem;'>
+							<input class="input-content fontkey-content" v-model="form[item.field].value[item.field]" placeholder="详细地址" maxlength="120"/>
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 城市 -->
+				<div class='form-item' v-else-if='item.content.type=="city"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div class='input-box'>
+						<div class="relative">
+							<div class='select-box' @click.stop='openCity(item)'>
+								<span v-if='!item.cityText' class='select-placeholder'>请选择</span>
+								<span v-if='item.cityText'>{{item.cityText}}</span>
+								<img class="t-img " src="${mobileRes}/images/icon/arrow_down.png" alt="">
+							</div>
+						    
+						</div>
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 分割线 -->
+				<div class='form-item' v-else-if='item.content.type=="divisionLine"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div :style="{width:item.content.value.width+'%',borderWidth:'1px',borderStyle:item.content.value.borderStyle,borderColor:item.content.value.lineColor}">
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 分隔条 -->
+				<div class='form-item' v-else-if='item.content.type=="divisionBar"'>
+					<div class='form-item-label'>
+						<span v-if='item.content.value.isRequired' class="t-red impro">*</span>
+						<span v-if='item.content.value.label' class='form-item-label-text'>{{item.content.value.label}}：</span>
+					</div>
+					<div :style="{width:item.content.value.width+'%',borderWidth:'0.1rem',borderStyle:'solid',borderColor:item.content.value.lineColor}">
+					</div>
+					<p v-if='item.tipText'  class='form-item-remind font_help'>{{item.tipText}}</p>
+				</div>
+				<!-- 文本描述 -->
+				<div class='form-item' v-else-if='item.content.type=="textDesc"'>
+					<div class='text-item' :style="{width:item.content.value.width+'%',fontSize:item.content.value.fontStyle.fontSize*0.02+'rem',color:item.content.value.fontStyle.fontColor,fontWeight:item.content.value.fontStyle.fontWigth}">
+						{{item.content.value.label}}
+					</div>
+				</div>
+			</div>
+			<div class='submit-btn' v-show='list.length>0' style="display: none;" @click.stop='haleSubmit'>
+				提交
+			</div>
+			<div class='loading' v-show='loading' style="display: none;">
+				<img src="${mobileRes}/images/form/loading.gif" >
+			</div>
+			<div v-show='isSucceed' class='succeed' style="display: none;">
+				<div class='succeed-box'>
+					<p class='succeed-text'>
+						<img class='succeed-icon' src="${mobileRes}/images/form/成功.png" >
+					<span v-text='succeedText'></span>
+					</p>
+					<div @click='isSucceed=false' class='succeed-btn'>确定</div>
+				</div>
+			</div>
+			<div v-show='isWeChat' class='isWeChat' style="display: none;">
+				<div class='isWeChat-box'>
+					<h4>您需要到微信上打开才能参与</h4>
+					<p>使用微信扫描二维码打开</p>
+					<img :src="'/common/qrcode/360?val='+smartDataObj.url" >
+				</div>
+			</div>
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var news = new Vue({
+			el: '#intelligrnceForm',
+			data: {
+				list: [],
+				bgConfig: {},
+				form: {
+					captcha:''
+				},
+				resourceForm: {
+
+				},
+				inputer:'',
+				areaList:[],
+				styles:{},
+				bgImageUrlSelect:'',
+				loading: false,
+				viewStatus:0,
+				isSucceed:false,
+				succeedText:'提交成功，感谢您的参与！',
+				smartDataObj:{},
+				isWeChat:false,
+				wechatTtml:''
+			},
+			mounted() {
+				this.getContentPage()
+				this.getStatistics()
+			},
+			methods: {
+				getContentPage() {
+					var that = this
+					api.GET('/smartForm/' + getUrlArg('id'), '', function(res) {
+						if (res.code == 200) {
+							// if(res.data.status==1){
+								that.viewStatus = res.data.viewStatus
+								that.list = res.data.items.map(d => {
+									d.content = JSON.parse(d.content)
+									d.deleteIcon = false
+									if (d.dataType == 'imageUpload') {
+										d.pictures = ''
+									}
+									if (d.dataType == 'multiImageUpload') {
+										d.picturesList = []
+									}
+									if (d.dataType == 'videoUpload') {
+										d.videoSrc = ''
+										d.player = false
+									}
+									if (d.dataType == 'audioUpload') {
+										d.audioSrc = ''
+										d.player = false
+										d.name = ''
+									}
+									if (d.dataType == 'fileUpload') {
+										d.fileList = []
+									}
+									if(d.dataType == 'radio' || d.dataType == 'imageRadio' ||d.dataType == 'sex'){
+										d.radio = ''
+									}
+									if (d.dataType == 'select') {
+										if(d.content.value.isOtherOption){
+											d.content.value.options = d.content.value.options.concat(d.content.value.otherOption)
+										}
+										d.selectText = ''
+									}
+									if (d.dataType == 'cascade') {
+										d.cascadeText = ''
+									}
+									if (d.dataType == 'checkbox' || d.dataType == "imageCheckbox") {
+										if(d.content.value.isOtherOption){
+											d.content.value.otherOption.isPitch = false
+										}
+										d.content.value.options = d.content.value.options.map(v=>{
+											v.isPitch = false
+											return v
+										})
+									}
+									if (d.dataType == 'datetime' || d.dataType == 'birthday') {
+										if(d.content.value.format == 'yyyy-MM-dd'){
+											d.content.value.format = 'Y-m-d'
+										}else if(d.content.value.format == 'yyyy-MM'){
+											d.content.value.format = 'Y-m'
+										}else if(d.content.value.format == 'yyyy'){
+											d.content.value.format = 'Y'
+										}else if(d.content.value.format == 'MM-dd'){
+											d.content.value.format = 'm-d'
+										}else if(d.content.value.format == 'MM'){
+											d.content.value.format = 'm'
+										}else if(d.content.value.format == 'dd'){
+											d.content.value.format = 'd'
+										}
+										if(d.content.value.accuracy == 'HH:mm:ss'){
+											d.content.value.accuracy = 'H:i:s'
+										}else if(d.content.value.accuracy == 'HH:mm'){
+											d.content.value.accuracy = 'H:i'
+										}else if(d.content.value.accuracy == 'HH'){
+											d.content.value.accuracy = 'H'
+										}
+										if(d.content.value.type == 'datetime'){
+											d.format = d.content.value.format+ ' ' +d.content.value.accuracy
+										}else if(d.content.value.type == 'date'){
+											d.format = d.content.value.format
+										}else if(d.content.value.type == 'time'){
+											d.format = d.content.value.accuracy
+										}
+										d.datetimeText = ''
+									}
+									
+									if (d.dataType == 'datetimerange') {
+										if(d.content.value.format == 'yyyy-MM-dd'){
+											d.content.value.format = 'Y-m-d'
+										}else if(d.content.value.format == 'yyyy-MM'){
+											d.content.value.format = 'Y-m'
+										}else if(d.content.value.format == 'yyyy'){
+											d.content.value.format = 'Y'
+										}else if(d.content.value.format == 'MM-dd'){
+											d.content.value.format = 'm-d'
+										}else if(d.content.value.format == 'MM'){
+											d.content.value.format = 'm'
+										}else if(d.content.value.format == 'dd'){
+											d.content.value.format = 'd'
+										}
+										if(d.content.value.accuracy == 'HH:mm:ss'){
+											d.content.value.accuracy = 'H:i:s'
+										}else if(d.content.value.accuracy == 'HH:mm'){
+											d.content.value.accuracy = 'H:i'
+										}else if(d.content.value.accuracy == 'HH'){
+											d.content.value.accuracy = 'H'
+										}
+										if(d.content.value.type == 'datetime'){
+											d.format = d.content.value.format+ ' ' +d.content.value.accuracy
+										}else if(d.content.value.type == 'date'){
+											d.format = d.content.value.format
+										}else if(d.content.value.type == 'time'){
+											d.format = d.content.value.accuracy
+										}
+										d.startData = ''
+										d.endData = ''
+										d.dataTime = ['','']
+									}
+									if (d.dataType == 'address') {
+										that.getAreaTree()
+										d.defValue = JSON.parse(d.defValue)
+										d.addressText = ''
+										d.addressDetail = ''
+									}
+									if (d.dataType == 'city') {
+										that.getAreaTree()
+										d.defValue = JSON.parse(d.defValue)
+										// console.log(d.defValue)
+										// that.siteChange()
+										d.cityText = ''
+									}
+									
+									return d
+								})
+								// 添加form参数
+								for(var i =0;i<that.list.length;i++){
+									that.form[that.list[i].field] = {}
+									if(that.list[i].dataType == 'checkbox' || that.list[i].dataType == "imageCheckbox" || that.list[i].dataType == "multiImageUpload" || that.list[i].dataType == "fileUpload"){
+										that.form[that.list[i].field].value=[]
+										that.form[that.list[i].field].isRequired = that.list[i].isRequired
+										that.form[that.list[i].field].isOtherOptionRequired=(that.list[i].content.value.isOtherOptionRequired||false)
+									}else if(that.list[i].dataType == 'code'){
+										that.form.sessionId = ''
+										that.form.captcha =''
+										that.genCapatch()
+									}else if(that.list[i].dataType == 'address'||that.list[i].dataType == 'city'){
+										if(that.list[i].dataType == 'address'){
+											that.form[that.list[i].field].value={}
+											that.form[that.list[i].field].value[that.list[i].field + 'P'] = ''
+											that.form[that.list[i].field].value[that.list[i].field + 'C'] = ''
+											that.form[that.list[i].field].value[that.list[i].field + 'A'] = ''
+											that.form[that.list[i].field].value[that.list[i].field] = ''
+											that.form[that.list[i].field].isRequired = that.list[i].isRequired
+											that.siteChange(that.list[i],i)
+											
+										}else if(that.list[i].dataType == 'city'&&!that.list[i].provinceCode){
+											that.form[that.list[i].field].value={}
+											that.form[that.list[i].field].value[that.list[i].field + 'P'] = ''
+											that.form[that.list[i].field].value[that.list[i].field + 'C'] = ''
+											that.form[that.list[i].field].isRequired = that.list[i].isRequired
+											that.cityChange(that.list[i],i)
+										}
+									}else{
+										that.form[that.list[i].field].value=''
+										that.form[that.list[i].field].isRequired = that.list[i].isRequired
+										that.form[that.list[i].field].isOtherOptionRequired=(that.list[i].content.value.isOtherOptionRequired||false)
+									}
+								}
+								// 填充回显参数
+								for(var i =0;i<that.list.length;i++){
+									if(that.list[i].dataType == 'radio' || that.list[i].dataType == 'imageRadio' ||that.list[i].dataType == 'sex'){
+										if(that.list[i].content.value.defaultValue.value){
+											that.list[i].radio = that.list[i].content.value.defaultValue.value
+											that.form[that.list[i].field].value=that.list[i].content.value.defaultValue.value
+										}
+									}else if(that.list[i].dataType == 'checkbox' || that.list[i].dataType == "imageCheckbox"){
+										if(that.list[i].content.value.defaultValue.value.length>0){
+											for(let t =0;t<that.list[i].content.value.options.length;t++){
+												if(that.list[i].content.value.defaultValue.value.indexOf(that.list[i].content.value.options[t].value)>=0){
+													that.list[i].content.value.options[t].isPitch=true
+												}
+											}
+											that.form[that.list[i].field].value=that.list[i].content.value.defaultValue.value
+										}
+									}else if(that.list[i].dataType == 'select'){
+										if(that.list[i].content.value.defaultValue.value){
+											for(let t =0;t<that.list[i].content.value.options.length;t++){
+												if(that.list[i].content.value.defaultValue.value == that.list[i].content.value.options[t].value){
+													that.list[i].selectText=that.list[i].content.value.options[t].label
+												}
+											}
+											that.form[that.list[i].field].value=that.list[i].content.value.defaultValue.value
+										}
+										
+									}else if(that.list[i].dataType == 'datetime' || that.list[i].dataType == 'birthday'){
+										if(that.list[i].content.value.defaultValue){
+											let now= parseInt((new Date()).getTime()/1000)
+											that.list[i].datetimeText = that.formatDate(that.list[i].format,now)
+											that.form[that.list[i].field].value=that.list[i].datetimeText
+										}
+										
+									}
+								}
+								that.form.formId=res.data.id
+								console.log(that.list)
+								that.styles = JSON.parse(res.data.componentConfig)
+								that.stylesPut()
+								if(JSON.parse(res.data.headConfig).bgImageUrl){
+									that.bgImageUrlSelect = JSON.parse(res.data.headConfig).bgImageUrl
+								}else{
+									that.bgImageUrlSelect = JSON.parse(res.data.headConfig).phoneImgUrl
+								}
+								
+							// }else{
+							// 	window.location.href = "${base}/common-error-404.htm"
+							// }
+							that.smartDataObj = res.data
+							that.getWeixin(that.smartDataObj)
+						}else{
+							window.location.href = "${base}/common-error-404.htm"
+						}
+						
+					})
+					
+				},
+				// 字体样式
+				stylesPut(){
+					this.$nextTick(() => {
+						var objHelp =document.querySelectorAll('.font_help');
+						for(let i =0 ;i<objHelp.length;i++){
+							objHelp[i].style.color = this.styles.fontHelp.fontColor;
+							objHelp[i].style.fontSize = this.styles.fontHelp.fontSize*0.02+'rem';
+							objHelp[i].style.fontWeight = this.styles.fontHelp.fontWigth;
+						}
+						
+						var objLabel =document.querySelectorAll('.form-item-label-text');
+						for(let i =0 ;i<objLabel.length;i++){
+							objLabel[i].style.color = this.styles.fontStyle.fontColor;
+							objLabel[i].style.fontSize = this.styles.fontStyle.fontSize*0.02+'rem';
+							objLabel[i].style.fontWeight = this.styles.fontStyle.fontWigth;
+						}
+						var impro = document.querySelectorAll('.impro');
+						for(let i =0 ;i<impro.length;i++){
+							impro[i].style.fontSize = this.styles.fontStyle.fontSize*0.02+'rem';
+						}
+						var fontkey =document.querySelectorAll('.fontkey-content');
+						for(let i =0 ;i<fontkey.length;i++){
+							fontkey[i].style.color = this.styles.fontKey.fontColor;
+							fontkey[i].style.fontSize = this.styles.fontKey.fontSize*0.02+'rem';
+							fontkey[i].style.fontWeight = this.styles.fontKey.fontWigth;
+						}
+						
+					})
+				},
+				// 单图上传
+				tirggerFile(event, item) {
+					let fileUnit = event.target.files[0].name.substring(event.target.files[0].name.lastIndexOf(".") + 1);
+					if(item.content.value.type.indexOf(fileUnit)<0){
+						winTip('不支持这种类型的文件');
+						return
+					}else{
+						if(item.content.value.size>0){
+							var fileSize = event.target.files[0].size / 1024
+							var	sizeNum = item.content.value.unit == 'MB'?item.content.value.size*1024:item.content.value.size
+							if(fileSize>sizeNum){
+							    canUpload = false
+							    winTip('文件大小不得大于'+item.content.value.size+(item.content.value.unit == 'MB'?'MB':'KB'));
+							    return
+							}
+						}
+						this.form[item.field].value=[]
+						this.form[item.field].value.push(event.target.files[0])
+						var file = event.target.files[0]
+						//图片方向角 added by lzk
+						var Orientation = null;
+						if (file) {
+							// var URL = URL || webkitURL;
+							//获取照片方向角属性，用户旋转控制
+							EXIF.getData(file, function() {
+								// alert(EXIF.pretty(this));
+								EXIF.getAllTags(this);
+								//alert(EXIF.getTag(this, 'Orientation')); 
+								Orientation = EXIF.getTag(this, 'Orientation');
+								//return;
+							});
+							
+							var oReader = new FileReader();
+							oReader.onload = function(e) {
+								//var blob = URL.createObjectURL(file);
+								//_compress(blob, file, basePath);
+								var image = new Image();
+								image.src = e.target.result;
+								image.onload = function() {
+									var expectWidth = this.naturalWidth;
+									var expectHeight = this.naturalHeight;
+						
+									if (this.naturalWidth > this.naturalHeight && this.naturalWidth > 800) {
+										expectWidth = 800;
+										expectHeight = expectWidth * this.naturalHeight / this.naturalWidth;
+									} else if (this.naturalHeight > this.naturalWidth && this.naturalHeight > 1200) {
+										expectHeight = 1200;
+										expectWidth = expectHeight * this.naturalWidth / this.naturalHeight;
+									}
+									var canvas = document.createElement("canvas");
+									var ctx = canvas.getContext("2d");
+									canvas.width = expectWidth;
+									canvas.height = expectHeight;
+									ctx.drawImage(this, 0, 0, expectWidth, expectHeight);
+									var base64 = null;
+									//修复ios
+									if (navigator.userAgent.match(/iphone/i)) {
+										console.log('iphone');
+										//alert(expectWidth + ',' + expectHeight);
+										//如果方向角不为1，都需要进行旋转 added by lzk
+										if (Orientation != "" && Orientation != 1) {
+											// alert('旋转处理');
+											switch (Orientation) {
+												case 6: //需要顺时针（向左）90度旋转
+													// alert('需要顺时针（向左）90度旋转');
+													rotateImg(this, 'left', canvas);
+													break;
+												case 8: //需要逆时针（向右）90度旋转
+													// alert('需要顺时针（向右）90度旋转');
+													rotateImg(this, 'right', canvas);
+													break;
+												case 3: //需要180度旋转
+													// alert('需要180度旋转');
+													rotateImg(this, 'right', canvas); //转两次
+													rotateImg(this, 'right', canvas);
+													break;
+											}
+										}
+						
+										/*var mpImg = new MegaPixImage(image);
+										mpImg.render(canvas, {
+											maxWidth: 800,
+											maxHeight: 1200,
+											quality: 0.8,
+											orientation: 8
+										});*/
+										base64 = canvas.toDataURL("image/jpeg", 0.8);
+									} else if (navigator.userAgent.match(/Android/i)) { // 修复android
+										let url = "";
+										var reader = new FileReader();
+										reader.readAsDataURL(file);
+										reader.onload = function(e) {
+											url = this.result.substring(this.result.indexOf(",") + 1)
+											item.pictures = "data:image/png;base64," + url
+										}
+									} else {
+										//alert(Orientation);
+										if (Orientation != "" && Orientation != 1) {
+											//alert('旋转处理');
+											switch (Orientation) {
+												case 6: //需要顺时针（向左）90度旋转
+													// alert('需要顺时针（向左）90度旋转');
+													rotateImg(this, 'left', canvas);
+													break;
+												case 8: //需要逆时针（向右）90度旋转
+													// alert('需要顺时针（向右）90度旋转');
+													rotateImg(this, 'right', canvas);
+													break;
+												case 3: //需要180度旋转
+													// alert('需要180度旋转');
+													rotateImg(this, 'right', canvas); //转两次
+													rotateImg(this, 'right', canvas);
+													break;
+											}
+										}
+						
+										base64 = canvas.toDataURL("image/jpeg", 0.8);
+									}
+									item.pictures = base64
+								};
+							};
+							oReader.readAsDataURL(file);
+						}
+					}
+					this.$refs.imageUpload[0].value = null
+				},
+				// 单图删除
+				deleteImageFile(item){
+					this.form[item.field].value=[]
+					item.pictures = ''
+				},
+				// 多图上传
+				tirggerFileMap(event, item) {
+					var that = this
+					for(let i =0;i<event.target.files.length;i++){
+						let fileUnit = event.target.files[i].name.substring(event.target.files[i].name.lastIndexOf(".") + 1);
+						
+							if(item.content.value.type.indexOf(fileUnit)<0){
+								winTip('不支持这种类型的文件');
+								return
+							}else{
+								if(item.content.value.limit>0&&this.form[item.field].value.length >= item.content.value.limit){
+									winTip('文件数量不得大于'+item.content.value.limit);
+									return
+								}
+								if(item.content.value.size>0){
+									var fileSize = event.target.files[i].size / 1024
+									var	sizeNum = item.content.value.unit == 'MB'?item.content.value.size*1024:item.content.value.size
+									if(fileSize>sizeNum){
+									    canUpload = false
+									    winTip('文件大小不得大于'+item.content.value.size+(item.content.value.unit == 'MB'?'MB':'KB'));
+									    return
+									}
+								}
+								
+								let file = event.target.files[i];
+								this.form[item.field].value.push(file)
+								//图片方向角 added by lzk
+								var Orientation = null;
+								if (file) {
+									// var URL = URL || webkitURL;
+									//获取照片方向角属性，用户旋转控制
+									EXIF.getData(file, function() {
+										// alert(EXIF.pretty(this));
+										EXIF.getAllTags(this);
+										//alert(EXIF.getTag(this, 'Orientation')); 
+										Orientation = EXIF.getTag(this, 'Orientation');
+										//return;
+									});
+								
+									var oReader = new FileReader();
+									oReader.onload = function(e) {
+										//var blob = URL.createObjectURL(file);
+										//_compress(blob, file, basePath);
+										var image = new Image();
+										image.src = e.target.result;
+										image.onload = function() {
+											var expectWidth = this.naturalWidth;
+											var expectHeight = this.naturalHeight;
+								
+											if (this.naturalWidth > this.naturalHeight && this.naturalWidth > 800) {
+												expectWidth = 800;
+												expectHeight = expectWidth * this.naturalHeight / this.naturalWidth;
+											} else if (this.naturalHeight > this.naturalWidth && this.naturalHeight > 1200) {
+												expectHeight = 1200;
+												expectWidth = expectHeight * this.naturalWidth / this.naturalHeight;
+											}
+											var canvas = document.createElement("canvas");
+											var ctx = canvas.getContext("2d");
+											canvas.width = expectWidth;
+											canvas.height = expectHeight;
+											ctx.drawImage(this, 0, 0, expectWidth, expectHeight);
+											var base64 = null;
+											//修复ios
+											if (navigator.userAgent.match(/iphone/i)) {
+												console.log('iphone');
+												//alert(expectWidth + ',' + expectHeight);
+												//如果方向角不为1，都需要进行旋转 added by lzk
+												if (Orientation != "" && Orientation != 1) {
+													// alert('旋转处理');
+													switch (Orientation) {
+														case 6: //需要顺时针（向左）90度旋转
+															// alert('需要顺时针（向左）90度旋转');
+															rotateImg(this, 'left', canvas);
+															break;
+														case 8: //需要逆时针（向右）90度旋转
+															// alert('需要顺时针（向右）90度旋转');
+															rotateImg(this, 'right', canvas);
+															break;
+														case 3: //需要180度旋转
+															// alert('需要180度旋转');
+															rotateImg(this, 'right', canvas); //转两次
+															rotateImg(this, 'right', canvas);
+															break;
+													}
+												}
+								
+												/*var mpImg = new MegaPixImage(image);
+												mpImg.render(canvas, {
+													maxWidth: 800,
+													maxHeight: 1200,
+													quality: 0.8,
+													orientation: 8
+												});*/
+												base64 = canvas.toDataURL("image/jpeg", 0.8);
+												item.picturesList.push(base64)
+											} else if (navigator.userAgent.match(/Android/i)) { // 修复android
+												let url = "";
+												var reader = new FileReader();
+												reader.readAsDataURL(file);
+												reader.onload = function(e) {
+													url = this.result.substring(this.result.indexOf(",") + 1)
+													item.picturesList.push("data:image/png;base64," + url)
+												}
+											} else {
+												//alert(Orientation);
+												if (Orientation != "" && Orientation != 1) {
+													//alert('旋转处理');
+													switch (Orientation) {
+														case 6: //需要顺时针（向左）90度旋转
+															// alert('需要顺时针（向左）90度旋转');
+															rotateImg(this, 'left', canvas);
+															break;
+														case 8: //需要逆时针（向右）90度旋转
+															// alert('需要顺时针（向右）90度旋转');
+															rotateImg(this, 'right', canvas);
+															break;
+														case 3: //需要180度旋转
+															// alert('需要180度旋转');
+															rotateImg(this, 'right', canvas); //转两次
+															rotateImg(this, 'right', canvas);
+															break;
+													}
+												}
+								
+												base64 = canvas.toDataURL("image/jpeg", 0.8);
+												item.picturesList.push(base64)
+											}
+											
+										};
+									};
+									oReader.readAsDataURL(file);
+								}
+							}
+					}
+					that.$refs.multiImageUpload[0].value = null
+				},
+				// 多图删除
+				deleteMultiImageUpload(index,item) {
+					item.picturesList.splice(index, 1);
+					this.form[item.field].value.splice(index, 1);
+				},
+				// 视频上传
+				tirggerVideoFile(event, item){
+					let fileUnit = event.target.files[0].name.substring(event.target.files[0].name.lastIndexOf(".") + 1);
+					if(fileUnit == 'MOV'){
+						fileUnit = 'mov'
+					}
+					if(item.content.value.type.length>0 && item.content.value.type.indexOf(fileUnit)<0){
+						winTip('不支持这种类型的文件');
+						return
+					}else{
+						if(item.content.value.size>0){
+							var fileSize = event.target.files[0].size / 1024
+							var	sizeNum = item.content.value.unit == 'MB'?item.content.value.size*1024:item.content.value.size
+							if(fileSize>sizeNum){
+							    canUpload = false
+							    winTip('文件大小不得大于'+item.content.value.size+(item.content.value.unit == 'MB'?'MB':'KB'));
+							    return
+							}
+						}
+						item.videoSrc = this.getFileURL(event.target.files[0])
+						this.form[item.field].value=[]
+						this.form[item.field].value.push(event.target.files[0])
+					}
+					
+					this.$refs.videoUpload[0].value = null
+				},
+				// 视频删除
+				deleteVideoSrc(item){
+					this.form[item.field].value=[]
+					item.videoSrc = ''
+				},
+				// 获取视频地址	
+				getFileURL(file) {
+			        var getUrl = null;
+			        if(window.createObjectURL != undefined) { // basic
+			            getUrl = window.createObjectURL(file);
+			        } else if(window.URL != undefined) { // mozilla(firefox)
+			            getUrl = window.URL.createObjectURL(file);
+			        } else if(window.webkitURL != undefined) { // webkit or chrome
+			            getUrl = window.webkitURL.createObjectURL(file);
+			        }
+					console.log(getUrl)
+			        return getUrl;
+				},
+				//点击播放
+				clickPlay(event,item) {
+					let _video = document.getElementsByTagName('video')
+					for (var i = 0; i < _video.length; i++) {
+						_video[i].pause()
+						_video[i].nextElementSibling.style.display = 'block'
+					}
+					event.target.previousElementSibling.play()
+					if(navigator.userAgent.match(/iphone/i)){
+						item.player = false
+					}else{
+						item.player = true
+					}
+					
+				},
+				// 点击暂停
+				clickStop(event,item) {
+					event.target.pause()
+					item.player = false
+				},
+				// 音频点击暂停
+				audioClickStop(event,item) {
+					this.$refs[item.field][0].pause()
+					item.player = false
+				},
+				// 音频上传
+				tirggerAudioFile(event, item){
+					let fileUnit = event.target.files[0].name.substring(event.target.files[0].name.lastIndexOf(".") + 1);
+					if(item.content.value.type.length>0 && item.content.value.type.indexOf(fileUnit)<0){
+						winTip('不支持这种类型的文件');
+						return
+					}else{
+						if(item.content.value.size>0){
+							var fileSize = event.target.files[0].size / 1024
+							var	sizeNum = item.content.value.unit == 'MB'?item.content.value.size*1024:item.content.value.size
+							if(fileSize>sizeNum){
+							    canUpload = false
+							    winTip('文件大小不得大于'+item.content.value.size+(item.content.value.unit == 'MB'?'MB':'KB'));
+							    return
+							}
+						}
+						item.audioSrc = this.getFileURL(event.target.files[0])
+						item.name = event.target.files[0].name
+						this.form[item.field].value=[]
+						this.form[item.field].value.push(event.target.files[0])
+					}
+					this.$refs.audioUpload[0].value = null
+				},
+				// 音频删除
+				deleteAudioSrc(item){
+					this.form[item.field].value=[]
+					item.audioSrc = ''
+				},
+				// 附件上传
+				tirggerFileUpload(event, item){
+					for(let i =0;i<event.target.files.length;i++){
+						let fileUnit = event.target.files[i].name.substring(event.target.files[i].name.lastIndexOf(".") + 1);
+						if(fileUnit == 'MOV'){
+							fileUnit = 'mov'
+						}
+						if(item.content.value.typeLimit == 2){
+							if(item.content.value.enableType.indexOf(fileUnit)<0){
+								winTip('不支持这种类型的文件');
+								return
+							}else{
+								if(item.content.value.limit>0&&this.form[item.field].value.length >= item.content.value.limit){
+									winTip('文件数量不得大于'+item.content.value.limit);
+									return
+								}
+								if(item.content.value.size>0){
+									var fileSize = event.target.files[i].size / 1024
+									var	sizeNum = item.content.value.unit == 'MB'?item.content.value.size*1024:item.content.value.size
+									if(fileSize>sizeNum){
+									    canUpload = false
+									    winTip('文件大小不得大于'+item.content.value.size+(item.content.value.unit == 'MB'?'MB':'KB'));
+									    return
+									}
+								}
+								if((event.target.files[i].type).indexOf("image/") == 0){
+									let obj = {}
+									obj.type = 'img'
+									let file = event.target.files[i];
+									this.form[item.field].value.push(file)
+									//图片方向角 added by lzk
+									var Orientation = null;
+									if (file) {
+										// var URL = URL || webkitURL;
+										//获取照片方向角属性，用户旋转控制
+										EXIF.getData(file, function() {
+											// alert(EXIF.pretty(this));
+											EXIF.getAllTags(this);
+											//alert(EXIF.getTag(this, 'Orientation')); 
+											Orientation = EXIF.getTag(this, 'Orientation');
+											//return;
+										});
+									
+										var oReader = new FileReader();
+										oReader.onload = function(e) {
+											//var blob = URL.createObjectURL(file);
+											//_compress(blob, file, basePath);
+											var image = new Image();
+											image.src = e.target.result;
+											image.onload = function() {
+												var expectWidth = this.naturalWidth;
+												var expectHeight = this.naturalHeight;
+									
+												if (this.naturalWidth > this.naturalHeight && this.naturalWidth > 800) {
+													expectWidth = 800;
+													expectHeight = expectWidth * this.naturalHeight / this.naturalWidth;
+												} else if (this.naturalHeight > this.naturalWidth && this.naturalHeight > 1200) {
+													expectHeight = 1200;
+													expectWidth = expectHeight * this.naturalWidth / this.naturalHeight;
+												}
+												var canvas = document.createElement("canvas");
+												var ctx = canvas.getContext("2d");
+												canvas.width = expectWidth;
+												canvas.height = expectHeight;
+												ctx.drawImage(this, 0, 0, expectWidth, expectHeight);
+												var base64 = null;
+												//修复ios
+												if (navigator.userAgent.match(/iphone/i)) {
+													console.log('iphone');
+													//alert(expectWidth + ',' + expectHeight);
+													//如果方向角不为1，都需要进行旋转 added by lzk
+													if (Orientation != "" && Orientation != 1) {
+														// alert('旋转处理');
+														switch (Orientation) {
+															case 6: //需要顺时针（向左）90度旋转
+																// alert('需要顺时针（向左）90度旋转');
+																rotateImg(this, 'left', canvas);
+																break;
+															case 8: //需要逆时针（向右）90度旋转
+																// alert('需要顺时针（向右）90度旋转');
+																rotateImg(this, 'right', canvas);
+																break;
+															case 3: //需要180度旋转
+																// alert('需要180度旋转');
+																rotateImg(this, 'right', canvas); //转两次
+																rotateImg(this, 'right', canvas);
+																break;
+														}
+													}
+									
+													/*var mpImg = new MegaPixImage(image);
+													mpImg.render(canvas, {
+														maxWidth: 800,
+														maxHeight: 1200,
+														quality: 0.8,
+														orientation: 8
+													});*/
+													base64 = canvas.toDataURL("image/jpeg", 0.8);
+												} else if (navigator.userAgent.match(/Android/i)) { // 修复android
+													var encoder = new JPEGEncoder();
+													base64 = encoder.encode(ctx.getImageData(0, 0, expectWidth, expectHeight), 80);
+												} else {
+													//alert(Orientation);
+													if (Orientation != "" && Orientation != 1) {
+														//alert('旋转处理');
+														switch (Orientation) {
+															case 6: //需要顺时针（向左）90度旋转
+																// alert('需要顺时针（向左）90度旋转');
+																rotateImg(this, 'left', canvas);
+																break;
+															case 8: //需要逆时针（向右）90度旋转
+																// alert('需要顺时针（向右）90度旋转');
+																rotateImg(this, 'right', canvas);
+																break;
+															case 3: //需要180度旋转
+																// alert('需要180度旋转');
+																rotateImg(this, 'right', canvas); //转两次
+																rotateImg(this, 'right', canvas);
+																break;
+														}
+													}
+									
+													base64 = canvas.toDataURL("image/jpeg", 0.8);
+												}
+												item.fileList.push(base64)
+											};
+										};
+										oReader.readAsDataURL(file);
+									}
+								}else{
+									let obj = {}
+									obj.type = 'noImg'
+									obj.value = event.target.files[i].name
+									this.form[item.field].value.push(event.target.files[i])
+									item.fileList.push(obj)
+								}
+							}
+							// console.log(item.content.value.enableType.indexOf(fileUnit))
+						}else if(item.content.value.typeLimit == 3){
+							
+							if(item.content.value.disableType.indexOf(fileUnit)<0){
+								if(item.content.value.limit>0&&this.form[item.field].value.length >= item.content.value.limit){
+									winTip('文件数量不得大于'+item.content.value.limit);
+									return
+								}
+								if(item.content.value.size>0){
+									var fileSize = event.target.files[i].size / 1024
+									var	sizeNum = item.content.value.unit == 'MB'?item.content.value.size*1024:item.content.value.size
+									if(fileSize>sizeNum){
+									    canUpload = false
+									    winTip('文件大小不得大于'+item.content.value.size+(item.content.value.unit == 'MB'?'MB':'KB'));
+									    return
+									}
+								}
+								if((event.target.files[i].type).indexOf("image/") == 0){
+									let obj = {}
+									obj.type = 'img'
+									let file = event.target.files[i];
+									this.form[item.field].value.push(file)
+									//图片方向角 added by lzk
+									var Orientation = null;
+									if (file) {
+										// var URL = URL || webkitURL;
+										//获取照片方向角属性，用户旋转控制
+										EXIF.getData(file, function() {
+											// alert(EXIF.pretty(this));
+											EXIF.getAllTags(this);
+											//alert(EXIF.getTag(this, 'Orientation')); 
+											Orientation = EXIF.getTag(this, 'Orientation');
+											//return;
+										});
+									
+										var oReader = new FileReader();
+										oReader.onload = function(e) {
+											//var blob = URL.createObjectURL(file);
+											//_compress(blob, file, basePath);
+											var image = new Image();
+											image.src = e.target.result;
+											image.onload = function() {
+												var expectWidth = this.naturalWidth;
+												var expectHeight = this.naturalHeight;
+									
+												if (this.naturalWidth > this.naturalHeight && this.naturalWidth > 800) {
+													expectWidth = 800;
+													expectHeight = expectWidth * this.naturalHeight / this.naturalWidth;
+												} else if (this.naturalHeight > this.naturalWidth && this.naturalHeight > 1200) {
+													expectHeight = 1200;
+													expectWidth = expectHeight * this.naturalWidth / this.naturalHeight;
+												}
+												var canvas = document.createElement("canvas");
+												var ctx = canvas.getContext("2d");
+												canvas.width = expectWidth;
+												canvas.height = expectHeight;
+												ctx.drawImage(this, 0, 0, expectWidth, expectHeight);
+												var base64 = null;
+												//修复ios
+												if (navigator.userAgent.match(/iphone/i)) {
+													console.log('iphone');
+													//alert(expectWidth + ',' + expectHeight);
+													//如果方向角不为1，都需要进行旋转 added by lzk
+													if (Orientation != "" && Orientation != 1) {
+														// alert('旋转处理');
+														switch (Orientation) {
+															case 6: //需要顺时针（向左）90度旋转
+																// alert('需要顺时针（向左）90度旋转');
+																rotateImg(this, 'left', canvas);
+																break;
+															case 8: //需要逆时针（向右）90度旋转
+																// alert('需要顺时针（向右）90度旋转');
+																rotateImg(this, 'right', canvas);
+																break;
+															case 3: //需要180度旋转
+																// alert('需要180度旋转');
+																rotateImg(this, 'right', canvas); //转两次
+																rotateImg(this, 'right', canvas);
+																break;
+														}
+													}
+									
+													/*var mpImg = new MegaPixImage(image);
+													mpImg.render(canvas, {
+														maxWidth: 800,
+														maxHeight: 1200,
+														quality: 0.8,
+														orientation: 8
+													});*/
+													base64 = canvas.toDataURL("image/jpeg", 0.8);
+												} else if (navigator.userAgent.match(/Android/i)) { // 修复android
+													var encoder = new JPEGEncoder();
+													base64 = encoder.encode(ctx.getImageData(0, 0, expectWidth, expectHeight), 80);
+												} else {
+													//alert(Orientation);
+													if (Orientation != "" && Orientation != 1) {
+														//alert('旋转处理');
+														switch (Orientation) {
+															case 6: //需要顺时针（向左）90度旋转
+																// alert('需要顺时针（向左）90度旋转');
+																rotateImg(this, 'left', canvas);
+																break;
+															case 8: //需要逆时针（向右）90度旋转
+																// alert('需要顺时针（向右）90度旋转');
+																rotateImg(this, 'right', canvas);
+																break;
+															case 3: //需要180度旋转
+																// alert('需要180度旋转');
+																rotateImg(this, 'right', canvas); //转两次
+																rotateImg(this, 'right', canvas);
+																break;
+														}
+													}
+									
+													base64 = canvas.toDataURL("image/jpeg", 0.8);
+												}
+												item.fileList.push(base64)
+											};
+										};
+										oReader.readAsDataURL(file);
+									}
+								}else{
+									let obj = {}
+									obj.type = 'noImg'
+									obj.value = event.target.files[i].name
+									this.form[item.field].value.push(event.target.files[i])
+									item.fileList.push(obj)
+								}
+							}else{
+								winTip('不支持这种类型的文件');
+								return
+							}
+						}else{
+							if(item.content.value.limit>0&&this.form[item.field].value.length >= item.content.value.limit){
+								winTip('文件数量不得大于'+item.content.value.limit);
+								return
+							}
+							if(item.content.value.size>0){
+								var fileSize = event.target.files[i].size / 1024
+								var	sizeNum = item.content.value.unit == 'MB'?item.content.value.size*1024:item.content.value.size
+								if(fileSize>sizeNum){
+								    canUpload = false
+								    winTip('文件大小不得大于'+item.content.value.size+(item.content.value.unit == 'MB'?'MB':'KB'));
+								    return
+								}
+							}
+							if((event.target.files[i].type).indexOf("image/") == 0){
+								let obj = {}
+								obj.type = 'img'
+								let file = event.target.files[i];
+								this.form[item.field].value.push(file)
+								let url = "";
+								var reader = new FileReader();
+								reader.readAsDataURL(file);
+								let that = this;
+								reader.onload = function(e) {
+									url = this.result.substring(this.result.indexOf(",") + 1)
+									obj.value = "data:image/png;base64," + url
+									item.fileList.push(obj)
+								}
+							}else{
+								let obj = {}
+								obj.type = 'noImg'
+								obj.value = event.target.files[i].name
+								this.form[item.field].value.push(event.target.files[i])
+								item.fileList.push(obj)
+							}
+						}
+					}
+					
+					this.$refs.fileUpload[0].value = null
+				},
+				// 附件删除
+				deleteFileList(index,item){
+					item.fileList.splice(index, 1);
+					this.form[item.field].value.splice(index, 1);
+				},
+				// 单选
+				chagerRadio(inx,item){
+					item.radio = inx.value
+					this.form[item.field].value = inx.value
+					// console.log(this.form)
+				},
+				// 多选
+				chagerCheckbox(inx,item){
+					inx.isPitch = !inx.isPitch
+					if(this.form[item.field].value.indexOf(inx.value)<0){
+						this.form[item.field].value.push(inx.value)
+					}else{
+						this.form[item.field].value.splice(this.form[item.field].value.indexOf(inx.value), 1);
+					}
+					// console.log(this.form[item.field])
+				},
+				// 打开下拉选择
+				openSelect(item){
+					let that = this
+					let data = item.content.value.options.map(d=>{
+						d.text = d.label
+						return d
+					})
+					var picker = new mui.PopPicker();
+					picker.setData(data);
+					picker.show(function (selectItems) {
+						item.selectText = selectItems[0].text
+						that.form[item.field].value = selectItems[0].value
+						// console.log(that.form)
+					})
+				},
+				// 打开联级下拉选框
+				openCascade(item){
+					let that = this
+					let data = item.content.option.options
+					const loop = function (data) {
+					if (data instanceof Array && data.length) {
+						return data.map(d => {
+							d.text = d.name
+							if (d.children instanceof Array && d.children.length) {
+							  d.children = loop(d.children)
+							}
+							return d
+						  })
+						}
+					}
+					let datas = loop(data)
+					var picker = new mui.PopPicker({
+					    layer: 4
+					});
+					picker.setData(datas)
+					picker.show(function(SelectedItem) {
+						let s = ''
+						let arr = ''
+						for(var i =0 ;i < SelectedItem.length;i++){
+							if(i==0 && SelectedItem[i].text){
+								s += SelectedItem[i].text
+								arr += SelectedItem[i].text
+							}else if(SelectedItem[i].text){
+								s += '-'+SelectedItem[i].text
+								arr += ','+SelectedItem[i].text
+							}
+						}
+						item.cascadeText = s
+						that.form[item.field].value = arr
+					})
+				},
+				// 打开时间选择器
+				openDatetime(item){
+					var that = this
+					if(item.content.value.type == 'datetime'){
+						var dtPicker = new mui.DtPicker()
+					}else if(item.content.value.type == 'date'){
+						var dtPicker = new mui.DtPicker({"type": "date"})
+					}else if(item.content.value.type == 'time'){
+						var dtPicker = new mui.DtPicker({"type": "time"})
+					}
+					dtPicker.show(function (selectItems) {
+						var nowTime = selectItems.y.text+'-'+selectItems.m.text+'-'+selectItems.d.text+' '+selectItems.h.text+':'+selectItems.i.text
+						var thisTime = nowTime;
+						thisTime = thisTime.replace(/-/g, '/');
+						var time = new Date(thisTime);
+						time = time.getTime();
+						let now= parseInt(time/1000)
+						item.datetimeText = that.formatDate(item.format,now)
+						that.form[item.field].value = that.formatDate(item.format,now)
+					})
+				},
+				// 打开区间时间选择器
+				openDatetimerange(item,is){
+					var that = this
+					if(item.content.value.type == 'datetime'){
+						var dtPicker = new mui.DtPicker()
+					}else if(item.content.value.type == 'date'){
+						var dtPicker = new mui.DtPicker({"type": "date"})
+					}else if(item.content.value.type == 'time'){
+						var dtPicker = new mui.DtPicker({"type": "time"})
+					}
+					dtPicker.show(function (selectItems) { 
+						if(is===1){
+							var nowTime = selectItems.y.text+'-'+selectItems.m.text+'-'+selectItems.d.text+' '+selectItems.h.text+':'+selectItems.i.text
+							var thisTime = nowTime;
+							thisTime = thisTime.replace(/-/g, '/');
+							var time = new Date(thisTime);
+							time = time.getTime();
+							let now= parseInt(time/1000)
+							item.startData = that.formatDate(item.format,now)
+							item.dataTime[0] = that.formatDate(item.format,now)
+						}else if(is===2){
+							var nowTime = selectItems.y.text+'-'+selectItems.m.text+'-'+selectItems.d.text+' '+selectItems.h.text+':'+selectItems.i.text
+							var thisTime = nowTime;
+							thisTime = thisTime.replace(/-/g, '/');
+							var time = new Date(thisTime);
+							time = time.getTime();
+							let now= parseInt(time/1000)
+							item.endData = that.formatDate(item.format,now)
+							item.dataTime[1] = that.formatDate(item.format,now)
+						}
+						that.form[item.field].value = item.dataTime[0] + '-' +item.dataTime[1]
+						console.log(that.form[item.field].value)
+					})
+				},
+				// 获取验证码
+				genCapatch(){
+					let that = this
+					api.GET('/common/kaptcha', '', function(res) {
+						if(res.code == 200){
+							that.form.sessionId = res.data.sessionId
+							document.getElementById('capatchImg').src = "data:image/png;base64," + res.data.img
+						}
+						
+					})
+				},
+				// 获取地址树数据
+				getAreaTree(){
+					let that = this
+					api.GET('/area/tree', '', function(res) {
+						if (res.code == 200) {
+							const loop = function (data) {
+							if (data instanceof Array && data.length) {
+								return data.map(d => {
+									d.text = d.areaName
+									if (d.children instanceof Array && d.children.length) {
+									  d.children = loop(d.children)
+									}
+									return d
+								  })
+								}
+							}
+							that.areaList = loop(res.data)
+						}
+					})	
+				},	
+				// 打开地址选择
+				openAddress(item){
+					let that = this
+					var picker = new mui.PopPicker({
+					    layer: 3
+					});
+					picker.setData(that.areaList)
+					picker.show(function(SelectedItem) {
+						let s = ''
+						for(var i =0 ;i < SelectedItem.length;i++){
+							if(i==0 && SelectedItem[i].text){
+								s += SelectedItem[i].text
+								that.form[item.field].value[item.field + 'P'] = SelectedItem[i].areaCode
+							}else if(i==1 && SelectedItem[i].text){
+								s += '-'+SelectedItem[i].text
+								that.form[item.field].value[item.field + 'C'] = SelectedItem[i].areaCode
+							}else if(i==2 && SelectedItem[i].text){
+								s += '-'+SelectedItem[i].text
+								that.form[item.field].value[item.field + 'A'] = SelectedItem[i].areaCode
+							}
+						}
+						item.addressText = s
+					})
+				},
+				// 打开城市选择
+				openCity(item){
+					let that = this
+					var picker = new mui.PopPicker({
+					    layer: 2
+					});
+					picker.setData(that.areaList)
+					picker.show(function(SelectedItem) {
+						let s = ''
+						for(var i =0 ;i < SelectedItem.length;i++){
+							if(i==0 && SelectedItem[i].text){
+								s += SelectedItem[i].text
+								that.form[item.field].value[item.field + 'P'] = SelectedItem[i].areaCode
+							}else if(i==1 && SelectedItem[i].text){
+								s += '-'+SelectedItem[i].text
+								that.form[item.field].value[item.field + 'C'] = SelectedItem[i].areaCode
+							}
+						}
+						item.cityText = s
+					})
+				},
+				// 地址数据转化
+				siteChange(d,index){
+					let areaTree = []
+					var that = this
+					api.GET('/area/tree', '', function(res) {
+						if (res.code == 200) {
+							areaTree = res.data
+							let areaArry = []
+							let areaArrys = []
+							let areaText = ''
+							if(d.defValue.address){
+								that.form[d.field].value[d.field] = d.defValue.address
+								that.list[index].addressDetail = d.defValue.address
+								for(var i = 0;i< res.data.length;i++){
+									if(res.data[i].id == d.defValue.areaArry[0]){
+										that.form[d.field].value[d.field + 'P'] = res.data[i].areaCode
+										areaText += res.data[i].areaName
+										areaArry = res.data[i].children
+										for(var j = 0;j< areaArry.length;j++){
+											if(areaArry[j].id == d.defValue.areaArry[1]){
+												that.form[d.field].value[d.field + 'C'] = areaArry[j].areaCode
+												areaText += '-'+areaArry[j].areaName
+												areaArrys = areaArry[j].children
+												for(var l = 0;l< areaArrys.length;l++){
+													if(areaArrys[l].id == d.defValue.areaArry[2]){
+														that.form[d.field].value[d.field + 'A'] = areaArrys[l].areaCode
+														areaText += '-'+areaArrys[l].areaName
+														that.list[index].addressText = areaText
+													}
+													
+												}
+											}
+										}
+									}
+								}
+								
+							}
+							
+						}
+					})
+					
+				},
+				// 城市数据转化
+				cityChange(d,index){
+					let areaTree = []
+					var that = this
+					api.GET('/area/tree', '', function(res) {
+						if (res.code == 200) {
+							areaTree = res.data
+							let areaArry = []
+							let areaText = ''
+							if(d.defValue.provinceCode){
+								for(var i = 0;i< res.data.length;i++){
+									if(res.data[i].id == d.defValue.provinceCode){
+										that.form[d.field].value[d.field + 'P'] = res.data[i].areaCode
+										areaText += res.data[i].areaName
+										areaArry = res.data[i].children
+										for(var j = 0;j< areaArry.length;j++){
+											if(areaArry[j].id == d.defValue.cityCode){
+												that.form[d.field].value[d.field + 'C'] = areaArry[j].areaCode
+												areaText += '-'+areaArry[j].areaName
+												that.list[index].cityText = areaText
+											}
+										}
+									}
+								}
+								
+							}
+						}
+					})
+				},
+				// 提交
+				haleSubmit(){
+					if(this.viewStatus !== 1){
+						winTip('表单未发布，无法提交！')
+						return 
+					}
+					this.loading=true
+					let data = new FormData();
+					data.append('formId',this.form.formId)
+					for(var item in this.form){
+					  if(this.form[item].isRequired&&!this.form[item].value){
+						winTip('请认真填写所有必填项');
+						this.loading = false
+					    return
+						}else if(this.form[item].isRequired&&this.form[item].value instanceof Array &&this.form[item].value.length<1){
+						winTip('请认真填写所有必填项');
+						this.loading = false
+						return
+						}else if(this.form[item].isRequired&&item.indexOf("address_")>=0&&(!this.form[item].value[item+'A']||!this.form[item].value[item+'P']||!this.form[item].value[item+'C']||!this.form[item].value[item])){
+							winTip('请认真填写所有必填项');
+							this.loading = false
+							return
+						}else if(this.form[item].isRequired&&item.indexOf("city_")>=0&&(!this.form[item].value[item+'P']||!this.form[item].value[item+'C'])){
+							winTip('请认真填写所有必填项');
+							this.loading = false
+							return
+						}else if(this.form[item].isOtherOptionRequired&&item.indexOf("radio_")>=0&&this.form[item].value ==999&& !this.form[item+'Txt']){
+							winTip('请认真填写所有必填项');
+							this.loading = false
+							return
+						}else if(this.form[item].isOtherOptionRequired&&item.indexOf("sex_")>=0&&this.form[item].value ==999&& !this.form[item+'Txt']){
+							winTip('请认真填写所有必填项');
+							this.loading = false
+							return
+						}else if(this.form[item].isOtherOptionRequired&&item.indexOf("checkbox_") >= 0&&this.form[item].value.indexOf(999) >= 0&& !this.form[item+'Txt']){
+							winTip('请认真填写所有必填项');
+							this.loading = false
+							return
+						}else if(this.form[item].isOtherOptionRequired&&item.indexOf("select_") >= 0&&this.form[item].value==999&& !this.form[item+'Txt']){
+							winTip('请认真填写所有必填项');
+							this.loading = false
+							return
+						}else {
+					    if(this.form[item].value instanceof Array&&this.form[item].value.length){
+					      if(this.form[item].value[0] instanceof Object){
+					        for(var file in this.form[item].value) {
+					          data.append(item,this.form[item].value[file])
+					        }
+					      } else {
+					        for (let i = 0; i <  this.form[item].value.length; i++) {
+					        	data.append(item, this.form[item].value[i])
+					        }
+						  }
+							
+					    } else if(this.form[item].value instanceof Object) {
+							let obj = this.form[item].value
+							for(let key  in obj){
+								data.append(key,obj[key]||'')
+						    }
+					    } else if(typeof(this.form[item]) =='string'&& this.form[item] &&item!=='formId'&&item!=='captcha'&&item!=='sessionId') {
+					      data.append(item,this.form[item] ||'')
+					    } else if(this.form[item].value!==null&&item!=='formId'&&item!=='captcha'&&item!=='sessionId') {
+					      data.append(item,this.form[item].value||'')
+					    }
+					  }
+					}
+					if(this.form.sessionId){
+						if(this.form.captcha){
+							data.append('captcha', this.form.captcha)
+							data.append('sessionId', this.form.sessionId)
+						}else{
+							winTip('请填写验证码');
+							this.loading = false
+							return
+						}
+						
+					}
+					let that = this
+					axios.post('${base}/smartForm', data,{
+					    headers:{
+							'JEECMS-Auth-Token': localStorage.getItem('JEECMS-Auth-Token')||'',
+							'Redirect-Header': false,
+					       "Content-Type": "multipart/form-data" 
+					    }
+					}).then(function(response) {
+						if (response.status == 200) {
+							if(response.data.code==200){
+								if(response.data.data.processType == 1){
+									if(response.data.data.prompt){
+										that.succeedText = response.data.data.prompt
+										that.isSucceed=true
+										// that.getContentPage()
+									}else{
+										that.succeedText = '提交成功，感谢您的参与！'
+										that.isSucceed=true
+										// that.getContentPage()
+									}
+								}else if(response.data.data.processType == 2){
+									window.location.href = response.data.data.prompt
+								}else{
+									that.succeedText = '提交成功，感谢您的参与！'
+									that.isSucceed=true
+								}
+								
+							}else{
+								errorTip(response.data.message)
+							}
+							
+						} else {
+							errorTip(response.data.message)
+						}
+						that.loading = false
+					}).catch(function(error) {
+						console.log(error)
+						that.loading = false
+					})
+					
+				},
+				// 表单浏览次数
+				getStatistics(){
+					api.GET('/smartForm/view/' + getUrlArg('id'), '', function(res) {})
+				},
+				shanchu(item){
+					this.$refs[item.field][0].value = ''
+					this.form[item.field].value=''
+					item.deleteIcon=false
+					this.$refs[item.field][0].previousElementSibling.style.display = 'none'
+				},
+				// 微信id
+				getWeixin(data){
+					var isOnlyWechat = data.isOnlyWechat
+					var ua =navigator.userAgent.toLowerCase();
+					var isWeixin = ua.indexOf('micromessenger') != -1;
+					var that = this
+					if(isOnlyWechat&&!isWeixin){
+						that.isWeChat = true
+					}else{
+						if(isWeixin){
+							that.wechatRestrict()//请求微信接口-限制
+							that.wechatSign();//请求微信接口-分享
+						}
+					}
+					
+				},
+				wechatRestrict(){
+					var that = this;
+					var thisHref = window.location.href;
+					api.GET('/weChat/getWxCode',{"url": thisHref}, function(res) {
+						if(res.code===200){
+							if(res.data){
+								console.log(res.data);
+								if(!res.data.openId){
+									window.location.href=res.data.tokenUrl;
+								}
+							}
+						} else {
+							winTip(res.message)
+						}
+					})
+				},
+				wechatSign(){
+					// alert('调用微信分享接口')
+					var url = document.URL;
+					var that = this
+					if(url){
+						api.GET('/wechat/sign',{"url": url}, function(res) {
+							if(res.code===200){
+								// alert('调用成功')
+								// alert('appId:'+res.data.appId)
+								that.shareJs(res.data)
+							} else {
+								winTip(res.message)
+							}
+						})
+					}
+				},
+				//微信分享
+				shareJs(jssdk, options){
+					// alert('进入微信分享')
+					var that = this
+					wx.config({
+					    debug: false,//是否开启调试功能，这里关闭！
+					    appId: jssdk.appId,//appid
+					    timestamp: parseInt(jssdk.timestamp), //时间戳
+					    nonceStr: jssdk.nonceStr, //生成签名的随机字符串
+					    signature: jssdk.signature,//签名
+					    jsApiList: [
+					        'onMenuShareTimeline',
+					        'onMenuShareAppMessage'
+					    ]
+					});
+					// alert(that.smartDataObj)
+					var defaults = {
+					    title: that.smartDataObj.title,
+						desc: that.smartDataObj.shareDesc,
+						link: location.href, //分享页面地址,不能为空，这里可以传递参数！！！！！！！
+						imgUrl:(that.smartDataObj.shareLogo&&that.smartDataObj.shareLogo.url)?(location.protocol + "//" + location.host + that.smartDataObj.shareLogo.url):'' //分享是封面图片，不能为空
+					}
+					// alert(that.smartDataObj.title)
+					// alert(that.smartDataObj.description)
+					// alert(location.href)
+					// alert(defaults.imgUrl)
+					// 合并对象，后面的替代前面的！
+					 wx.ready(function () {
+					    var thatopts = defaults;
+					    // 分享到朋友圈
+					    wx.onMenuShareTimeline({
+					        title: thatopts.title, // 分享标题
+					        desc: thatopts.desc, // 分享描述
+					        link: thatopts.link, // 分享链接
+					        imgUrl: thatopts.imgUrl, // 分享图标
+					        success: function () {
+					             //alert("成功");
+									   //alert(thatopts.imgUrl);
+					        },
+					        cancel: function () {
+					             //alert("失败")
+					        }
+					    });
+					    // 分享给朋友
+					    wx.onMenuShareAppMessage({
+					        title: thatopts.title, // 分享标题
+					        desc: thatopts.desc, // 分享描述
+					        link: thatopts.link, // 分享链接
+					        imgUrl: thatopts.imgUrl, // 分享图标
+					        success: function () {
+					             //alert("成功");
+									   //alert(thatopts.imgUrl);
+					        },
+					        cancel: function () {
+					             //alert("失败")
+					        }
+					    });
+					 });
+				},
+				// 时间戳转时间格式
+				formatDate(format, timestamp){  
+					var a, jsdate=((timestamp) ? new Date(timestamp*1000) : new Date()); 
+					var pad = function(n, c){ 
+						if((n = n + "").length < c){ 
+							return new Array(++c - n.length).join("0") + n; 
+						} else { 
+							return n; 
+						} 
+					}; 
+					var txt_weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; 
+					var txt_ordin = {1:"st", 2:"nd", 3:"rd", 21:"st", 22:"nd", 23:"rd", 31:"st"}; 
+					var txt_months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];  
+					var f = { 
+						// Day 
+						d: function(){return pad(f.j(), 2)}, 
+						D: function(){return f.l().substr(0,3)}, 
+						j: function(){return jsdate.getDate()}, 
+						l: function(){return txt_weekdays[f.w()]}, 
+						N: function(){return f.w() + 1}, 
+						S: function(){return txt_ordin[f.j()] ? txt_ordin[f.j()] : 'th'}, 
+						w: function(){return jsdate.getDay()}, 
+						z: function(){return (jsdate - new Date(jsdate.getFullYear() + "/1/1")) / 864e5 >> 0}, 
+						
+						// Week 
+						W: function(){ 
+							var a = f.z(), b = 364 + f.L() - a; 
+							var nd2, nd = (new Date(jsdate.getFullYear() + "/1/1").getDay() || 7) - 1; 
+							if(b <= 2 && ((jsdate.getDay() || 7) - 1) <= 2 - b){ 
+								return 1; 
+							} else{ 
+								if(a <= 2 && nd >= 4 && a >= (6 - nd)){ 
+									nd2 = new Date(jsdate.getFullYear() - 1 + "/12/31"); 
+									return date("W", Math.round(nd2.getTime()/1000)); 
+								} else{ 
+									return (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0); 
+								} 
+							} 
+						}, 
+						
+						// Month 
+						F: function(){return txt_months[f.n()]}, 
+						m: function(){return pad(f.n(), 2)}, 
+						M: function(){return f.F().substr(0,3)}, 
+						n: function(){return jsdate.getMonth() + 1}, 
+						t: function(){ 
+							var n; 
+							if( (n = jsdate.getMonth() + 1) == 2 ){ 
+								return 28 + f.L(); 
+							} else{ 
+								if( n & 1 && n < 8 || !(n & 1) && n > 7 ){ 
+									return 31; 
+								} else{ 
+									return 30; 
+								} 
+							} 
+						}, 
+						
+						// Year 
+						L: function(){var y = f.Y();return (!(y & 3) && (y % 1e2 || !(y % 4e2))) ? 1 : 0}, 
+						//o not supported yet 
+						Y: function(){return jsdate.getFullYear()}, 
+						y: function(){return (jsdate.getFullYear() + "").slice(2)}, 
+						
+						// Time 
+						a: function(){return jsdate.getHours() > 11 ? "pm" : "am"}, 
+						A: function(){return f.a().toUpperCase()}, 
+						B: function(){ 
+							// peter paul koch: 
+							var off = (jsdate.getTimezoneOffset() + 60)*60; 
+							var theSeconds = (jsdate.getHours() * 3600) + (jsdate.getMinutes() * 60) + jsdate.getSeconds() + off; 
+							var beat = Math.floor(theSeconds/86.4); 
+							if (beat > 1000) beat -= 1000; 
+							if (beat < 0) beat += 1000; 
+							if ((String(beat)).length == 1) beat = "00"+beat; 
+							if ((String(beat)).length == 2) beat = "0"+beat; 
+							return beat; 
+						}, 
+						g: function(){return jsdate.getHours() % 12 || 12}, 
+						G: function(){return jsdate.getHours()}, 
+						h: function(){return pad(f.g(), 2)}, 
+						H: function(){return pad(jsdate.getHours(), 2)}, 
+						i: function(){return pad(jsdate.getMinutes(), 2)}, 
+						s: function(){return pad(jsdate.getSeconds(), 2)}, 
+						//u not supported yet 
+						
+						// Timezone 
+						//e not supported yet 
+						//I not supported yet 
+						O: function(){ 
+							var t = pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4); 
+							if (jsdate.getTimezoneOffset() > 0) t = "-" + t; else t = "+" + t; 
+							return t; 
+						}, 
+						P: function(){var O = f.O();return (O.substr(0, 3) + ":" + O.substr(3, 2))}, 
+						//T not supported yet 
+						//Z not supported yet 
+						
+						// Full Date/Time 
+						c: function(){return f.Y() + "-" + f.m() + "-" + f.d() + "T" + f.h() + ":" + f.i() + ":" + f.s() + f.P()}, 
+						//r not supported yet 
+						U: function(){return Math.round(jsdate.getTime()/1000)} 
+					}; 
+						
+					return format.replace(/[\\]?([a-zA-Z])/g, function(t, s){ 
+						if( t!=s ){ 
+							// escaped 
+							ret = s; 
+						} else if( f[s] ){ 
+							// a date function exists 
+							ret = f[s](); 
+						} else{ 
+							// nothing special 
+							ret = s; 
+						} 
+						return ret; 
+					}); 
+				},
+				// 输入格式验证
+				ruleValue(type,val){
+					// ['','只能输入中文',
+					// '只能输入英文',
+					// '只能输入数字(整数或小数)',
+					// '只能输入英文、数字',
+					// '只能输入整数',
+					// '只能输入中文、英文、数字',
+					// '只能输入邮箱',
+					// '只能输入手机号',
+					// '只能输入座机号',
+					// '只能输入手机或座机号',
+					// '只能输入身份证号',
+					// '只能输入邮政编码']
+					var arr = ['',/^[\u4e00-\u9fa5]{0,}$/,/^[A-Za-z]+$/,/^[+-]?(0|([1-9]\d*))(\.\d+)?$/,/^[A-Za-z0-9]+$/,/^[1-9]\d*$/,/^[\u4E00-\u9FA5A-Za-z0-9]+$/,/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,/^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/,/^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$/,/^(1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}||((\d{3,4}-)|\d{3.4}-)?\d{7,8})$/,/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/,/[1-9]\d{5}(?!\d)/];
+					var s = arr[parseInt(type)||0]
+					if(s&&s.test(val)){
+						return true
+					} else {
+						return false
+					}
+				},
+				inputDelete(item){
+					if(this.form[item.field].value){
+						this.$refs[item.field][0].previousElementSibling.style.display = 'block'
+					}else{
+						this.$refs[item.field][0].previousElementSibling.style.display = 'none'
+					}
+				},
+				inputDeleteShow(item){
+					this.$refs[item.field][0].previousElementSibling.style.display = 'block'
+				},
+				mouseOver(item){
+					// this.$refs[item.field][0].previousElementSibling.style.display = 'none'
+				},
+				verification(item){
+					if(!item.content.value.isInputLimit){
+						return
+					}
+					var verify = ['','chinese','english','float','enNum','number','cnEnNum','email','mobile','phone','phoneAll','identity','postal']
+					let type = verify.indexOf(item.content.value.inputLimit)
+					if(!this.ruleValue(type,this.form[item.field].value)){
+						this.$refs[item.field][0].value = ''
+						this.form[item.field].value=''
+						var arr = ['','只能输入中文','只能输入英文','只能输入数字(整数或小数)','只能输入英文、数字','只能输入整数','只能输入中文、英文、数字','只能输入邮箱','只能输入手机号','只能输入座机号','只能输入手机或座机号','只能输入身份证号','只能输入邮政编码']
+						 winTip(arr[type]);
+					}
+				}
+			}
+		})
+		
+		//对图片旋转处理 added by lzk
+		function rotateImg(img, direction, canvas) {
+			//alert(img);
+			//最小与最大旋转方向，图片旋转4次后回到原方向  
+			var min_step = 0;
+			var max_step = 3;
+			//var img = document.getElementById(pid);  
+			if (img == null) return;
+			//img的高度和宽度不能在img元素隐藏后获取，否则会出错  
+			var height = img.height;
+			var width = img.width;
+			//var step = img.getAttribute('step');  
+			var step = 2;
+			if (step == null) {
+				step = min_step;
+			}
+			if (direction == 'right') {
+				step++;
+				//旋转到原位置，即超过最大值  
+				step > max_step && (step = min_step);
+			} else {
+				step--;
+				step < min_step && (step = max_step);
+			}
+			//img.setAttribute('step', step);  
+			/*var canvas = document.getElementById('pic_' + pid);  
+			if (canvas == null) {  
+			    img.style.display = 'none';  
+			    canvas = document.createElement('canvas');  
+			    canvas.setAttribute('id', 'pic_' + pid);  
+			    img.parentNode.appendChild(canvas);  
+			}  */
+			//旋转角度以弧度值为参数  
+			var degree = step * 90 * Math.PI / 180;
+			var ctx = canvas.getContext('2d');
+			switch (step) {
+				case 0:
+					canvas.width = width;
+					canvas.height = height;
+					ctx.drawImage(img, 0, 0);
+					break;
+				case 1:
+					canvas.width = height;
+					canvas.height = width;
+					ctx.rotate(degree);
+					ctx.drawImage(img, 0, -height);
+					break;
+				case 2:
+					canvas.width = width;
+					canvas.height = height;
+					ctx.rotate(degree);
+					ctx.drawImage(img, -width, -height);
+					break;
+				case 3:
+					canvas.width = height;
+					canvas.height = width;
+					ctx.rotate(degree);
+					ctx.drawImage(img, -width, 0);
+					break;
+			}
+		}
+	</script>
+</html>

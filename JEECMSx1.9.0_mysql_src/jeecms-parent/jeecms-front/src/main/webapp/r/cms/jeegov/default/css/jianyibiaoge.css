@@ -1,0 +1,180 @@
+/* <!-- 政民互动模块-建议建议表格页样式  */
+body {
+    height: 100%;
+}
+.subTitle .title{
+    margin-top: 40px;
+    font-size:24px;
+    line-height: 24px;
+    font-weight:300;
+    color:#333;
+} 
+
+.mainBox {
+    margin-top: 35px;
+}
+.mainBox h2 {
+    margin: 0;
+    font-size:16px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+    line-height: 25px;
+}
+.form-title {
+    margin-top: 38px;
+    padding:16px 33px;
+    height:50px;
+    background:rgba(245,245,245,1);
+    font-size:18px;
+    font-weight:normal;
+    color:rgba(0,64,153,1);
+}
+.form-content {
+    margin-top: 36px;
+}
+
+.control-label {
+ 
+}
+.form-content input{
+    margin-left: 20px;
+    width:302px;
+    height:50px;
+    border-radius: 0;
+}
+.form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+}
+.form-group {
+    margin-bottom: 30px;
+}
+.form-content .control-label {
+    font-size:16px;
+    font-weight:normal;
+    color:#333333;
+    line-height:27px;
+}
+.inputWidt {
+    width:706px;
+    height:50px;
+}
+.inputWidt input {
+    padding-left: 20px;
+}
+.imp {
+    /* position: absolute;
+    top: 9;
+    right: 33px; */
+    margin-top: 12px;
+    color: #EA3526;
+
+}
+.style {
+    margin-left: 26px;
+}
+.textarea {
+    width: 706px;
+}
+
+.form-group textarea {
+    padding-left: 20px;
+    padding-top: 14px;
+    min-width: 706px;
+    max-width: 706px;
+    height: 150px;
+    margin-left: 20px;
+    border-radius: 0;
+
+}
+.inputWidt input {
+    padding-left: 20px;
+}
+.inputWidt .code {
+    margin-left: 14px;
+    margin-top: 11px;
+    width: 102px;
+    height: 30px;
+    background-color: #ccc;
+}
+.code img {
+    width: 100%;
+    height: 100%;
+}
+.changeImg {
+    margin-top: 10px;
+    width: 100px;
+    margin-left: 12px;
+}
+.changeImg a {
+    
+    font-size:14px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+    line-height:27px;
+}
+.check input {
+    margin-top: 7px;
+    width: 15px;
+    height: 15px;
+}
+.check .radio-inline span {
+    margin-left: 8px;
+    font-size:16px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:27px;
+}
+.checkInput {
+    margin-left: 3px;
+}
+.form-group .btn {
+    margin-top: 41px;
+    width:200px;
+    height:50px;
+    background-color: #002A66;
+    font-size:18px;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+}
+.form-group .btn:active {
+    background-color: #003580;
+}
+/* 上传 */
+.uploading {
+    margin-left: 20px;
+}
+.uploading input {
+    width: 1px;
+    height: 1px;
+    display: none;
+}
+.uploading .iconfont {
+    color: #004099;
+    font-size: 21px;
+    line-height: 39px;
+}
+.uploading-worning {
+    margin-left: 13px;
+    font-size:16px;
+    font-weight:normal;
+    color:rgba(153,153,153,1);
+    line-height:27px;
+}
+.category {
+
+    margin-left: 6px;
+    line-height: 30px;
+    font-size:16px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+}
+.category input {
+    margin-top: 8px;
+    width: 15px;
+    height: 15px;
+}
+.checkbox-inline, .radio-inline {
+    padding-left: 29px;
+}
+

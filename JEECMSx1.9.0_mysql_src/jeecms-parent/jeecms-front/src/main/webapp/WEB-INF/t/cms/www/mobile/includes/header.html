@@ -1,0 +1,288 @@
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" type="text/css" href="${mobileRes}/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="${mobileRes}/css/public.css" />
+<link rel="stylesheet" type="text/css" href="${mobileRes}/css/password.css" />
+<script src="${mobileRes}/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${mobileRes}/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="${mobileRes}/js/crypto-js.js" type="text/javascript" charset="utf-8"></script>
+<script src="${mobileRes}/js/bscroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px'
+	localStorage.setItem('base', '${base}');
+</script>
+<script src="${mobileRes}/js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${mobileRes}/js/app.js" type="text/javascript" charset="utf-8"></script>
+<div id="topbar" class="header" :style="{background:headerBack}">
+	<div class="header-left">
+		<a href="/" v-if="type == 1"><img src="${mobileRes}/images/icon/shouye.png"></a>
+		<i v-if="type == 2" @click="back()"><img src="${mobileRes}/images/icon/houtui.png"></i>
+		<a href="/" v-if="type == 3"><img src="${mobileRes}/images/icon/logo-bai.png"></a>
+		<a :href="backHref" v-if="type == 4"><img src="${mobileRes}/images/icon/houtui.png"></a>
+		<a href="/" v-if="type == 5"><img src="${mobileRes}/images/icon/shouye-bai.png"></a>
+		<i v-if="type == 1 || type == 5" :style="{'background-color':divideColor||'#E6E6E6'}" class="header-divide"></i>
+		<i v-if="type == 6" @click="back()"><img src="${mobileRes}/images/icon/houtui.png"></i>
+		<span v-if="channelTitle" :style="{'color':channelTitleColor||'#333333'}" class="header-channelTitle Medium" v-text="channelTitle"></span>
+	</div>
+	<span v-if="contentTitle" :style="{'color':contentTitleColor||'#333333'}" class="header-contentTitle Medium" v-text="contentTitle"></span>
+	<div class="header-right">
+		<!-- <button class="btn btn-red" type="button" id="postMessage">postMessage</button> -->
+		[#if (channel.id)??]
+		<a href="${base}/content-channel.htm?channelId=${(channel.id)!}" v-if="type == 3"><i><img src="${mobileRes}/images/icon/caidan.png"></i></a>
+		[#else]
+		<a href="${base}/content-channel.htm" v-if="type == 3"><i><img src="${mobileRes}/images/icon/caidan.png"></i></a>
+		[/#if]
+		[#if type?? &&type= 3]
+		<div class='stateUser2'></div>
+		[/#if]
+		<i v-if="type == 3"><a href="${baseHtm}/search.htm"><img src="${mobileRes}/images/icon/sousuo-bai.png"></a></i>
+		[#if (channel.id)??]
+		<a href="${base}/content-channel.htm?channelId=${(channel.id)!}"  v-if="type == 5">
+		<i><img src="${mobileRes}/images/icon/caidan.png"></i></a>
+		[#else]
+		<a href="${base}/content-channel.htm"  v-if="type == 5">
+		<i><img src="${mobileRes}/images/icon/caidan.png"></i></a>
+		[/#if]
+		[#if type?? &&type= 5]
+		<div class='stateUser2'></div>
+		[/#if]
+		[#if (channel.id)??]
+		<a href="${base}/content-channel.htm?channelId=${(channel.id)!}" v-if="type != 3&&type != 5 && type != 6"><i><img src="${mobileRes}/images/icon/cebian-hei.png"></i></a>
+		[#else]
+		<a href="${base}/content-channel.htm" v-if="type != 3&&type != 5 && type != 6"><i><img src="${mobileRes}/images/icon/cebian-hei.png"></i></a>
+		[/#if]
+		[#if type?? &&type != 3&&type != 5 && type != 6]
+		<div class='stateUser'></div>
+		[/#if]
+	</div>
+	<div class="Return" v-if="type!=3">
+	<div class="returnHome">
+		<a href="/">
+			<img src="${mobileRes}/images/icon/shouye-b.png" alt="">
+		</a>
+	</div>
+	<div class="returnTop">
+		<img src="${mobileRes}/images/icon/top.png" alt="" class="back-to-top">
+	</div>
+
+</div>
+<div class="Return home" v-if="type==3">
+	<div class="returnTop">
+		<img src="${mobileRes}/images/icon/top.png" alt="" class="back-to-top">
+	</div>
+
+</div>
+</div>
+<!-- 分级保护修改秘密弹窗 start  css文件是password.css  在resource/css----------- -->
+<div class="passDig" >
+	<div class="passdig-bg"></div>
+	<div class="passdig-body">
+		<p>修改密码</p>
+		<input id="oldStr" maxlength="50" type="password" placeholder="原始密码"/>
+		<input id="newStr" maxlength="50" type="password" placeholder="新密码"/>
+		<input class="body-confirm" maxlength="50" id="confirmStr" type="password"  placeholder="确认新密码"/>
+		<div class="passdig-add" id="addPassWord">确认修改</div>
+	</div>
+</div>
+<!-- 分级保护修改秘密弹窗 end---------- -->
+
+<!-- <script type="text/javascript" src="https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js"></script>
+<script type="text/javascript">
+	document.addEventListener('UniAppJSBridgeReady', function() {
+		document.querySelector('.toLogin').addEventListener('click', function(evt) {
+			var target = evt.target;
+			var action = target.getAttribute('data-src');
+			uni.navigateTo({
+				url: action
+			});
+		});
+		document.querySelector("#postMessage").addEventListener('click', function() {
+			uni.postMessage({
+				data: {
+					action: 'message'
+				}
+			});
+		})
+	});
+</script> -->
+<script type="text/javascript">
+
+</script>
+
+<script>
+	/**
+	 * 分级保护-修改密码start
+	*/
+	function getHeaders(){
+    var req = new XMLHttpRequest();
+    req.open('GET', document.location.href, false);
+    req.send(null);
+    var headerArr = req.getAllResponseHeaders().split('\n');
+    var headers = {};
+    headerArr.forEach(item=>{
+			if(item!==''){
+				var index = item.indexOf(':');
+				var key = item.slice(0,index);
+				var value = item.slice(index+1).trim();
+				headers[key] = value
+	    }
+    })
+		return headers
+	}
+	getHeaders()
+	$('#addPassWord').click(function () {
+		var oldPStr = desEncrypt($('#oldStr').val());
+		console.log($('#confirmStr').val())
+		console.log($('#newStr').val())
+		if ($('#oldStr').val() == '' ) {
+			errorTip('旧密码不能为空')
+			return
+		}
+		if ($('#newStr').val() == '') {
+			errorTip('新密码不能为空')
+			return
+		}
+		if ($('#confirmStr').val() == '' ) {
+			errorTip('确认密码不能为空')
+			return
+		}
+		if ($('#confirmStr').val() !== $('#newStr').val()) {
+			errorTip('两次输入密码不一致!');
+			return
+		}
+		var newPStr
+		var againPStr
+    if ($('#confirmStr').val() === $('#newStr').val()) {
+			newPStr = desEncrypt($('#newStr').val());
+			againPStr = newPStr
+		}
+		api.POST('/member/memberinfo/pstr', {
+			oldPStr: oldPStr,
+			newPStr: newPStr,
+			againPStr: againPStr
+		}, function (result) {
+			if (result.code === 200) {
+				$('.passDig').css('display',"none")
+				errorTip(result.message)
+			} else {
+				errorTip(result.message)
+			}
+		})
+	})
+	/**
+	 * 分级保护-修改密码start
+	*/
+	$(".Return").hide();
+	$(function() {
+		/**
+		 * 分级保护-初始化判断是否弹窗 start
+		*/
+		var passType = getHeaders().needchangepassword
+		var token = localStorage.getItem('JEECMS-Auth-Token');
+		console.log(token)
+		if (token)  {
+			console.log(token)
+			console.log(passType)
+			if (passType == 'true') {
+				$('.passDig').css('display',"block")
+			}
+		}
+		/**
+		 * 分级保护-初始化判断是否弹窗 end
+		*/
+		$(window).scroll(function() {
+			if ($(window).scrollTop() > 1100) {
+				$(".Return").fadeIn(500);
+			} else {
+				$(".Return").fadeOut(500);
+			}
+		});
+
+		$(".back-to-top").click(function() {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 600);
+			return false;
+		});
+	});
+	function desEncrypt(str){
+		var base = localStorage.getItem('base') || '';
+		var status = false
+		console.log(str)
+		/**服务端定的公钥*/
+		var pubkeyHex = "04AF0FCC45059AA342221352E5268614F2FF7A430497B156C0DEE6E751AB44E4957E9E69299E2CD38E25985B7BD34E0E7BBA683DE4725A6A8CD07E19BFF8BEF44D";
+		var encryptData='';
+		if(!status){
+			$.ajax({
+				url: base+"/cmsmanager/config/global/isSmEncrypt",
+				async: false,
+				data: {},
+				success: function (result) {
+					if (result.data === true) {
+						var smutil = new SMutil();
+						encryptData = smutil.sm2encrypt(str, pubkeyHex);
+						console.log(encryptData)
+					} else {
+						var cryptoKey = CryptoJS.enc.Utf8.parse('WfJTKO9S4eLkrPz2JKrAnzdb');
+						var cryptoIv = CryptoJS.enc.Utf8.parse('D076D35C'.substr(0, 8));
+						var encodeStr = CryptoJS.TripleDES.encrypt(str, cryptoKey, {
+							iv: cryptoIv,
+							mode: CryptoJS.mode.CBC,
+							padding: CryptoJS.pad.Pkcs7
+						});
+						console.log(encodeStr)
+						encryptData = encodeStr.toString();
+						console.log(encryptData)
+					}
+				}
+			});
+		} else {
+			var cryptoKey = CryptoJS.enc.Utf8.parse('WfJTKO9S4eLkrPz2JKrAnzdb');
+			var cryptoIv = CryptoJS.enc.Utf8.parse('D076D35C'.substr(0, 8));
+			var encodeStr = CryptoJS.TripleDES.encrypt(str, cryptoKey, {
+				iv: cryptoIv,
+				mode: CryptoJS.mode.CBC,
+				padding: CryptoJS.pad.Pkcs7
+			});
+			encryptData = encodeStr.toString();
+			console.log(encryptData)
+		}
+		return encryptData
+	}
+	var topbar = new Vue({
+		el: '#topbar',
+		data() {
+			return {
+				passDigShow: false,
+				oldStr: '', // 保存旧密码
+				newStr: '', // 保存新密码
+				confirmStr: '', //确认新密码
+				name: '${topName!}',
+				type: '${type!}',
+				headerBack: '${headerBack!}',
+				channelTitle: '${channelTitle!}',
+				contentTitle: '${contentTitle!}',
+				backHref: '${backHref!}',
+				divideColor: '${divideColor!}',
+				channelTitleColor: '${channelTitleColor!}',
+				contentTitleColor: '${contentTitleColor!}'
+			}
+		},
+		methods: {
+			back() {
+				window.history.go(-1)
+			}
+		},
+		mounted () {
+			// this.handDigData()
+		}
+	})
+	function userLoad() {
+		$(".stateUser").load("${base}/csi-loginStatus.htm")
+	}
+	userLoad()
+	function userLoad2() {
+		$(".stateUser2").load("${base}/csi-loginStatus2.htm")
+	}
+	userLoad2()
+</script>

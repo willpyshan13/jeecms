@@ -1,0 +1,89 @@
+<!-- 走进江州- 图说江州页 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+    <script src="${res}/static/page/jquery.sPage.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/jiangzhoulvyou.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <link rel="stylesheet" href="${res}/static/page/jquery.sPage.css">
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <div class="main w">
+            <div class="travel-title">图说江州</div>
+            <div class="travel-content">
+                [@cms_content_page channelId=channel.id channelOption='1' orderBy='29'  count='12']
+                <!--分页数据-->
+                [#assign p=tag_pagination/]
+                [#list tag_pagination.content  as a]
+                    [#if a_index==0]
+                    <div class="row">
+                    [#elseif a_index==4]
+                    <div class="row" style="margin-top:40px;">
+                    [#elseif a_index==8]
+                    <div class="row" style="margin-top: 41px;">
+                    [/#if]
+                        [#if a_index%4==3]
+                        <div class="col-md-3 travel-content-item marginStyle" style="height: 210px;">
+                        [#else]
+                        <div class="col-md-3 travel-content-item" style="height: 210px;">
+                        [/#if]
+                            <div class="travel-img" style="height: 160px;">
+                                <a href="${a.url!}"><img src="${(a.attr.singleImg.resUrl)!}" alt=""></a>
+                            </div>
+                            <div class="travel-text" style="height: 50px;text-align: center;line-height: 50px;padding: 0;">
+                                <p class="text1" style="margin-bottom: 0;color: #333;line-height: 50px;">${a.title!?html}</p>
+                            </div>
+                        </div>
+                    [#if a_index%4==3]
+                    </div>
+                    [/#if]
+                [/#list]
+            </div>
+        </div>
+
+        <div class="page w">
+            <div id="myPage"></div>
+        </div>
+        [#include "../includes/footerCommon.html"/]
+    </div>
+    <script>
+        $("#myPage").sPage({
+            page: ${p.number + 1!},//当前页码，必填
+            total: ${p.totalElements!},//数据总条数，必填
+            pageSize: 12,//每页显示多少条数据，默认10条
+            totalTxt: "共${p.totalElements!}条",//数据总条数文字描述，{total}为占位符，默认"共{total}条"
+            showTotal: true,//是否显示总条数，默认关闭：false
+            showSkip: true,//是否显示跳页，默认关闭：false
+            showPN: true,//是否显示上下翻页，默认开启：true
+            prevPage: "上一页",//上翻页文字描述，默认“上一页”
+            nextPage: "下一页",//下翻页文字描述，默认“下一页”
+            backFun: function (page) {
+                //点击分页按钮回调函数，返回当前页码
+                location.href='${hrefFormer}_'+page+'${hrefLatter}';
+            }
+        });
+    </script>
+    [/@cms_content_page]
+</body>
+
+</html>

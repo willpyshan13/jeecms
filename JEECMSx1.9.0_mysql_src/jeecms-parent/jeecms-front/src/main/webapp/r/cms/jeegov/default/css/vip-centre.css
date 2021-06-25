@@ -1,0 +1,2223 @@
+/* 会员中心页样式 */
+.main-box {
+    margin-top: 39px;
+}
+
+.main {
+    padding: 29px 20px 30px;
+    width: 1200px;
+    height: 775px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(229, 229, 229, 1);
+    border-radius: 4px;
+}
+
+.main-title {
+    margin-bottom: 30px;
+    width: 100%;
+    height: 70px;
+    border-bottom: 3px solid #E5E5E5;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 30px;
+}
+
+.menus {
+    margin-right: 50px;
+    width: 175px;
+    height: 644px;
+    border-right: 1px solid #E5E5E5;
+}
+
+.contents {
+    width: 840px;
+}
+
+.uu {
+    line-height: 50px;
+}
+
+.currentli {
+    background-color: #F5F5F5;
+    color: #002A66 !important;
+    font-weight: 400 !important;
+}
+
+
+/* .currentli {
+    color:#fff !important;
+    background-color:#002A66 !important;
+} */
+
+
+/* .uu li:hover {
+    color:#002A66;
+    font-weight: 400;
+} */
+
+.uu li {
+    display: block;
+    margin-bottom: 1px;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    cursor: pointer;
+}
+
+.getcolor {}
+
+.hide {
+    display: none;
+}
+
+
+/* 右侧内容区域 */
+
+.contents {
+    padding-top: 10px;
+    width: 933px;
+    height: 636px;
+    overflow-y: scroll;
+}
+
+.contents::-webkit-scrollbar {
+    display: none;
+}
+
+.contents-title {
+    position: relative;
+    width: 100%;
+    height: 28px;
+    font-size: 24px;
+    font-weight: normal;
+    color: rgba(51, 51, 51, 1);
+    line-height: 24px;
+}
+
+.upload {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.upload img {
+    width: 100%;
+    height: 100%;
+}
+
+.upload .iconxiangji {
+    position: absolute;
+    z-index: 10;
+    position: absolute;
+    top: 42px;
+    left: 51px;
+    width: 42px;
+    height: 48px;
+    font-size: 42px;
+    color: #fff;
+    display: none;
+}
+
+.upload-img {
+    position: absolute;
+    z-index: 11;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.user-details {
+    margin-top: 36px;
+    margin-left: 30px;
+}
+
+.username .user1 {
+    margin-right: 5px;
+    font-size: 22px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 22px;
+}
+
+.username .user-level {
+    display: inline-block;
+    width: 73px;
+    height: 23px;
+}
+
+.username .user-level img {
+    width: 100%;
+    height: 100%;
+}
+
+.first .integral {
+    margin: 0 60px;
+}
+
+.user-details .first {
+    height: 29px;
+    line-height: 29px;
+}
+
+.others {
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+}
+
+.second {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+}
+
+.others span {
+    color: #333;
+}
+
+.second .iconfont {
+    color: #999;
+    font-size: 14px;
+    margin-right: 9px;
+}
+
+.second a:hover {
+    color: #002A66;
+}
+
+.edit-password {
+    margin-right: 60px;
+}
+
+
+/* 个人信息 */
+#d1 .personinfo form label {
+    font-weight: 300;
+}
+.personinfo {
+    margin-top: 46px;
+}
+
+.personinfo .info-title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 23px;
+}
+
+.personinfo form .errors {
+    color: #E30B20;
+    font-size: 14px;
+    font-weight: 300;
+    margin-left: 115px;
+    margin-top: -9px;
+    height: 20px;
+}
+
+.personinfo form label {
+    text-align: right;
+    display: inline-block;
+    width: 90px;
+    font-size: 16px;
+    color: #666;
+}
+
+.personinfo form .inputinfo {
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 30px;
+}
+
+.personinfo form .inputinfo {
+    font-size: 16px;
+    color: #666;
+}
+
+.personinfo form .inputinfo input {
+    height: 40px;
+    width: 400px;
+    border: 1px solid #E6E6E6;
+    border-radius: 0;
+    padding-left: 21px;
+    margin-left: 10px;
+}
+
+.personinfo form .radio {
+    margin-top: -7px;
+    margin-bottom: 30px;
+}
+
+.personinfo form .radio input {
+    width: 14px;
+    height: 14px;
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #fff;
+}
+
+.personinfo form .radio input:before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    border: 1px solid #CCCCCC;
+    border-radius: 50%;
+}
+
+.personinfo form .radio input:checked:before {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    content: '';
+    background-color: #002a66;
+    border-radius: 50%;
+}
+
+.personinfo form .radio input:checked:after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    text-align: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 50%;
+    display: block;
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 5px;
+}
+
+.personinfo form .radio .sex {
+    text-align: left;
+    padding-left: -20px;
+    margin-right: -36px;
+}
+
+.personinfo form .radio label {
+    padding-left: 0;
+}
+
+.personinfo form .singer {
+    height: 74px;
+    margin: 30px 0;
+    position: relative;
+}
+
+.personinfo form .singer label {
+    position: absolute;
+    top: 0;
+}
+
+.personinfo form .singer .errors {
+    position: absolute;
+    top: 86px;
+}
+
+.personinfo form .singer textarea {
+    margin-left: 13px;
+    width: 400px;
+    height: 74px;
+    border: 1px solid #E6E6E6;
+    border-radius: 0;
+    position: absolute;
+    left: 90px;
+    padding-left: 19px;
+    overflow: hidden;
+    padding-top: 4px;
+    color: #333;
+}
+
+.personinfo form input[type="submit"] {
+    border: none;
+    color: #fff !important;
+    width: 107px;
+    height: 42px;
+    border-radius: 0;
+    margin-left: 95px;
+    font-size: 14px;
+    margin-bottom: 69px;
+}
+
+
+/* 我的互动 */
+
+.two .pageDiv {
+    margin-bottom: -15px;
+}
+
+.two,
+.three,
+.four,
+.five {
+    margin-top: -5px;
+}
+
+.two .date {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 24px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.two .date span {
+    color: #666;
+    font-size: 14px;
+}
+
+.two .date input {
+    width: 486px;
+    height: 40px;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    left: 80px;
+    padding-left: 40px;
+}
+
+.two .date a {
+    width: 88px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    background-color: #002A66;
+    border-radius: 0;
+    position: absolute;
+    bottom: 0;
+    right: 261px;
+}
+
+.two .date a:hover {
+    background-color: #003580;
+}
+
+.two .date i {
+    color: #999999;
+    font-size: 12px;
+    position: absolute;
+    top: 2px;
+    left: 90px;
+}
+
+.two .intersearch {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.two .intersearch img {
+    margin-top: 56px;
+    margin-left: 235px;
+    margin-bottom: 60px;
+}
+
+.two .intersearch table {
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.two .intersearch table th {
+    color: #333;
+    height: 50px;
+    line-height: 50px;
+    background-color: #F5F5F5;
+    font-size: 14px;
+}
+
+.two .intersearch table th.first {
+    width: 98px;
+    text-indent: 19px;
+}
+
+.two .intersearch table th.second {
+    width: 375px;
+}
+
+.two .intersearch table th.third {
+    width: 143px;
+    text-align: center;
+}
+
+.two .intersearch table th.forth {
+    width: 174px;
+}
+
+.two .intersearch table .content {
+    border-bottom: 1px dashed #E5E5E5;
+}
+
+.two .intersearch table .content td {
+    padding: 24px 0;
+}
+
+.two .intersearch table .content td .top {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.two .intersearch table .content td .top span {
+    color: #999;
+    display: inline;
+}
+
+.two .intersearch table .content td .top span.leftReply {
+    margin-left: 8px;
+}
+
+.two .intersearch table .content td .top span.rightReply {
+    margin-right: 8px;
+}
+
+.two .intersearch table .content td .top div {
+    width: 333px;
+    color: #333;
+    display: inline-block;
+}
+
+.two .intersearch table .content td .top .reply {
+    display: inline-block;
+    font-size: 14px;
+    color: #333;
+}
+
+.two .intersearch table .content td .bottom {
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 10px;
+}
+
+.two .intersearch table .content td .bottom span {
+    color: #999;
+}
+
+.two .intersearch table .content td .bottom a {
+    color: #002a66;
+    width: 325px;
+    margin-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.two .intersearch table .content td .zan {
+    position: relative;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.two .intersearch table .content td .zan i {
+    font-size: 14px;
+    color: #999;
+}
+
+.two .intersearch table .content td .zan span {
+    color: #999;
+    /* margin-left: 19px; */
+}
+
+.two .intersearch table .content td .zan:first-child {
+    margin-left: 50px;
+}
+.two .intersearch table .content td .iconfont {
+    margin-right: 10px;
+}
+.two .intersearch table .content td .time {
+    position: relative;
+}
+
+.two .intersearch table .content td .time span {
+    color: #333;
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+}
+
+.two .intersearch table .content td .operate {
+    position: relative;
+}
+
+.two .intersearch table .content td .operate .item {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.two .intersearch table .content td .operate .item i {
+    color: #999;
+    font-size: 14px;
+}
+
+.two .intersearch table .content td .operate .item span {
+    color: #333;
+    margin-left: 5px;
+}
+
+.two .intersearch table .content td .operate .item:hover i,
+.two .intersearch table .content td .operate .item:hover span {
+    color: #002a66;
+}
+
+.two .intersearch table .content td .operate .right {
+    position: absolute;
+    left: 70px;
+}
+
+.two .intersearch table .content td.num {
+    position: relative;
+}
+
+.two .intersearch table .content td.num span {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+.two .content-text .send-input {
+    width: 830px;
+    margin-top: 15px;
+}
+.two .content-text .send-input textarea{
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 100%;
+    height: 80px;
+    resize: none;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    overflow: hidden;
+}
+.two .content-text .send-input textarea:focus{
+    border: 1px solid #002a66;
+}
+.two .content-text .send-input a {
+    display: block;
+    width: 77px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #002a66;
+    border-radius: 0;
+}
+/* 分页 */
+#myPage1,#myPage2,#myPage3,#myPage4,#myPage5 {
+    margin-top : 30px;
+    margin-left: 180px;
+    margin-bottom: 20px;
+  }
+/* 结束 */
+
+.three {
+    margin-top: -5px;
+}
+
+.three .pageDiv {
+    margin-bottom: -16px;
+}
+
+.three .interact {
+    font-size: 24px;
+    color: #333;
+}
+
+.three .collect {
+    margin-bottom: 30px;
+    margin-top: 25px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.three .collect .collect-title {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 30px;
+}
+
+.three .collect .collect-title span {
+    color: #666;
+    font-size: 14px;
+}
+
+.three .collect .collect-title input {
+    width: 280px;
+    height: 40px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+
+.three .collect .date {
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+}
+
+.three .collect .date span {
+    color: #666;
+    font-size: 14px;
+}
+
+.three .collect .date input {
+    width: 400px;
+    height: 40px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    padding-left: 40px;
+    position: absolute;
+    top: 0;
+    left: 70px;
+}
+
+.three .collect .date a {
+    width: 88px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    background-color: #002a66;
+    border-radius: 0;
+    position: absolute;
+    bottom: 0;
+    right: -502px;
+}
+
+.three .collect .date a:hover {
+    background-color: #003580;
+}
+
+.three .collect .date i {
+    color: #999999;
+    font-size: 12px;
+    position: absolute;
+    top: 2px;
+    left: 80px;
+}
+
+.three .inter-search {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.three .inter-search .inter-img {
+    margin-left: 240px;
+    margin-top: 51px;
+    margin-bottom: 53px;
+}
+
+.three .inter-search table {
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.three .inter-search table th {
+    color: #333;
+    height: 50px;
+    line-height: 50px;
+    background-color: #F5F5F5;
+    font-size: 14px;
+}
+
+.three .inter-search table th.first {
+    width: 118px;
+    text-indent: 19px;
+}
+
+.three .inter-search table th.second {
+    width: 512px;
+}
+
+.three .inter-search table th.third {
+    width: 202px;
+    text-indent: 66px;
+}
+
+.three .inter-search table .content {
+    border-bottom: 1px dashed #E5E5E5;
+}
+
+.three .inter-search table .content td {
+    padding: 30px 0;
+}
+
+.three .inter-search table .content td .article img {
+    width: 190px;
+    height: 108px;
+    border-radius: 4px;
+}
+
+.three .inter-search table .content td .article .text {
+    width: 300px;
+    margin-left: 19px;
+    position: relative;
+    height: 108px;
+}
+
+.three .inter-search table .content td .article .text a {
+    font-size: 14px;
+    color: #333;
+    line-height: 24px;
+}
+
+.three .inter-search table .content td .article .text a:hover {
+    color: #002a66;
+}
+
+.three .inter-search table .content td .article .text .small {
+    position: absolute;
+    bottom: 0;
+}
+
+.three .inter-search table .content td .article .text .small span {
+    font-size: 12px;
+}
+
+.three .inter-search table .content td .article .text .small .left {
+    color: #666;
+    margin-right: 15px;
+}
+
+.three .inter-search table .content td .article .text .small .right {
+    color: #999;
+}
+
+.three .inter-search table .content td.num {
+    position: relative;
+}
+
+.three .inter-search table .content td.num span {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.three .inter-search table .content td.time {
+    font-size: 14px;
+    color: #333;
+    position: relative;
+}
+
+.three .inter-search table .content td.time span {
+    position: absolute;
+    left: 58px;
+    top: 30px;
+}
+
+.three .inter-search table .content td.iscollect {
+    position: relative;
+}
+
+.three .inter-search table .content td.iscollect .heart {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    font-size: 14px;
+    color: #333;
+}
+.change-heart {
+    color: #002a66 !important;
+
+}
+.three .inter-search table .content td.iscollect .heart i {
+    color: #999;
+    margin-right: 10px;
+}
+
+.three .inter-search table .content td.iscollect .heart span:hover {
+    color: #002a66;
+    cursor: pointer;
+}
+
+.four {
+    margin-top: -5px;
+}
+
+.four .pageDiv {
+    margin-top: 4px;
+    margin-bottom: -16px;
+}
+
+.four .interact {
+    font-size: 24px;
+    color: #333;
+}
+
+.four .inter-search {
+    width: 100%;
+    margin-top: 26px;
+    margin-bottom: 10px;
+}
+
+.four .inter-search table {
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.four .inter-search img {
+    margin-top: 80px;
+    margin-left: 243px;
+    margin-bottom: 125px;
+}
+
+.four .inter-search table th {
+    color: #333;
+    height: 50px;
+    line-height: 50px;
+    background-color: #F5F5F5;
+    font-size: 14px;
+}
+
+.four .inter-search table th.first {
+    width: 193px;
+    text-indent: 19px;
+}
+
+.four .inter-search table th.second {
+    width: 518px;
+}
+
+.four .inter-search table th.third {
+    width: 221px;
+    text-indent: 146px;
+}
+
+.four .inter-search table .content {
+    border-bottom: 1px dashed #E5E5E5;
+}
+
+.four .inter-search table .content td {
+    padding: 24px 0;
+}
+
+.four .inter-search table .content td .top {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.four .inter-search table .content td .top span {
+    color: #999;
+    width: 45px;
+}
+
+.four .inter-search table .content td .top div {
+    color: #333;
+    width: 472px;
+}
+
+.four .inter-search table .content td .bottom {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.four .inter-search table .content td .bottom span {
+    color: #999;
+}
+
+.four .inter-search table .content td .bottom a {
+    color: #2676B5;
+}
+
+.four .inter-search table td.num {
+    position: relative;
+}
+
+.four .inter-search table td.num span {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.four .inter-search table td.iscollect {
+    position: relative;
+}
+
+.four .inter-search table td.iscollect .heart {
+    position: absolute;
+    top: 30px;
+    left: 121px;
+    font-size: 14px;
+    color: #333;
+}
+
+.four .inter-search table td.iscollect .heart i {
+    color: #E30B20;
+    margin-right: 5px;
+}
+
+.four .inter-search table td.iscollect .heart span:hover {
+    color: #E30B20;
+}
+
+
+/* 我的投稿 */
+.five .gocontribute form label {
+    font-weight: normal;
+}
+.five .contri .interact {
+    font-size: 24px;
+    color: #333;
+    margin-top: -5px;
+}
+
+.five .contri .contribute {
+    display: block;
+    width: 114px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 30px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 0;
+    behavior: url(../pie/PIE.htc);
+}
+
+.five .contri .collect {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.five .contri .collect .state {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 10px;
+}
+
+.five .contri .collect .state span {
+    color: #666;
+    font-size: 14px;
+}
+
+.five .contri .collect .state select {
+    color: #333;
+    font-size: 14px;
+    width: 92px;
+    height: 37px;
+    padding: 0 11px;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    behavior: url(../pie/PIE.htc);
+}
+
+.five .contri .collect .collect-title {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 20px;
+}
+
+.five .contri .collect .collect-title span {
+    color: #666;
+    font-size: 14px;
+}
+
+.five .contri .collect .collect-title input {
+    width: 164px;
+    height: 38px;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    behavior: url(../pie/PIE.htc);
+    padding-left: 10px;
+}
+
+.five .contri .collect .date {
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+}
+
+.five .contri .collect .date span {
+    color: #666;
+    font-size: 14px;
+}
+
+.five .contri .collect .date input {
+    width: 338px;
+    height: 40px;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    behavior: url(../pie/PIE.htc);
+    padding-left: 40px;
+    position: absolute;
+    top: 0;
+    left: 70px;
+}
+
+.five .contri .collect .date a {
+    width: 87px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 0;
+    behavior: url(../pie/PIE.htc);
+    position: absolute;
+    bottom: 0;
+    right: -441px;
+}
+
+.five .contri .collect .date i {
+    color: #999999;
+    font-size: 12px;
+    position: absolute;
+    left: 80px;
+    top: 2px;
+}
+
+.five .contri .inter-search {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.five .contri .inter-search img {
+    margin-top: 26px;
+    margin-left: 230px;
+}
+
+.five .contri .inter-search table {
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.five .contri .inter-search table th {
+    color: #333;
+    height: 50px;
+    line-height: 50px;
+    background-color: #F5F5F5;
+    font-size: 14px;
+}
+
+.five .contri .inter-search table th.first {
+    width: 97px;
+    text-indent: 19px;
+}
+
+.five .contri .inter-search table th.second {
+    width: 104px;
+}
+
+.five .contri .inter-search table th.third {
+    width: 306px;
+}
+
+.five .contri .inter-search table th.forth {
+    width: 175px;
+}
+
+.five .contri .inter-search table th.fifth {
+    width: 106px;
+}
+
+.five .contri .inter-search table .content {
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed #E5E5E5;
+}
+
+.five .contri .inter-search table .content td.num {
+    position: relative;
+}
+
+.five .contri .inter-search table .content td.num span {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.five .contri .inter-search table .content td.content-title span {
+    width: 257px;
+    line-height: 24px;
+}
+
+.five .contri .inter-search table .content td.content-title .publish {
+    color: #2676B5;
+    padding-right: 20px;
+}
+
+.five .contri .inter-search table .content td.content-title .others {
+    font-size: 12px;
+    margin-top: 15px;
+    display: none;
+}
+
+.five .contri .inter-search table .content td.content-title .others div {
+    margin-right: 20px;
+}
+
+.five .contri .inter-search table .content td.content-title .others div:hover span {
+    color: #E30B20;
+}
+
+.five .contri .inter-search table .content td.content-title .others div:hover i {
+    color: #E30B20;
+}
+
+.five .contri .inter-search table .content td.content-title .others i {
+    color: #999;
+    margin-right: 10px;
+}
+
+.five .contri .inter-search table .content td.content-title .others span {
+    color: #333;
+}
+
+.five .contri .inter-search table .content td.operate div:hover {
+    color: #E30B20;
+}
+
+.five .contri .inter-search table .content td.operate div:hover i {
+    color: #E30B20;
+}
+
+.five .contri .inter-search table .content td.operate .left {
+    margin-right: 20px;
+}
+
+.five .contri .inter-search table .content td.operate i {
+    color: #999;
+    margin-right: 5px;
+}
+
+.five .contri .inter-search table .content td {
+    padding: 30px 0;
+}
+
+.five .gocontribute a {
+    display: block;
+    padding-left: 15px;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #333;
+    width: 108px;
+    height: 42px;
+    line-height: 42px;
+    text-align: left;
+    border: 1px solid #E5E5E5;
+    border-radius: 21px;
+    behavior: url(../pie/PIE.htc);
+    margin-bottom: 44px;
+    background-color: #fff;
+}
+
+.five .gocontribute a span i {
+    margin-right: 3px;
+    font-size: 15px;
+}
+
+.five .gocontribute form .errors {
+    color: #E30B20;
+    font-size: 14px;
+    font-weight: 300;
+    margin-left: 100px;
+    margin-top: -10px;
+    height: 20px;
+}
+
+.five .gocontribute form #err {
+    color: #E30B20;
+    font-size: 14px;
+    font-weight: 300;
+    margin-left: 100px;
+    margin-top: 0;
+    margin-bottom: -21px;
+    height: 20px;
+}
+
+input::-webkit-input-placeholder {
+    font-weight: normal;
+    color: #999;
+    font-size: 14px;
+}
+
+input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    font-weight: normal;
+    color: #999;
+    font-size: 14px;
+}
+input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    font-weight: normal;
+    color: #999;
+    font-size: 14px;
+}
+
+ input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    font-weight: normal;
+    color: #999;
+    font-size: 14px;
+}
+
+.five .gocontribute form div.type {
+    height: 40px;
+    margin-bottom: 30px;
+}
+
+.five .gocontribute form div.type label {
+    text-align: right;
+    display: inline-block;
+    width: 86px;
+    font-size: 14px;
+    color: #666;
+}
+
+.five .gocontribute form div.type label span {
+    color: #E30B20;
+    margin-right: 5px;
+}
+
+.five .gocontribute form div.type label.author {
+    width: 50px;
+    margin-left: 10px;
+}
+
+.five .gocontribute form div.type select {
+    width: 312px;
+    height: 40px;
+    padding-left: 10px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    behavior: url(../pie/PIE.htc);
+}
+
+.five .gocontribute form div.type select option {
+    color: #999;
+    font-size: 14px;
+}
+
+.five .gocontribute form div.type #channnelId {
+    display: inline-block;
+    width: 312px;
+    height: 40px;
+    border: 1px solid #E5E5E5;
+    padding-left: 20px;
+    border-radius: 4px;
+    margin-bottom: -15px;
+    line-height: 40px;
+    behavior: url(../pie/PIE.htc);
+    color: #333;
+}
+
+.five .gocontribute form div.type input {
+    width: 300px;
+    height: 40px;
+    border: 1px solid #E5E5E5;
+    padding-left: 10px;
+    border-radius: 4px;
+    behavior: url(../pie/PIE.htc);
+    font-size: 14px;
+}
+
+.five .gocontribute form div.type input::-webkit-input-placeholder {
+    font-size: 14px;
+}
+
+.five .gocontribute form div.type span {
+    color: #999;
+    font-size: 14px;
+}
+
+.five .gocontribute form div.send-title {
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 30px;
+}
+
+.five .gocontribute form div.send-title label {
+    text-align: right;
+    display: inline-block;
+    width: 86px;
+    font-size: 14px;
+    color: #666;
+}
+
+.five .gocontribute form div.send-title label span {
+    color: #E30B20;
+    margin-right: 5px;
+}
+
+.five .gocontribute form div.send-title input {
+    width: 837px;
+    height: 40px;
+    padding-left: 20px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    behavior: url(../pie/PIE.htc);
+}
+
+.five .gocontribute form div.text-area {
+    margin-bottom: 30px;
+    height: 110px;
+    position: relative;
+}
+
+.five .gocontribute form div.text-area label {
+    text-align: right;
+    display: inline-block;
+    width: 86px;
+    font-size: 14px;
+    color: #666;
+    position: absolute;
+    top: 0;
+}
+
+.five .gocontribute form div.text-area textarea {
+    width: 838px;
+    height: 110px;
+    padding-left: 20px;
+    padding-top: 20px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    behavior: url(../pie/PIE.htc);
+    position: absolute;
+    left: 90px;
+    top: 2px;
+}
+
+.five .gocontribute form div.big-text {
+    position: relative;
+}
+
+.five .gocontribute form div.big-text label {
+    text-align: right;
+    width: 80px;
+    height: 80px;
+    font-size: 14px;
+    color: #666;
+    position: absolute;
+    top: 0;
+}
+
+.five .gocontribute form input[type="submit"] {
+    margin-top: 30px;
+    border: none;
+    color: #fff !important;
+    width: 87px;
+    height: 40px;
+    border-radius: 0;
+    cursor: pointer;
+    behavior: url(../pie/PIE.htc);
+    margin-left: 90px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.five .gocontribute form .save {
+    padding-left: 0;
+    color: #333;
+    width: 87px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 0;
+    cursor: pointer;
+    behavior: url(../pie/PIE.htc);
+    margin-left: 187px;
+    margin-top: -40px;
+    font-size: 14px;
+    border: 1px solid #E5E5E5;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.five .gocontribute form .save2 {
+    color: #333;
+    width: 87px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    behavior: url(../pie/PIE.htc);
+    margin-left: 187px;
+    margin-top: -40px;
+    font-size: 14px;
+    border: 1px solid #E5E5E5;
+    margin-bottom: 0;
+}
+
+.five .intersearch table .content {
+    border-bottom: 1px dashed #E5E5E5;
+}
+
+.five .intersearch table .content td {
+    padding: 24px 0;
+}
+
+.five .intersearch table .content td .top {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.five .intersearch table .content td .top span {
+    color: #999;
+    display: inline;
+}
+
+.five .intersearch table .content td .top span.leftReply {
+    margin-left: 8px;
+}
+
+.five .intersearch table .content td .top span.rightReply {
+    margin-right: 8px;
+}
+
+.five .intersearch table .content td .top div {
+    width: 333px;
+    color: #333;
+    display: inline-block;
+}
+
+.five .intersearch table .content td .top .reply {
+    display: inline-block;
+    font-size: 14px;
+    color: #333;
+}
+
+.five .intersearch table .content td .bottom {
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 10px;
+}
+
+.five .intersearch table .content td .bottom span {
+    color: #999;
+}
+
+.five .intersearch table .content td .bottom a {
+    color: #2676B5;
+    width: 325px;
+    margin-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.five .intersearch table .content td .zan {
+    position: relative;
+    font-size: 12px;
+}
+
+.five .intersearch table .content td .zan i {
+    font-size: 14px;
+    color: #999;
+}
+
+.five .intersearch table .content td .zan span {
+    color: #333;
+    margin-left: 19px;
+}
+
+.five .intersearch table .content td .time {
+    position: relative;
+}
+
+.five .intersearch table .content td .time span {
+    color: #333;
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+}
+
+.five .intersearch table .content td .operate {
+    position: relative;
+}
+
+.five .intersearch table .content td .operate .item {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+}
+
+.five .intersearch table .content td .operate .item i {
+    color: #999;
+    font-size: 14px;
+}
+
+.five .intersearch table .content td .operate .item span {
+    color: #333;
+    margin-left: 5px;
+}
+
+.five .intersearch table .content td .operate .item:hover i {
+    color: #E30B20;
+}
+
+.five .intersearch table .content td .operate .item:hover span {
+    color: #E30B20;
+}
+
+.five .intersearch table .content td .operate .right {
+    position: absolute;
+    left: 70px;
+}
+
+.five .intersearch table .content td.num {
+    position: relative;
+}
+
+.five .intersearch table .content td.num span {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.five .operate .item:hover .iconfont,
+.five .operate .item:hover span {
+    color: #E30B20;
+    cursor: pointer;
+}
+
+.five .content td {
+    font-weight: normal;
+}
+
+.five .bottom a {
+    font-weight: 400;
+}
+.five .bottom a:hover ,.five .bottom a:focus{
+color: #002a66;
+}
+.five .content td {
+    position: relative;
+}
+
+.five .subs-btn {
+    padding-top: 20px;
+    /* position: absolute; */
+    bottom: 10px;
+    left: 0;
+}
+
+.five .subs-btn-item {
+    padding-right: 21px;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgba(51, 51, 51, 1);
+    line-height: 12px;
+}
+
+.five .subs-btn-item .iconfont {
+    /* display: inline-block;
+    width: 10px;
+    height: 10px; */
+    padding-right: 10px;
+    font-size: 15px;
+    color: #999;
+}
+.five .operate .item .iconfont {
+    font-size: 14px;
+    color: #999;
+}
+.five .operate .item:hover i,.five .operate .item:hover span {
+   
+    color: #002a66 !important;
+}
+.block {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+
+/* 我的信件 */
+
+.six .contri .interact {
+    font-size: 24px;
+    color: #333;
+    margin-top: -5px;
+}
+
+.six .contri .more-delete {
+    display: block;
+    width: 114px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 30px;
+    color: #fff;
+    font-size: 14px;
+    behavior: url(../pie/PIE.htc);
+}
+
+.six .contri .collect {
+    margin-top: 28px;
+    margin-bottom: 30px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+}
+
+.six .contri .collect .state {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 10px;
+}
+
+.six .contri .collect .state span {
+    color: #666;
+    font-size: 14px;
+}
+
+.six .contri .collect .state select {
+    color: #333;
+    font-size: 14px;
+    width: 92px;
+    height: 37px;
+    padding: 0 11px;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    behavior: url(../pie/PIE.htc);
+}
+
+.six .contri .collect .collect-title {
+    padding-left: 20px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 20px;
+}
+
+.six .contri .collect .collect-title span {
+    color: #666;
+    font-size: 14px;
+}
+
+.six .contri .collect .date-input {
+    position: relative;
+}
+
+.six .contri .collect .collect-title input {
+    width: 164px;
+    height: 38px;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    behavior: url(../pie/PIE.htc);
+    padding-left: 10px;
+}
+
+
+/* 时间 */
+
+.six .contri .collect .date {
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.six .contri .collect .date span {
+    color: #666;
+    font-size: 14px;
+}
+
+.six .contri .collect .date-input input {
+    width: 338px;
+    height: 40px;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    padding-left: 40px;
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+}
+
+.six .contri .collect .collect-title a {
+    width: 87px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 0;
+    behavior: url(../pie/PIE.htc);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.six .contri .collect .date-input i {
+    color: #999999;
+    font-size: 12px;
+    position: absolute;
+    left: 10px;
+    top: 2px;
+}
+
+.six .contri .inter-search {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.six .contri .inter-search img {
+    margin-top: 26px;
+    margin-left: 230px;
+}
+
+.six .contri .inter-search table {
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.six .contri .inter-search table th {
+    color: #333;
+    height: 50px;
+    line-height: 50px;
+    background-color: #F5F5F5;
+    font-size: 14px;
+}
+
+.six .contri .inter-search table th.zero {
+    width: 64px;
+    text-indent: 10px;
+}
+
+.six .contri .inter-search table th.first {
+    width: 77px;
+}
+
+.six .contri .inter-search table th.second {
+    width: 279px;
+}
+
+.six .contri .inter-search table th.third {
+    width: 107px;
+}
+
+.six .contri .inter-search table th.forth {
+    width: 167px;
+}
+
+.six .contri .inter-search table th.fifth {
+    width: 167px;
+}
+
+.six .contri .inter-search table th.sixs {
+    width: 71px;
+}
+
+.six .contri .inter-search table label {
+    margin-bottom: 0;
+}
+
+.six .content .check {
+    text-indent: 10px;
+}
+
+.five .contri .inter-search table .content {
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed #E5E5E5;
+    font-weight: normal;
+}
+
+.six .content td {
+    padding: 26px 0;
+    border-bottom: 1px dashed #e5e5e5;
+}
+
+.six .content .operate .item:hover {
+    color: #002A66;
+    cursor: pointer;
+}
+
+.go-no-reply {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.six .go-back {
+    display: block;
+    padding-left: 15px;
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    width: 108px;
+    height: 42px;
+    line-height: 42px;
+    text-align: left;
+    border: 1px solid #E5E5E5;
+    border-radius: 21px;
+    behavior: url(../pie/PIE.htc);
+    margin-bottom: 50px;
+    background-color: #fff;
+}
+
+.go-no-reply .no-reply-content .no-reply-content-title {
+    position: relative;
+    width: 70px;
+}
+
+.go-no-reply .no-reply-content .no-reply-content-text {
+    padding-bottom: 30px;
+    color: #333;
+    padding-left: 15px;
+    line-height: 21px;
+}
+
+.no-reply-content-title span {
+    position: absolute;
+    top: 0;
+    color: #666;
+    line-height: 21px;
+}
+
+.no-reply-content-text .image {
+    width: 140px;
+    height: 140px;
+}
+
+.go-no-reply .no-reply-content-text .img-boxs {
+    margin-right: 20px;
+    padding-top: 23px;
+    width: 140px;
+    height: 140px;
+    background: rgba(240, 240, 240, 1);
+    border: 1px solid rgba(226, 226, 226, 1);
+    border-radius: 4px;
+}
+.img-boxs {
+    width: 140px;
+    height: 94px;
+} 
+
+.img-boxs img {
+    width: 100%;
+    height: 94px;
+}  
+.go-no-reply .no-reply-content-text .images li {
+    margin-bottom: 20px;
+}
+
+.six tr td .radio-name {
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgba(51, 51, 51, 1);
+    line-height: 30px;
+}
+/* 弹出视频播放样式 */
+.go-no-reply .no-reply-content-video .no-reply-video-box {
+    margin-left: 10px;
+    padding-top: 23px;
+    width: 140px;
+    height: 140px;
+    background: rgba(240, 240, 240, 1);
+    border: 1px solid rgba(226, 226, 226, 1);
+    border-radius: 4px;
+}
+.videolist {
+    position: relative;
+    width: 140px;
+    height: 140px;
+}
+
+.videolist:hover {
+    cursor: pointer;
+}
+
+/* 播放按钮 */
+.videoed {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    left: 38%;
+    top: 34%;
+    z-index: 99;
+    border-radius: 100%;
+}
+
+.videos {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -320px;
+    margin-top: -210px;
+    z-index: 100;
+    width: 640px;
+    height: 360px;
+}
+
+.videos video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.vclose {
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+
+.masklayer {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 1000px;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+/* end */
+.six .operate .item span {
+    color: #333;
+}
+.six .operate .item i {
+    font-size: 14px;
+    color: #999;
+}
+.six .operate .item:hover i,.six .operate .item:hover span{
+    color: #002a66;
+}
+.no-reply-video-box .video-st {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.no-reply-content-audio,
+.no-reply-content-video,
+.no-reply-content-accessory {
+    padding-left: 10px;
+    padding-bottom: 30px;
+}
+
+.no-reply-audio-box {
+    padding: 0 9px;
+    margin-left: 10px;
+    margin-right: 20px;
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px dashed rgba(226, 226, 226, 1);
+    border-radius: 4px;
+}
+.no-reply-audio-box .play {
+    padding-top: 15px;
+    text-align: center;
+    font-size: 45px;
+    color: #777;
+}
+.no-reply-audio-box .music {
+    text-align: center;
+    padding-top: 10px;
+    width: 100%;
+    height: 20px;
+    font-size:14px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+    line-height:14px;
+}
+.no-reply-audio-box .music p {
+    margin: 0;
+}
+.no-reply-audio-box .pause {
+    padding-left: 5px;
+    padding-top: 10px;
+}
+.no-reply-audio-box .pause .iconfont {
+    font-size: 15px;
+    color: #777;
+}
+.no-reply-audio-box .pause img {
+    background-color: #1EC6DF;
+    width: 93px;
+    height: 16px;
+    
+}
+.no-reply-content-accessory .accessory-img,
+.accessory-box {
+    margin-left: 10px;
+}
+
+.accessory-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.accessory-img img {
+    width: 140px;
+    height: 140px;
+}
+
+.accessory-box {
+    padding-top: 20px;
+}
+
+.accessory-box .accessory-item {
+    padding: 0 20px;
+    margin-bottom: 10px;
+    width: 414px;
+    height: 40px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(232, 232, 232, 1);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #002a66;
+    line-height: 40px;
+}
+
+
+/* 已回复信件详情页面样式 */
+
+.six .replied {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 14px;
+}
+
+.six .replied form table tr td {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.six .replied form table tr div {
+    position: relative;
+    width: 60px;
+}
+
+.six .replied form table tr div span {
+    position: absolute;
+    top: -7px;
+    color: #666;
+}
+
+.six .replied form table tr td i {
+    display: inline-block;
+    width: 802px;
+    padding-left: 20px;
+    color: #333;
+    text-align: left;
+}
+
+
+/* 分割线 */
+
+.pb-style {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+
+/* 标题1.5倍行高 */
+
+.title-lineheight {
+    line-height: 21px;
+}
+.appraise-title {
+    line-height: 22px;
+}
+.appraise .appraise-content ul {
+    width: 190px;
+    height: 50px;
+    padding-left: 20px;
+}
+
+.appraise .appraise-content li {
+    display: inline-block;
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+}
+ .appraise-content ul .star {
+     background: url(../static/img/huixx.png) no-repeat center center;
+    background-size: 24px 24px;
+}
+ .appraise-content ul .sel {
+    background: url(../static/img/huangxx.png)no-repeat center center;
+    background-size: 24px 24px;
+
+}
+.appraise .appraise-result {
+    padding-left: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgba(51, 51, 51, 1);
+    line-height: 24px;
+}
+
+.six .replied .submit {
+    margin: 35px 0 30px;
+    width: 100%;
+    height: 40px;
+}
+
+.six .replied .submit button {
+    display: block;
+    margin: 0 auto;
+    width: 87px;
+    height: 40px;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 40px;
+}
+
+.modal-body {
+    position: relative;
+}
+
+.modal-body .iconfont {
+    position: absolute;
+    left: 205px;
+    top: 59px;
+    font-size: 30px;
+    color: #2BB01F;
+}
+
+.modal-footer button {
+    width: 148px;
+    height: 40px;
+    border-radius: 20px;
+}

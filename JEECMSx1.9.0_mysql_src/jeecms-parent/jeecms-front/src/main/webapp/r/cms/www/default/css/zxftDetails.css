@@ -1,0 +1,544 @@
+.detailsBox{
+    margin: 0 auto;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+.detailsTop{
+    /* background: #F5F5F5; */
+    /* padding-bottom: 40px; */
+}
+.imgBoxT{
+    width: 225px;
+    height: 300px;
+    overflow: hidden;
+    display: inline-block;
+    border-radius:4px ;
+}
+.detailsTop h1{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    padding: 60px 0 30px;
+    width: 1000px;
+    margin: 0 auto;
+}
+.detailsTop .ders{
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+    color: #808080;
+    line-height: 33px;
+    padding-bottom: 10px;
+}
+.detailsTop .message{
+    overflow: hidden;
+    width: 1000px;
+    margin: 0 auto;
+}
+.detailsTop .message span{
+    font-size: 16px;
+    font-weight: normal;
+    color: #999999;
+    line-height: 38px;
+} 
+.detailsTop .messageLeft{
+    float: left;
+}
+.detailsTop .messageRight{
+    float: right;
+}
+.broadcastBox{
+    padding: 15px 0;
+    height: 675px;
+    width: 1200px;
+    margin: 0 auto;
+    cursor: pointer;
+    position: relative;
+}
+.broadcastBox img{
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+}
+.broadcastBox .imgBf{
+    cursor: pointer;
+    position: absolute;
+    top: 285px;
+    left: 548px;
+    width: 100px;
+    height: auto;
+}
+.tabBox{
+    width: 1200px;
+    margin: 58px auto 10px;
+}
+.tabBoxTop{
+    border-bottom:1px solid #e5e5e5 ;
+}
+.tabBoxTop span{
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 400;
+    color: #333333;
+    padding-bottom:20px;
+    margin-right: 40px;
+    cursor: pointer;
+}
+.tabBoxTop .select{
+    position: relative;
+    top: 1px;
+    color: #E30B20;
+    border-bottom:2px solid #E30B20;
+}
+.tabBox .tabContent1{
+    margin-top: 30px;
+}
+.tabContent1 img{
+    height: 100%;
+    border-radius: 4px;
+    display: inline-block;
+}
+.tabContent1 .tabContentOne{
+    margin-right: 60px;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+.tabContent1 .tabContentOne:nth-child(even){
+    margin-right: 0;
+}
+.tabContent1 .content{
+    width: 295px;
+    margin-left: 30px;
+    display: inline-block;
+    vertical-align: top;
+}
+.tabContent1 .content h3{
+    padding-top: 17px;
+    font-size: 30px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 27px;
+    word-break: break-all;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 1; /** 显示的行数 **/
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.tabContent1 .position{
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+    padding-top: 20px;
+    margin-bottom: 25px;
+    width: 303px;
+    word-break: break-all;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 2; /** 显示的行数 **/
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.line{
+    height: 1px;
+    width: 100%;
+    background-color:#7A7A7A ;
+}
+.tabContent1 .introduction{
+    font-size: 14px;
+    font-weight: 400;
+    color: #999999;
+    line-height: 24px;
+    padding-top: 15px;
+    word-break: break-all;
+                display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+                -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+                -webkit-line-clamp: 5; /** 显示的行数 **/
+                text-overflow: ellipsis;
+                overflow: hidden;
+}
+.Dnone{
+    display: none !important;
+}
+.tabContent2{
+    overflow: hidden;
+    position: relative;
+    margin-top:30px;
+    height: 200px;
+    cursor: pointer;
+}
+.tabContent2:hover b{
+    display: block !important;
+}
+.tabContent2 .imgBox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.imgBox li{
+    float: left;
+    margin-right: 27px;
+}
+.imgBox li img{
+    border-radius: 4px;
+    width: 280px;
+    height: 158px;
+    background: #000000;
+}
+.clickLeft,.clickRight{
+    position: absolute;
+    display: block;
+    font-size: 37px;
+    top: 60px;
+    line-height: 40px;
+    height: 40px;
+    color: rgba(255, 255, 255, .4);
+    background: #000000;
+    cursor: pointer;
+    opacity: 0.4;
+}
+.clickLeft{
+    left: 0;
+    padding-left: 5px;
+    width: 25px;
+    
+}
+.clickRight{
+    right: 0;
+    padding-left: 8px;
+    width: 22px;
+}
+.clickLeft:hover,.clickRight:hover{
+    opacity: 0.6;
+    color: rgba(255, 255, 255, .6);
+}
+.writtenRecord{
+    width: 1200px;
+    margin: 0 auto;
+}
+.writtenRecord .interval{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.interval span{
+    vertical-align: middle;
+    margin-right: 20px;
+}
+.interval #plan{
+    vertical-align: middle !important;
+    margin: 0 !important;
+    border-radius: 4px;
+    width: 140px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    appearance:none;
+    background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+    background-position: right 15px top 15px;
+    padding-left:20px;
+    cursor: pointer;
+    margin-right: 20px !important;
+}
+.interval #plan:hover{
+    border: 1px solid #E30B20;
+}
+.interval button{
+    vertical-align: middle;
+    padding: 10px 30px;
+    border-radius: 4;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    font-size: 14px;
+    font-weight: normal;
+    color: #333333;
+    padding-top: 9px;
+    margin-right: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.xuanzhong{
+    border: 1px solid #E30B20 !important;
+    color: #E30B20 !important;
+}
+.interval button:hover{
+    border: 1px solid#E30B20;
+    color: #E30B20;
+}
+.writtenRecord .chat{
+    width: 1200px;
+    height: 600px;
+    background: #F5F5F5;
+    margin-bottom: 40px;
+    overflow: auto;
+    border-radius: 4px;
+    position: relative;
+}
+.writtenRecord .chat::-webkit-scrollbar,.questBoxT::-webkit-scrollbar{
+    position: relative;
+    right: 2px;
+    width: 12px;
+    height: 131px !important;
+    border-radius: 8px;
+    border: 2px solid #F5F5F5;
+}
+.writtenRecord .chat::-webkit-scrollbar-thumb,.questBoxT::-webkit-scrollbar-thumb{
+    border: 2px solid #F5F5F5;
+    width: 16px;
+    height: 131px !important;
+    background: #DBDBDB;
+    border-radius: 8px;
+}
+.questBoxT::-webkit-scrollbar-thumb,.questBoxT::-webkit-scrollbar{
+    border-color: #fff;
+}
+.chat ul{
+    padding: 30px;
+}
+.chat ul li{
+    overflow: hidden;
+}
+.chat ul li:nth-of-type(odd) .chatContent{
+    float: left;
+}
+.chat ul li:nth-of-type(even) .chatContent{
+    float: right;
+    overflow: hidden;
+}
+.chat ul li:nth-of-type(even) img,.chat ul li:nth-of-type(even) .time,.chat ul li:nth-of-type(even) .name{
+    float: right;
+}
+.chat ul li:nth-of-type(even) p{
+    margin-top: 35px;
+    margin-right: 25px;
+}
+.chatContent .name{
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    padding: 0 25px 0 15px;
+}
+.chatContent .time{
+    font-size: 14px;
+    font-weight: 400;
+    color: #999999;
+    line-height: 30px;
+}
+.chatContent p{
+    max-width: 641px;
+    background: #FFFFFF;
+    border-radius: 0px 25% 25% 25%;
+    padding: 20px 35px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 24px;
+    margin-top: -25px;
+    margin-left: 30px;
+}
+.chat ul .chatContent img{
+    display: inline-block;
+    vertical-align: top;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.question{
+    width: 1200px;
+    margin: 0 auto 70px;
+}
+.questionBox{
+    margin-top: 30px;
+}
+.questionBoxLeft{
+    display: inline-block;
+    width: 460px;
+    height: 319px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    margin-right: 48px;
+    border-radius: 4px;
+}
+.chat .zwjl{
+    display: block;
+    width: 200px;
+    margin: 150px auto;
+}
+.quertionTitle{
+    width: 458px;
+    height: 38px;
+    background: #F5F5F5;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+    padding-left: 19px;
+    line-height: 38px;
+}
+.questionBox .zwtp{
+    margin-top: 58px;
+    margin-left: 126px;
+}
+.questionBox .questionBoxRight{
+    /* display: inline-block; */
+    vertical-align: top;
+    float:right;
+}
+/* .questionBoxRight input:focus,.questionBoxRight textarea:focus{
+    border-color: #004099;
+} */
+input{
+    border-radius: 4px;
+}
+textarea{
+    border-radius:4px ;
+}
+.questionBoxRightOne span{
+    color:#333333;
+    font-size: 16px;
+    padding-right: 15px;
+    vertical-align: top;
+    padding-top: 15px;
+    line-height: 44px;
+}
+.questionBoxRightOne textarea{
+    width: 619px;
+    height: 150px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    padding: 10px;
+}
+.colorRed{
+    color: #FF0000 !important;
+    padding-right: 0 !important;
+}
+.questionBoxRightTwo{
+    margin-top: 25px;
+}
+.tisQuest{
+    padding-top: 2px;
+    color: red;
+    padding-left: 64px;
+    font-size: 14px;
+}
+.errorO{
+    position: absolute;
+    top: 5px;
+    left: 191px;
+    color: red;
+}
+.errorO{
+    padding-left: 245px;
+}
+.questionBoxRightTwo img{
+    display: inline-block;
+    vertical-align: top;
+    width: 100px;
+    height: 50px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius:4px ;
+}
+.questionBoxRightTwo span{
+    padding-right: 15px;
+}
+.questionBoxRightTwo .name{
+    width: 256px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    padding-left: 10px;
+    margin-right: 30px;
+}
+.questionBoxRightTwo .yzm{
+    width: 135px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    padding-left: 10px;
+}
+.submit{
+    width: 131px;
+    height: 45px;
+    background-color: #E30B20;
+    border-radius: 22.5px;
+    margin-top: 35px;
+    line-height: 45px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFFFFF;
+    border: none;
+    margin-left: 65px;
+    /* margin-left: 57px; */
+    cursor: pointer;
+}
+.submit:hover{
+    background-color: #FB0C23;
+}
+.questionBoxLeft{
+    height: 319px;
+    overflow: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+.questionBoxLeft ul{
+    height: auto;
+    overflow: hidden;
+}
+.questionBoxLeft li{
+    padding: 10px 20px 0;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+    border-bottom: 1px solid #E5E5E5;
+
+}
+.questionBoxLeft li:hover{
+    background: #FAFAFA;
+    border-color: transparent;
+
+}
+
+.questionBoxLeft li p{
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 21px;
+}
+.questionBoxLeft li span{
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999999;
+    line-height: 32px;
+    padding-bottom: 10px;
+}
+.questionBoxLeft li:last-child(1) span{
+    border:none !important;
+}
+.questBoxT{
+    position: absolute;
+    top: 38px;
+    width: 458px;
+    height: 278px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+/* .questBoxT::-webkit-scrollbar{
+    position: absolute;
+    right: 0;
+    width: 8px;
+    height: 100px;
+    border: 2px solid #fff;
+}
+.questBoxT::-webkit-scrollbar-thumb{
+    position: absolute;
+    right: 0;
+    border: 2px solid #fff;
+    background: #DBDBDB;
+    border-radius: 4px;
+    border-radius: 10px;
+} */

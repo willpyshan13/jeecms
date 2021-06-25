@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能表单</title>
+</head>
+<style type="text/css">
+html{
+    overflow: hidden auto;
+}
+    body {
+        margin: 0;
+    }
+    iframe {
+        border: none;
+        width: 100%;
+        height: 100vh;
+    }
+    .smart-content{
+        /* overflow-y: auto; */
+        /* height: 94%; */
+        background-color: #f0f0f0;
+    }
+</style>
+<body>
+   
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "../includes/header.html"/]
+    </div>
+    <div class="smart-content">
+        [#include "../interact/intelligrnceForm.html"/]
+        <!-- 底部导航 -->
+
+    </div>
+    [#include "../includes/footer.html"/]
+        <!--底部导航 over-->
+        <script>
+            genPermCheck("","${channel.id!}","${base}");
+        </script>
+</body>
+</html>

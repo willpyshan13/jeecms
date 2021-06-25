@@ -1,0 +1,97 @@
+<!-- /* 江州要闻列表页面 */ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+    <script src="${res}/static/page/jquery.sPage.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/jzNewlist.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <link rel="stylesheet" href="${res}/static/page/jquery.sPage.css">
+
+</head>
+
+<body>
+    <!-- 公用模板 -->
+    <div class="container">
+        <!-- 头部 -->
+        [#include "../includes/header.html"/]
+        <!-- /* 二级标题 */ -->
+        <div class="secondTitle">
+            <div class="title w">
+                [@cms_channel_list count='10' parentId=channel.parent.id]
+                [#list tag_list as c]
+                <div class="item fl"><a href="${c.url!}">${c.name!}</a></div>
+                [/#list]
+                [/@cms_channel_list]
+            </div>
+        </div>
+        <!-- 新闻列表 -->
+        [@cms_content_page channelId=channel.id channelOption='1' orderBy='29'  count='15']
+        <!--分页数据-->
+        [#assign p=tag_pagination/]
+        <div class="newsList w">
+            [#list tag_pagination.content  as a]
+            <!--每五条出现一个div,共计3个-->
+            [#if a_index%5==0]
+            <div class="section-main-nav">
+                <ul>
+             [/#if]
+                    <li class="subtitle">
+                        <div class="fl li-style"></div>
+                        <div class="fl subtitle-item"><a href="${a.url!}">[@text_cut s=a.title len=50 append='...' /] </a>
+                        </div>
+                        <div class="fr subtitle-item-time">${a.releaseTime!?string("MM-dd")}</div>
+                    </li>
+            [#if a_index%5==4]
+                </ul>
+            </div>
+            [/#if]
+            [/#list]
+        </div>
+
+        <!-- 分页 -->
+        <div class="page-box w">
+            <div id="myPage"></div>
+        </div>
+
+        <!-- 页脚网站信息模块-->
+        [#include "../includes/footer.html"/]
+        <!-- 页脚 -->
+    </div>
+    <script>
+    $("#myPage").sPage({
+            page: ${p.number + 1!},//当前页码，必填
+            total: ${p.totalElements!},//数据总条数，必填
+            pageSize: 15,//每页显示多少条数据，默认10条
+            totalTxt: "共${p.totalElements!}条",//数据总条数文字描述，{total}为占位符，默认"共{total}条"
+            showTotal: true,//是否显示总条数，默认关闭：false
+            showSkip: true,//是否显示跳页，默认关闭：false
+            showPN: true,//是否显示上下翻页，默认开启：true
+            prevPage: "上一页",//上翻页文字描述，默认“上一页”
+            nextPage: "下一页",//下翻页文字描述，默认“下一页”
+            backFun: function (page) {
+                //点击分页按钮回调函数，返回当前页码
+                console.log(page);
+                location.href='${hrefFormer}_'+page+'${hrefLatter}';
+            }
+        });
+    </script>
+    [/@cms_content_page]
+</body>
+
+</html>

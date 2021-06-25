@@ -1,0 +1,168 @@
+<!-- 专题内容模板 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/topicNav2.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header-topic w">
+            <div class="logo fl">
+                <a href="${base}/"><img src="${res}/static/img/logo2.png" alt=""></a>
+            </div>
+            <div class="titleBtn fr">
+                <div class="btnItem fl"><a href="${base}/">首页 </a></div>
+                [@cms_channel_list count='5']
+                [#list tag_list as a]
+                <div class="btnItem fl"><a href="${a.url!}">${a.name!?html}</a></div>
+                [/#list]
+                [/@cms_channel_list]
+            </div>
+        </div>
+        <!-- 焦点图 -->
+        <div class="focusPicture">
+            [#if channel.attr.headImg??]<img src="${channel.attr.headImg.resUrl!}" alt="">[/#if]
+        </div>
+        <!-- 主题 -->
+        <div class="main w2 clearfix">
+            <!--不忘初心牢记使命 栏目下数据 头条-->
+            [@cms_content_list channelPath='bwcxljsm' channelOption='1'  typeId='149' orderBy='29'  count='1']
+            [#list tag_list as a]
+            <div class="title">[@text_cut s=a.title len=50 append='...' /]</div>
+            <div class="subTitle">
+                [@text_cut s=a.description  append='...' /]
+            </div>
+            [/#list]
+            [/@cms_content_list]
+            <!-- 轮播图区域 -->
+            <div class="slider">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <!--不忘初心牢记使命 栏目下数据 焦点-->
+                        [@cms_content_list channelPath='bwcxljsm' channelOption='1'  typeId='186' orderBy='29'  count='5']
+                        [#list tag_list as a]
+                        [#if a_index==0]
+                        <div class="item active">
+                        [#else]
+                        <div class="item">
+                        [/#if]
+                            <img src="${(a.attr.singleImg.resUrl)!}">
+                            <div class="carousel-caption">
+                                <a href="${a.url!}">[@text_cut s=a.title len=15 append='...' /]</a> </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+                    </div>
+                </div>
+            </div>
+            <!-- 媒体评论区域 -->
+            <div class="media">
+                <div class="mediaTitle">
+                    媒体评论
+                    <div class="line"></div>
+                </div>
+                [@cms_content_list channelPath='bwcxljsm' channelOption='1'   orderBy='29'  count='9']
+                [#list tag_list as a]
+                [#if a_index==0||a_index==3]
+                <div class="menu fl">
+                [/#if]
+                [#if a_index==6]
+                <div class="menu fl" style="margin-right: 0;">
+                [/#if]
+                    <div class="menuIten clearfix">
+                        <div class="listyle fl">•</div>
+                        <div class="menuText fl"><a href="${a.url!}">[@text_cut s=a.title len=18 append='...' /]</a></div>
+                    </div>
+                [#if a_index%3==2]
+                </div>
+                [/#if]
+                [/#list]
+                [/@cms_content_list]
+
+            </div>
+            <!-- 理论学习区域 -->
+            <div class="theory clearfix">
+                <div class="mediaTitle" style="margin-bottom: 43px;">
+                    理论学习
+                    <div class="line"></div>
+                </div>
+                <div class="theoryItem">
+                    [@cms_content_list channelPath='bwcxllxx' channelOption='1'   orderBy='29'  count='9']
+                    [#list tag_list as a]
+                    [#if a_index%3==2]
+                    <div class="itemBox fl marginStyle">
+                    [#else]
+                    <div class="itemBox fl">
+                    [/#if]
+                        <a href="${a.url!}">
+                        <div class="theoryTitle">[@text_cut s=a.title len=18 append='...' /]</div>
+                        <div class="theoryText">[@text_cut s=a.description  len=30 append='...' /]</div>
+                        </a>
+                     </div>
+                    [/#list]
+                    [/@cms_content_list]
+                </div>
+
+            </div>
+            <!-- 教育实践区域 -->
+            <div class="education">
+                <div class="mediaTitle">
+                    教育实践
+                    <div class="line"></div>
+                </div>
+                [@cms_content_list channelPath='bwcxjysj' channelOption='1'   orderBy='29'  count='4']
+                [#list tag_list as a]
+                [#if a_index==tag_list?size-1]
+                <div class="educationItem fl marginStyle">
+                [#else]
+                <div class="educationItem fl">
+                [/#if]
+                    <div class="educationImg">
+                        <a href="${a.url!}">
+                            <img src="${(a.attr.singleImg.resUrl)!}" alt="">
+                        </a>
+                    </div>
+                    <div class="educationText"><a href="${a.url!}">[@text_cut s=a.title len=18 append='...' /]</a></div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+        </div>
+        <!-- 页脚网站信息模块-->
+        [#include "../includes/footer.html"/]
+        <!-- 页脚 -->
+    </div>
+
+</body>
+
+</html>

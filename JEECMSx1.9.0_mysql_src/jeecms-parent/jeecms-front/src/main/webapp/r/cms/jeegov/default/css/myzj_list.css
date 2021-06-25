@@ -1,0 +1,80 @@
+
+/* 民意征集-民意征集列表页样式*/
+.subTitle .title{
+    margin-top: 40px;
+    margin-bottom: 37px;
+    font-size:24px;
+    line-height: 24px;
+    font-weight:300;
+    color:#333;
+} 
+.result {
+    margin-top: 48px;
+    font-size:14px;
+    font-weight:normal;
+    color:rgba(102,102,102,1);
+}
+.num {
+    font-size:14px;
+    font-weight:normal;
+    color:#EA3526;
+}
+
+.mainnav {
+    /* margin-top: 19px; */
+    margin-bottom: 22px;
+    padding: 18px 0 16px 0;
+    height: 50px;
+    background-color: #EEE;
+    font-size:16px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    text-align: center;
+}
+.mainItemTag {
+    margin-top: 5px;
+    margin-right: 18px;
+    width:5px;
+    height:14px;
+    background:rgba(0,64,153,1);
+}
+.main {
+    font-size:16px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+}
+.mainItemContent {
+    margin-top: 26px;
+    padding-bottom: 44px;
+    border-bottom:1px dashed rgba(221,221,221,1);
+}
+.mainItemText{
+    font-size:16px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+}
+.mainItemTextSub a {
+    color:rgba(51,51,51,1);
+
+}
+.mainItemTextSub:hover a {
+    color:#004099;
+
+}
+/* 正在调查状态 */
+.stateActive1 {
+    color: #EA3526 !important;
+}
+/* 结果反馈的颜色· */
+.stateActive2 {
+    color: #004099 !important;
+}
+/* 调查结束状态 */
+.stateActive3 {
+    color: #999 !important;
+}
+/* 分页 */
+#myPage {
+    margin : 40px 0 60px 200px;
+  }
+/* 结束 */

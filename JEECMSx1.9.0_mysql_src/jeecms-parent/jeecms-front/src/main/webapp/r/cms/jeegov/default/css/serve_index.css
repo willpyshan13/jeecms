@@ -1,0 +1,169 @@
+/* 政务服务-政府服务样式 */
+body {
+    height: 100%;
+}
+.focusImg {
+    width: 100%;
+    height: 400px;
+}
+.focusImg img{
+    width: 100%;
+    height: 100%;
+}
+/* 标签栏样式 */
+.title {
+    position: relative;
+    width: 100%;
+    height: 55px;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #ddd;
+}
+.titleLine {
+    color: #002A66 !important;
+    padding-bottom: 19px;
+    border-bottom: 2px solid #002A66;
+}
+.title .titleText {
+    margin-right: 41px;
+    font-size:24px;
+    font-weight:300;
+    cursor: pointer;
+    color: #333;
+}
+
+
+/* end */
+.titleBox {
+    position: relative;
+}
+.main-nav {
+    margin-top: 61px;
+}
+.status {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.status span {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-color:#F5F5F5;
+    line-height: 48px;
+    text-align: center;
+    font-size: 16px;
+}
+.goNext ,.goBack {
+    cursor: pointer;
+}
+.go-active {
+    color: #002A66;
+}
+.navBox {
+    margin-top: 29px;
+}
+.navItem {
+    width: 275px;
+    height: 275px;
+    background-color: #F5F5F5;
+    margin-right: 33px;
+    margin-bottom: 34px;
+    cursor: pointer;
+    transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+}
+.navItem:hover {
+    transform: translateY(-5px);
+   background-color: #002A66;
+}
+.navItem:hover .fontText1 {
+    color: #FFFFFF;
+}
+.navItem:hover .iconfont {
+    color: #FFFFFF;
+}
+.navItem:hover .fontText2 {
+    color: #FFFFFF;
+}
+.fontBox {
+    width:100%;
+    text-align: center;
+}
+.navItem .iconfont {
+    margin-top: 49px;
+    line-height: 57px;
+    font-size: 57px;
+    color: #004099;
+}
+.fontText1 {
+    margin-top: 26px;
+    text-align: center;
+    font-size:18px;
+font-weight:600;
+color:rgba(51,51,51,1);
+
+}
+.fontText2 {
+    margin-top: 12px;
+    font-size:14px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+    text-align: center;
+}
+.subnav {
+    margin-top: 25px;
+}
+.subnavItem {
+    margin-right: 29px;
+    margin-bottom: 20px;
+    width: 278px;
+    height: 65px;
+    background-color: #F5F5F5;
+    text-align: center;
+    line-height: 65px;
+    font-size:16px;
+}
+.subnavItem:hover {
+    background-color: #002A66;
+}
+.subnavItem:hover a{
+   color: #fff;
+}
+.subnavItem a {
+    font-weight:400;
+
+    color:#333;
+}
+.publicityTitle {
+    margin-top: 19px;
+    margin-bottom: 22px;
+    padding: 18px 0 16px 45px;
+    height: 50px;
+    background-color: #EEE;
+    font-size:16px;
+    text-align: left;
+    font-weight:400;
+    color:#002A66;
+}
+.publicityBox {
+    font-size:16px;
+    font-weight:normal;
+}
+.publicityItem {
+    color:rgba(51,51,51,1);
+
+}
+
+.pad {
+    font-weight: normal;
+
+}
+.publicity {
+    height: 35px;
+    border-bottom: 1px dashed #DDDDDD;
+    margin-bottom: 23px;
+}
+.publicity:hover .publicityItem a {
+    color: #002A66;
+}
+

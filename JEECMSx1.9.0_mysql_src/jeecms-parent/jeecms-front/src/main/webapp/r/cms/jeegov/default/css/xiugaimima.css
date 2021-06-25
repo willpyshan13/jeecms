@@ -1,0 +1,153 @@
+/* 修改密码页面样式 */
+.login-header {
+    height: 100px;
+}
+.logo {
+    padding-top: 22px;
+    width: 209px;
+    height: 56px;
+}
+.login-header h1 {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  
+}
+.logo-tit {
+    display: block;
+    background: url(../static/img/logo-black@2x.png)no-repeat;
+    background-size: 100%;
+    width: 209px;
+    height: 56px;
+    font-size: 0;
+}
+.r-border {
+    margin-top: 31px;
+    margin-left: 34px;
+    width:1px;
+    height:45px;
+    background:#E5E5E5;
+}
+.login-bt {
+    margin-left: 33px;
+    margin-top: 31px;
+    line-height: 24px;
+    font-size:24px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+}
+.register {
+    margin-top: 44px;
+}
+.register-item {
+    font-size:14px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+.register-item a {
+    color:#EB3627;
+}
+.register-item a:hover {
+    color:#EB3627;
+}
+.main {
+    width: 100%;
+    height: 670px;
+    background-color: #F5F5F5;
+}
+.main-form {
+    margin-left: 50%;
+    padding-top: 119px;
+    transform: translate(-50%);
+    width: 550px;
+    height: 340px;
+    border-radius: 8px;
+}
+.main-form-title {
+    padding-left: 36px;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background:rgba(0,42,102,1);
+    font-size:18px;
+    font-weight:300;
+    color:rgba(255,255,255,1);
+}
+.main-form-content {
+    padding-top: 37px;
+    width: 100%;
+    height: 280px;
+    background-color: #fff;
+}
+.form-item {
+    height: 60px;
+}
+.form-subtitle {
+    margin-right: 4px;
+    width: 115px;
+    height: 28px;
+    font-size:14px;
+    font-weight:300;
+    color:#333;
+    text-align: right;
+}
+.input-style {
+    width: 379px;
+    height: 35px;
+    border-bottom: 1px solid #E5E5E5;
+
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size:14px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size:14px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+
+input:-ms-input-placeholder {
+    font-size:14px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+
+input::-webkit-input-placeholder {
+    font-size:14px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+.error {
+    margin-left: 120px;
+    height: 25px;
+    line-height: 13px;
+    font-size:12px;
+    font-weight:300;
+    color:rgba(234,54,38,1);
+}
+.error-state {
+    font-size: 0;
+}
+.submit-btn {
+    margin-top: 25px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    width: 416px;
+    height: 50px;
+
+}
+.submit-btn button {
+    width:200px;
+    height:50px;
+    background:rgba(204,204,204,1);
+    border-radius:2px;
+    font-size:18px;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    text-align: center;
+    line-height: 50px;
+}

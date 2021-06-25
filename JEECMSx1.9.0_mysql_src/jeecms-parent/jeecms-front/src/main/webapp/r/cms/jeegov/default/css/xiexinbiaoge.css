@@ -1,0 +1,250 @@
+.subTitle .title {
+    margin-top: 39px;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 300;
+    color: #333;
+}
+
+
+/* 表单区域 */
+
+.tab-content {
+    margin-top: 21px;
+}
+
+.tab-content form {
+    width: 1200px;
+    height: 746px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(229, 229, 229, 1);
+    border-radius: 4px;
+    padding: 41px 0 0 150px;
+}
+
+.form-title {
+    margin-bottom: 0px;
+    width: 97px;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+}
+
+.checkbox-inline+.checkbox-inline,
+.radio-inline+.radio-inline {
+    margin-left: 0;
+}
+
+.form-table {
+    margin-left: 12px;
+    padding-left: 20px;
+    width: 716px;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+    border: 1px solid rgba(232, 232, 232, 1);
+    border-radius: 4px;
+}
+
+.xing {
+    color: #EA3526;
+}
+
+.error {
+    margin-top: 9px;
+    margin-left: 127px;
+    width: 716px;
+    height: 11px;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(153, 153, 153, 1);
+    line-height: 12px;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    font-size: 14px;
+    font-weight: 300;
+    color: #999;
+}
+
+.raido-box {
+    padding-top: 5px;
+    padding-left: 22px;
+    width: 915px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgba(51, 51, 51, 1);
+    line-height: 33px;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    margin: 11px 0 0;
+}
+
+.radio-inline {
+    margin-right: 142px;
+}
+
+.form-item {
+    margin-bottom: 20px;
+}
+
+.form-item .textarea {
+    margin-left: 12px;
+    padding-top: 15px;
+    padding-left: 22px;
+    max-width: 716px;
+    min-width: 716px;
+    width: 716px;
+    min-height: 80px;
+    height: 80px;
+    outline: none;
+    border: 1px solid #E5E5E5;
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(153, 153, 153, 1);
+}
+
+
+/* 上传 */
+
+.uploading {
+    position: relative;
+    margin-left: 12px;
+    padding-left: 22px;
+}
+
+.uploading span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 78px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background: #002A66;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 1);
+}
+
+.uploading input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 78px;
+    height: 32px;
+    opacity: 0;
+}
+
+
+/* 验证码 */
+
+.inputWidt {
+    margin-left: 12px;
+    padding-left: 22px;
+    padding-top: 10px;
+    border: 1px solid #E5E5E5;
+    width: 458px;
+    height: 40px;
+}
+
+.inputWidt input {
+    width: 94px;
+}
+
+.input-code {
+    padding: 5px 14px;
+    margin-left: 5px;
+    width: 124px;
+    height: 40px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(232, 232, 232, 1);
+    border-radius: 4px;
+}
+
+.input-code a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.input-code a img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 提交 */
+
+.submit-btn .btn {
+    padding: 0;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #002A66;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 1);
+    border-radius: 0;
+}
+
+.submit-btn .btn:hover {
+    background-color: #003580;
+}
+
+.modal-body .iconfont {
+    color: #2BAE1D;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+.modal-body {
+    padding-top: 50px;
+    padding-left: 50px;
+}
+
+.btn-default {
+    width: 148px;
+    height: 40px;
+    border-radius: 0;
+}
+
+.modal-header .iconfont:hover {
+    color: #004099;
+}
+
+.max-modal-icon {
+    width: 30px;
+    height: 60px;
+    line-height: 37px !important;
+}
+
+.max-modal {
+    width: 414px;
+    height: 60px;
+}
+
+.modal-number {
+    padding-left: 16px;
+    margin-bottom: 39px;
+    font-size: 18px;
+    font-weight: normal;
+    color: rgba(51, 51, 51, 1);
+    line-height: 18px;
+}
+.modal-dialog {
+    width: 539px;
+}

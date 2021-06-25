@@ -1,0 +1,94 @@
+/* 走进江州- 江州概况页 样式 */
+.main {
+    margin-top: 39px;
+}
+.menus {
+    margin-right: 59px;
+    width: 300px;
+}
+
+.contents {
+
+    width: 840px;
+}
+
+.uu {
+    line-height: 50px;
+
+}
+.m-title {
+    width: 300px;
+    height: 60px;
+    color:#fff;
+    background-color:#002A66;
+    text-align: center;
+    line-height: 60px;
+    font-size:18px;
+    font-weight:300;
+
+}
+.currentli {
+    color:#002A66 !important;
+    font-weight: 400 !important;
+}
+/* .currentli {
+    color:#fff !important;
+    background-color:#002A66 !important;
+} */
+/* .uu li:hover {
+    color:#002A66;
+    font-weight: 400;
+} */
+.uu li {
+    display: block;
+    margin-bottom: 1px;
+    width: 300px;
+    height: 60px;
+    background:rgba(245,245,245,1);
+    text-align: center;
+    line-height: 60px;
+    font-size:18px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+    cursor: pointer;
+}
+
+
+.getcolor {
+}
+
+.hide {
+    display: none;
+}
+/* 右侧内容区域 */
+.contents-title {
+    position: relative;
+    width: 100%;
+    height: 46px;
+    font-size:24px;
+    font-weight:300;
+    color:rgba(0,42,102,1);
+    line-height: 24px;
+    border-bottom: 1px solid #E5E5E5;
+}
+.linestyle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width:93px;
+    height:2px;
+    background:#002A66;
+}
+.contents-text {
+    margin-top: 23px;
+    font-size:16px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:40px;
+}
+.contents-text p {
+    margin-bottom: 0;
+    text-indent: 2em;
+    text-align: justify;
+    font-weight: 400;
+}

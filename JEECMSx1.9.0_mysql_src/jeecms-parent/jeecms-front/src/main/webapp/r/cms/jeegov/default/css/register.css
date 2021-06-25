@@ -1,0 +1,220 @@
+/* 注册页面样式 */
+.login-header {
+    height: 100px;
+}
+.logo {
+    padding-top: 22px;
+    width: 209px;
+    height: 56px;
+}
+.login-header h1 {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  
+}
+.logo-tit {
+    display: block;
+    background: url(../static/img/logo-black@2x.png)no-repeat;
+    background-size: 100%;
+    width: 209px;
+    height: 56px;
+    font-size: 0;
+}
+.r-border {
+    margin-top: 31px;
+    margin-left: 34px;
+    width:1px;
+    height:45px;
+    background:#E5E5E5;
+}
+.login-bt {
+    margin-left: 33px;
+    margin-top: 31px;
+    line-height: 24px;
+    font-size:24px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+}
+.register {
+    margin-top: 44px;
+}
+.register-item {
+    font-size:14px;
+    font-weight:300;
+    color:rgba(153,153,153,1);
+}
+.register-item a {
+    color:#EB3627;
+}
+.register-item a:hover {
+    color:#EB3627;
+}
+.register-container {
+    padding-top: 42px;
+    position: relative;
+    width: 100%;
+    height: 657px;
+    background: url(../static/img/sign-bg@2x.png)no-repeat;
+    background-position: -30px 0;
+    background-size: cover;
+}
+.register-box { 
+    margin-left: 1040px;
+    width: 520px;
+    background-color: #fff;
+}
+.register-box-title {
+    padding-left: 20px;
+    width:520px;
+    height:60px;
+    line-height: 60px;
+    font-size:18px;
+    font-weight:300;
+    color:rgba(255,255,255,1);
+    background:rgba(0,42,102,1);
+    border-radius: 8px 8px 0 0;
+}
+.register-form {
+    padding:47px 15px 0 15px;
+    width:520px;
+    height:488px;
+    background-color: #fff;
+    box-shadow: 0px 3px 8px 0px rgba(217, 217, 217, 0.3);    border-radius:0px 0px 8px 8px;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size:14px;
+    font-weight:300;
+    color:#999;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size:14px;
+    font-weight:300;
+    color:#999;
+}
+
+input:-ms-input-placeholder {
+    font-size:14px;
+    font-weight:300;
+    color:#999;
+}
+
+input::-webkit-input-placeholder {
+   
+    font-size:14px;
+    font-weight:300;
+    color:#999;
+}
+.register-form .register-btn {
+    margin-left:50%;
+    transform: translate(-50%);
+    margin-top: 25px;
+    width:390px;
+    height:50px;
+    line-height: 50px;
+    background:rgba(0,42,102,1);
+    border-radius:2px;
+    font-size:18px;
+    text-align: center;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    cursor: pointer;
+}
+.register-form .register-btn:hover {
+    background-color: #003580;
+}
+.register-input {
+    width: 378px;
+}
+
+.register-form-input {
+    position: relative;
+    margin-top: 11px;
+}
+.register-form-input .star {
+    color:rgba(234,53,38,1);
+}
+.label-box {
+    margin-right: 11px;
+    margin-bottom: 0;
+    width: 91px;
+    font-size:14px;
+    font-weight:300;
+    text-align: right;
+}
+.register-input {
+    height: 27px;
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 6px;
+}
+.star {
+    
+    color:rgba(234,53,38,1);
+}
+.error {
+    margin-left: 105px;
+    height: 21px;
+    line-height: 26px;
+    font-size:12px;
+    font-weight:300;
+    color:rgba(234,54,38,1);
+}
+.error-state {
+    font-size: 12px;
+}
+.affirm-box {
+    margin-top: 10px;
+    margin-left: 105px;
+    font-size:14px;
+    font-weight:normal;
+    color:rgba(153,153,153,1);
+}
+.GVRP a{
+    color: #2676B5;
+}
+/* 验证码图片区域 */
+.verification-img {
+    position: absolute;
+    right: 0;
+    top: -16px;
+    width:120px;
+    height:37px;
+}
+.verification-img img{
+    width:100%;
+    height:100%;
+}
+.affirm-box label {
+    font-weight: normal;
+}
+.reset {
+    display: none;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    position: absolute;
+    bottom: 26px;
+    right: 0;
+    cursor: pointer;
+    text-align: center;
+    color: #ddd;
+    font-size: 14px;
+
+}
+.close-eye {
+    display: none;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    position: absolute;
+    bottom: 24px;
+    right: 0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ddd;
+}
+

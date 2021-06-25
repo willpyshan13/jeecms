@@ -1,0 +1,347 @@
+<link rel="stylesheet" href="${res}/lib/assets.css" />
+<!-- <link rel="stylesheet" href="${res}/lib/layui/css/layui.css" /> -->
+
+<!-- <link rel="stylesheet" href="${res}/css/login.css"> -->
+<div class="assetsBox">
+    <div class="first">
+        <div class="inBlock"><span class="sixteen">可用余额(元)：</span><span id="balance" class="fontT">5000.00</span>
+            <span id="Withdrawal" class="pointer" >提现</span>
+        </div>
+        <div class="right inBlock" id="waitSettleAmountIsShow"><span class="sixteen">结算中(元)：</span><span class="fontT"
+                id="waitSettle">5000.00</span></div>
+    </div>
+    <div class="Popup none">
+        <div class="Pcontent">
+            <div class="title"><span>提现</span><i onclick="Hidd(0)"
+                    class="layui-icon close pointer layui-icon-close"></i></div>
+            <div class="Pbody">
+                <div class="inLine">
+                    <span class="inleft">可提现金额：</span><span class="moneyO">￥30000</span>
+                </div>
+                <div class="inLine">
+                    <span class="inleft"><b class="red">*</b>提现金额：</span><input placeholder="请输入提现金额" maxlength="120"
+                        type="text" id="Withdrawal-amount"><span onclick="Withdrawal()" style="padding-left: 18px;" class="blueO">全部提现</span>
+                </div>
+                <div class="inLine">
+                    <span class="inleft" style="padding-right: ;">提现账户：</span>
+                    <span class="radioP check wxR wechatOpen"></span>
+                    <span class="pointer wxR wechatOpen" style="margin-right:20px ;">微信</span>
+                    <span class="radioP zfbR aliPayOpen"></span>
+                    <span class="pointer zfbR aliPayOpen">支付宝</span>
+                </div>
+                <div class="inLine wx wechatOpen">
+                    <span class="inleft"><b class="red">*</b>微信账号：</span>
+                    <span id="blue" style="padding: 0;" class="blueO" onclick="bindingWx()">绑定</span>
+                    <span id="Bound" class="Bound" style="padding: 0;">
+                        <img src="${res}/images/VIP/GRZX_TX01.png" alt="">
+                        <span id="name">马儿maer88</span>
+                        <span class="blueO" onclick="bindingWx()">更换绑定</span>
+                    </span>
+                </div>
+                <div class="inLine zfb none aliPayOpen">
+                    <span class="inleft"><b class="red">*</b>支付宝账号：</span><input id="zfbH" class="zfbH" maxlength="120"
+                        type="text" style="margin-bottom: 28px;">
+                    <br>
+                    <span class="inleft"><b class="red">*</b>真实姓名：</span><input id="wxH" class="zfbH" maxlength="120"
+                    autocomplete="off"
+                        type="text">
+                </div>
+            </div>
+            <div class="Pfooter">
+                <button onclick="Psubmit()">确定</button>
+                <button onclick="Hidd(0)">取消</button>
+            </div>
+        </div>
+    </div>
+    <div class="Popup none" style="z-index: 1002;">
+        <div class="ewm">
+            <i onclick="Hidd(1)" class="layui-icon close pointer layui-icon-close"></i>
+            <h2>请使用微信扫码授权绑定</h2>
+            <div id="qrcode"></div>
+        </div>
+    </div>
+</div>
+<!-- <script src="${res}/js/jquery-1.12.4.js"></script> -->
+<!-- <script src="${res}/js/jquery.jSlider.js"></script> -->
+<script src="${res}/js/qrcode.min.js"></script>
+<script>
+    var getPayConfig2 = {}
+    var balance2 = 0;
+    var money2 = '';
+    var imgUrl = null;
+    var account = '';
+    var qrcode = new QRCode("qrcode", {
+        text: "http://www.runoob.com",
+        width: 205,
+        height: 205,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    var meesgg = ''
+    var changP = 'wx'
+    $('#Withdrawal').on('click', function () {
+        if(getPayConfig2.withdrawType===1){
+            $('.wechatOpen').addClass('none')
+            changP = 'zfb'
+            $('.zfbR').click()
+            $('.radioP').eq(0).removeClass('check')
+            $('.radioP').eq(1).addClass('check')
+            $('.wx').addClass('none')
+            
+            $('.zfb').removeClass('none')
+            //微信
+        }else if(getPayConfig2.withdrawType===2){
+            $('.aliPayOpen').addClass('none')
+            changP = 'wx'
+            $('.wxR').click()
+            //都有
+        }else{
+            changP = 'wx'
+            $('.wxR').click()
+        }
+        // $('.radioP').eq(0).addClass('check')
+        // $('.radioP').eq(1).removeClass('check')
+        // $('.wx').removeClass('none')
+        // $('.zfb').addClass('none')
+        // $('#zfbH').val('');
+        // $('#wxH').val('');
+        users()
+        $('.Popup').eq(0).removeClass('none')
+        if($('.wechatOpen').is('.none')){
+            $('.zfbR').click()
+        }
+    })
+    function Hidd(index) {
+        $('.Popup').eq(index).addClass('none')
+        
+        
+        clearInterval(timer)
+    }
+    $('.radioP').on('click', function () {
+        if ($(this).val() === 'wx') {
+            $('.wx').removeClass('none')
+            $('.zfb').addClass('none')
+        } else {
+            $('.wx').addClass('none')
+            $('.zfb').removeClass('none')
+        }
+    })
+    $('.wxR').on('click', function () {
+        changP = 'wx'
+        $('.radioP').eq(0).addClass('check')
+        $('.radioP').eq(1).removeClass('check')
+        $('.wx').removeClass('none')
+        $('.zfb').addClass('none')
+    })
+    $('.zfbR').on('click', function () {
+        changP = 'zfb'
+        $('.radioP').eq(0).removeClass('check')
+        $('.radioP').eq(1).addClass('check')
+        $('.wx').addClass('none')
+        $('.zfb').removeClass('none')
+    })
+    //点击确定按钮
+    function Psubmit() {
+        $('.Pfooter button').eq(0).attr('disabled',true)
+        var obj = {};
+        if (changP === 'wx') {
+            obj.type = 2
+            obj.account = account
+            obj.headImg = imgUrl
+            obj.name = $('#name').text()
+            console.log(obj);
+            if (account === '') {
+                myMessage.add('请绑定微信', 'warning');
+                $('.Pfooter button').eq(0).attr('disabled',false)
+                return
+            }
+        } else if (changP === 'zfb') {
+            obj.type = 1
+            obj.account = $('#zfbH').val()
+            obj.name = $('#wxH').val()
+            if (obj.account === '' || obj.name === '') {
+                myMessage.add('输入支付宝姓名和账号', 'warning');
+                $('.Pfooter button').eq(0).attr('disabled',false)
+                return
+            }
+        }
+        if (money2 === '' || parseFloat(money2) <= 0 ) {
+            myMessage.add('请输入提现金额', 'warning');
+            $('.Pfooter button').eq(0).attr('disabled',false)
+            return
+        }
+        if(parseFloat(money2)>parseFloat(getPayConfig2.withdrawMax)||parseFloat(money2)<parseFloat(getPayConfig2.withdrawMin)||isNaN(parseFloat(getPayConfig2.withdrawMax))||isNaN(parseFloat(getPayConfig2.withdrawMin))){
+            myMessage.add('单次提现最小金额'+getPayConfig2.withdrawMin+'元，最大金额'+getPayConfig2.withdrawMax+'元', 'warning');
+            $('.Pfooter button').eq(0).attr('disabled',false)
+            return
+        }
+        obj.amount = money2
+        api.POST('/member/withdraw/applyWithdraw', obj, function (result) {
+            $('.Pfooter button').eq(0).attr('disabled',false)
+            if (result.code === 200) {
+                myMessage.add(meesgg, 'success');
+                $('.Popup').addClass('none')
+                getAssetDisplayData()
+            } else {
+                myMessage.add(result.data.originalMessage, 'warning');
+            }
+        })
+    }
+    //点击全部提现
+    function Withdrawal() {
+        $('#Withdrawal-amount').val(Number(balance2).toFixed(2))
+        money2 =Number(balance2).toFixed(2)
+    }
+
+    var timer = null;
+    //获取已经绑定的用户
+    function users() {
+        api.GET('/member/withdraw/accountInfo', {}, function (result) {
+            if (result.code === 200) {
+                if (result.data.wechatInfoVo !== null) {
+                    $('#Bound').removeClass('none');
+                    $('#Bound img').attr('src', result.data.wechatInfoVo.headImg)
+                    $('#Bound #name').html(result.data.wechatInfoVo.socialNickname)
+                    $('#blue').addClass('none')
+                    account = result.data.wechatInfoVo.openId
+                    imgUrl = result.data.wechatInfoVo.headImg
+                } else {
+                    $('#Bound').addClass('none')
+                    $('#blue').removeClass('none')
+                }
+                if (result.data.aliUserInfoVo !== null) {
+                    $('#zfbH').val(result.data.aliUserInfoVo.account)
+                    $('#wxH').val(result.data.aliUserInfoVo.name)
+                }
+            }
+        })
+    }
+    // users();
+    function user() {
+        timer = setInterval(function () {
+            api.POST('/member/withdraw/wxUserInfo', {}, function (result) {
+                if (result.code === 200) {
+                    if (result.data !== null) {
+                        clearInterval(timer)
+                        $('.Popup').eq(1).addClass('none')
+                        $('#Bound').removeClass('none');
+                        $('#Bound img').attr('src', result.data.headImg)
+                        $('#Bound #name').html(result.data.socialNickname)
+                        $('#blue').addClass('none')
+                        account = result.data.openId
+                        imgUrl = result.data.headImg
+                    }
+                }
+            })
+        }, 1000)
+    }
+    //点击绑定微信
+    function bindingWx() {
+        api.GET('/member/withdraw/authLink', {}, function (result) {
+            if (result.code === 200) {
+                qrcode.clear(); // 清除代码
+                qrcode.makeCode(result.data); // 生成另外一个二维码
+                $('.Popup').eq(1).removeClass('none')
+                user();
+            }
+        })
+
+    }
+    //提现金额失去焦点时
+    $('#Withdrawal-amount').blur(function () {
+        if (parseFloat($(this).val()) <= parseFloat(balance2)&&parseFloat($(this).val())>0) {
+            money2 = Number(returnFloat($(this).val())).toFixed(2)
+            $(this).val(money2)
+        } else if (parseFloat($(this).val()) > parseFloat(balance2)) {
+            $('#Withdrawal-amount').val(Number(balance2).toFixed(2))
+            money2 = Number(balance2).toFixed(2)
+        } else {
+            $('#Withdrawal-amount').val('')
+            money2 = ''
+        }
+    })
+    $('#Withdrawal-amount').on('input',function () {
+        var str = $(this).val()
+        var strAry = str.split('.')
+        if(strAry.length>1){
+            if(strAry.length>2){
+                if(strAry[1].length>2){
+                    str = strAry[0]+'.'+strAry[1].substring(0,2)
+                }else{
+                    str = strAry[0]+'.'+strAry[1]
+                }
+                $(this).val(str)
+            }else{
+                if(strAry[1].length>2){
+                    str = strAry[0]+'.'+strAry[1].substring(0,2)
+                }else{
+                    str = strAry[0]+'.'+strAry[1]
+                }
+                $(this).val(str)
+            }
+        }})
+    getAssetDisplayData();
+    // 获取我的资产信息
+    function getAssetDisplayData() {
+        api.GET('/member/memberAssetDisplay/getAssetDisplayData', {}, function (result) {
+            if (result.code === 200) {
+                $('#balance').html(returnFloat(result.data.balance))
+                balance2 = returnFloat(result.data.balance)
+                $('#waitSettle').html(returnFloat(result.data.waitSettle))
+                if (!result.data.withdrawalButton) {
+                    $('#Withdrawal').addClass('none')
+                }
+                if (!result.data.waitSettleAmountIsShow) {
+                    $('#waitSettleAmountIsShow').addClass('none')
+                }
+                $('.moneyO').html('￥' + returnFloat(result.data.balance))
+            }
+            
+        })
+    }
+    api.GET('/member/memberAssetDisplay/getPayConfig',{},function(result){
+        if(result.code===200){
+            getPayConfig2 = result.data
+            //支付宝
+            if(getPayConfig2.withdrawType===1){
+                $('.wechatOpen').addClass('none')
+                changP = 'zfb'
+                $('.zfbR').click()
+                $('.radioP').eq(0).removeClass('check')
+                $('.radioP').eq(1).addClass('check')
+                $('.wx').addClass('none')
+                
+                $('.zfb').removeClass('none')
+                //微信
+            }else if(getPayConfig2.withdrawType===2){
+                $('.aliPayOpen').addClass('none')
+                //都有
+            }
+            if(getPayConfig2.withdrawAudit==1){
+                meesgg = '提现申请已提交，等待平台审核。'
+            }else{
+                meesgg = '提现成功，预计24小时内到账，请关注提现账户。'
+            }
+        }
+    })
+   function returnFloat(value){
+    var num2 = parseFloat(value)
+    var ary = []
+    if(isNaN(num2)){
+        num2 = ''
+    }else{
+        num2 = num2.toString()
+        if(num2.includes('.')){
+            ary = num2.split('.')
+            if(ary.length>=2){
+                if(ary[1].length>=4){
+                    ary[1] = ary[1].substring(0,4)
+                    num2=ary.join('.')
+                }
+            }
+        }
+    }
+    return num2
+}
+</script>

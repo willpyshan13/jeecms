@@ -1,0 +1,650 @@
+/* 访谈详情样式 */
+
+.section-box {
+    width: 100%;
+    height: 255px;
+    background-color: #F5F5F5;
+}
+
+.section-content {
+    padding-top: 60px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 30px;
+    color: rgba(51, 51, 51, 1);
+}
+
+.section-intro {
+    margin-top: 37px;
+    padding: 0 98px;
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(128, 128, 128, 1);
+    text-align: center;
+    line-height: 31px;
+}
+
+.section-time {
+    margin-top: 28px;
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(153, 153, 153, 1);
+    line-height: 16px;
+}
+
+.videoBox {
+    margin-top: 40px;
+    height: 675px;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+}
+
+.video .video-st {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+/* tabs */
+
+.tabs {
+    margin-top: 31px;
+    width: 100%;
+}
+
+.nav-tabs {
+    border-bottom: 1px soliod #E5E5E5;
+}
+
+.nav-tabs li a {
+    padding: 15px 0;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    background-color: #fff;
+    color: #002A66;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid #002A66;
+}
+
+.nav-tabs>li>a {
+    margin-right: 0;
+    border-radius: 0;
+    border: 0;
+    font-size: 24px;
+    font-weight: 300;
+    color: #333;
+}
+
+.nav>li>a {
+    padding-top: 15px;
+}
+
+.presentation a:hover {
+    background-color: red;
+}
+
+.nav>li>a:focus,
+.nav>li>a:hover {
+    text-decoration: none;
+    background-color: #fff;
+}
+
+.active {
+    border: 0;
+}
+
+.profile-box {
+    margin-top: 30px;
+    width: 580px;
+    height: 297px;
+}
+
+.photo {
+    margin-right: 30px;
+    width: 255px;
+    height: 297px;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-content {
+    padding-top: 37px;
+    width: 295px;
+}
+
+.profile-content .name {
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 22px;
+}
+
+.profile-content .unit {
+    margin-bottom: 26px;
+    width: 275px;
+    height: 44px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+}
+
+.profile-content .profile-text {
+    margin-bottom: 19px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(153, 153, 153, 1);
+    line-height: 14px;
+}
+
+.profile-content .profile-line {
+    width: 274px;
+    height: 2px;
+    background: rgba(122, 122, 122, 1);
+}
+
+.profile-content .profile-text {
+    margin-top: 19px;
+    text-align: justify;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(153, 153, 153, 1);
+    line-height: 24px;
+}
+
+.slider-box {
+    position: relative;
+    width: 1201px;
+    height: 158px;
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.slider-box ul li {
+    float: left;
+    margin-right: 27px;
+}
+
+.slider-box ul li:last-child {
+    margin-right: 0;
+}
+
+.img-item {
+    width: 280px;
+    height: 158px;
+}
+
+.img-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.img-item img {
+    width: 100%;
+    height: 100%;
+}
+
+.go-up,
+.go-next {
+    width: 30px;
+    height: 40px;
+    background: rgba(0, 0, 0, 1);
+    opacity: 0.4;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.go-up {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.go-next {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.go-up .iconfont,
+.go-next .iconfont {
+    line-height: 40px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+}
+
+.words-box {
+    margin-top: 59px;
+}
+
+.main-title {
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 300;
+    color: #002A66;
+    border-bottom: 1px solid #ddd;
+}
+
+.title-current {
+    width: 96px;
+    height: 47px;
+    border-bottom: 1px solid #002A66;
+}
+
+.control-btn-text {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 11px;
+}
+
+.control-btn {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgba(51, 51, 51, 1);
+    line-height: 14px;
+}
+
+.control-btn .dropdown {
+    position: relative;
+    padding-left: 20px;
+    margin-top: 0;
+    width: 140px;
+    height: 40px;
+    background: #fff !important;
+    border: 1px solid rgba(229, 229, 229, 1);
+    line-height: 38px;
+}
+#dLabel {
+    background-color: #fff;
+}
+.caret {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    border-top: 7px dashed;
+    border-top-width: 7px;
+    border-top-style: dashed;
+    border-top-color: #ccc;
+    border-top: 7px solid\9;
+    border-right: 7px solid transparent;
+    border-right-width: 7px;
+    border-right-style: solid;
+    border-right-color: transparent;
+    border-left: 7px solid transparent;
+    border-left-width: 7px;
+    border-left-style: solid;
+    border-left-color: transparent;
+}
+
+.control-btn .dropdown-menu {
+    margin-top: -2px;
+    width: 140px !important;
+    min-width: 140px;
+    top: 40px;
+    left: -1px;
+    box-shadow: none;
+    border-top: 0;
+}
+
+.control-btn .dropdown-menu li {
+    padding-right: 0;
+    padding-left: 20px;
+    margin-right: 0;
+    width: 100%;
+    text-align: left;
+}
+.control-btn .dropdown-menu li:hover {
+    background-color: #E9F1FB;
+}
+.refresh-1,
+.refresh-2 {
+    width: 120px;
+    height: 40px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(229, 229, 229, 1);
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgba(51, 51, 51, 1);
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.refresh-1:hover,
+.refresh-2:hover {
+    border: 1px solid #004099;
+    color: #004099;
+}
+
+.sort-1,
+.sort-2 {
+    width: 80px;
+    cursor: pointer;
+}
+
+.dialog-box {
+    padding: 28px 0 0 0;
+    margin-top: 20px;
+    width: 100%;
+    height: 600px;
+    background-color: #F5F5F5;
+    overflow-y: scroll;
+}
+
+
+/*滚动条整体样式*/
+
+
+/* 滚动条样式开始 */
+
+.dialog-box::-webkit-scrollbar {
+    width: 8px;
+    height: 4px;
+}
+
+.dialog-box::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #cccccc;
+    height: 50px;
+}
+
+.dialog-box::-webkit-scrollbar-track {
+    border-radius: 0;
+    background: #F5F5F5;
+}
+
+.chat-item {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.chat-item .name {
+    /* padding-top: 12px; */
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 16px;
+}
+
+.chat-item .time {
+    /* padding-top: 12px; */
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(153, 153, 153, 1);
+    line-height: 19px;
+}
+
+.chart-text {
+    padding: 0 110px;
+    width: 100%;
+}
+
+.chat-photo {
+    position: absolute;
+    top: -10px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+}
+
+.chat-photo img {
+    width: 100%;
+    height: 100%;
+}
+
+.chat-content {
+    margin-top: 14px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 21px 34px;
+    max-width: 641px;
+    min-width: 320px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 0px 54px 54px 54px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(51, 51, 51, 1);
+    line-height: 20px;
+}
+
+
+/* 嘉宾文字右对齐 */
+
+.text-style {
+    text-align: right;
+}
+
+
+/* 嘉宾左上圆角 背景色 字体颜色*/
+
+.chart-style {
+    background: rgba(0, 64, 153, 1);
+    border-radius: 27px 0px 27px 27px;
+    color: #FFFFFF;
+    line-height: 14px;
+}
+
+
+/* 嘉宾头像定位 */
+
+.chart-photo-style {
+    position: absolute;
+    top: -10px;
+    left: -80px;
+    margin-left: 100%;
+}
+
+
+/* 提问记录 */
+
+.quiz-record {
+    margin-top: 31px;
+    width: 460px;
+    height: 319px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(229, 229, 229, 1);
+}
+
+.quiz-title {
+    padding-left: 19px;
+    width: 100%;
+    height: 38px;
+    line-height: 38px;
+    background: rgba(245, 245, 245, 1);
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(51, 51, 51, 1);
+}
+
+.quiz-item {
+    padding: 18px 20px 20px 19px;
+    width: 460px;
+    height: 122px;
+    border-bottom: 1px dashed #E5E5E5;
+    cursor: pointer;
+}
+
+.quiz-item:hover {
+    background: rgba(250, 250, 250, 1);
+}
+
+.quiz-content {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(51, 51, 51, 1);
+    line-height: 18px;
+}
+
+.quiz-content a {
+    color: rgba(51, 51, 51, 1);
+}
+
+.quiz-time {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(153, 153, 153, 1);
+    line-height: 14px;
+}
+
+.quiz-record-box {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 460px;
+    height: 280px;
+}
+
+.quiz-record-box::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.quiz-record-box::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #cccccc;
+    height: 50px;
+}
+
+.quiz-record-box::-webkit-scrollbar-track {
+    border-radius: 0;
+    background: #F5F5F5;
+}
+
+.quiz-form {
+    margin-top: 30px;
+    margin-left: 59px;
+    width: 681px;
+}
+
+.form {
+    width: 100%;
+}
+
+.selet {
+    width: 100%;
+    height: 150px;
+}
+
+.label-1 span {
+    font-size: 16px;
+    font-weight: normal;
+    color: #333333;
+    line-height: 16px;
+}
+
+.label-1 {
+    width: 44px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(255, 0, 0, 1);
+    line-height: 16px;
+}
+
+.textarea {
+    margin-left: 18px;
+    max-width: 619px;
+    min-width: 619px;
+    min-height: 150px;
+    width: 619px;
+    height: 150px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(229, 229, 229, 1);
+    outline: none;
+}
+
+.form-name,
+.verify {
+    margin-top: 29px;
+}
+
+.form-name input {
+    margin-left: 11px;
+    padding-left: 12px;
+    width: 256px;
+    height: 50px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid #E5E5E5;
+}
+
+.verify {
+    position: relative;
+    margin-left: 29px;
+}
+
+.verify input {
+    padding-left: 12px;
+    width: 135px;
+    height: 50px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(229, 229, 229, 1);
+}
+
+.quiz-form input:focus {
+    border: 1px solid #004099;
+}
+
+.quiz-form textarea:focus {
+    border: 1px solid #004099;
+}
+
+.verify-img {
+    position: absolute;
+    top: -2px;
+    right: -122px;
+    display: block;
+    width: 100px;
+    height: 50px;
+    background-color: pink;
+    cursor: pointer;
+}
+
+.verify-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.submit {
+    margin-top: 40px;
+    width: 100%;
+    margin-left: 59px;
+}
+
+.submit input {
+    width: 200px;
+    height: 50px;
+    background: rgba(0, 42, 102, 1);
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.submit input:hover {
+    background-color: #003580;
+    color: #fff;
+}

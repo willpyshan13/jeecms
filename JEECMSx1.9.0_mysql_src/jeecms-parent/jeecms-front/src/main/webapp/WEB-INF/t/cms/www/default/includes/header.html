@@ -1,0 +1,501 @@
+<link rel="stylesheet" href="${res}/css/reset.css" />
+<link rel="stylesheet" href="${res}/css/header.css" />
+<link rel="stylesheet" href="${res}/icon/iconfont.css" />
+<link rel="stylesheet" href="${res}/fonts/iconfont.css">
+<link rel="stylesheet" href="${res}/css/password.css" />
+<link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css"/>
+<script>
+	localStorage.setItem('base', '${base}');
+</script>
+<!-- IE兼容ES6基本语法 -->
+<!-- <script src="js/browser.min.js"></script> -->
+<!-- 转换 Iterator、Generator、Set、Maps、Proxy、Reflect、
+Symbol、Promise等语法 -->
+<!-- <script src="js/browser-polyfill.min.js"></script> -->
+<!-- ======== -->
+<script src="${res}/js/jquery-1.12.4.js"></script>
+<script src="${res}/js/sm.js"></script>
+<script src="${res}/js/crypto-js.js"></script>
+<script src="${res}/js/jquery.my-message.1.1.js"></script>
+<script src="${res}/js/jquery.validate.js"></script>
+<script src="${res}/js/jquery.page.js"></script>
+<script src="${res}/js/chinese.js"></script>
+<script src="${res}/js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="${res}/js/app.js"></script>
+<script src="${res}/js/permCheck.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+$(function() {
+
+	// GOV.yuyinInit("${base}","true");
+
+})
+</script>
+<!-- 顶1部 -->
+[#assign num=6/]
+[#assign num2=0/]
+[#assign num3=0/]
+[#assign num4=0/]
+[#assign num5=0/]
+[#assign num6=0/]
+[#assign str=''/]
+<div >
+<div class="barrierBed none"></div>
+<div class="header">
+	<!-- 搜索隐藏模块展开 -->
+	<div class="search-show none">
+		<div class="search-top">
+			<div class="box">
+				<div class="title">
+					<input type="text" maxlength="150" id="headerKeyword" placeholder="请输入你要查找的内容"/>
+					<i onclick="upSearch()"  class="iconfont iconsousuo1"></i>
+				</div>
+				<i class="iconfont iconguanbi"></i>
+				<div class="hotBot">
+					<div class="text">热搜词</div>
+					[@cms_search_word_list count='10']
+					<ul>
+						[#list tag_list as a]
+						<li><a rel="noopener noreferrer" onclick="upSearch('${a.word!}')" rel="noopener noreferrer" target='_blank' rel="noopener noreferrer">${a.word!}</a></li>
+						[/#list]
+						<div class="clearfix"></div>
+					</ul>
+					[/@cms_search_word_list]
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="typeArea">
+		<div class="logo logo-index">
+			<a rel="noopener noreferrer" href="${base}/" rel="noopener noreferrer"><img src="${res}/images/index/logo-title.png" alt=""/></a>
+		</div>
+		<div class="logo logo-children">
+			<a rel="noopener noreferrer" href="${base}/" rel="noopener noreferrer"><img src="${res}/images/index/logo-foot.png" alt=""/></a>
+		</div>
+		<div class="navbar Semilight">
+			[@cms_channel_list count='6']
+			<ul>
+				[#list tag_list as a]
+				<li  [#if (channel??&&channel.id??&&a.id=channel.id) ||
+					(channel??&&channel.parentId??&&a.id=channel.parentId)||
+					((content??&&content.channel.id??&&(a.id=content.channel.id)||
+					(content??&&content.channel.parentId??&&a.id=content.channel.parentId)))]
+					class="onchannel"
+					[/#if]>
+
+					[#if a.realLinkTarget]
+					<a rel="noopener noreferrer" href="${a.url!}" target="_blank" rel="noopener noreferrer">${a.name!}</a>
+					[#else]
+					<a rel="noopener noreferrer" href="${a.url!}" rel="noopener noreferrer">${a.name!}</a>
+					[/#if]
+					[#if (channel??&&channel.id??&&a.id=channel.id) ||(channel??&&channel.parentId??&&a.id=channel.parentId)||((content??&&content.channel.id??&&(a.id=content.channel.id)||(content??&&content.channel.parentId??&&a.id=content.channel.parentId)))]
+						[#assign num4=1/]	
+					[/#if]
+				</li>
+				[/#list]
+				[@cms_channel_list]
+				[#list tag_list as a]
+					[#assign num5=num5+1/]
+					[#if num4==1]
+						[#if num5==7]
+							<li>
+								[#assign num6=7/]
+								[#assign str = a.name/]
+								[#if a.realLinkTarget]
+								<a rel="noopener noreferrer" href="${a.url!}" target="_blank" rel="noopener noreferrer">${a.name!}</a>
+								[#else]
+								<a rel="noopener noreferrer" href="${a.url!}" rel="noopener noreferrer">${a.name!}</a>
+								[/#if]
+							</li>
+						[/#if]
+					[#else]
+						[#if (channel??&&channel.id??&&a.id=channel.id) ||(channel??&&channel.parentId??&&a.id=channel.parentId)||((content??&&content.channel.id??&&(a.id=content.channel.id)||(content??&&content.channel.parentId??&&a.id=content.channel.parentId)))]
+							<li class="onchannel">
+								[#assign num6=7/]
+								[#assign str = a.name/]
+								[#if a.realLinkTarget]
+								<a rel="noopener noreferrer" href="${a.url!}" target="_blank" rel="noopener noreferrer">${a.name!}</a>
+								[#else]
+								<a rel="noopener noreferrer" href="${a.url!}" rel="noopener noreferrer">${a.name!}</a>
+								[/#if]
+							</li>	
+						[/#if]
+					[/#if]
+				[/#list]
+				[/@cms_channel_list]
+
+				[@cms_channel_list]
+				[#list tag_list as a]
+					[#if num6==7]
+					[#else]
+						[#assign num6 = num6+1/]
+						[#if num6 == 7]
+						<li>
+							[#assign str = a.name/]
+							[#assign num6=7/]
+							[#if a.realLinkTarget]
+							<a rel="noopener noreferrer" href="${a.url!}" target="_blank" rel="noopener noreferrer">${a.name!}</a>
+							[#else]
+							<a rel="noopener noreferrer" href="${a.url!}" rel="noopener noreferrer">${a.name!}</a>
+							[/#if]
+						</li>
+						[/#if]
+					[/#if]
+				[/#list]
+				[/@cms_channel_list]
+				<li class="moreBox">
+					<div >
+						<span class=" pointer moreH">更多</span>	
+						<i class="iconfont  iconfanhui-copy-copy-copy-copy icoH"></i>
+						<i class="iconfont  iconfanhui-copy-copy-copy-copy1 none icoH"  ></i>
+					</div>
+				</li>
+			</ul>
+			[/@cms_channel_list]
+		</div>
+		
+		<div class="conceal" style="right: 115px;">
+
+		
+			
+			<div class="typeface">
+				<span>简体</span>
+				<div class="font-show none">
+					<div class="background pointer">
+						<a rel="noopener noreferrer">简体</a>
+					</div>
+					<div class="background1 pointer">
+						<a rel="noopener noreferrer">繁体</a>
+					</div>
+				</div>
+				<i class="iconfont iconfanhui-copy-copy-copy-copy"></i>
+				<i class="iconfont iconfanhui-copy-copy-copy-copy1 none"  ></i>
+			</div>
+			<div class="lineH"></div>
+		</div>
+		
+		<div class="function">
+			<i class="search iconfont iconsousuo1 pointer"></i>
+			<span class="stateUser">
+				
+			</span>
+			
+			<a rel="noopener noreferrer" href="/rss" rel="noopener noreferrer"><i class="network iconfont iconrss-line pointer"></i></a>
+		</div>
+	</div>
+	<div class="headerLine"></div>
+	<div class=" moreBox1" style="height: 50px;overflow: hidden;width: 100%;margin: 0 auto;">
+		<div class="font-show2">
+			[@cms_channel_list ]
+			[#list tag_list as a]
+			[#assign num2=num2+1/]
+			
+			[#if num2>num]
+				[#if str==a.name]
+				[#else]
+				<div class=" pointer">
+					<a rel="noopener noreferrer" href="${a.url!}" target="_blank" >${a.name!}</a>
+				</div>
+				[/#if]
+				[/#if]
+			[/#list]
+			[/@cms_channel_list]
+		</div>
+	</div>
+</div>
+
+
+<div id="goTop" class="pointer">
+	<span>返回<br />顶部</span>
+	<i class="iconfont iconjiantousvg"></i>
+</div>
+<div class="mian-all">
+	<div class="all-dig"></div>
+	<div class="all-showHide">
+		<p>修改密码</p>
+		<div class="showHide-input">
+			<div >
+				<label>
+					<span>*</span>
+					旧密码：
+					<input id="oldPass" maxlength="50" type="password" placeholder="请输入旧密码">
+				</label>
+			</div>
+			<div>
+				<label>
+					<span>*</span>
+					新密码：
+					<input id="newPass" maxlength="50" type="password" placeholder="请输入新密码">
+				</label>
+			</div>
+			<div>
+				<label>
+					<span>*</span> 确认新密码：
+					<input id="PlqStr" maxlength="50" type="password" placeholder="请再次输入新密码">
+				</label>
+			</div>
+		</div>
+		<div class="all-add">
+			<button id="addPassWord">完成</button>
+		</div>
+	</div>
+</div>
+</div>
+
+<script>
+	
+	// 设置cookie
+	function setTCookie(c_name, value, expiredays) {
+		var d = new Date();
+    d.setTime(d.getTime() + (expiredays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = c_name + "=" + value + "; " + expires+"; path=/";//path=/是根路径
+	}
+	//获取cookie
+	function getTCookie(cname) {
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++) {
+					var c = ca[i];
+					while (c.charAt(0)==' ') c = c.substring(1);
+					if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+			}
+			return "";
+	}
+	// 清除cookie
+	function clearTCookie(name) {
+		setTCookie(name, "", -1);
+	}
+	var linkTag = $('<link rel="icon" type="image/x-icon" href="${site.systemIco!}"/>');
+	$($('head')[0]).append(linkTag);
+	function quitLogin() {
+		console.log(document.cookie)
+		api.POST('/logout', {}, function (result) {
+			if (result.code === 200) {
+				myMessage.add(result.message, 'success');
+				localStorage.setItem('JEECMS-Auth-Token', '');
+						clearTCookie('rememberMe');
+						console.log(getTCookie('rememberMe'))
+				userLoad()
+				if(window.location.href.indexOf("member-vipcenter") != -1 ){
+					document.getElementById('loginUrl').click();
+				}
+			} else {
+				myMessage.add(result.message, 'error');
+			}
+		})
+	}
+
+	function userLoad() {
+		$(".stateUser").load("${base}/csi-loginStatus.htm")
+	}
+	userLoad()
+
+	$('.stateUser').on('mouseenter', function () {
+		$('.stateUser ul').stop().slideDown(500);
+	});
+	if($('.font-show2 div').length===0){
+		$('.moreBox').addClass('none')
+		$('.icoH').addClass('none')
+		$('.lineH').eq(0).addClass('none')
+	}
+	$('.stateUser').on('mouseleave', function () {
+		$('.stateUser ul').stop().slideUp(500);
+	});
+	$('.moreBox').on("mouseover",function(){$('.moreBox1').stop().slideDown(500);$('.icoH').eq(0).addClass('none');$('.icoH').eq(1).removeClass('none')})
+	$('.moreBox').on("mouseout",function(){$('.moreBox1').stop().slideUp(500);$('.icoH').eq(1).addClass('none');$('.icoH').eq(0).removeClass('none')})
+	$('.moreBox1').on("mouseover",function(){$('.moreBox1').stop().slideDown(500);$('.icoH').eq(0).addClass('none');$('.icoH').eq(1).removeClass('none')})
+	$('.moreBox1').on("mouseout",function(){$('.moreBox1').stop().slideUp(500);$('.icoH').eq(1).addClass('none');$('.icoH').eq(0).removeClass('none')})
+	// var isTypeface = true
+	//更换简体繁体
+	// $('.typeface .background a').on('click',function(){
+	// 	if(isTypeface){
+	// 		$('.typeface>span').text('简体');
+	// 		$(this).css('color','#E30B20');
+	// 		$('.typeface .background1 a').css('color','#333');
+	// 		zh_tran('s')
+	// 		isTypeface = false
+	// 	}
+	// 	else{
+	// 		// $('.typeface>span').text('简体');
+	// 		// $(this).text('繁体');
+	// 		zh_tran('s')
+	// 		isTypeface = true
+	// 	}
+
+	// });
+	// $('.typeface .background1 a').on('click',function(){
+	// 	if(isTypeface){
+	// 		$('.typeface>span').text('繁体');
+	// 		$(this).css('color','#E30B20');
+	// 		$('.typeface .background a').css('color','#333');
+	// 		zh_tran('t')
+	// 		isTypeface = false
+	// 	}
+	// 	else{
+	// 		// $('.typeface>span').text('简体');
+	// 		// $(this).text('繁体');
+	// 		zh_tran('s')
+	// 		isTypeface = true
+	// 	}
+	// });
+
+	/**
+	 * 分级保护-修改密码start
+	*/
+	$('#addPassWord').click(function () {
+		var oldPStr = desEncrypt($('#oldPass').val());
+		var newPStr
+		var againPStr
+		if ($('#oldPass').val() == '') {
+			myMessage.add('旧密码不能为空', 'error');
+			return
+		}
+		if ($('#newPass').val() == '') {
+			myMessage.add('新密码不能为空', 'error');
+			return
+		}
+		if ($('#PlqStr').val() == '') {
+			myMessage.add('确认密码不能为空', 'error');
+			return
+		}
+    if ($('#PlqStr').val() === $('#newPass').val()) {
+			newPStr = desEncrypt($('#newPass').val());
+			againPStr = newPStr
+		} else {
+			myMessage.add('两次输入密码不一致!', 'error');
+			return
+		}
+
+		api.POST('/member/memberinfo/pstr', {
+				oldPStr: oldPStr,
+				newPStr: newPStr,
+				againPStr: againPStr
+		}, function (result) {
+			if (result.code === 200) {
+				$('.mian-all').css('display',"none")
+				myMessage.add(result.message, 'success');
+			} else {
+				myMessage.add(result.message, 'error');
+			}
+		})
+	})
+	api.GET('/member/memberinfo', {}, function (result) {
+		if(result.code===200){
+			if(result.data.admin===false){
+				if (result.data.dataField.userImg) {
+					$('.stateUser i').removeClass('iconfont')
+					$('.stateUser i').removeClass('icontouxiang')
+					$('.stateUser i').html('<img src='+result.data.dataField.userImg+' alt="">')
+			}
+		}
+	}})
+	// function getHeaders(){
+  //   var req = new XMLHttpRequest();
+  //   req.open('GET', document.location.href, false);
+  //   req.send(null);
+  //   var headerArr = req.getAllResponseHeaders().split('\n');
+	// 	var headers = {};
+	// 	for(var i = 0;i<headerArr.length;i++){
+	// 		if(headerArr[i]){
+	// 			var index = headerArr[i].indexOf(':');
+	// 			var key = headerArr[i].slice(0,index);
+	// 			var value = headerArr[i].slice(index+1).trim();
+	// 			headers[key] = value
+	// 		}
+	// 	}
+	// 	return headers
+	// }
+	// var headers = getHeaders()
+	/**
+	 * 分级保护-修改密码end
+	*/
+	$(function(){
+		if(localStorage.getItem('typeface') && localStorage.getItem('typeface')=='简体'){
+			$('.typeface>span').text('简体');
+			zh_tran('s')
+		}else if(localStorage.getItem('typeface') && localStorage.getItem('typeface')=='繁体'){
+			$('.typeface>span').text('繁体');
+			zh_tran('t')
+		}else{
+			$('.typeface>span').text('简体');
+			zh_tran('s')
+		}
+		/**
+		 * 分级保护之修改密码 判断开始是否第一次进入  是弹出修改密码弹窗 start
+		*/
+		var passType = window.localStorage.getItem('passType')
+		var token = localStorage.getItem('JEECMS-Auth-Token');
+		if (token)  {
+			if (passType === 'true') {
+				$('.mian-all').css('display',"block")
+			}
+		}
+		/**
+		 * 分级保护之修改密码 判断开始是否第一次进入  是弹出修改密码弹窗 end
+		*/
+	})
+	$('.typeface .background a').on('click', function () {
+		$('.typeface>span').text('简体');
+		$(this).css('color', '#E30B20');
+		$('.typeface .background1 a').css('color', '#333');
+		localStorage.setItem('typeface','简体');
+		zh_tran('s')
+	});
+	$('.typeface .background1 a').on('click', function () {
+		$('.typeface>span').text('繁体');
+		$(this).css('color', '#E30B20');
+		$('.typeface .background a').css('color', '#333');
+		localStorage.setItem('typeface','繁体');
+		zh_tran('t')
+	});
+
+
+	function upSearch(keyword) {
+		var keyWords = keyword?encodeURI(keyword):''
+		var inpVal = encodeURI($('#headerKeyword').val())
+		var headerKeyword = keyWords||inpVal
+		window.open('${baseHtm}/search.htm?keyword=' + headerKeyword);
+	}
+
+	$("#headerKeyword").keypress(function (e) {
+		if (e.which == 13) {
+			var headerKeyword = encodeURI($('#headerKeyword').val())
+			window.open('${baseHtm}/search.htm?keyword=' + headerKeyword);
+		}
+	});
+
+
+	//简体繁体切换
+	$('.typeface').on('mouseenter', function () {
+		$('.typeface .iconfanhui-copy-copy-copy-copy').addClass('none');
+		$('.typeface .iconfanhui-copy-copy-copy-copy1').removeClass('none');
+	});
+	$('.typeface').on('mouseleave', function () {
+		$('.typeface .iconfanhui-copy-copy-copy-copy1').addClass('none');
+		$('.typeface .iconfanhui-copy-copy-copy-copy').removeClass('none');
+	});
+	$(function () {
+		/*固定*/
+		var sTop = 0;
+		$(window).scroll(function () {
+			sTop = $(this).scrollTop();
+			if (sTop > 600) {
+				$('#goTop').show()
+			} else {
+				$('#goTop').hide()
+
+			}
+		});
+
+		$('#goTop').click(function () {
+			$body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $(
+				'html,body');
+			$body.animate({
+				scrollTop: 0
+			}, 1000);
+		});
+
+	})
+</script>
+<a id="loginUrl" href="${base}/login" style="display: none" target="_self"></a>

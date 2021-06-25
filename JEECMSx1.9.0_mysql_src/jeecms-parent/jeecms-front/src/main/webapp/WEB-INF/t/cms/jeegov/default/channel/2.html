@@ -1,0 +1,9 @@
+   [@cms_content_page channelId=channel.id count='10'  channelOption='1' orderBy='27' ]
+	<ul>
+		[#list tag_pagination.content as a]
+		<li>
+			<div>${a.title!}</div>
+		</li>
+		[/#list]
+	</ul>
+  [/@cms_content_page]

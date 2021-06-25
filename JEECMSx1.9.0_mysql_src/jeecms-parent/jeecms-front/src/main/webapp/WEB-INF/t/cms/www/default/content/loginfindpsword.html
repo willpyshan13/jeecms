@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>找回密码</title>
+    <link rel="stylesheet" href="${res}/css/login-findpsword.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "../includes/header.html"/]
+    </div>
+    <!--顶部导航 over-->
+
+    <!-- 中间部分 -->
+    <div class="main">
+        <div class="login-part overflow" id="verify">
+            <div class="reg Regular">
+                <span>找回密码</span>
+            </div>
+            <form action="" id="codeForm" method="post">
+                <div class="username">
+                    <label class="Light" for=""><span>*</span>用户名</label>
+                    <input type="text" name="targetNumber" id="targetNumber" placeholder="请输入用户名" autocomplete="off">
+                    <div class="errors Light"></div>
+                </div>
+                <!-- <div class="psword">
+                    <label class="Light" for=""><span>*</span>邮箱验证码:</label>
+                    <input type="text" name="validateCode" id="validateCode" placeholder="请输入获取的邮箱验证码" autocomplete="off">
+                    <div onclick="getCode()" id="getEmail" class="getcode Semilight pointer">获取邮箱验证码</div>
+                    <div class="errors Light"></div>
+                </div> -->
+                <!-- <a rel="noopener noreferrer" class="Semilight pointer block" href="${base}/login">取消</a> -->
+                <input class="Semilight pointer" type="submit" value="下一步">
+            </form>
+        </div>
+        <div id="findWay" class="login-part overflow none">
+            <div class="reg Regular">
+                <span>选择找回方式</span>
+            </div>
+            <form action="" method="get" class="findWay-form" id="findWayForm"> 
+                <label id="find-phone"><input name="way" type="radio" value="1"/>手机找回 </label> 
+                <label id="find-email"><input name="way" type="radio" value="2"/>邮箱找回 </label> 
+                <label id="find-question"><input name="way" type="radio" value="3"/>密保问题找回 </label>
+                <input class="Semilight pointer" type="submit" value="下一步">
+            </form>
+        </div>
+        <div id="findWay-phone" class="login-part overflow none">
+            <div class="reg Regular">
+                <span>手机找回</span>
+            </div>
+            <form action="" id="phoneForm" method="get">
+                <div class="psword">
+                    <label class="Light" for=""><span>*</span>短信验证码:</label>
+                    <input type="text" name="phoneMess" id="phoneMess" placeholder="请输入短信验证码" autocomplete="off">
+                    <div onclick="getCodePhone()" id="getPhone" class="getcode Semilight pointer">获取短信验证码</div>
+                    <div class="errors Light"></div>
+                </div> 
+                <input class="Semilight pointer" type="submit" value="下一步">
+            </form>
+        </div>
+        <div id="findWay-email" class="login-part overflow none">
+            <div class="reg Regular">
+                <span>邮箱找回</span>
+            </div>
+            <form action="" id="emailForm" method="get">
+                <div class="psword">
+                    <label class="Light" for=""><span>*</span>邮箱验证码:</label>
+                    <input type="text" name="emailMess" id="emailMess" placeholder="请输入邮箱验证码" autocomplete="off">
+                    <div onclick="getCode()" id="getEmail" class="getcode Semilight pointer">获取邮箱验证码</div>
+                    <div class="errors Light"></div>
+                </div>
+                <input class="Semilight pointer" type="submit" value="下一步">
+            </form> 
+        </div>
+        <div id="findWay-question" class="login-part overflow none">
+            <div class="reg Regular">
+                <span>密保问题找回</span>
+            </div>
+            <form action="" id="questionForm" method="post">
+                <select name="question" class="question" id="question">
+                </select>
+                <input name="answer" id="answer" type="text" placeholder="请输入答案" class="question-inp">
+                <input class="Semilight pointer" type="submit" value="下一步">
+            </form> 
+        </div>
+        <div id="modifier" class="login-part overflow none">
+            <div class="reg Regular">
+                <span>修改密码</span>
+            </div>
+            <form action="" id="newPassword" autocomplete="off" method="post">
+                <div class="username">
+                    <label class="Light" for=""><span>*</span>新密码:</label>
+                    <input type="password" name="pStr" id="pStr" placeholder="请输入新密码">
+                    <div class="errors Light"></div>
+                </div>
+                <div class="psword">
+                    <label class="Light" for=""><span>*</span>确认新密码:</label>
+                    <input type="password" name="repsword" id="repsword" placeholder="请再次输入新密码">
+                    <div class="errors Light"></div>
+                </div>
+                <!-- <a rel="noopener noreferrer" class="Semilight pointer block" href="${base}/login">取消</a> -->
+                <input class="Semilight pointer" type="submit" value="完成">
+            </form>
+        </div>
+    </div>
+
+    <!-- 底部导航 -->
+    [#include "../includes/tipFooter.html"/]
+    <!--底部导航 over-->
+    <!-- 底部模块 -->
+    <!-- <script src="${res}/js/jquery-1.12.4.js"></script> -->
+    <script src="${res}/js/sm.js"></script>
+    <script src="${res}/js/login.js"></script>
+    <script type="text/javascript">
+        var isQuestion = false
+        var isPhone = false
+        var isEmail = false
+        $(function () {
+            showQuestion()
+        })
+        function showQuestion() {
+            let data = {}
+            api.GET('/systemInfo', data,function (result) {
+                if (result.code == 200) {
+                    $("<option value='1'>"+result.data.secQuestionOne+"</option>").appendTo("#question")
+                    $("<option value='2'>"+result.data.secQuestionTwo+"</option>").appendTo("#question")
+                    $("<option value='3'>"+result.data.secQuestionThree+"</option>").appendTo("#question")
+                } else {
+                    myMessage.add(result.message, 'error');
+                }
+            })
+        }
+        $(function () {
+            $('#codeForm').validate({
+                rules: {
+                    targetNumber: {
+                        required: true
+                    },
+                    validateCode: {
+                        required: true
+                    }
+                },
+                messages: {
+                    targetNumber: {
+                        required: "请输入用户名"
+                    },
+                },
+                //错误提示标签
+                errorElement: 'p',
+                //获得焦点时，错误提示消失
+                focusCleanup: true,
+                focusInvalid: false,
+                //失去焦点时，进行验证
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                //错误提示的位置
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent('div').find('.errors'));
+                },
+                submitHandler: function () {
+                    var username = $('#targetNumber').val();
+                    var data = {
+                        'username': username,
+                    }
+                    api.GET('/register/valid/user', data, function (result) {
+                        if (result.code == 200) {
+                            // myMessage.add(result.message, 'success');
+                            if(result.data.user) {
+                                api.GET('/register/find/type', data,function (result) {
+                                if (result.code == 200) {
+                                    if(!result.data.email) {
+                                        console.log("111")
+                                        document.getElementById('find-email').style.display = 'none';
+                                    }
+                                    if(!result.data.mobile) {
+                                        document.getElementById('find-phone').style.display = 'none';
+                                    }
+                                    if(!result.data.question) {
+                                        document.getElementById('find-question').style.display = 'none';
+                                    }
+                                } else {
+                                    myMessage.add(result.message, 'error');
+                                }
+                                }) 
+                                $('#verify').hide()
+                                $('#findWay').show()
+                            }
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    })
+                }
+            })
+            $('#findWayForm').validate({
+                rules: {
+                    way: {
+                        required: true
+                    },
+                },
+                messages: {
+                    way: {
+                        required: "请选择找回方式"
+                    },
+                },
+                //错误提示标签
+                errorElement: 'p',
+                //获得焦点时，错误提示消失
+                focusCleanup: true,
+                focusInvalid: false,
+                //失去焦点时，进行验证
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                //错误提示的位置
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent('div').find('.errors'));
+                },
+                submitHandler: function () {
+                    let way =  $('input[name="way"]:checked').val()
+                    console.log(way)
+                    $('#findWay').hide()
+                    if(way == 1) {
+                        $('#findWay-phone').show()
+                        isPhone = true
+                    } else if(way == 2) {
+                        $('#findWay-email').show()
+                        isEmail = true
+                    } else if(way == 3) {
+                        $('#findWay-question').show()
+                        isQuestion = true
+                    }
+                }
+            })
+            $('#phoneForm').validate({
+                rules: {
+                    phoneMess: {
+                        required: true
+                    },
+                },
+                messages: {
+                    phoneMess: {
+                        required: "请输入验证码"
+                    },
+                },
+                //错误提示标签
+                errorElement: 'p',
+                //获得焦点时，错误提示消失
+                focusCleanup: true,
+                focusInvalid: false,
+                //失去焦点时，进行验证
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                //错误提示的位置
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent('div').find('.errors'));
+                },
+                submitHandler: function () {
+                    var data = {
+                        'mobile': $('#targetNumber').val(),
+                        'code': $('#phoneMess').val(),
+                        'type': 2
+                    }
+                    api.GET('/register/mobile/authcode', data, function (result) {
+                        if (result.code == 200) {
+                            if(result.data) {
+                                $('#findWay-phone').hide()
+                                $('#newPassword').show()
+                            } else {
+                                myMessage.add('验证码错误', 'error');
+                            }
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    })
+                }
+            })
+            $('#emailForm').validate({
+                rules: {
+                    emailMess: {
+                        required: true
+                    },
+                },
+                messages: {
+                    emailMess: {
+                        required: "请输入验证码"
+                    },
+                },
+                //错误提示标签
+                errorElement: 'p',
+                //获得焦点时，错误提示消失
+                focusCleanup: true,
+                focusInvalid: false,
+                //失去焦点时，进行验证
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                //错误提示的位置
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent('div').find('.errors'));
+                },
+                submitHandler: function () {
+                    var data = {
+                        'email': $('#targetNumber').val(),
+                        'code': $('#emailMess').val(),
+                        'type': 2
+                    }
+                    api.GET('/register/mail/authcode', data, function (result) {
+                        if (result.code == 200) {
+                            if(result.data) {
+                                $('#findWay-email').hide()
+                                $('#newPassword').show()
+                            } else {
+                                myMessage.add('验证码错误', 'error');
+                            }
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    })
+                }
+            })
+            $('#questionForm').validate({
+                rules: {
+                    answer: {
+                        required: true
+                    },
+                },
+                messages: {
+                    answer: {
+                        required: "请输入答案"
+                    },
+                },
+                //错误提示标签
+                errorElement: 'p',
+                //获得焦点时，错误提示消失
+                focusCleanup: true,
+                focusInvalid: false,
+                //失去焦点时，进行验证
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                //错误提示的位置
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent('div').find('.errors'));
+                },
+                submitHandler: function () {
+                    var username = $('#targetNumber').val();
+                    var num =  $('#question').val();
+                    var answer = $('#answer').val();
+                    var data = {
+                        'username': username,
+                        'num': num,
+                        'answer': answer
+                    }
+                    api.POST('/register/valid/question', data, function (result) {
+                        if (result.code == 200) {
+                            if(result.data) {
+                                $('#findWay-question').hide()
+                                $('#modifier').show()
+                            } else {
+                                myMessage.add('答案错误，验证失败', 'error');
+                            }
+                            
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    })
+                }
+            })
+            $('#newPassword').validate({
+                rules: {
+                    pStr: {
+                        required: true,
+                        secret: true
+                    },
+                    repsword: {
+                        required: true,
+                        equalTo: '#pStr'
+                    }
+                },
+                messages: {
+                    pStr: {
+                        required: "请输入新密码"
+                    },
+                    repsword: {
+                        required: "请再次输入密码",
+                        equalTo: "两次密码不一致"
+                    }
+                },
+                //错误提示标签
+                errorElement: 'p',
+                //获得焦点时，错误提示消失
+                focusCleanup: true,
+                focusInvalid: false,
+                //失去焦点时，进行验证
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                //错误提示的位置
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent('div').find('.errors'));
+                },
+                submitHandler: function () {
+                    if(isQuestion) {
+                        password = desEncrypt($('#pStr').val());
+                        api.POST('/register/rectrieve/question', {
+                            'username': $('#targetNumber').val(),
+                            'num': $('#question').val(),
+                            'pStr': password,
+                            'answer': $('#answer').val(),
+                        }, function (result) {
+                            if (result.code == 200) {
+                                myMessage.add(result.message, 'success');
+                                location.href = '${base}/login';
+                            } else {
+                                myMessage.add(result.message, 'error');
+                            }
+                        })
+                    } else if(isPhone){
+                        var password = desEncrypt($('#pStr').val());
+                        api.POST('/register/rectrieve/phone', {
+                            'phone': $('#targetNumber').val(),
+                            'validateCode': $('#phoneMess').val(),
+                            'pStr': password
+                        }, function (result) {
+                            if (result.code == 200) {
+                                myMessage.add(result.message, 'success');
+                                location.href = '${base}/login';
+                            } else {
+                                myMessage.add(result.message, 'error');
+                            }
+                        })
+                    } else if(isEmail){
+                        var password = desEncrypt($('#pStr').val());
+                        api.POST('/register/rectrieve/key', {
+                            'key': $('#targetNumber').val(),
+                            'validateCode': $('#emailMess').val(),
+                            'pStr': password
+                        }, function (result) {
+                            if (result.code == 200) {
+                                myMessage.add(result.message, 'success');
+                                location.href = '${base}/login';
+                            } else {
+                                myMessage.add(result.message, 'error');
+                            }
+                        })
+                    } 
+                }
+            });
+            $.validator.addMethod('secret', function (value, element) {
+                var identReg = /^[^\u4e00-\u9fa5]{6,18}$/;
+                return this.optional(element) || (identReg.test(value));
+            }, '请输入正确的密码格式');
+        })
+        // 获取验证码
+        var emailTime = 60
+
+        function getCode() {
+            if ($('#targetNumber').val()) {
+                if (emailTime === 60) {
+                    var data = {
+                        'email': $('#emailMess').val()
+                    }
+                    api.GET('/member/memberinfo/send/email ', data, function (data) {
+                        if (data.code === 200) {
+                            myMessage.add(data.message,'success');
+                            $('#getEmail').text(emailTime)
+                            clearInterval(countEmail)
+                            var countEmail = setInterval(function () {
+                                emailTime -= 1
+                                $('#getEmail').text(emailTime)
+                                if (emailTime <= 0) {
+                                    clearInterval(countEmail)
+                                    emailTime = 60
+                                    $('#getEmail').text('获取验证码')
+                                }
+                            }, 1000)
+                        } else {
+                            myMessage.add(data.message, 'warning');
+                        }
+                    })
+
+                }
+            } else {
+                myMessage.add('请输入用户名', 'warning');
+            }
+        }
+
+        // 获取验证码
+        var phoneTime = 60
+
+        function getCodePhone() {
+            if ($('#targetNumber').val()) {
+                if (phoneTime === 60) {
+                    var data = {
+                        'mobile': $('#phoneMess').val()
+                    }
+                    api.GET('/member/memberinfo/send/mobile', data, function (data) {
+                        if (data.code === 200) {
+                            myMessage.add(data.message,'success');
+                            $('#getPhone').text(phoneTime)
+                            clearInterval(countEmail)
+                            var countEmail = setInterval(function () {
+                                phoneTime -= 1
+                                $('#getPhone').text(phoneTime)
+                                if (phoneTime <= 0) {
+                                    clearInterval(countEmail)
+                                    phoneTime = 60
+                                    $('#getPhone').text('获取验证码')
+                                }
+                            }, 1000)
+                        } else {
+                            myMessage.add(data.message, 'warning');
+                        }
+                    })
+
+                }
+            } else {
+                myMessage.add('请输入用户名', 'warning');
+            }
+        }
+    </script>
+</body>
+
+</html>

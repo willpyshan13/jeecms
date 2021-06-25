@@ -1,0 +1,79 @@
+<!-- 政务公开-搜索详情页模板-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${site.name!}111</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/zwgk_search-detail.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <div class="topnav w">
+            <div class="topnavItem clearfix">
+                <div class="topnav1 fl">
+                    <div class="index fl">索引号</div>
+                    <div class="indexText fl">[#if content.attr.fileIndex??] ${content.attr.fileIndex.attrValue!}[/#if] </div>
+                </div>
+                <div class="topnav2 fl">
+                    <div class="index fl">发文机关</div>
+                    <div class="indexText fl">[#if content.attr.issuedOrg??] ${content.attr.issuedOrg.attrValue!}[/#if]  </div>
+                </div>
+            </div>
+            <div class="topnavItem clearfix">
+                <div class="topnav1 fl">
+                    <div class="index fl">文号</div>
+                    <div class="indexText fl"> [#if content.attr.issuedNum??] ${content.attr.issuedNum.attrValue!}[/#if] </div>
+                </div>
+                <div class="topnav2 fl">
+                    <div class="index fl">发布日期</div>
+                    <div class="indexText fl">${content.releaseTime!?string("yyyy-MM-dd")}</div>
+                </div>
+            </div>
+        </div>
+        <!-- 内容写在这里 -->
+        <div class="newsTitle w clearfix">
+
+            <div class="newTitle">${content.title!}</div>
+            <div class="titleTag">
+                <div class="admin fl">
+                    <div class="data fl">日期：${content.releaseTime!?string("yyyy-MM-dd")} </div>
+                    <div class="promulgator fl"> 来源：[#if (content.source.sourceName)?? && (content.source.sourceName) !=""]${(content.source.sourceName)}[#else]${site.name!}[/#if]  </div>
+                </div>
+                <div class="rightTag fr">
+                    <span class="tex">分享：</span>
+                    <span class="titleTagItem iconfont iconqq qq "> </span>
+                    <span class="titleTagItem iconfont iconweixin wx"> </span>
+                    <span class="titleTagItem iconfont iconweibo weibo"> </span>
+                    <span class="titleTagItem iconfont iconkongjian kongjian"> </span>
+                </div>
+            </div>
+        </div>
+        <div class="cut-off-rule w clearfix">
+            <img src="${res}/static/img/tiao.png" alt="">
+        </div>
+        <div class="newsDetails w">
+            ${txt!}
+        </div>
+        [#include "../includes/footerCommon.html"/]
+    </div>
+</body>
+
+</html>

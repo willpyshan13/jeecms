@@ -1,0 +1,18 @@
+
+.spage-total{display: inline-block;margin-left: 20px; line-height: 35px;color: #666;font-size:14px;}
+.spage-number{display: inline-block; height: 35px; color: #666;font-size:14px;}
+.spage-number button:first-child {margin-left: 0;}
+.spage-number button:last-child {margin-left: 16px;}
+.spage-number .btn-change-page {background-color: #eee;margin-left: 16px;}
+.spage-number .sub-btn-page {margin-left:16px;padding: 0 14px;}
+.spage-number button{position: relative;box-sizing: border-box;display: inline-block;padding: 0px 19px;line-height: 35px;border:none;text-align: center;transition: all .2s;cursor: pointer;outline: none;background: none;user-select: none;color: #666}
+.spage-number button.active{background: #eee;color: #002a66;z-index: 3;}
+.spage-number button.active:hover{background: #eee;color: #002a66;z-index: 3;}
+.spage-number button:hover{background-color: #eee;}
+.spage-number button.button-disabled{color: #666;pointer-events:none;user-select: none;background-color: #eee;}
+.spage-number .spage-after,.spage-before{padding:0px;width: 40px}
+.spage-skip{display: inline-block;margin-left: 20px;line-height: 35px;color: #666;font-size:14px;}
+.spage-skip input{box-sizing: border-box;display: inline-block; margin: 0 10px; width: 60px;height: 35px;text-align: center;vertical-align: top;border:none;background: #eee;outline: none;transition: all .2s;}
+.spage-skip input:focus{border-color: #eee;}
+.spage-skip button{display: inline-block;padding: 0px 16px;line-height: 35px;vertical-align: top;color: #666;border:none;cursor: pointer;transition: all .2s;outline: none;background: #eee;user-select: none;}
+/* .spage-skip button:hover{background: #eee;color: #fff;border:1px solid #666;} */

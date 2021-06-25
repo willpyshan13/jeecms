@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title></title>
+        <!-- <link rel="stylesheet" href="${mobileRes}/css/public.css"> -->
+        <link rel="stylesheet" type="text/css" href="${mobileRes}/css/letterSearch.css" />
+		<script src="${mobileRes}/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${mobileRes}/js/vue.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${mobileRes}/js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${mobileRes}/js/app.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+<body>
+<div id="letterSearch">
+    <div class="head">
+        <div class="head-left" @click="goBack"><img src="${mobileRes}/images/icon/houtui.png"></div>
+        <div class="head-center">查询</div>
+    </div>
+    <div class="main">
+        <div class="input">
+            <div class="serial">
+                <input type="text"  v-model="params.letterNo" placeholder="请输入信件编号"/>
+                <img  class="clear" @click="clearSerial" v-if="params.letterNo" src="${mobileRes}/images/icon/qingchu.png" alt="">
+            </div>
+            <div class="serial">
+                <input type="text" v-model="params.qPass" placeholder="查询密码"/>
+                <img  class="clear" @click="clearPwd" v-if="params.qPass" src="${mobileRes}/images/icon/qingchu.png" alt="">
+            </div>
+        </div>
+        <button class="btn"  @click="goSearch" :class="{'btns':params.letterNo&&params.qPass}">
+            查询
+        </button>
+    </div>
+</div>
+</body>
+<script>
+    var baseUrl='${base}'
+    new Vue({
+    el: '#letterSearch',
+    data: {
+        params:{
+            letterNo:'',//编号
+            qPass:'',//密码
+        },
+    },
+    mounted() {
+    },
+    methods: {
+        //返回
+        goBack(){
+            window.location.href=('/channel-letterBox.htm')
+        },
+        //清除账号
+        clearSerial(){
+            this.params.letterNo=''
+        },
+        //清除密码
+        clearPwd(){
+            this.params.qPass=''
+        },
+        goSearch(){
+            let winTips=document.querySelector('.win-tip')
+            if (winTips) {
+                return
+            }
+            if (!this.params.letterNo) {
+				winTip('请输入信件编号')
+                return
+            }else if(!this.params.qPass){
+				winTip('请输入查询密码')
+            }else{
+                var that = this
+                axios({
+                    method: 'get',
+                    url: baseUrl+'/letter/page',
+                    params:this.params
+                }).then(res=>{
+                    if(res.data.code===200){
+                        let content=JSON.stringify(res.data.data.content)
+                        window.localStorage.setItem('QueryLetters',content)
+                        window.location.href=('/interact-letterList-searchResult.htm')
+                    }
+                })
+            }
+        }
+    }
+	});
+</script>
+</html>

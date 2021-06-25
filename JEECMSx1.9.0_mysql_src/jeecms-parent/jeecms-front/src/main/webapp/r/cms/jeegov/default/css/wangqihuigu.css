@@ -1,0 +1,52 @@
+.mian {
+    padding-top: 53px;
+}
+.main-title {
+    padding-bottom: 23px;
+    font-size:24px;
+    line-height: 24px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+    border-bottom: 1px solid #ddd;
+}
+.past-item {
+    padding: 30px 0;
+    height:217px;
+    border-bottom: 1px dashed #ddd;
+    cursor: pointer;
+}
+.past-item:hover{
+   background-color: rgba(250,250,250,1);
+}
+.past-item-img {
+    margin-right: 30px;
+    width:280px;
+    height:158px;
+}
+.past-item-img img{
+    width:100%;
+    height:100%;
+}
+
+.text-item {
+    margin-bottom: 22px;
+    font-size:14px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+    line-height:14px;
+}
+.past-text-title {
+    font-weight: 400;
+}
+.past-text-content a{
+    color:rgba(51,51,51,1);
+}
+.past-text-content a:hover{
+    color: #002A66;
+    font-weight: 400;
+}
+/* 分页 */
+#myPage {
+    margin : 40px 0 70px 350px;
+  }
+/* 结束 */

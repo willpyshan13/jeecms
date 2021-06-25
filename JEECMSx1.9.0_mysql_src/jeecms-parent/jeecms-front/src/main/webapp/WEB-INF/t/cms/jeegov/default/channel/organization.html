@@ -1,0 +1,104 @@
+<!-- 政府机构页面 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static//common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/organization.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/header.html"/]
+        <!-- 标签 -->
+        <div class="subTitle w">
+            政务机构
+        </div>
+        <div class="title w">
+            <div class="tag fl"></div>
+            <div class="titleText fl">政府组成部门</div>
+        </div>
+        <div class="mainmenu w clearfix">
+            [@cms_content_list channelPath='zfzcbm' channelOption='1'   orderBy='29'  count='100']
+            [#list tag_list as a]
+            [#if a_index==0||a_index==6||a_index==12]
+            <div class="mainmenu-row fl">
+            [/#if]
+            [#if a_index==18]
+            <div class="mainmenu-row fl marginStyle">
+            [/#if]
+                <div class="menuItemBox">
+                    <div class="circle fl">
+                        <div class="circleStyle"></div>
+                    </div>
+                    <div class="fl mainmenuText"> <a href="${a.url!}">${a.title!}</a></div>
+                </div>
+            [#if a_index%6==5]
+            </div>
+           [/#if]
+            [/#list]
+            [/@cms_content_list]
+            </div>
+        </div>
+        <!--  -->
+        <div class="title w">
+            <div class="tag fl"></div>
+            <div class="titleText fl">直属特设机构</div>
+        </div>
+        <div class="mainmenu w clearfix">
+            <div class="mainmenu-row fl">
+                [@cms_content_list channelPath='zstsjg' channelOption='1'   orderBy='29'  count='100']
+                [#list tag_list as a]
+                <div class="menuItemBox">
+                    <div class="circle fl">
+                        <div class="circleStyle"></div>
+                    </div>
+                    <div class="fl mainmenuText"><a href="${a.url!}">${a.title!}</a></div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+        </div>
+        <div class="title w">
+            <div class="tag fl"></div>
+            <div class="titleText fl">省政府直属机构</div>
+        </div>
+        <div class="mainmenu w clearfix" style="margin-bottom: 37px;">
+            [@cms_content_list channelPath='szfzsjg' channelOption='1'   orderBy='29'  count='12']
+            [#list tag_list as a]
+            [#if a_index%3==0]
+            <div class="mainmenu-row fl">
+            [/#if]
+                <div class="menuItemBox">
+                    <div class="circle fl">
+                        <div class="circleStyle"></div>
+                    </div>
+                    <div class="fl mainmenuText"><a href="${a.url!}">${a.title!}</a></div>
+                </div>
+            [#if a_index%3==2||a_index==tag_list?size-1]
+            </div>
+            [/#if]
+            [/#list]
+            [/@cms_content_list]
+        </div>
+        <!-- 页脚网站信息模块-->
+        [#include "../includes/footerCommon.html"/]
+        <!-- 页脚 -->
+</body>
+
+</html>

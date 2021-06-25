@@ -1,0 +1,349 @@
+<!-- 政民互动模块-举报表格模板-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <script src="../../static/bootstrap/jquery.min.js"></script>
+    <script src="../../static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../../static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static//common/base.css">
+    <link rel="stylesheet" href="../../static/common/common.css">
+    <link rel="stylesheet" href="../../css/jianyibiaoge.css">
+    <link rel="stylesheet" href="../../static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="../../static/html5shiv.js"></script>
+    <script src="../../static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="search w">
+
+            <!-- <div class="change-languange">简体</div> -->
+            <div class="dropdown fl">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    简体
+                    <span class="iconfont iconarrow"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li> 简体</li>
+                    <li> 繁体</li>
+                </ul>
+
+            </div>
+
+            <div class="searchSubBtn fl">
+                <div class="fl">
+                    <a href="#" class="iconfont iconwuzhangaiyuedu"></a>
+                </div>
+                <div class="fl">
+                    <a href="" class="iconfont iconrss"></a>
+                </div>
+                <div class="fl">
+                    <a href="./html/search.html" class="iconfont iconsousuo"></a>
+                </div>
+            </div>
+            <div class="register fr">
+                <div class="registerBtn fl"><a href="#">注册</a></div>
+
+                <div class="loginBtn fl"><a href="">登录</a></div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="header-warry">
+                <div class="header-logo">
+                    <a href="./jiangzhou/index.html">
+                        <div class="header-logo-img"> </div>
+                    </a>
+                </div>
+                <div class="header-nav">
+                    <div class="header-menu"><a href="../../index.html">首页</a></div>
+                    <div class="header-menu"><a href="../news.html">要闻动态</a></div>
+                    <div class="header-menu"><a href="../zhengwugongkai/zwgk_index.html">政务公开</a></div>
+                    <div class="header-menu"><a href="../zhengfufuwu/serve_index.html">政府服务</a></div>
+                    <div class="header-menu active"><a href="../zhengminhudong/zhengminhudong.html">政民互动</a></div>
+                    <div class="header-menu"><a href="../zoujinjiangzhou/zjjz_index.html">走进江州</a></div>
+                </div>
+            </div>
+        </div>
+        <!-- 标题区域 -->
+        <div class="subTitle w clearfix">
+            <div class="fl title" style="margin-bottom: 0;">举报写信</div>
+        </div>
+        <div class="mainBox w">
+
+            <div class="form-title">
+                请在下表输入您的建议信息
+            </div>
+            <!-- 表单 -->
+            <div class="form-content" style="margin-top: 40px;">
+                <!-- 表单组件 -->
+                <form class="form-horizontal">
+
+                    <div class="form-group clearfix" style="height: 34px;">
+                        <span class="imp fl">*</span>
+                        <label for="" class="control-label fl">
+                            举报类别
+                        </label>
+                        <div class="fl category">
+                            <label class="radio-inline" for="">
+                                <input type="radio" name="category" id="inlineRadio1" value="option1"> 依法办事
+                            </label>
+                            <label class="radio-inline">
+                                <input checked type="radio" name="category" id="inlineRadio2" value="option2">
+                                服务态度
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="category" id="inlineRadio3" value="option3"> 办事效率
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="category" id="inlineRadio3" value="option3">信息公开
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 标题 -->
+                    <div class="form-group clearfix">
+                        <span class="imp fl style">*</span>
+
+                        <label for="" class="control-label fl">
+
+                            标题
+                        </label>
+                        <div class="fl inputWidt">
+                            <input type="name" class="form-control" id="inputEmail3" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <span class="imp fl style">*</span>
+
+                        <label for="" class="control-label fl">
+
+                            内容
+                        </label>
+                        <div class="fl textarea">
+                            <textarea class="form-control " rows="3" style="width: 100%;"></textarea>
+
+                        </div>
+                    </div>
+                    <!-- 上传 -->
+                    <div class="form-group clearfix" style="height: 34px;">
+                        <label for="" class="control-label fl">
+                            相关材料
+                        </label>
+                        <div class="fl uploading">
+                            <span class="iconfont iconfujian" id="my-upload-icon"></span>
+                            <input type="file" id="my-upload" />
+                            <span class="uploading-worning">注意附件不超过5个，大小不超过10M，可上传txt，office文件，图片，音频，视频类型的文件</span>
+                        </div>
+                    </div>
+                    <!-- // -->
+                    <div class="form-group clearfix">
+                        <span class="imp fl style" style="margin-left: 9px;">*</span>
+
+                        <label for="" class="control-label fl">
+
+                            验证码
+                        </label>
+                        <div class="fl inputWidt">
+                            <input type="name" class="form-control fl" id="inputEmail3" style="width: 150px;">
+                            <div class="code fl"><img src="../../static/upload/code.png" alt=""></div>
+                            <div class="changeImg fl">
+                                <a href="javascript:;">看不清，换一张</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check clearfix">
+                        <span class="imp fl ">*</span>
+
+                        <label for="" class="control-label fl">
+
+                            是否公开
+                        </label>
+                        <div class="inputWidt fl">
+                            <label class="radio-inline checkInput fl">
+                                <input type="radio" name="inlineRadioOptions" class="fl" value="option1" checked
+                                    style="padding-left: 0;">
+                                <span class="fl"> 公开</span>
+                            </label>
+                            <label class="radio-inline checkInput fl" style="margin-left: 38px;">
+                                <input type="radio" name="inlineRadioOptions" class="fl" value="option1">
+                                <span class="fl"> 匿名</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix" style="margin-left: 81px;">
+                        <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
+                            提交
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="siteinfoBox" style="margin-top: 61px;">
+            <div class="siteinfo w">
+                <div class="siteinfoItem fl" style="text-align: left;">
+                    <!-- <div class="siteinfoText fl">
+                            中国政府网及国务院部门网站
+                        </div> -->
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            中国政府网及国务院部门网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                            <li> 国务院台湾事务办公室</li>
+                            <li> 国务院发展研究中心</li>
+                            <li> 国家国防科技工业局</li>
+                            <li> 国家文物局</li>
+                            <li> 国家公园管理局</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            省（区市）政府网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市级政府部门网站
+                            <div class="triangle fl" style="right: 18px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市县政府网站
+                            <div class="triangle fl" style="right: 21px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl marginStyle" style="border: 0;">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            新闻媒体网站
+                            <div class="triangle fl" style="right: 25px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="fotter">
+            <div class="contactUs clearfix">
+                <div class="contactUsText fl"><a href="#">关于我们</a></div>
+                <div class="contactUsText fl"><a href="#">建议意见</a></div>
+                <div class="contactUsText fl"><a href="#">站点地图</a></div>
+                <div class="contactUsText fl" style="border: none;"><a href="#">联系我们</a></div>
+
+                <div class="share">
+                    <div class="shareImg fl">
+                        <a href="">
+                            <img src="../../static/img/_r4_c3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="shareImg fl" style="margin-left: 22px;">
+                        <a href="">
+                            <img src="../../static/img/矢量智能对象.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="siteinfo-legal">
+                ICP备案号：赣ICP备 18000538号-1 2007-2019 www.jeecms.com;All Rights
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
+                            class="iconfont iconguanbi"></span></button>
+                </div>
+                <div class="modal-body">
+                    提交成功，感谢你的参与！
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    $(document).ready(function () {
+        $('#my-upload-icon').click(function () {
+            $('#my-upload').click();
+        });
+
+    });
+</script>

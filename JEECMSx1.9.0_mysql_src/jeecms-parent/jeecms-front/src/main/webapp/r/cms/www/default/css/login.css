@@ -1,0 +1,620 @@
+body {
+    background-color: #ebeced;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100%;
+}
+.title {
+    font-weight: 500 !important;
+}
+.main{
+    position: fixed;
+    top: 50%;
+    margin-top: -327px;
+    left: 50%;
+    margin-left: -495px;
+    box-shadow: 0 0 12px #DDDEDF;
+    behavior: url(../src/pie/PIE.htc);
+}
+.main .login-part {
+    width: 990px;
+    height: 558px;
+    background-color: #fff;
+    margin: auto;
+    border-radius: 4px;
+    behavior: url(../src/pie/PIE.htc);
+}
+
+.main .login-part .login-left {
+    width: 430px;
+    height: 558px;
+    padding-left: 40px;
+    padding-right: 35px;
+    position: relative;
+}
+
+.main .login-part .login-left .reg {
+    height: 62px;
+    margin-bottom: 62px;
+    position: relative;
+}
+
+.main .login-part .login-left .reg span {
+    color: #333;
+    font-size: 20px;
+    position: absolute;
+    top: 35px;
+    left: 0;
+}
+
+.main .login-part .login-left .reg a {
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    width: 86px;
+    height: 32px;
+    line-height: 30px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    behavior: url(../src/pie/PIE.htc);
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
+
+.main .login-part .login-left .reg a:hover {
+    color: #E30B20;
+    border-color: #E30B20;
+}
+
+.main .login-part .login-left .formtable {
+    width: 285px;
+    border-bottom: 1px solid #E5E5E5;
+    margin-left: 34px;
+}
+.main .login-part .login-left .formtable input::-webkit-input-placeholder {
+    font-weight: 400;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .login-part .login-left .formtable input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    font-weight: 400;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .login-part .login-left .formtable input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    font-weight: 400;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .login-part .login-left .formtable input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    font-weight: 400;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .login-part .login-left .formtable .ago {
+    font-size: 15px;
+    color: #999;
+}
+
+.main .login-part .login-left .formtable div {
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 22px;
+    position: relative;
+}
+
+.main .login-part .login-left .formtable div i {
+    font-size: 15px;
+    color: #999;
+}
+
+.main .login-part .login-left .formtable div .ago {
+    position: absolute;
+    left: 4px;
+}
+
+.main .login-part .login-left .formtable div input {
+    padding-left: 26px;
+    height: 28px;
+    width: 283px;
+    border: 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.main .login-part .login-left .formtable div .close,
+.main .login-part .login-left .formtable div .look {
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+
+.main .login-part .login-left .formtable div p {
+    color: #E30B20;
+    font-size: 14px;
+    position: absolute;
+    left: 25px;
+    top: 22px;
+}
+
+.main .login-part .login-left .formtable div.code {
+    position: relative;
+}
+
+.main .login-part .login-left .formtable div.code .letter {
+    width: 125px;
+    height: 35px;
+    position: absolute;
+    right: 0;
+    top: -10px;
+    font-weight: bolder;
+}
+
+.main .login-part .login-left .formtable div.box {
+    height: 20px;
+    line-height: 20px;
+    margin-top: -4px;
+    position: relative;
+}
+
+.main .login-part .login-left .formtable div.box input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    left: -4px;
+    top: 0;
+}
+
+.main .login-part .login-left .formtable div.box input[type="checkbox"]::after {
+    width: 12px;
+    height: 12px;
+    content: " ";
+    background-color: #fff;
+    color: #333;
+    display: inline-block;
+    visibility: visible;
+    border-radius: 2px;
+    behavior: url(../src/pie/PIE.htc);
+    border: 1px solid #E5E5E5;
+    position: absolute;
+    top: 0;
+    
+}
+
+.main .login-part .login-left .formtable div.box input[type=checkbox]:checked:after {
+	width: 12px;
+	height: 12px;
+    content: "";
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: 18px;
+    border: 0;
+    color: #fff;
+	background-image: url(../images/login-register/yes.png);
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.main .login-part .login-left .formtable div.box span {
+    color: #999;
+    font-size: 14px;
+    position: absolute;
+    left: 20px;
+}
+
+.main .login-part .login-left .formtable div.box a {
+    font-size: 14px;
+    color: #2676B5;
+    position: absolute;
+    right: 0;
+}
+
+.main .login-part .login-left .formtable .alogin{
+    width: 285px;
+    height: 43px;
+    line-height: 43px;
+    text-align: center;
+    background-color: #E30B20;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 22px;
+    behavior: url(../src/pie/PIE.htc);
+    margin-top: 31px;
+    margin-bottom: 56px;
+}
+.main .login-part .login-left .formtable .alogin:hover{
+    background-color: #FB0C23;
+}
+
+.main .login-part .login-left .fast-login {
+    width: 76px;
+    font-size: 14px;
+    color: #888888;
+    position: absolute;
+    bottom: 180px;
+    left: 178px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.main .login-part .login-left .fast-icon {
+    margin-top: 36px;
+	text-align: center;
+}
+
+.main .login-part .login-left .fast-icon a {
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    background-color: #f5f5f5;
+    margin-right: 15px;
+    text-align: center;
+    border-radius: 50%;
+    position: relative;
+}
+.main .login-part .login-left .fast-icon a i{
+    font-size: 18px;
+    position: absolute;
+    top: 8px;
+    left: 9px;
+}
+.main .login-part .login-left .fast-icon a i.iconQQ2{
+    color: #36B7F6;
+}
+.main .login-part .login-left .fast-icon a i.iconweibo2{
+    color: #FC304B;
+}
+.main .login-part .login-left .fast-icon a i.iconweixin2{
+    color: #4BB83F;
+}
+.main .login-part .login-left .fast-icon a i.iconyouke{
+    color: #3D89F7;
+}
+.main .login-part .login-left .fast-icon a.one:hover {
+    background-color: #36B7F6;
+}
+.main .login-part .login-left .fast-icon a.twos:hover {
+    background-color: #FC304B;
+}
+.main .login-part .login-left .fast-icon a.three:hover {
+    background-color: #4BB83F;
+}
+.main .login-part .login-left .fast-icon a.four:hover {
+    background-color:#3D89F7;
+}
+.main .login-part .login-left .fast-icon a:hover i{
+    color: #fff;
+}
+
+.main .login-part .login-right {
+    width: 560px;
+    height: 558px;
+    position: relative;
+}
+
+.main .login-part .login-right .lunbo {
+    position: relative;
+    width: 560px;
+    height: 558px;
+    border-radius: 4px;
+    behavior: url(../src/pie/PIE.htc);
+}
+
+.main .login-part .login-right .lunbo .jSlider .navigator .prev {
+    display: none;
+    margin-left: -30px;
+}
+
+.main .login-part .login-right .lunbo .jSlider .navigator .next {
+    display: none;
+    margin-right: -30px;
+}
+
+.main .login-part .login-right .lunbo .jSlider img {
+    width: 560px;
+    height: 558px;
+}
+
+/* .main .login-part .login-right .lunbo .jSlider .controller {
+    /* display: none; */
+/* } */ 
+
+.main .login-part .login-right .lunbo .jSlider .controller .indicator span {
+    width: 8px;
+    height: 8px;
+    opacity: 0.2;
+    filter: progid:DXImageTrans.formtable.Microsoft.gradient(startColorstr=#66000000, endColorstr=#66000000);
+}
+
+.main .login-part .login-right .lunbo .jSlider .controller .indicator .selected {
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.main .login-part .login-right .logo-img {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+.main .mode .mode-box {
+    width: 545px;
+    min-height: 258px;
+}
+.main .mode .mode-box .mode-close-login {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+}
+.main .mode .mode-box .mode-close-login i {
+    color: #FFBF3C;
+    font-size: 26px;
+}
+.main .mode .mode-box .mode-close-login .dialog-title{
+    padding-left: 12px;
+    font-size: 20px;
+    font-weight: normal;
+    color: #333333;
+    line-height: 14px;
+    vertical-align: text-top;
+}
+.main .mode .mode-box .mode-close-login:hover {
+    color: #FFBF3C;
+}
+.main .mode .mode-box .mode-title-login {
+    padding: 95px 40px 38px;
+}
+.main .mode .mode-box .mode-title-login .mode-message-login {
+    font-size: 18px;
+    font-weight: normal;
+    color: #333333;
+    line-height: 18px;
+}
+.main .mode .mode-box .mode-btn {
+    margin: 0;
+    margin-right: 40px;
+    float: right;
+}
+
+/* 二 */
+.main .mode2 .mode-box ,.main .mode3 .mode-box,.main .mode4 .mode-box,.main .mode5 .mode-box{
+    padding: 38px 40px 40px;
+}
+.main .mode2 .mode-box .title,.main .mode3 .mode-box .title,.main .mode4 .mode-box .title,.main .mode5 .mode-box .title{
+    font-size: 20px;
+    font-weight: 400;
+    color: #333333;
+}
+.main .mode2 .mode-box .form ,.main .mode3 .mode-box .form,.main .mode4 .mode-box .form,.main .mode5 .mode-box .form{
+    padding-top: 40px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999999;
+}
+.main .mode2 .mode-box .form .input-box,.main .mode5 .mode-box .form .input-box {
+    position: relative;
+    display: inline-block;
+    width: 360px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 4px;
+}
+.main .mode2 .mode-box .form .input-box .get-capatch,.main .mode5 .mode-box .form .input-box .get-capatch {
+    position: absolute;
+    right: 0;
+    top: -1px;
+    display: inline-block;
+    padding: 0 8px;
+    border-left: 1px solid #E8E8E8;
+    width: 87px;
+    height: 40px;
+    color: #333;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+.main .mode2 .mode-box .form .input-box input,.main .mode5 .mode-box .form .input-box input{
+    padding: 13px 20px;
+    display: inline-block;
+    width: 260px;
+    height: 100%;
+    background: #FFFFFF;
+    border: 0;
+    color: #333 !important;
+    border-radius: 4px;
+}
+.main .mode2 .mode-box .form .input-box input::-webkit-input-placeholder,.main .mode2 .mode-box .form .input-box input::-webkit-input-placeholder { /* WebKit browsers */
+    font-size: 14px;
+    font-weight: 400;
+    color: #999999;
+  }
+.mode4 .answer input {
+    padding-left: 20px;
+}
+.mode4 .layui-input, .layui-textarea {
+    padding-left: 20px !important;
+}
+.mode4 .layui-form-select dl {
+    padding: 0 !important;
+    border-top: 0 !important;
+    border: 1px solid #e8e8e8;
+    border-radius: 0 0 4px 4px;
+    top: 38px;
+    box-shadow: none;
+    border-bottom: none;
+}
+.mode4 .layui-form-select dl dd, .layui-form-select dl dt {
+    padding-left: 20px!important;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 40px;
+    color: #333333;
+    border-bottom: 1px solid #E8E8E8;
+}
+.mode4 .answer input::-webkit-input-placeholder{
+    font-size: 14px;
+    font-weight: 300;
+    color: #999999;
+}
+.main .mode2 .mode-box .handle-btn,.main .mode3 .mode-box .handle-btn,.main .mode4 .mode-box .handle-btn,.main .mode5 .mode-box .handle-btn {
+    margin-top: 40px;
+}
+.main .mode2 .mode-box .handle-btn span,.main .mode4 .mode-box .handle-btn span,.main .mode5 .mode-box .handle-btn span {
+    float: right;
+    width: 148px;
+    height: 40px;
+    border: 1px solid #E5E5E5;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+.mode2 .form input ,.mode5 .form input {
+    color: #333;
+}
+.main .mode3 .mode-box .handle-btn span,.main .mode5 .mode-box .handle-btn span {
+    float: right;
+    display: block;
+    width: 175px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #E30B20;
+    color: #FFFFFF;
+    border-radius: 21px;
+    cursor: pointer;
+}
+.main .mode2 .mode-box .handle-btn .cancel,.main .mode5 .mode-box .handle-btn .cancel,.main .mode4 .mode-box .handle-btn .cancel {
+    margin-right: 16px;
+    background: #FFFFFF;
+    color: #333333;
+    cursor: pointer;
+}
+.main .mode2 .mode-box .handle-btn .submit,.main .mode4 .mode-box .handle-btn .submit ,.main .mode5 .mode-box .handle-btn .submit{
+    color: #FFFFFF;
+    background: #E30B20;
+    cursor: pointer;
+}
+.main .mode2 .mode-box .handle-btn .cancel:hover,.main .mode4 .mode-box .handle-btn .cancel:hover,.main .mode5 .mode-box .handle-btn .cancel:hover {
+    color: #E30B20;
+    border: 1px solid #E30B20;
+}
+.main .mode2 .mode-box .handle-btn .submit:hover,.main .mode4 .mode-box .handle-btn .submit:hover,.main .mode3 .mode-box .handle-btn .submit:hover,.main .mode5 .mode-box .handle-btn .submit:hover {
+    background-color: #FB0C23;
+}
+.main .mode4 .mode-box .answer {
+    margin:30px 0 0 60px;
+    width: 343px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 4px;
+}
+.main .mode4 .mode-box .answer input {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    border: 0;
+}
+
+.main .error-text {
+    margin-top: 10px;
+    width: 100%;
+    height: 14px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #E30B20;
+    line-height: 14px;
+}
+.main .error-text span {
+    padding-left: 97px;
+}
+/* 三 */
+.main .mode4 .layui-form-item {
+    margin-bottom: 0;
+}
+.main .mode4 .layui-input-block {
+    width: 343px;
+    height: 40px;
+    margin-left: 0;
+}
+.layui-form-selected .layui-input:hover, .layui-form-selected .layui-input:focus {
+    border-color: #e8e8e8 !important
+}
+.layui-form-select dl {
+    position: absolute !important;
+}
+.layui-form-select dl dd.layui-this {
+    background-color:#F5F5F5 !important;
+    color:  #E30B20 !important;
+}
+.layui-form-select dl dd.layui-select-tips {
+    color:  #E30B20 !important;
+}
+/* radio样式 */
+.input-radio input {
+    width: 14px;
+    height: 14px;
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #fff;
+    outline: none;
+}
+.input-radio input:focus {
+    outline: none;
+}
+ .input-radio input:before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    border: 1px solid #CCCCCC;
+    border-radius: 50%;
+}
+
+ .input-radio input:checked:before {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    content: '';
+    background-color: #3D89F7;
+    border-radius: 50%;
+}
+
+ .input-radio input:checked:after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    text-align: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 50%;
+    display: block;
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+}
+.input-radio-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 17px;
+    vertical-align: top;
+}
+/*# sourceMappingURL=login.css.map */

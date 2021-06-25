@@ -1,0 +1,242 @@
+
+    
+/* 二级标题 */
+        .secondTitle {
+            width: 100%;
+            height: 60px;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            background-color: #F5F5F5;
+        }
+        .secondTitle .item:hover a{
+            color: #002A66;
+        }
+        .title .item {
+            text-align: center;
+            font-size:16px;
+
+            line-height:60px ;
+            padding: 0 45px;
+        }
+        .item a {
+            color: #666;
+        }
+        /* 动态新闻 */
+        .topNav {
+            margin-top: 40px;
+        }
+        .largeImg {
+            width:680px;
+            height:370px;
+            margin-right: 40px;
+        }
+        .dynamicNews {
+            margin-top: 10px;
+            width:480px;
+
+        }
+        .largeImg img{
+            width: 100%;
+            height: 100%;
+        }
+        .newsTitle {
+            font-size:24px;
+            font-weight:400;
+            line-height: 36.5px;
+            color:rgba(51,51,51,1);
+        }
+        .newsTitle:hover {
+            color: #002A66;
+        }
+        .newsContent {
+            margin-top: 16px;
+            font-size:16px;
+            font-weight:300;
+            color:rgba(102,102,102,1);
+            line-height:36.5px;
+        }
+        .newsTag {
+            margin-top: 29px;
+        }
+        .tagItem {
+            display: block;
+           margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            font-size:16px;
+            font-weight:normal;
+            background-color: #eee;
+            line-height:20px;
+            border-radius:50%;
+            font-size: 14px;
+        }
+        .tagItem a {
+            color: #fff;
+        }
+        .tagItemActive {
+            background-color: #002A66;
+            color: #F5F5F5 !important;
+        }
+        .leftNewsList {
+            width: 800px;
+            margin-right: 61px;
+        }
+        .rightNewsList {
+            width: 338px;
+
+        }
+        /* 可复用的带下border的css */
+        .section-main-title {
+            position: relative;
+            width: 100%;
+            height: 49px;
+            font-size: 24px;
+            color: #333;
+            border-bottom: 1px solid #DDD;
+            margin-bottom: 30px;
+        }
+        
+        .section-item {
+            cursor: pointer;
+            margin-right: 51px;
+        }
+       
+        /* 可控制的底部边框线 */
+        .line-active {
+            color: #002a66 !important;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #002A66;
+        }
+        /* 结束 */
+        .leftNewsList ,.rightNewsList{
+            margin-top: 60px;
+        }
+        .result-list {
+            padding-top: 32px;
+            padding-bottom: 30px;
+            width: 100%;
+            height: 223px;
+            clear: both;
+            border-bottom: 1px dashed #DDDDDD;
+        }
+        .result-list:hover {
+            background-color: #F5F5F5;
+        }
+        .result-list:hover .title{
+            color: #002A66;
+        }
+        .subtitle-item a:hover {
+            color: #002a66;
+        }
+        .subtitle:hover .li-style {
+            background-color: #002a66;
+        }
+        .subtitle:hover .reply-style {
+           color: #002a66;
+        }
+        .subjectImg-item img:hover {
+            transform: scale(1.2);
+
+        }
+         .list-title {
+             margin:0 ;
+            }
+
+        .title {
+            font-size:20px;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            
+        }
+        .title a {
+            font-size:20px;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+ 
+        }
+        .list-title .title a:hover {
+            color: #002A66;
+        }
+        .result-intro {
+            margin-top: 30px;
+            line-height: 26px;
+            font-size:14px;
+            font-weight:300;
+        }
+        .result-intro a {
+            color:rgba(153,153,153,1);
+
+        }
+        .promulgator {
+            width: 100%;
+            margin-top: 30px;
+            font-size: 16px;
+
+        }
+        .promulgator .icondanyehuaban {
+            font-size: 14px;
+        }
+        .datetime {
+            font-size: 14px;
+            font-weight: 400;
+            color: #999;
+        }
+        /* 结束 */
+      .leftNewsList {
+          font-size: 13px;
+      }
+      .getMore {
+
+        font-size:14px;
+        font-weight:300;
+        color:#666666;
+        line-height: 35px;
+    }
+    .getMore:hover a{
+        color: #002a66;
+    }
+    .getMore .iconfont {
+        font-size: 15px;
+    }
+    .subjectImg-item ,.subjectImg-item img{
+        transition: all 0.6s;
+        width: 100%;
+        height: 170px;
+    }
+    .subjectImg-item {
+        overflow: hidden;
+        margin-bottom: 30px;
+    }
+    /* 带小点的小标题 */
+    .section-main-nav {
+    }
+    .li-style {
+        width: 5px;
+        height: 5px;
+        margin-right: 10px;
+        margin-top: 7px;
+        background-color: #999;
+        line-height: 10px;
+        border-radius: 50%;
+    }
+    .subtitle {
+        width: 100%;
+        height: 43px;
+    }
+    .subtitle-item {
+        font-weight: 300;
+        font-size: 16px;
+    }
+    .subtitle-item-time {
+        font-size: 16px;
+        font-weight:300;
+        color: #333;
+    }
+    .reply-style {
+        color: #666;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 23px;
+    }
+

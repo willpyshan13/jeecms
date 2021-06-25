@@ -1,0 +1,93 @@
+#letterBox{
+  position: relative;
+}
+.head{
+  height: 3rem;
+  width: 100%;
+  padding: 0  1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  box-sizing: border-box;
+}   
+.head-left{
+  width: .9375rem;
+  height: .9375rem;
+  justify-items: flex-start;
+}
+.head-left>img{
+  height: 100%;
+}
+.head-center{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 1rem;
+  font-family: PingFang;
+  font-weight: 500;
+  color: #333333;
+  line-height: 2.5rem;
+}
+.main{
+  width: 100%;
+  padding: 3rem 0;
+}
+.input{
+  margin-top: 1.25rem;
+  padding-bottom: .625rem;
+}
+.serial{
+  width: 20.9375rem;
+  height: 2.5rem;
+  background: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 1.25rem;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 1.5625rem;
+}
+.serial>input{
+  border: 0;
+  outline: 0;
+  padding-left: 1rem;
+  padding-right: .5rem;
+  width: 100%;
+  border-radius: .9375rem;
+}
+.serial>input:focus{
+  caret-color:#E30B20;
+}
+.serial>input::placeholder{
+  font-size: .875rem;
+  font-family: PingFang;
+  font-weight: 300;
+  color: #999999;
+}
+.clear{
+  width: 1rem;
+  height: 1rem;
+  padding-right: .9375rem;
+}
+.btn{
+  width: 20.9375rem;
+  height: 2.5rem;
+  background: #E6E6E6;
+  border-radius: 1.34375rem;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: center;
+  font-size: .9375rem;
+  font-family: PingFang;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 1.25rem;
+  border: 0;
+  outline: 0;
+}
+.btns{
+  background-color: #E30B20;
+}

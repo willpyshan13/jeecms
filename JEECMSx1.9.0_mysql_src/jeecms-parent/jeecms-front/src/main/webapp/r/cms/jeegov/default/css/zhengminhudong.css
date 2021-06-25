@@ -1,0 +1,387 @@
+/* 政民互动首页样式 */
+
+.left-nav {
+    margin-right: 60px;
+    width: 718px;
+}
+
+.right-nav {
+    width: 421px;
+}
+
+.nav {
+    margin-top: 54px;
+}
+
+
+/* 公共标签样式 */
+
+.common-tag {
+    height: 47px;
+    /* padding-bottom: 23px; */
+    border-bottom: 1px solid #ddd;
+}
+
+.common-tag-item1 {
+    width: 3px;
+    height: 23px;
+    background: rgba(0, 64, 153, 1);
+}
+
+.common-tag-item2 {
+    margin-left: 17px;
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(51, 51, 51, 1);
+    line-height: 20px;
+}
+.common-tag-item2 a {
+    color: rgba(51, 51, 51, 1);
+
+}
+.nav-title {
+    margin-top: 27px;
+    padding: 0 35px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: rgba(245, 245, 245, 1);
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(51, 51, 51, 1);
+}
+
+.nav-title-1 {
+    width: 440px;
+}
+
+.nav-title-2 {
+    margin-right: 56px;
+    width: 70px;
+}
+
+.nav-title-3 {
+    width: 70px;
+}
+
+.nav-content {
+    height: 57px;
+    line-height: 57px;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-content .iconfont {
+    font-size: 16px;
+    color: #004099;
+}
+
+.nav-content-icon {
+    width: 20px;
+}
+
+.nav-content-title {
+    margin-left: 16px;
+    width: 425px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 56px;
+}
+
+.nav-content-title {
+    color: rgba(51, 51, 51, 1);
+}
+
+.nav-content-title a:hover {
+    color: #002A66;
+}
+
+.nav-content-date {
+    margin-left: 10px;
+    margin-right: 53px;
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(102, 102, 102, 1);
+}
+
+.nav-content-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+}
+
+
+/* 右侧导航图片区域 */
+
+.nav-img {
+    padding: 38px 0 0 38px;
+    width: 421px;
+    height: 256px;
+    background: url(../static/upload/003.jpg)no-repeat;
+    /* background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0 !important; */
+    background-size: 421px 256px;
+    opacity: 0.8;
+}
+
+.nav-img h2 {
+    margin: 0 0 35px;
+    font-size: 36px;
+    font-family: Source Han Serif CN;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+.nav-img p {
+    margin-bottom: 14px;
+    font-size: 14px;
+    font-family: Source Han Serif CN;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 14px;
+}
+
+.dataShow {
+    margin-top: 20px;
+    padding: 0 22px 0 29px;
+    width: 100%;
+    height: 72px;
+}
+
+.dataItem {
+    margin-right: 77px;
+    padding: 23px 0;
+    width: 72px;
+    height: 72px;
+    text-align: center;
+    font-size: 20px;
+    font-family: DIN;
+    font-weight: 500;
+    color: rgba(0, 64, 153, 1);
+    background-image: url(../static/img/椭圆3拷贝3.png);
+}
+
+.data-text {
+    margin-top: 45px;
+    padding-left: 34px;
+}
+
+.data-text-item {
+    margin-right: 43px;
+    width: 72px;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+    color: rgba(0, 64, 153, 1);
+}
+
+.main-box {
+    margin-top: 50px;
+    width: 100%;
+    height: 437px;
+    background-color: #F5F5F5;
+}
+
+.main {
+    padding-top: 49px;
+}
+
+.main-left {
+    margin-right: 60px;
+    width: 718px;
+    /* background-color: pink; */
+}
+
+.main-right {
+    width: 422px;
+}
+
+.main-new-list {
+    padding-top: 24px;
+}
+
+.new-list-img {
+    width: 267px;
+    height: 165px;
+}
+
+.new-list-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.new-list {
+    width: 415px;
+    margin-left: 36px;
+}
+
+.new-list-item {
+    margin-bottom: 16px;
+}
+
+.new-list-item span {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 14px;
+}
+
+.new-list-item2 {
+    font-weight: 300 !important;
+}
+
+.margin-none {
+    margin: 0;
+}
+
+.news-list-content {
+    clear: both;
+    padding-top: 41px;
+}
+
+.main-left .news-item {
+    margin-bottom: 27px;
+    clear: both;
+}
+
+.news-item span,
+i {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(102, 102, 102, 1);
+    line-height: 14px;
+}
+
+.news-item:hover span {
+    color: #002A66;
+}
+
+.theme-box {
+    padding-top: 27px;
+    padding-left: 21px;
+    width: 100%;
+    height: 99px;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.theme-box:hover {
+    background-color: #fff;
+}
+
+.theme-title {
+    margin-bottom: 20px;
+}
+
+.survey-box {
+    width: 1205px;
+    padding-top: 50px;
+}
+
+.survey-box-left {
+    margin-right: 60px;
+    width: 719px;
+    /* background-color: #ccc; */
+}
+
+.survey-box-right {
+    width: 425px;
+}
+
+.survey-box .news-item {
+    position: relative;
+}
+
+.survey-box .news-item i {
+    display: inline-block;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 70px;
+    height: 25px;
+    background-color: #004099;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 1);
+    line-height: 25px;
+    text-align: center;
+}
+
+.list-color-active {
+    background-color: #EA3526 !important;
+}
+
+.survey-box-right .row {
+    margin: 0;
+}
+
+.survey-box-right .col-md-6 {
+    position: relative;
+    padding: 0;
+    margin-right: 7px;
+    margin-bottom: 6px;
+    width: 208px;
+    height: 72.3px;
+    background: rgba(245, 245, 245, 1);
+}
+
+.col-md-6 a {
+    color: #002A66;
+}
+
+.col-md-6:hover {
+    background-color: #002A66;
+}
+
+.col-md-6:hover a p {
+    color: #fff;
+}
+
+.col-md-6:hover .iconfont {
+    color: #fff;
+}
+
+.col-md-6 .iconfont {
+    color: #002A66;
+}
+
+.marginStyle {
+    margin: 0 !important;
+}
+
+.survey-box-right a {
+    display: block;
+    width: 100%;
+}
+
+.survey-box-right p {
+    width: 200px;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(0, 42, 102, 1);
+    margin: 16px 0 0 14px;
+}
+
+.survey-box-right i {
+    position: absolute;
+    top: 19px;
+    right: 19px;
+    display: inline-block;
+    width: 35px;
+    height: 34px;
+}
+
+.survey-box-right .iconfont {
+    font-size: 32px;
+}
+
+.wenda .col-md-6:hover {
+    background-color: #002A66 !important;
+}

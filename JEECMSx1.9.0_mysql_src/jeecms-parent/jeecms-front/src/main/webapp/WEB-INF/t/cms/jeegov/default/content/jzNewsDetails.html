@@ -1,0 +1,82 @@
+<!-- 江州要闻新闻详情页 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>${site.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/jzNewsDetails.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/header.html"/]
+        <!-- /* 二级标题 */ -->
+        <div class="secondTitle">
+            <div class="title w">
+                [@cms_channel_list count='10' parentId=content.channel.parent.id]
+                [#list tag_list as c]
+                <div class="item fl"><a href="${c.url!}">${c.name!}</a></div>
+                [/#list]
+                [/@cms_channel_list]
+            </div>
+        </div>
+        <!-- 内容写在这里 -->
+        <div class="newsTitle w2 clearfix">
+
+            <div class="newTitle">${content.title!}</div>
+            <div class="titleTag">
+                <div class="admin fl">
+                    <div class="data fl">日期：${content.releaseTime!?string("yyyy-MM-dd")} </div>
+                    <div class="promulgator fl"> 来源：[#if (content.source.sourceName)?? && (content.source.sourceName) !=""]${(content.source.sourceName)}[#else]${site.name!}[/#if] </div>
+                </div>
+                <div class="rightTag fr">
+                    <span class="tex">分享：</span>
+                    <span class="titleTagItem iconfont iconqq qq "> </span>
+                    <span class="titleTagItem iconfont iconweixin wx"> </span>
+                    <span class="titleTagItem iconfont iconweibo weibo"> </span>
+                    <span class="titleTagItem iconfont iconkongjian kongjian"> </span>
+                </div>
+            </div>
+        </div>
+        <div class="cut-off-rule w2 clearfix">
+            <img src="${res}/static/img/tiao.png" alt="">
+        </div>
+        <div class="newsdetails w2">
+            ${txt!}
+            <div class="back-to-top">
+                <div class="iconfont iconcaidanjiantou"></div>
+                <div class="goText">回顶部</div>
+            </div>
+        </div>
+
+        <!-- 页脚网站信息模块-->
+        [#include "../includes/footer.html"/]
+        <!-- 页脚 -->
+    </div>
+
+</body>
+<script>
+    $(function () {
+        $('.back-to-top').click(function () {
+            $("html").stop().animate({
+                scrollTop: 0
+            });
+        })
+    })
+</script>
+
+</html>

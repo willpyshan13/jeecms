@@ -1,0 +1,370 @@
+<!-- 政务公开-首页模板 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/zwgk_index.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <div class="main w clearfix">
+            <!-- 左区域 -->
+            <div class="leftBox fl">
+                <!-- 标签栏 -->
+                <div class="title" style="background-color: transparent;">
+                    <div class="tag fl"></div>
+                    <div class="titleText fl"><a href="javascript:;">政府领导</a></div>
+                </div>
+                <!-- 人物简介 -->
+                <div class="profile clearfix">
+                    <div class="picture fl">
+                        <img src="${res}/static/img/QQ图片20200616171455.png" alt="">
+                    </div>
+                    <!-- 文字简介 -->
+                    <div class="intro fl">
+                        <div class="name">
+                            <span class="name1"><a href="${base}/zfldsc.jhtml">易炼红</a></span>
+                            <span class="name2">省长</span>
+                        </div>
+                        <div class="introText">
+                            领导省政府全面工作，负责财政、审计方面工作。分管省财政厅、省审计厅。
+                        </div>
+                        <div class="say">
+                            <span class="iconBox"><a href="" class="iconfont iconzhengji"></a></span>
+                            <span class="sayText"><a href="">我有话对省长说</a></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 副省长 -->
+                <div class="vice-governor">
+                    <span>副省长:</span>
+                    <span>珂 &nbsp;&nbsp;&nbsp;川</span>
+                    <span>盛 &nbsp;&nbsp;&nbsp;贤</span>
+                    <span>刘青博</span>
+                    <span>胡川荣 </span>
+                    <span>秘书长:</span>
+                    <span>庚 &nbsp;&nbsp;&nbsp;皓</span>
+                </div>
+                <!-- 侧导航栏 -->
+                <div class="sidebar">
+                    <div class="row">
+                        <div class="col-md-6 item">
+                            <a href="${base}/zwgkzfjg.jhtml">
+                                <span class="item_icon iconfont iconzhengfujigou"></span>
+                                <span class="item_text">政府机构</span>
+                            </a>
+                        </div>
+                        <div class="col-md-6 item">
+                            <a href="${base}/xxgkzn.jhtml">
+                                <span class="item_icon iconfont iconxinxigongkaizhinan"></span>
+                                <span class="item_text">信息公开指南</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 item">
+                            <a  href="${base}/zfgz.jhtml">
+                                <span class="item_icon iconfont iconquanliqingdan"></span>
+                                <span class="item_text">政府规章</span>
+                            </a>
+                        </div>
+                        <div class="col-md-6 item">
+                            <a href="${base}/zgxxgkml.jhtml">
+                                <span class="item_icon iconfont iconxinxigongkaimulu"></span>
+                                <span class="item_text">信息公开目录</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 item">
+                            <a href="${base}/zyss.jhtml">
+                                <span class="item_icon iconfont iconzhongyaoshishi"></span>
+                                <span class="item_text">重要实事</span>
+                            </a>
+                        </div>
+                        <div class="col-md-6 item">
+                            <a href="${base}/zfgzbg.jhtml">
+                                <span class="item_icon iconfont iconzhengfugongzuobaogao"></span>
+                                <span class="item_text">政府工作报告</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 item">
+                            <a href="${base}/ghxx.jhtml">
+                                <span class="item_icon iconfont iconguihuaxinxi"></span>
+                                <span class="item_text">规划信息</span>
+                            </a>
+                        </div>
+                        <div class="col-md-6 item">
+                            <a href="${base}/ndzdrw.jhtml">
+                                <span class="item_icon iconfont iconnianduzhongdianrenwu"></span>
+                                <span class="item_text">年度重点任务</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 item">
+                            <a  href="${base}/jhxx.jhtml">
+                                <span class="item_icon iconfont iconjihuaxinxi"></span>
+                                <span class="item_text">计划信息</span>
+                            </a>
+                        </div>
+                        <div class="col-md-6 item">
+                            <a href="${base}/rsxx.jhtml">
+                                <span class="item_icon iconfont iconrenshixinxi"></span>
+                                <span class="item_text">人事信息</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 item">
+                            <a href="${base}/czxx.jhtml">
+                                <span class="item_icon iconfont iconcaizhengxinxi"></span>
+                                <span class="item_text">财政信息</span>
+                            </a>
+                        </div>
+                        <div class="col-md-6 item">
+                            <a href="${base}/qlxx.jhtml">
+                                <span class="item_icon iconfont iconzhengfuguizhang"></span>
+                                <span class="item_text">权利清单</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 item">
+                            <a href="${base}/xycx.jhtml">
+                                <span class="item_icon iconfont iconxinyongchaxun"></span>
+                                <span class="item_text">信用查询</span>
+                            </a>
+                        </div>
+                        <div class="col-md-6 item">
+                            <a href="${base}/sgs.jhtml">
+                                <span class="item_icon iconfont iconshuanggongshi"></span>
+                                <span class="item_text">双公示</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 item">
+                            <a href="${base}/sjgk.jhtml">
+                                <span class="item_icon iconfont iconshujugongkai"></span>
+                                <span class="item_text">数据公开</span>
+                            </a>
+                        </div>
+                        <div class="col-md-6 item">
+                            <a href="${base}/yhyshj.jhtml">
+                                <span class="item_icon iconfont iconyouhuayingshanghuanjing"></span>
+                                <span class="item_text">优化营商环境</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 伊申请公开 -->
+                <div class="subBtn">
+                    <a href="">
+                        <span class=" iconfont iconyishenqinggongkai"></span>
+                        <span class="subBtnText">依申请公开</span>
+                    </a>
+                </div>
+                <!-- 标签栏 -->
+                <!-- 回应关切区域 -->
+                <div class="title" style="background-color: transparent; margin-top: 40px;">
+                    <div class="tag fl"></div>
+                    <div class="titleText fl"><a href="javascript:;">回应关切</a></div>
+                </div>
+                <!-- 推荐    -->
+                [@cms_content_list channelPath='hygq' channelOption='1' typeId='148'  orderBy='29'  count='2']
+                [#list tag_list as a]
+                <div class="recommend" [#if a_index==1]style="margin-top: 22px;"[/#if]>
+                    <div class="recommend_title">
+                        <span class="iconfont iconhuiyingguanqie-wen"></span>
+                        <span class="recommend_text"><a href="${a.url!}">[@text_cut s=a.title len=15 append='...' /]</a></span>
+                    </div>
+                    <div class="recommend_content">
+                        <span class="iconfont iconxinxi-fan"></span>
+                        <span class="recommend_content_text">
+                            [@text_cut s=a.description len=25 append='...' /]
+                        </span>
+                    </div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+
+            </div>
+            <!-- 右区域 -->
+            <div class="rightBox fl">
+                <!-- 标签栏 -->
+                <div class="title" style="background-color: transparent; margin-bottom: 22px;">
+                    <div class="tag fl"></div>
+                    <div class="titleText fl"><a href="javascript:;">文件库</a></div>
+                </div>
+                <!-- 搜索区域 -->
+                <div class="searchBox">
+                    <div class="search1">
+                        <div class="search-item fl">
+                            <div class="search-title fl">文件标题</div>
+                            <input type="text" class="fl input1">
+                        </div>
+                        <div class="search-item fl" style="margin-left: 15px;">
+                            <div class="search-title fl" style="width: 54px;">正&nbsp;&nbsp;&nbsp;文</div>
+                            <input type="text" class="fl input2">
+                        </div>
+                    </div>
+                    <div class="search1" style="margin-top: 11px;">
+                        <div class="search-item fl">
+                            <div class="search-title fl">发文字号</div>
+                            <input type="text" class="fl input1">
+                        </div>
+                        <div class="search-item fl">
+                            <input type="text" class="input3">
+                        </div>
+                        <div class="search-item fl">
+                            <input type="text" class="input4">
+                        </div>
+                        <div class="search-item fl" style="margin-left: 9px;">
+                            <span>号</span>
+                        </div>
+                    </div>
+                    <div class="search1" style="margin-top: 11px;">
+                        <div class="search-item fl">
+                            <div class="search-title fl">公文种类</div>
+                            <input type="text" class="fl input1">
+                        </div>
+
+                    </div>
+                    <div class="btn-box">
+                        <button class="gosearch btn-active">搜索</button>
+                        <button class="reset">重置</button>
+                    </div>
+                </div>
+                <!-- 最新公开 -->
+                <div class="title" style="background-color: transparent; margin-top: 48px;height: 50px;">
+                    <div class="tag fl"></div>
+                    <div class="titleText fl"><a href="${base}/zxgk.jhtml">最新公开</a></div>
+                </div>
+                <div class="newslist">
+                    [@cms_content_list channelPath='zxgk' channelOption='1'   orderBy='29'  count='5']
+                    [#list tag_list as a]
+                    [#if a_index==0]
+                    <div class="list" style="margin-top: 41px;">
+                    [#elseif a_index==tag_list?size-1]
+                    <div class="list" style="margin:0;">
+                    [#else]
+                    <div class="list">
+                    [/#if]
+                        <a href="${a.url!}"> <span class="item1"> • </span>
+                        <!--这里用来源代表单位-->
+                        <span class="item2"> [#if (content.source.sourceName)?? && (content.source.sourceName) !=""]${(content.source.sourceName)}[/#if]  </span>
+                        <span class="item3"> [@text_cut s=a.title len=35 append='...' /] </span>
+                        <span class="item4 fr">${a.releaseTime!?string("MM-dd")}</span>
+                        </a>
+                    </div>
+                    [/#list]
+                    [/@cms_content_list]
+                </div>
+                <!-- 政策文件 -->
+                <div class="title" style="background-color: transparent; margin-top: 53px;">
+                    <div class="tag fl"></div>
+                    <div class="titleText fl"><a href="${base}/zcwj.jhtml">政策文件</a></div>
+                </div>
+                <div class="newslist">
+                    [@cms_content_list channelPath='zcwj' channelOption='1'   orderBy='29'  count='7']
+                    [#list tag_list as a]
+                    [#if a_index==0]
+                    <div class="list" style="margin-top: 25px;">
+                    [#elseif a_index==tag_list?size-1]
+                    <div class="list" style="margin:0;">
+                    [#else]
+                    <div class="list">
+                    [/#if]
+                        <a href="${a.url!}">
+                            <span class="item1"> • </span>
+                            <span class="item3">  [@text_cut s=a.title len=35 append='...' /] </span>
+                            <span class="item4 fr">${a.releaseTime!?string("MM-dd")}</span>
+                        </a>
+                    </div>
+                    [/#list]
+                    [/@cms_content_list]
+                </div>
+                <!-- 政策解读         -->
+                <div class="title" style="background-color: transparent; margin-top: 50px;">
+                    <div class="tag fl"></div>
+                    <div class="titleText fl"><a href="${base}/zcjd.jhtml">政策解读</a></div>
+                </div>
+                <div class="newslist">
+                    [@cms_content_list channelPath='zcjd' channelOption='1'   orderBy='29'  count='7']
+                    [#list tag_list as a]
+                    [#if a_index==0]
+                    <div class="list" style="margin-top: 24px;">
+                    [#elseif a_index==tag_list?size-1]
+                    <div class="list" style="margin:0;">
+                    [#else]
+                    <div class="list">
+                    [/#if]
+                        <a href="${a.url!}">
+                            <span class="item1"> • </span>
+                            <span class="item3"> [@text_cut s=a.title len=35 append='...' /] </span>
+                            <span class="item4 fr">${a.releaseTime!?string("MM-dd")}</span>
+                        </a>
+                    </div>
+                    [/#list]
+                    [/@cms_content_list]
+                </div>
+              </div>
+        </div>
+        <!-- 底部导航 -->
+        <div class="footerSidebarBox">
+            <div class="footerSidebar w">
+                <div class="sidebar_title"><a href="${base}/zdlyxxgk.jhtml">重点领域信息公开</a></div>
+                <div class="sidebar_box">
+                    <div class="sidebar_item fl"><a href="${base}/ghjh.jhtml">规划计划</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/qzqd.jhtml">权责清单</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/zdxxlygksgs.jhtml">双公示</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/ssjygk.jhtml">“双随机、一公开”</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/jsjf.jhtml">减税降费</a></div>
+                    <div class="sidebar_item fl marginStyle"><a href="${base}/yhfw.jhtml">优化服务</a></div>
+                </div>
+                <div class="sidebar_box">
+                    <div class="sidebar_item fl"><a href="${base}/zdlyxxgksjgk.jhtml">审计公开</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/zybszxgk.jhtml">重要部署执行公开</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/xzzfgs.jhtml">行政执法公示</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/zdjsxm.jhtml">重大建设项目</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/ggzypz.jhtml">公共资源配置</a></div>
+                    <div class="sidebar_item fl marginStyle"><a href="${base}/shjz.jhtml">社会救助</a></div>
+                </div>
+                <div class="sidebar_box" style="margin-bottom: 0;">
+                    <div class="sidebar_item fl"><a href="${base}/shfl.jhtml">社会福利</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/jyhshbz.jhtml">就业和社会保障</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/jy.jhtml">教育</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/yljk.jhtml">医疗健康</a></div>
+                    <div class="sidebar_item fl"><a href="${base}/ggwhty.jhtml">公共文化体育</a></div>
+                    <div class="sidebar_item fl marginStyle"><a href="${base}/yjgl.jhtml">应急管理</a></div>
+                </div>
+            </div>
+        </div>
+        [#include "../includes/footerCommon.html"/]
+    </div>
+</body>
+
+</html>

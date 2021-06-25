@@ -1,0 +1,97 @@
+<!-- 政务公开-政务信息公开目录模板 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/catalogue.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <div class="subTitle w">
+            政府信息公开目录
+        </div>
+        <div class="title w" style="   margin-top: 24px;
+        ">
+            <div class="tag fl"></div>
+            <div class="titleText fl">省政府信息公开目录</div>
+        </div>
+        <div class="city w">
+            <div class="menuItemBox">
+                <div class="circle fl">
+                    <div class="circleStyle"></div>
+                </div>
+                <div class="fl mainmenuText"> <a href="${base}/szfgkml.jhtml">省政府</a></div>
+            </div>
+        </div>
+        <div class="title w" style="margin-top: 0;">
+            <div class="tag fl"></div>
+            <div class="titleText fl">市政府部门信息公开目录</div>
+        </div>
+        <div class="mainmenu w clearfix">
+            [@cms_channel_list parentId='2409']
+            [#list tag_list as c]
+            [#if c_index==18]
+            <div class="mainmenu-row fl marginStyle">
+            [#elseif c_index%6==0]
+            <div class="mainmenu-row fl">
+            [/#if]
+                <div class="menuItemBox">
+                    <div class="circle fl">
+                        <div class="circleStyle"></div>
+                    </div>
+                    <div class="fl mainmenuText"> <a href="${c.url!}">${c.name!}</a></div>
+                </div>
+            [#if c_index%6==5||c_index==tag_list?size-1]
+            </div>
+            [/#if]
+            [/#list]
+            [/@cms_channel_list]
+        </div>
+        <div class="title w">
+            <div class="tag fl"></div>
+            <div class="titleText fl">县区政府部门信息公开目录</div>
+        </div>
+        <div class="mainmenu w clearfix">
+            [@cms_channel_list parentId='2410']
+            [#list tag_list as c]
+            [#if c_index==18]
+            <div class="mainmenu-row fl marginStyle">
+            [#elseif c_index%6==0]
+            <div class="mainmenu-row fl">
+            [/#if]
+                <div class="menuItemBox">
+                    <div class="circle fl">
+                        <div class="circleStyle"></div>
+                    </div>
+                    <div class="fl mainmenuText"> <a href="${c.url!}">${c.name!}</a></div>
+                </div>
+            [#if c_index%6==5||c_index==tag_list?size-1]
+            </div>
+            [/#if]
+            [/#list]
+            [/@cms_channel_list]
+        </div>
+      [#include "../includes/footerCommon.html"/]
+    </div>
+</body>
+
+</html>

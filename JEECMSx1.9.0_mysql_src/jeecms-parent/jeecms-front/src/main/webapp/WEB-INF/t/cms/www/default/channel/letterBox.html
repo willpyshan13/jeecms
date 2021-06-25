@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>${channel.name}-${site.name}</title>
+  <meta name="title" content="${site.seoTitle!}" />
+  <meta name="keywords" content="${site.seoKeyword!}" />
+  <meta name="description" content="${site.seoDescription!}" />
+  <link rel="stylesheet" href="${res}/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css">
+</head>
+<style>
+  .letter-warpper{width: 100%;}
+  .letter-container{width: 1200px;margin: 0 auto;margin-bottom: 60px;}
+  .letter-title{font-size: 24px;color: #333333;line-height: 48px;margin:28px 0}
+  .letter-left{width: 300px;height: 500px;background-color: #F5F5F5;margin-right: 50px;display: inline-block;padding: 20px;
+    box-sizing: border-box;vertical-align:top;}
+  .input-bg input{border: 1px solid #E5E5E5;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    box-sizing: border-box;}
+    input::-webkit-input-placeholder{
+        color:#999999;
+    }
+    input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+        color:#999999;
+    }
+    input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+        color:#999999;
+    }
+    input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+        color:#999999;
+    }
+  .input-sub{
+    width: 100%;
+    height: 40px;
+    background: #E30B20;
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .letter-tab{    padding: 15px 0;
+    border-bottom: 1px solid #DDDDDD;
+    color: #E30B20;position: relative;}
+    .line-80{position: absolute;bottom: 0px;left: 0px;height: 2px;width: 80px;background-color: #E30B20;}
+    .letter-txt{margin-top: 20px;font-size: 16px;color: #333333;}
+    .letter-txt label{width: 80px;display: inline-block;text-align: justify;}
+    .letter-edit{
+      width: 176px;
+      height: 40px;
+      background-color: #E30B20;
+      text-align: center;
+      color: #fff;
+      line-height: 40px;
+      font-size: 14px;
+      border-radius: 20px;
+      margin: 35px auto 0;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+  .letter-right{width: 840px;max-width: 850px;display: inline-block;box-sizing: border-box;vertical-align:top;}
+  .letter-right .letter-table{width: 100%;}
+  .letter-right .letter-table th{    color: #333;
+    height: 50px;
+    line-height: 50px;
+    background-color: #F5F5F5;
+    font-size: 14px}
+    .letter-right .letter-table .first{padding-left: 20px;box-sizing: border-box;width: 180px;}
+    .letter-right .letter-table .second{width: 130px;}
+    .letter-right .letter-table .third{width: 300px;max-width: 300px;word-break: break-all;}
+    .letter-right .letter-table .forth{width: 135px;letter-spacing: 0px;}
+    .letter-right .letter-table .fifth{width: auto;letter-spacing: 0px;}
+    .letter-right .letter-table .content td{border-bottom: 1px dashed #E5E5E5;height: 73px;vertical-align: middle;font-size: 14px;}
+    .red{color: #E30B20;}
+    .letter-none{text-align: center;width: 100%;font-size: 18px;line-height: 36px;color: #999999;display: none;}
+    .letter-left form .errors{color: #E30B20;font-size: 14px;font-weight: 300;margin-left: 20px;margin-top: -15px;height: 20px;margin-bottom: 10px;}
+    /* 弹窗提示 */
+    .mode{position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: rgba(0, 0, 0, 0.7);z-index: 10000;display: none;
+      filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#b2000000, endColorstr=#b2000000);}
+    .mode-box{background-color: #fff;width: 872px;height:702px;margin: 7% auto 0;position: relative;
+        border-radius: 4px;behavior: url(../src/pie/PIE.htc);padding: 25px 30px 30px;box-sizing: border-box;}
+    .mode-title{font-size: 24px;color: #333333;text-align: left;line-height: 1;padding: 0 0 25px;font-weight: 400;}
+    .mode-label{font-size: 18px;color: #333333;text-align: left;font-weight: 400;padding-bottom: 15px;}
+    .mode-letter{font-size: 14px;color: #333;line-height: 32px;height: 430px;overflow-y: auto;margin-bottom: 30px;}
+    .mode-result{display: none;} 
+    .mode-btn{width: 136px;height: 40px;background-color: #CCCCCC;color: #fff;text-align: center;
+      line-height: 40px;margin: 25px auto 0;cursor: pointer;display: block;border-radius: 20px;}
+    .mode-close{position: absolute;right: 30px;top: 30px;color: #999999;}
+    .mode-close .iconfont{font-size: 14px;}
+    .mode-close:hover{color: #E30B20}
+    .mode-check{font-size: 14px;color: #333;width: 215px;margin: 0 auto;}
+    .check-btn{background-color: #E30B20;}
+    .check-btn:hover{background-color: #FB0C23;}
+</style>
+
+<body>
+  <!-- 顶部导航 -->
+  <div class="header-children">
+    [#include "../includes/header.html"/]
+  </div>
+  <!--列表区 over-->
+  <div class="letter-warpper">
+    <div class="letter-container">
+      <div class="letter-title">来信选登</div>
+        <div>
+          <div class="letter-left">
+            <form action="" id="searchForm">
+              <div class="input-bg">
+                  <input type="text" id="letterNo" name="letterNo" placeholder="请输入信件编号" />
+                  <div class="errors"></div>
+              </div>
+              <div class="input-bg">
+                <input type="password"  id="qPass" name="qPass" placeholder="请输入查询密码" />
+                <div class="errors"></div>
+              </div>
+              <input class="input-sub" type="submit" value="查询" >
+            </form>
+            <div class="letter-tab">信件统计
+              <div class="line-80"></div>
+            </div>
+            <div>
+              <p class="letter-txt total0"><label >信件总数：</label><span class="red">0</span> 件 <br></p>
+              <p class="letter-txt total1"><label >办结数：</label><span class="red">0</span> 件 <br></p>
+              <p class="letter-txt total2"><label >在办数：</label><span class="red">0</span> 件 <br></p>
+            </div>
+            <div class="letter-edit">我要写信</div>
+          </div>
+          <div class="letter-right letter-box">
+            <table class="letter-table">
+              <tr class="Regular">
+                  <th class="first ">信件编号</th>
+                  <th class="second">类型</th>
+                  <th class="third">标题</th>
+                  <th class="forth">写信日期</th>
+                  <th class="fifth">办结日期</th>
+              </tr>
+            </table>
+            <div class="letter-none">暂无数据</div>
+            <div class="pageDiv"></div>
+        </div>
+        <!-- 成功弹窗 -->
+        <div class="mode mode-result">
+          <div class="mode-box">
+            <div class="mode-close"><i class="iconfont iconguanbi1"></i></div>
+            <div class="mode-title">写信</div>
+            <div class="mode-label">写信须知</div>
+            <div class="mode-letter"></div>
+            <div class="mode-check">
+              <input type="checkbox" class="mode-checkbox" name="checkbox" />
+              <span>我已阅读并接受用户须知和条款</span>
+            </div>
+            <div rel="noopener noreferrer" class="mode-btn" >我要写信</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--底部导航 -->
+  [#include "../includes/footer.html"/]
+  <!--底部导航 over-->
+  <script src="${res}/js/rules.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var draftPage = 1
+      var draftTotalPages = Number
+      
+      // 选登信件分页
+      function getLetterPage(p) {
+            var page = ''
+            if (p) {
+                page = p
+                draftPage = p
+            } else {
+                page = draftPage
+            }
+
+            api.GET('/letter/page', {
+              'letterNo':$('#letterNo').val(),
+              'qPass':$('#qPass').val(),
+              'page': page,
+              'size': 5
+            }, function (result) {
+                if (result.code == 200) {
+                    $('.letter-box table .content').remove()
+                    var cont = result.data.content;
+                    console.log(cont)
+                    if (result.data.totalElements <= 0) {
+                        $('.letter-box .letter-none').css('display', 'block');
+                        $('.letter-box .pageDiv').css('display', 'none');
+                    } else {
+                      $('.letter-box .letter-none').css('display', 'none');
+                        for (var i = 0; i < cont.length; i++) {
+                            var $content = $('.letter-box .content');
+                            var id = cont[i].id;
+                            var typeName = cont[i].type?cont[i].type.name:''
+                            var createTime = cont[i].createTime?cont[i].createTime.slice(0,10):'-'
+                            var finishTime = cont[i].finishTime?cont[i].finishTime.slice(0,10):'-'
+                            var $text = '<tr class="content Semilight">'+
+                                '<td class="first"><span>' +cont[i].letterNo +'</span></td>'+
+                                '<td class="second"><span>'+typeName+'</span></td>'+
+                                '<td class="third"><span>'+cont[i].title+'</span></td>'+
+                                '<td class="forth"><span>'+createTime+'</span></td>'+
+                                '<td class="fifth"><span>'+finishTime+'</span></td>'+
+                                '</tr>'
+                            $('.letter-box table').append($text);
+                        }
+                        if (draftTotalPages != result.data.totalPages) {
+                            draftTotalPages = result.data.totalPages
+                            $(".letter-box .pageDiv").createPage({
+                                pageCount: draftTotalPages, //总页数
+                                current: page, //当前页
+                                turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                backFn: function (p) {
+                                  getLetterPage(p)
+                                }
+                            });
+                        } else {
+                            $(".letter-box .pageDiv").createPage({
+                                pageCount: draftTotalPages, //总页数
+                                current: page, //当前页
+                                turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                backFn: function (p) {
+                                    // getLetterPage(p)
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        };
+        getLetterPage();
+        // 信件统计
+        function getStatistics(){
+          api.GET('/letter/survey',{},function(result){
+            if(result.code === 200){
+              $('.total0 .red').text(result.data.totalCount)
+              $('.total1 .red').text(result.data.replyCount)
+              $('.total2 .red').text(result.data.processingCount)
+            }
+          })
+        };
+        getStatistics();
+        //表单验证
+        $('#searchForm').validate({
+          rules: {
+            letterNo: { required: true},
+            qPass: { required: true},
+          },
+          messages: {
+            letterNo: {required: '请输入信件编号'},
+            qPass: {required: '请输入查询密码'},
+          },
+          //错误提示标签
+          errorElement: 'p',
+          //获得焦点时，错误提示消失
+          focusCleanup: true,
+          //失去焦点时，进行验证
+          onfocusout: function (element) {
+              $(element).valid();
+          },
+          //错误提示的位置
+          errorPlacement: function (error, element) {
+              error.appendTo(element.parent('div').find('.errors'));
+          },
+          submitHandler: function () {
+            // myMessage.add('请输入标题', 'error');
+              getLetterPage(1);
+          }
+      });
+      var noticeOpen = false
+      var noticeTxt = ''
+      // 写信须知
+      function getLetterText(){
+        api.GET('/letter/type/1', {}, function (result){
+              if(result.code == 200){
+                noticeTxt=result.data.noticeTxt
+                noticeOpen=result.data.noticeOpen
+              }
+            });
+      };
+      getLetterText();
+      // 我要写信
+      $('.letter-left .letter-edit').click(function(){
+        // console.log($(this))
+        if(noticeOpen){
+          $('.mode-result').css('display','block');
+          $('.mode-letter').html(noticeTxt)
+          $('.mode-checkbox')[0].checked = false
+        } else {
+          location.href = '${base}/interact-letterList-write.htm'
+        }
+      });
+      $('.mode-checkbox').change(function(e){
+        var check = e.currentTarget.checked
+        if(check){
+          $('.mode-btn').addClass('check-btn');
+        } else {
+          $('.mode-btn').removeClass('check-btn')
+        }
+      });
+      /*关闭弹窗*/
+      $('.mode-btn').click(function(){
+        var check = $('.mode-checkbox')[0].checked
+        if(check){
+          $('.mode-result').css('display','none')
+          location.href = '${base}/interact-letterList-write.htm'
+        }
+      });
+      $('.mode-close').click(function(){
+          $('.mode-result').css('display','none')
+      });
+    });
+  </script>
+</body>
+
+</html>

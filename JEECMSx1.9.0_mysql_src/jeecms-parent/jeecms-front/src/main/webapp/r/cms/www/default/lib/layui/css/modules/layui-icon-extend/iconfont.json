@@ -1,0 +1,114 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "40249601",
+      "name": "浏览完毕",
+      "font_class": "liulangwanbi",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "48048621",
+      "name": "上传图片",
+      "font_class": "shangchuantupian",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "48049841",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "48048622",
+      "name": "视频上传",
+      "font_class": "shangchuanicon",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "48048623",
+      "name": "音频",
+      "font_class": "yinpin",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "48052513",
+      "name": "裁剪",
+      "font_class": "caijian",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "48052514",
+      "name": "查看大图",
+      "font_class": "chakandatu",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "48052515",
+      "name": "重新上传",
+      "font_class": "chongxinshangchuan",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "48207302",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e75b",
+      "unicode_decimal": 59227
+    },
+    {
+      "icon_id": "48207303",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "e75c",
+      "unicode_decimal": 59228
+    },
+    {
+      "icon_id": "52610536",
+      "name": "取消",
+      "font_class": "quxiao",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "52404641",
+      "name": "勾选",
+      "font_class": "gouxuan",
+      "unicode": "e72f",
+      "unicode_decimal": 59183
+    },
+    {
+      "icon_id": "52591754",
+      "name": "停止",
+      "font_class": "tingzhianniu",
+      "unicode": "e760",
+      "unicode_decimal": 59232
+    },
+    {
+      "icon_id": "982367",
+      "name": "单选-已选",
+      "font_class": "danxuanyixuan",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "1526344",
+      "name": "单选-fill (1)",
+      "font_class": "danxuan-fill",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>领导信箱</title>
+</head>
+<head>
+  <link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css"/>
+    <link rel="stylesheet" href="${res}/lib/layui/css/layui.css"/>
+    <link rel="stylesheet" href="${res}/lib/layui/css/modules/layui-icon-extend/iconfont.css"/>
+    <link rel="stylesheet" href="${res}/lib/PDemo.css"/>
+</head>
+<style type="text/css">
+  html{
+      overflow: hidden auto;
+  }
+    body {
+        margin: 0;
+    }
+    iframe {
+        border: none;
+        width: 100%;
+        height: 100vh;
+    }
+    .body{background-color: #fff;}
+    .smart-content{
+        /* overflow-y: auto; */
+        /* height: 94%; */
+        background-color: #f0f0f0;
+    }
+    .smart-content .letter-title{font-size: 24px;color: #333333;line-height: 48px;padding:28px 0 20px;}
+    .type-container{font-size: 14px;margin: 0 auto 32px;width: 1200px;}
+    .type-container .type-letter{padding-right: 10px;display: inline-block;line-height: 24px;color: #333;}
+    .type-container .radio-input{margin-right: 5px;}
+    .type-container .radio-txt{margin-right: 20px;}
+    .type-container .types{display: inline-block;vertical-align: middle;line-height: 24px;cursor: pointer;color: #333;}
+    .type-container .t-inline{display: inline-block;max-width: 91.5%;vertical-align: top;}
+    .mode-letter .mode-pass{font-size: 18px;color: #333;line-height: 36px;padding-left:150px;letter-spacing:-0.8px;padding-bottom: 20px;}
+    .mode-letter .mode-pass .number{margin-right: 20px;}
+    .mode-letter .mode-box{width: 673px;}
+    .mode-letter .mode-title{padding: 45px 100px 18px;line-height: 40px;}
+</style>
+<body>
+   
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "../../includes/header.html"/]
+    </div>
+    <div class="smart-content">
+
+      <div class="body">
+        <!-- 类型选择 -->
+        <div class="type-container">
+          <div class="letter-title">写信</div>
+            <div class="type-letter">信件类型：</div>
+        </div>
+          <div class="t-smart-wrap t-show" >
+            <div class="t-smart-bg"></div>
+            <!-- 背景 -->
+            <div class="container" style="border-radius: 4px;">
+              <!-- 页眉 -->
+              <div class="t-smart-head">
+                <!-- <img class="t-img" src="" alt=""> -->
+              </div>
+              <div class="t-smart-cont">
+                <!-- 自定义表单1 -->
+                <div class="p-itemData">
+                    <!-- 单选按钮 -->
+                    <form id="fieldForm" class="layui-form" action="" >
+                            <!-- 插入列表 -->
+                    </form>
+                    <!-- 提交按钮 -->
+                    <div class="sub-btn-wrap"><div class="sub-btn"></div></div>
+                </div>
+              </div>
+            </div>
+            <!-- 成功弹窗 -->
+            <div class="mode mode-result">
+              <div class="mode-box">
+                <div class="mode-close"><i class="layui-icon iconfont jee-quxiao"></i></div>
+                <div class="mode-title"><i class="layui-icon iconfont jee-liulangwanbi"></i>
+                  <span class="mode-message">提交成功！</span></div>
+                  <a rel="noopener noreferrer" class="mode-btn" >确定</a>
+              </div>
+            </div>
+            <!-- 成功弹窗 -->
+            <div class="mode mode-letter">
+              <div class="mode-box">
+                <div class="mode-close"><i class="layui-icon iconfont jee-quxiao"></i></div>
+                <div class="mode-title"><i class="layui-icon iconfont jee-liulangwanbi"></i>
+                  <span class="mode-message"></span></div>
+                  <div class="mode-pass">信件编号：<span class="number"></span>查询码：<span class="queryPass"></span></div>
+                  <a rel="noopener noreferrer" class="mode-btn" >确定</a>
+              </div>
+            </div>
+            <!-- 成功弹窗 over -->
+            <div class="layerBgShow" onclick="bandLayerBgHide()"></div>
+            <div class="layertextBgShow">
+                <div class="p-text-title">
+                  <label>视频</label>
+                  <i class="layui-icon iconfont jee-quxiao"  onclick="bandLayerBgHide()"></i>
+                </div>
+                <div class="p-video-all">
+                  <video id="p-showVideo" controls="controls" autoplay></video>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="t-nothing">您需要到微信上打开才能参与
+            <div class="nothing-img"></div>
+          </div>
+          <script src="${res}/js/jquery-1.12.4.js"></script>
+          <script src="${res}/lib/layui/layui.js"></script>
+          <script src="${res}/lib/intelligrnce.js"></script>
+          <script src="${res}/lib/intelligrnceItem.js"></script>
+          <script src="${res}/lib/selectItems.js"></script>
+          <script src="${res}/js/moment.min.js"></script>
+          <script src="${res}/js/chinese.js"></script>
+          
+          <script>
+            $(function(){
+              if(localStorage.getItem('typeface') && localStorage.getItem('typeface')=='简体'){
+                $('.typeface>span').text('简体');
+                zh_tran('s')
+              }else if(localStorage.getItem('typeface') && localStorage.getItem('typeface')=='繁体'){
+                $('.typeface>span').text('繁体');
+                zh_tran('t')
+              }else{
+                $('.typeface>span').text('简体');
+                zh_tran('s')
+              }
+            })
+            // 定义参数
+            var param = {
+                detailApi:"/letter/getForm/",//详情
+                saveApi:"/letter",// 提交表单
+                viewApi:"",//添加浏览量
+                shareApi:"",// 微信分享
+                name:'letter',
+                params:{
+                  typeId:''
+                }
+            }
+            var typeId = ''
+            // 获取类型
+            function getTypes(){
+                api.GET('/letter/getTypes',{},function(result){
+                  $('.type-container .t-inline').remove();
+                    if(result.code === 200){
+                        var _html = '<div class="t-inline">';
+                        var cont = result.data;
+                        typeId = param.params.typeId = cont[0].id;
+                        for(var i=0;i<cont.length;i++){
+                            _html += '<div class="types" data-id="'+cont[i].id+'"><input class="radio-input" type="radio" '+
+                              'data-id="'+cont[i].id+'" data-name="'+cont[i].name+'" name="radioType"'+
+                              (typeId == cont[i].id?'checked':'')+
+                              ' value="'+cont[i].id+'" title="'+cont[i].name +'" /><span class="radio-txt">'+cont[i].name+'</span></div>'
+                        };
+                        _html+='</div>';
+                        $('.type-container').append(_html);
+                        
+                        layUiUse(cont[0].id,'${base}','${res}','',param);
+                        $('.type-container .types').click(function(){
+                          typeId = $(this).attr('data-id');
+                          console.log($(this).find('.radio-input'))
+                          $(this).find('.radio-input')[0].checked = true
+                          layUiUse(typeId,'${base}','${res}','',param);
+                        });
+                        $('.type-container .radio-input').change(function(){
+                          typeId = $(this).attr('data-id');
+                          layUiUse(typeId,'${base}','${res}','',param);
+                        });
+                    }
+                });
+            };
+            getTypes();
+            
+            
+          </script>
+      </div>
+        <!-- 底部导航 -->
+
+    </div>
+    [#include "../../includes/footer.html"/]
+    <!--底部导航 over-->
+    <script>
+      
+        genPermCheck("","${channel.id!}","${base}");
+    </script>
+</body>
+</html>

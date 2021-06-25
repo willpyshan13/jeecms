@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>访谈详情</title>
+    <link rel="stylesheet" href="${res}/css/videoList-newest.css">
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <link rel="stylesheet" href="${res}/css/zxftDetails.css">
+    <link rel="stylesheet" href="${res}/lib/layui/css/layui.css" />
+    <link rel="stylesheet" href="${res}/lib/layui/css/modules/layui-icon-extend/iconfont.css" />
+    <meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+    <meta name="description" content="${site.seoDescription!}" />
+
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "./includes/header.html"/]
+    </div>
+    <div class="detailsBox">
+        <div class="detailsTop">
+
+        </div>
+        <div class="broadcastBox" id="broadcastBox" style="width:1140px;">
+
+        </div>
+        <div class="tabBox">
+            <div class="tabBoxTop">
+                <span class="select pic1">嘉宾简介</span><span class="pic2">访谈图片</span>
+            </div>
+            <div class="tabContent1">
+
+            </div>
+            <div class="tabContent2 Dnone">
+                <ul class="imgBox">
+
+                </ul>
+                <b class="clickLeft Dnone iconfont iconjiaodiantujiantouzuo arrow"></b>
+                <b class="clickRight Dnone iconfont iconjiaodiantujiantou arrow"></b>
+            </div>
+        </div>
+        <div class="writtenRecord">
+            <div class="tabBoxTop">
+                <span class="select">文字实录</span>
+            </div>
+            <div class="interval">
+                <span>间隔：</span>
+                <select name="plan" id="plan">
+                    <option value="0">30秒</option>
+                    <option value="1" selected>1分钟</option>
+                    <option value="2">2分钟</option>
+                    <option value="3">5分钟</option>
+                  </select>
+                  <button class="xuanzhongO xuanzhong">自动刷新</button>
+                  <button class="shuaxin">手动刷新</button>
+                  <button class="xuanzhong sort">正序</button>
+                  <button class="sort">倒序</button>
+            </div>
+            <div class="chat">
+                <ul class="chatUl">
+
+                </ul>
+                <img src="${res}/images/暂无记录.png" alt="" class="zwjl">
+            </div>
+        </div>
+        <div class="question">
+            <div class="tabBoxTop">
+                <span class="select">我的提问</span>
+            </div>
+            <div class="questionBox">
+                <div class="questionBoxLeft">
+                    <p class="quertionTitle">提问记录</p>
+                    <div class="content">
+                        <img src="${res}/images/暂无记录.png" alt="" class="zwtp">
+                    </div>
+                    <div class="questBoxT">
+                        <ul class="quest" class="">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="questionBoxRight">
+                    <div class="questionBoxRightOne">
+                        <span><span class="colorRed">*</span>&nbsp;提问</span>
+                        <textarea maxlength="150" name="" id="" cols="30" rows="10" class="textarea"></textarea>
+                        <p class="tisQuest Dnone">请输入提问内容</p>
+                    </div>
+                    <div class="questionBoxRightTwo">
+                        <span><span class="colorRed">*</span>&nbsp;昵称</span>
+                        <input maxlength="18" type="text" class="name">
+
+                        <span><span class="colorRed">*</span>&nbsp;验证码</span>
+                        <input maxlength="6" type="text" class="yzm">
+
+                        <img src="${res}/images/暂无记录.png" alt="" class="captcha">
+                        <p style="position: relative;padding-top: 5px;"><span class="tisQuest Dnone">请输入你的昵称，在6-18个字符之间</span><span class="tisQuest Dnone errorO">请输入验证码</span></p>
+                    </div>
+                    <button class="submit">提交</button>
+                </div>
+            </div>
+        </div>
+        [#include "./includes/footer.html"/]
+    </div>
+</body>
+<script src="${res}/js/jquery-1.12.4.js"></script>
+<script src="${res}/js/jquery.jSlider.js"></script>
+<script src="${res}/js/unslider.min.js"></script>
+<script src="${res}/js/video.js"></script>
+<script src="${res}/lib/layui/layui.js"></script>
+<script src="https://imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer-2.3.3.js" charset="utf-8"></script>;
+<script src="https://cloudcache.tencent-cloud.com/open/qcloud/video/vcplayer/TcPlayer-2.3.3.js" charset="utf-8"></script>;
+
+</html>
+<script>
+    var host = window.location.host;
+    var userName = '';
+    var nameN = ''
+    var Inttime = 60000;
+    var num2 = 0;
+    var type = window.location.href.split('=')
+    var statusT = '';
+    var id = type[1]
+    id = id.split('&')
+    id = id[0]
+    var productAppId = type[2]
+    var questionData={
+        onlineId:id,
+        productAppId,
+        userId:'',
+        cookie:'',
+    }
+    var userD = {
+        "content":$('.textarea').val(),
+        onlineId:id,
+        "userName": $('.textarea').val(),
+        captcha:'',
+    }
+    var parame={
+        sort:2,
+        onlineId:id,
+        productAppId,
+    };
+    //自动刷新
+    var set1 = ''
+    //轮播事件
+    var num = 0;
+    var num3 = 0;
+    var len = 0
+    function lunbou(){
+        len = $('.imgBox li').length;
+        $('.imgBox').width(len*307)
+        if( len <= 4 ){
+            $('b').remove();
+        }
+    }
+
+
+    var tiem = ''
+
+    $('.clickLeft').click(function(){
+        if(num >0){
+            num--;
+            $('.imgBox').stop().animate({ left: -307*num+'px' },600)
+        }
+    })
+    $('.clickRight').click(function(){
+        if(num <len-4){
+            num++;
+            $('.imgBox').stop().animate({ left: -307*num+'px' },600)
+        }
+    })
+    $('.tabBoxTop span').click(function(){
+        $(this).addClass('select').siblings().removeClass('select');
+        if($(this).index()==0){
+            $('.tabContent1').removeClass('Dnone');
+            $('.tabContent2').addClass('Dnone')
+        }else{
+            $('.tabContent2').removeClass('Dnone');
+            $('.tabContent1').addClass('Dnone')
+        }
+    })
+    //事实判断是否输入问题
+    $('.textarea').on('input',function(){
+        if($('.textarea').val()!=''){
+            $('.tisQuest').eq(0).addClass('Dnone')
+        }else{
+            $('.tisQuest').eq(0).removeClass('Dnone')
+        }
+    })
+    $('.name').on('input',function(){
+        if($('.name').last().val().length>=6&&$('.name').last().val().length<=18){
+            $('.tisQuest').eq(1).addClass('Dnone')
+        }else{
+            $('.tisQuest').eq(1).removeClass('Dnone')
+        }
+    })
+    $('.yzm').on('input',function(){
+        if($('.yzm').val()!=''){
+            $('.tisQuest').eq(2).addClass('Dnone')
+        }else{
+            $('.tisQuest').eq(2).removeClass('Dnone')
+        }
+    })
+    $('.chat').on('scroll', function() {
+       var scorpTopUl =  parseInt($('.chat ul').height())-parseInt($('.chat').scrollTop())-540;
+       if(scorpTopUl==0){
+           //滚轮滚到底部
+           console.log(111);
+       }
+    })
+    $('#plan').change(function(){
+         tiem = $(this).val();
+        if(num3===0){
+            if(tiem==0){
+                Inttime=30*1000
+                clearInterval(set1);
+                set1 = setInterval(function(){
+                    getData()
+                },Inttime)
+            }else if(tiem==1){
+                Inttime=60*1000;
+                clearInterval(set1);
+                set1 = setInterval(function(){
+                    getData()
+                },Inttime)
+            }else if(tiem==2){
+                Inttime=2*60*1000;
+                clearInterval(set1);
+                set1 = setInterval(function(){
+                    getData()
+                },Inttime)
+            }else if(tiem==3){
+                Inttime=5*60*1000;
+                clearInterval(set1);
+                set1 = setInterval(function(){
+                    getData()
+                },Inttime)
+            }
+        }
+
+    })
+    //判断用户是否提问
+    api.GET('/cmsmanager/authorizations/product',{},function(result){
+        if(result.code===200){
+            questionData.productAppId = result.data.productAppId
+            parame.productAppId = result.data.productAppId
+            productAppId=result.data.productAppId
+            // 获取正在访谈的信息
+            console.log(result.data.productAppId);
+            sendData()
+            getData()
+            getcCaptcha()
+            set1 = setInterval(function(){
+                getData()
+            },Inttime)
+        }
+    })
+    function statistics(){
+        api.GET(host+'/online/statistics',{onlineId:id},function(result){
+
+        })
+    }
+    statistics()
+    setInterval(function(){
+        statistics()
+    },60000)
+    //点击正序倒叙
+    $('.sort').click(function(){
+        $('.sort').removeClass('xuanzhong')
+        $(this).addClass('xuanzhong');
+        if($(this).index()==4){
+            console.log(parame.sort);
+            if(parame.sort==2){
+
+            }else{
+                parame.sort=2
+                num2=0
+                getData()
+            }
+        }else if($(this).index()==5){
+            if(parame.sort==1){
+
+            }else{
+                parame.sort=1
+                num2=0
+                getData()
+            }
+        }
+    })
+    $('.shuaxin').click(function(){
+        // 调用数据接口
+        $(this).addClass('xuanzhong');
+        $('.xuanzhongO').removeClass('xuanzhong')
+        if(num3===0){
+            num3=1
+            clearInterval(set1);
+        }else{
+
+        }
+        getData()
+
+    })
+    $('.xuanzhongO').click(function(){
+        $(this).addClass('xuanzhong');
+        $('.shuaxin').removeClass('xuanzhong')
+        if(num3===1){
+            num3=0
+            if(tiem==0){
+                Inttime=30*1000
+                clearInterval(set1);
+                set1 = setInterval(function(){
+                    getData()
+                },Inttime)
+            }else if(tiem==1){
+                Inttime=60*1000;
+                clearInterval(set1);
+                set1 = setInterval(function(){
+                    getData()
+                },Inttime)
+            }else if(tiem==2){
+                Inttime=2*60*1000;
+                clearInterval(set1);
+                set1 = setInterval(function(){
+                    getData()
+                },Inttime)
+            }else if(tiem==3){
+                Inttime=5*60*1000;
+                clearInterval(set1);
+                set1 = setInterval(function(){
+                    getData()
+                },Inttime)
+            }
+        }
+
+    })
+    //点击提交
+    $('.submit').click(function(){
+        var flag1 = false;
+        var flag2 = false;
+        var flag3 = false;
+        if(userName!=''){
+            $('.tisQuest').eq(1).addClass('Dnone')
+            flag1=true
+        }else if($('.name').last().val().length>=6&&$('.name').last().val().length<=18){
+            $('.tisQuest').eq(1).addClass('Dnone')
+            flag1=true
+        }else{
+            flag1=false
+            $('.tisQuest').eq(1).removeClass('Dnone')
+        }
+        if($('.textarea').val().length>0){
+            $('.tisQuest').eq(0).addClass('Dnone')
+            flag2=true
+        }else{
+            flag2=false
+            $('.tisQuest').eq(0).removeClass('Dnone')
+        }
+        if($('.yzm').val()){
+            flag3=true
+            $('.tisQuest').eq(2).addClass('Dnone')
+        }else{
+            flag3=false
+            $('.tisQuest').eq(2).removeClass('Dnone')
+        }
+        if(flag1&&flag2&&flag3){
+            userD.content=$('.textarea').val();
+            if(userName){
+                userD.userName = userName
+            }else{
+                userD.userName=$('.name').last().val();
+            }
+            userD.captcha = $('.yzm').val();
+            var flag = false
+            if(statusT==1){
+                flag = true
+            }else if(statusT==2 && nameN){
+                flag = true
+            }
+            if(statusT==2){
+                console.log(nameN);
+                if(nameN){
+
+                }else{
+                    myMessage.add('用户未登录', 'warning');
+                }
+            }
+            if(flag){
+                api.POST(host+'/online/question',userD,function(result){
+                    if(result.code===200){
+                        if(result.data){
+                            myMessage.add('提交成功', 'success');
+                            question();
+                            $('.yzm').val('')
+                            if (userName){
+
+                            }else{
+                                $('.name').val('')
+                            }
+                            getcCaptcha()
+                            $('.textarea').val('')
+                        }else{
+                            var message = result.message
+                            myMessage.add(message, 'warning');
+                        }
+                    }else{
+                        var message = result.message
+                        myMessage.add(message, 'warning');
+                    }
+                })
+            }
+
+        }
+    })
+    //获取验证码
+
+    function getcCaptcha(){
+        api.GET('/common/kaptcha',{},function(result){
+            console.log(result);
+            $('.captcha').attr('src',"data:image/png;base64,"+result.data.img)
+            userD.sessionId=result.data.sessionId
+        })
+    }
+
+    //获取文字实录信息
+    function getData(){
+        api.GET('http://api.jeecms.com/MODULE-INTERVIEW/client/v1/entry/front/list',parame,function(result){
+            if(result.code===200){
+                num2++
+
+                    $('.chatUl').html('');
+                var data = result.data
+                for(var i = 0 ; i < data.length ; i++){
+                    var identity = '';
+                    var str = '';
+                    var src = ''
+                    var str2 = ''
+                    if(data[i].identity==1){
+                        data[i].userName='主持人'
+                        identity = ''
+                        src = 'zcr'
+                    }else if(data[i].identity==2){
+                        identity = '(嘉宾)'
+                        src = 'jiabing'
+                    }else if(data[i].identity==3){
+                        identity = '(网友)'
+                        src = 'wy'
+                    }else
+                    console.log(data[i].replyName);
+                    if(data[i].replyName!=''){
+                        str = '【回复网友：'+data[i].replyName+'】'
+                    }
+                    $('.chatUl').append('<li><div class="chatContent"><img src="${res}/images/'+src+'.png" alt=""><span class="name">'+data[i].userName+' '+identity+'</span><span class="time">'+data[i].checkTime+'</span><p>'+str+''+data[i].content+'</p></div></li>')
+                }
+                var leng = $('.chatUl li').length
+                for(var i = 0 ; i < leng ; i++){
+                    var heig = $('.chatUl p').eq(i).height()/2+20;
+                    heig = heig + 'px'
+                    if((i+1)%2==0){
+                        $('.chatUl p').eq(i).css('borderRadius',heig+' 0'+' '+heig+' '+heig)
+                    }else{
+                        $('.chatUl p').eq(i).css('borderRadius','0 '+heig+' '+heig+' '+heig)
+                    }
+                }
+                console.log($('.chatUl li').length);
+                //判断是否有文字记录
+                if($('.chatUl li').length==0){
+                    $('.zwjl').removeClass('Dnone')
+                }else{
+                    $('.zwjl').addClass('Dnone');
+                }
+            }
+        });
+    }
+
+    var mm = 0;
+   $('.captcha').click(function(){
+     getcCaptcha()
+   })
+    //获取我的提问记录
+    function question(){
+        api.GET(host+'/online/question/my',questionData,function(result){
+            if(result.code===200){
+                var data = result.data
+                $('.quest').html('')
+                for(var i = 0 ; i < data.length ; i++){
+                    $('.quest').append(' <li><p>'+data[i].content+'</p><span>'+data[i].createTime+'</span></li>')
+                }
+                if($('.quest li').length>0){
+                    $('.questionBoxLeft .content').addClass('Dnone');
+                }else{
+                    $('.questionBoxLeft .content').removeClass('Dnone');
+                }
+
+            }
+        });
+    }
+    //主题数据
+    function sendData(){
+        var data = {
+            id,
+            productAppId
+        }
+        api.GET('http://api.jeecms.com/MODULE-INTERVIEW/client/v1/online/front/get',data,function(result){
+            if(result.code===200){
+
+                var data = result.data
+
+                
+
+                var flagD = false
+                var str = ''
+                statusT = data.interactionMode
+                if(statusT==3){
+                    $('.questionBoxRight').addClass('Dnone')
+                }
+                var ary = data.interactionType.split(',')
+                for(var i = 0 ; i < ary.length ;i++){
+                    if(ary[i]==data.status){
+                        flagD = true;
+                        // return
+                    }
+                }
+                if(flagD){
+
+                }else{
+                    $('.questionBoxRight').addClass('Dnone')
+                }
+                // data=result.data
+                // console.log(data);
+                $('.detailsTop').append('<h1>'+data.title+'</h1><p class="ders">'+data.summary+'</p><p class="message"><span class="messageLeft">访谈时间：'+data.interviewTime+'</span><span class="messageRight">访谈单位：'+data.organizer+'</span></p>')
+                // $('.broadcastBox').append('<img src="'+data.coverImage+'" alt="">')
+                if(data.guests){
+                    for(var i = 0 ; i < data.guests.length ; i++){
+                    str='<div class="tabContentOne"><div class="imgBoxT"><img src="'+data.guests[i].photo+'" alt=""></div><div class="content"><h3>'+data.guests[i].name+'</h3><p class="position">'+data.guests[i].job+' </p><p class="line"></p><p class="introduction">'+data.guests[i].introduction+'</p></div></div>'
+                    $('.tabContent1').append(str)
+                    }
+                }else{
+                    mm++;
+                    if(mm==2){
+                        $('.tabBoxTop').remove()
+                    }
+                    $('.tabContent2').removeClass('Dnone')
+                    $('.tabContent1').remove();
+                    $('.pic1').remove()
+                }
+                // 播放器代码
+                if(data.status == 1){
+                    var player = new TcPlayer('broadcastBox', {
+                        "autoplay" : false,
+                        "poster" : data.coverImage,
+                        "controls" : "none",
+                        wording: {
+                            12: '直播还未开始',
+                        },
+                    });
+                }else if(data.status == 2){
+                    var flvUrl = data.play.flvUrl;
+                    var hlsYrl = data.play.hlsUrl;
+                    var player = new TcPlayer('broadcastBox', {
+                        "m3u8": hlsYrl,
+                        "flv": flvUrl,
+                        "autoplay" : true
+                    });
+                }else{
+                    $("#broadcastBox").append("<video width='1140' height='657' controls src='"+ data.playUrl + "'" + "x5-playsinline></video>");
+                }
+            }
+        });
+        var dataA = {
+            'onlineId':id,
+            productAppId
+        }
+        api.GET('http://api.jeecms.com/MODULE-INTERVIEW/client/v1/photo/list',dataA,function(result){
+            var data = result.data
+            if(result.code===200){
+                if(result.data.length>0){
+                    for(var i = 0 ; i < data.length ; i++){
+                        $('.imgBox').append('<li><img src="'+data[i].picture+'"  alt=""></li>')
+                    }
+                    lunbou()
+                }else{
+                    mm++;
+                    if(mm==2){
+                        $('.tabBoxTop').remove()
+                    }
+                    $('.tabContent2').remove()
+                    $('.pic2').remove()
+                }
+            }
+        })
+    }
+    api.GET('/member/memberinfo',{},function(result){
+        if(result.code===200){
+            userName = result.data.dataField.username;
+            questionData.userId = result.data.dataField.id
+            // userD.userId = result.data.dataField.id
+            userD.userName = result.data.dataField.userName
+            nameN = userName
+
+            if (userName) {
+                $('.name').val(userName);
+                $(".name").attr("disabled",true);
+            }
+            question()
+        }else{
+            question()
+        }
+    })
+
+</script>

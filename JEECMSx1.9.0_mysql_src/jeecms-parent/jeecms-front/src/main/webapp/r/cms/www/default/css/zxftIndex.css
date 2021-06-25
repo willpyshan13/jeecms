@@ -1,0 +1,298 @@
+.zxft-middle{
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+.interviewing{
+    overflow: hidden;
+}
+.zxft-middle h2{
+    font-size: 24px;
+    font-weight: 450;
+    color: #333333;
+    border-left: 3px solid #E30B20;
+    padding-left: 17px;    
+    vertical-align: middle;
+    height: 25px;
+    line-height: 22px;
+    margin: 50px 0 30px;
+    cursor: pointer;
+}
+.interviewing-one,.interviewing-two,.interviewing-three,.interviewing-four,.interviewing-five{
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+.interviewing-left{
+    width: 680px;
+    height: 383px;
+    opacity: 0.7;
+    float: left;
+    position: relative;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+.interviewing-left .imgIndex{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    transition-duration: 400ms;
+    -moz-transition-duration: 400ms;
+    -webkit-transition-duration: 400ms;
+}
+.interviewing-left .player{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #000;
+    opacity: 0.7;
+    behavior: url(../pie/PIE.htc);
+    position: absolute;
+    top: 165px;
+    left: 298px;
+}.interviewing-left .player i{
+    color: #fff;
+    font-size: 27px;
+    margin-left: 8px;
+}
+.interviewing-left .imgIndex:hover{
+    transform: scale(1.05);
+}
+.interviewing-left .imgBf{
+    cursor: pointer;
+    position: absolute;
+    top: 162px;
+    left: 310px;
+}
+.interviewing-right{
+    width: 520px;
+    float: right;
+    padding-left: 50px;
+}
+.oneLeft{
+    width: 80px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+}
+.oneRight{
+    width: 382px;
+    padding-left: 5px;
+    display: inline-block;
+}
+.briefIntroduction{
+    font-weight: 400;
+    word-break: break-all;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 4; /** 显示的行数 **/
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 24px;
+    float: left;
+}
+.interviewing-one .oneLeft{
+    font-size: 24px;
+    font-weight: 400;
+    color: #666666;
+    line-height: 38px;
+}
+.interviewing-one .oneRight{
+    font-size: 24px;
+    font-weight: 500;
+    color: #333333;
+    line-height: 36px;
+    cursor: pointer;
+}
+.interviewing-one .oneRight:hover{
+    color: #E30B20;
+}
+.interviewing-two .oneLeft{
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+    line-height: 27px;
+    padding-right: 7px;
+}
+.interviewing-two .oneRight{
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+}
+.interviewing-two .oneRight span{
+    display: block;
+    width: 100%;
+    line-height: 28px;
+    font-weight: 400;
+    font-size: 16px;
+}
+.interviewing-three .oneLeft,.interviewing-four .oneLeft,.interviewing-five .oneLeft{
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+    line-height: 24px;
+    padding-right: 9px;
+}
+.interviewing-three .oneRight,.interviewing-four .oneRight,.interviewing-five .oneRight{
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+}
+.zxftBox{
+    overflow: hidden;
+    width: 100%;
+}
+.previousReview{
+    width: 680px;
+    float: left;
+}
+.interviewPreview{
+    width: 462px;
+    float: left;
+}
+.previousReview .grayLine{
+    width: 680px;
+    height: 1px;
+    background: #DDDDDD;
+    display: block;
+}
+.interviewPreview .grayLine{
+    width: 462px;
+    height: 1px;
+    background: #DDDDDD;
+    display: block;
+}
+.previousReviewUl li{
+    padding: 30px 0; 
+    cursor: pointer;
+    border-bottom: 1px dotted #DDDDDD;
+}
+.previousReviewUl li:hover{
+    background: #FAFAFA;
+}
+.previousReviewUl li .box-img{
+    overflow: hidden;
+    display: inline-block;
+    width: 280px;
+    height: 158px;
+    vertical-align: middle;
+}
+.previousReviewUl li img{
+    display: inline-block;
+    width: 280px;
+    height: 158px;
+    border-radius: 4px;
+    vertical-align: middle;
+    text-decoration: none;
+    transition-duration: 400ms;
+    -moz-transition-duration: 400ms;
+    -webkit-transition-duration: 400ms;
+}
+.previousReviewUl li img:hover{
+    transform: scale(1.05);
+}
+.previousReviewContent{
+    display: inline-block;
+    padding-left: 30px;
+    vertical-align: top;
+    margin-top: -5px;
+}
+.previousReviewUlP{
+    padding-bottom: 11px;
+}
+.previousReviewUlP .previousReviewOne{
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;  
+    vertical-align: top;
+    font-weight: bold;
+}
+.previousReviewUlP .previousReviewTwo{
+    font-weight: 300;
+    width: 316px;
+    font-size:14px ;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+    display: inline-block;
+}
+.zuti{
+    font-weight: 400 !important;
+}
+.previousReviewUlP .zuti:hover{
+    color: #E30B20;
+}
+.interviewPreviewUl li{
+    padding: 20px 0 20px 20px;
+    border-bottom: 1px dotted #DDDDDD;
+    cursor: pointer;
+}
+.interviewPreviewUl li:hover{
+    background: #FAFAFA;
+    border-color: transparent;
+}
+.previousReviewUl li:hover{
+    background-color: #FAFAFA;
+    border-color:transparent ;
+}
+.interviewPreviewTwoHover:hover{
+    color:#E30B20;
+}
+.interviewPreviewUl .interviewPreviewUlP .interviewPreviewOne{
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.interviewPreviewUl .interviewPreviewUlP .interviewPreviewTwo{
+    width: 375px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.previousReviewUl li:nth-last-child(1){
+    border: none;
+}
+.interviewPreviewUl li:nth-last-child(1){
+    border: none;
+}
+.more{
+    position: relative;
+    float: right;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;  
+    cursor: pointer;
+    padding-right: 15px;
+}
+.more img{
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+.more .iconfont{
+    font-size: 14px;
+}
+.more:hover{
+    color: #E30B20;
+}
+.more b{
+    width: 11px;
+    height: 13px;
+    border: 1px solid #666666;
+    border-radius: 50%;
+    font-size: 12px;
+    display: inline-block;
+    line-height: 13px;
+    vertical-align: middle;
+    padding-left: 2px;
+    margin-left: 5px;
+}

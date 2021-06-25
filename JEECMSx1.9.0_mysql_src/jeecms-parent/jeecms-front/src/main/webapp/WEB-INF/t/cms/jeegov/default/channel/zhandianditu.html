@@ -1,0 +1,61 @@
+<!-- 站点地图页面 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${channel.name!}</title>
+    <script src="${res}/static/bootstrap/jquery.min.js"></script>
+    <script src="${res}/static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${res}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${res}/static/common/base.css">
+    <link rel="stylesheet" href="${res}/static/common/common.css">
+    <link rel="stylesheet" href="${res}/css/zhandianditu.css">
+    <link rel="stylesheet" href="${res}/static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="${res}/static/html5shiv.js"></script>
+    <script src="${res}/static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        [#include "../includes/headerNoSecond.html"/]
+        <!-- 标签 -->
+        <div class="subTitle w">
+            ${channel.name!}
+        </div>
+        [@cms_channel_list]
+        [#list tag_list as c]
+        <div class="title w">
+            <div class="tag fl"></div>
+            <div class="titleText fl"><a href="${c.url!}">${c.name}</a></div>
+        </div>
+        <div class="mainmenu w clearfix">
+            [@cms_channel_list parentId=c.id]
+            [#list tag_list as cc]
+            [#if cc_index%4==3]
+            <div class="mainmenu-row fl marginStyle">
+            [#else]
+            <div class="mainmenu-row fl">
+            [/#if]
+                <div class="menuItemBox">
+                    <div class="circle fl">
+                        <div class="circleStyle"></div>
+                    </div>
+                    <div class="fl mainmenuText"> <a href="${c.url!}">${cc.name!}</a></div>
+                </div>
+            </div>
+            [/#list]
+            [/@cms_channel_list]
+        </div>
+        [/#list]
+        [/@cms_channel_list]
+        [#include "../includes/footerCommon.html"/]
+</body>
+
+</html>

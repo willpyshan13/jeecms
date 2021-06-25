@@ -1,0 +1,152 @@
+<div class="siteinfoBox">
+    <div class="siteinfo w">
+        <div class="siteinfoItem fl" style="text-align: left;">
+            <div class="dropup">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    中国政府网及国务院部门网站
+                    <div class="triangle fl"></div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    [@cms_link_list linkTypeId='172']
+                    [#list tag_list as a]
+                    <li><a href="${a.linkUrl!}">${a.linkName!}</a></li>
+                    [/#list]
+                    [/@cms_link_list]
+                </ul>
+            </div>
+
+        </div>
+        <div class="siteinfoItem fl">
+
+            <div class="dropup">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    省（区市）政府网站
+                    <div class="triangle fl"></div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    [@cms_link_list linkTypeId='173']
+                    [#list tag_list as a]
+                    <li><a href="${a.linkUrl!}">${a.linkName!}</a></li>
+                    [/#list]
+                    [/@cms_link_list]
+                </ul>
+            </div>
+        </div>
+        <div class="siteinfoItem fl">
+
+            <div class="dropup">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    市级政府部门网站
+                    <div class="triangle fl" style="right: 18px;"></div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    [@cms_link_list linkTypeId='174']
+                    [#list tag_list as a]
+                    <li><a href="${a.linkUrl!}">${a.linkName!}</a></li>
+                    [/#list]
+                    [/@cms_link_list]
+                </ul>
+            </div>
+        </div>
+        <div class="siteinfoItem fl">
+
+            <div class="dropup">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    市县政府网站
+                    <div class="triangle fl" style="right: 21px;"></div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    [@cms_link_list linkTypeId='175']
+                    [#list tag_list as a]
+                    <li><a href="${a.linkUrl!}">${a.linkName!}</a></li>
+                    [/#list]
+                    [/@cms_link_list]
+                </ul>
+            </div>
+        </div>
+        <div class="siteinfoItem fl marginStyle" style="border: 0;">
+
+            <div class="dropup">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    新闻媒体网站
+                    <div class="triangle fl" style="right: 25px;"></div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    [@cms_link_list linkTypeId='176']
+                    [#list tag_list as a]
+                    <li><a href="${a.linkUrl!}">${a.linkName!}</a></li>
+                    [/#list]
+                    [/@cms_link_list]
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="fotter">
+    <div class="contactUs clearfix">
+        [@cms_channel_list parentId='2514']
+        [#list tag_list as c]
+        [#if c_index!=tag_list?size-1]
+        <div class="contactUsText fl"><a href="${c.url!}">${c.name!}</a></div>
+        [#else]
+        <div class="contactUsText fl" style="border: none;"><a href="${c.url!}">${c.name!}</a></div>
+        [/#if]
+        [/#list]
+        [/@cms_channel_list]
+
+        <div class="share">
+            <!--这里是微信微博登录还是二维码？-->
+            <div class="shareImg fl">
+                <a href="">
+                    <img src="./static/img/_r4_c3.png" alt="">
+                </a>
+            </div>
+            <div class="shareImg fl" style="margin-left: 22px;">
+                <a href="">
+                    <img src="./static/img/矢量智能对象.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="siteinfo-legal">
+        ICP备案号：赣ICP备 18000538号-1 2007-2021 www.jeecms.com;All Rights
+    </div>
+</div>
+<!-- 二级搜索 -->
+<div class="mask-box none">
+    <div class="mask">
+    </div>
+    <div class="second-search">
+
+        <div class="second-search-box w">
+            <!-- 关闭按钮 -->
+            <div class="close-search iconfont iconguanbi"></div>
+            <div class="second-search-input">
+                <input class="fl" type="text" placeholder="大家都在搜 供暖">
+                <!-- 搜索按钮 -->
+                <a href="./html/yaowendongtai/search.html"> <span class="iconfont iconsousuo"></span></a>
+
+                <div class="fl second-search-znwd">
+                    <div class="iconfont iconzhinengwenda"></div>
+                    <div class="font-text"> 智能问答</div>
+                </div>
+            </div>
+            <div class="hot-search">
+                <div class="hot-search-title">热搜词</div>
+                <div class="hot-search-box">
+                    <div class="hot-search-item">企业所得税</div>
+                    <div class="hot-search-item">养老保险</div>
+                    <div class="hot-search-item">供暖</div>
+                    <div class="hot-search-item">社保卡</div>
+                    <div class="hot-search-item">居住证</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

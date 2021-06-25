@@ -1,0 +1,145 @@
+.zxft-middle{
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+.zxftBox h2{
+    font-size: 24px;
+    font-weight: 400;
+    color: #333333;
+    padding:50px 0 20px 0;
+    border-bottom: 1px solid#DDDDDD;
+}
+.previousReviewUl li .box-img{
+    overflow: hidden;
+    display: inline-block;
+    width: 280px;
+    height: 158px;
+    vertical-align: middle;
+}
+.previousReviewUl li{
+    padding: 30px 0; 
+    cursor: pointer;
+    border-bottom: 1px dotted #DDDDDD;
+}
+.previousReviewUl li:hover{
+    border-color:transparent ;
+    background: #FAFAFA;
+}
+.previousReviewUl li:nth-last-child(1){
+    border: none;
+}
+.previousReviewUl li img{
+    display: inline-block;
+    width: 280px;
+    height: 158px;
+    vertical-align: middle;
+    text-decoration: none;
+    border-radius: 4px;
+    transition-duration: 400ms;
+    -moz-transition-duration: 400ms;
+    -webkit-transition-duration: 400ms;
+}
+.previousReviewUl li img:hover{
+    transform: scale(1.05);
+}
+.previousReviewContent{
+    display: inline-block;
+    padding-left: 30px;
+    vertical-align: top;
+    margin-top: -5px;
+}
+.previousReviewUlP{
+    padding-bottom: 12px;
+}
+.previousReviewUlP .previousReviewOne{
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;  
+    vertical-align: top;
+    font-weight: bold;
+}
+.previousReviewUlP .previousReviewTwo{
+    font-size: 14px;
+    vertical-align: top;
+    font-weight: 300;
+    width: 838px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+.previousReviewUlP .zuti{
+    font-weight: 400 !important;
+}
+.previousReviewUlP .zuti:hover{
+    color: #E30B20;
+}
+.interviewPreviewUl li:nth-last-child(1){
+    border: none;
+}
+.interviewPreviewUl li{
+    padding: 20px 0 20px 0;
+    border-bottom: 1px dotted #DDDDDD;
+    cursor: pointer;
+}
+.interviewPreviewUl li:hover{
+    border-color:transparent ;
+
+    background: #FAFAFA;
+}
+.interviewPreviewTwoHover:hover{
+    color: #E30B20;
+}
+.interviewPreviewUl .interviewPreviewUlP .interviewPreviewOne{
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.interviewPreviewUl .interviewPreviewUlP .interviewPreviewTwo{
+    width: 900px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.pages{
+    width: 1200px;
+    margin: 30px auto 0;
+    display: flex;
+    /*三个div被挤到中间了*/
+    align-content: center;
+}
+.pages #demo2 {
+    margin: 0 auto;
+}
+.pages #demo2 a{
+    border: none !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #666666 !important;
+    padding: 2px 12px !important;
+}
+.pages #demo2 span{
+    border: none !important;
+    padding: 12px !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #666666 !important;
+    padding: 2px 12px !important;
+}
+.pages #demo2 span em{
+    color: #666666 !important;
+}
+.pages #demo2 a:nth-last-child(1){
+    background: #EEEEEE !important;
+    margin-left:10px !important;
+}
+.pages #demo2 a:nth-child(1){
+    background: #EEEEEE !important;
+    margin-right:10px !important;
+}

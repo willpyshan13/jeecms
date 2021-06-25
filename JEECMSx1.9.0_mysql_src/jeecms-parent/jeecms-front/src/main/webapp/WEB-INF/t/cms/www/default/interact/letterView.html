@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>领导信箱</title>
+</head>
+<head>
+  <link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css"/>
+    <link rel="stylesheet" href="${res}/lib/layui/css/layui.css"/>
+    <link rel="stylesheet" href="${res}/lib/layui/css/modules/layui-icon-extend/iconfont.css"/>
+    <link rel="stylesheet" href="${res}/lib/PDemo.css"/>
+</head>
+<style type="text/css">
+  html{
+      overflow: hidden auto;
+  }
+    body {
+        margin: 0;
+    }
+    iframe {
+        border: none;
+        width: 100%;
+        height: 100vh;
+    }
+    .smart-content{
+        /* overflow-y: auto; */
+        /* height: 94%; */
+        background-color: #f0f0f0;
+    }
+</style>
+<body>
+    <div class="smart-content">
+      
+      <div class="body">
+      
+          <div class="t-smart-wrap t-show" >
+            <div class="t-smart-bg"></div>
+            <!-- 背景 -->
+            <div class="container" style="border-radius: 4px;">
+              <!-- 页眉 -->
+              <div class="t-smart-head">
+                <!-- <img class="t-img" src="" alt=""> -->
+              </div>
+              <div class="t-smart-cont">
+                <!-- 自定义表单1 -->
+                <div class="p-itemData">
+                    <!-- 单选按钮 -->
+                    <form id="fieldForm" class="layui-form" action="" >
+                            <!-- 插入列表 -->
+                    </form>
+                    <!-- 提交按钮 -->
+                    <div class="sub-btn-wrap"><div class="sub-btn"></div></div>
+                </div>
+              </div>
+            </div>
+            <!-- 成功弹窗 -->
+            <div class="mode mode-result">
+              <div class="mode-box">
+                <div class="mode-close"><i class="layui-icon iconfont jee-quxiao"></i></div>
+                <div class="mode-title"><i class="layui-icon iconfont jee-liulangwanbi"></i>
+                  <span class="mode-message">提交成功！</span></div>
+                  <a rel="noopener noreferrer" class="mode-btn" >确定</a>
+              </div>
+            </div>
+            <!-- 成功弹窗 over -->
+            <div class="layerBgShow" onclick="bandLayerBgHide()"></div>
+            <div class="layertextBgShow">
+                <div class="p-text-title">
+                  <label>视频</label>
+                  <i class="layui-icon iconfont jee-quxiao"  onclick="bandLayerBgHide()"></i>
+                </div>
+                <div class="p-video-all">
+                  <video id="p-showVideo" controls="controls" autoplay></video>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="t-nothing">您需要到微信上打开才能参与
+            <div class="nothing-img"></div>
+          </div>
+          <script src="${res}/js/jquery-1.12.4.js"></script>
+          <script src="${res}/lib/layui/layui.js"></script>
+          <script src="${res}/lib/intelligrnce.js"></script>
+          <script src="${res}/lib/intelligrnceItem.js"></script>
+          <script src="${res}/lib/selectItems.js"></script>
+          <script src="${res}/js/moment.min.js"></script>
+          <script src="${res}/js/chinese.js"></script>
+          
+          <script>
+            $(function(){
+              if(localStorage.getItem('typeface') && localStorage.getItem('typeface')=='简体'){
+                $('.typeface>span').text('简体');
+                zh_tran('s')
+              }else if(localStorage.getItem('typeface') && localStorage.getItem('typeface')=='繁体'){
+                $('.typeface>span').text('繁体');
+                zh_tran('t')
+              }else{
+                $('.typeface>span').text('简体');
+                zh_tran('s')
+              }
+            })
+            // 定义参数
+            var param = {
+                detailApi:"/smartForm/",//详情
+                saveApi:"",// 提交表单
+                viewApi:"",//添加浏览量
+                shareApi:"",// 微信分享
+                name:'letter',
+                params:{
+                  typeId:'${typeId!}'
+                }
+            }
+            layUiUse('${id!}'||1,'${base}','${res}',1,param)
+          </script>
+      </div>
+        <!-- 底部导航 -->
+
+    </div>
+        <!--底部导航 over-->
+        <script>
+            // genPermCheck("","${channel.id!}","${base}");
+        </script>
+</body>
+</html>

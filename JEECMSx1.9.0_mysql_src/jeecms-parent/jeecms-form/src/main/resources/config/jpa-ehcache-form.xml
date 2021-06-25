@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false" name="jpaCache">
+	<diskStore path="java.io.tmpdir/jeecms/ehcache/jpa" />
+
+	<!-- maxEntriesLocalHeap: 内存中最大对象数量。0不限制。 maxEntriesLocalDisk：硬盘中最大对象数量。0不限制。默认为0。 
+		eternal：对象是否永不过期。true或false。 timeToIdleSeconds：闲置时间。超过这个时间没有被使用，将失效。0不限制。默认为0。 
+		timeToLiveSeconds：生存时间。从创建到过期的时间。0不限制。默认为0。 -->
+
+	<cache name="com.jeecms.form.domain.CmsFormDataEntity"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.form.domain.CmsFormDataAttrResEntity"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.form.domain.CmsFormDataAttrEntity"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+
+</ehcache>

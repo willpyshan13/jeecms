@@ -1,0 +1,639 @@
+.paidMask{
+    display: block;
+    width: 666px;
+    height: 103px;
+    background-image: linear-gradient(rgba(255,255,255,0.1) , rgba(255,255,255,0.8));
+    position: absolute;
+    bottom:0;
+}
+.paidContent{
+    text-align: center;
+    font-size: 14px;
+    margin-top: 65px;
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 14px;
+}
+.context button{
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+    width: 153px;
+    height: 40px;
+    background: #E60012;
+    border-radius: 20px;
+    border: none;
+    color: #FFFFFF;
+    font-size: 14px;
+    text-align: center;
+}
+.context button:hover{
+    background-color:#FE0012 ;
+}
+.paidLine {
+    width: auto;
+    margin: 68px auto 0;
+    display: flex;
+    justify-content: center;
+}
+.paidLine span{
+    width: 75px;
+    height: 1px;
+    background: #E5E5E5;
+    display: inline-block;
+    margin-top: 6px;
+}
+.paidLine b{
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+    /* vertical-align: middle; */
+    line-height: 12px;
+    padding: 0 14px;
+}
+.paidButton{
+    margin-left: auto;
+    margin-right: auto;
+    width: 114px;
+    height: 40px;
+    background: #E60012;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+.paidButton i{
+    padding-right: 8px;
+}
+.paidButton:hover{
+    background: #FE0012;
+}
+.paidLine .paidRed{
+    color: #E60012;
+    padding: 0;
+    padding-right: 3px;
+}
+.paidImg {
+    width: 580px;
+    margin: 20px auto 0;
+    max-height: 110px;
+    overflow: hidden;
+    transition: .5s;
+}
+.paidImg .NumberOfPayers{
+    all:initial;
+    display: inline-block;
+    width: 46px;
+    height: 46px !important;
+    border-radius: 50%;
+    margin-right:10px ;
+}
+.appreciate{
+    margin:  0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+    cursor: pointer;
+}
+.assetsBox .first{
+    padding: 25px 0;
+}
+.assetsBox .inBlock{
+    display: inline-block !important;
+}
+.assetsBox .right{
+    padding-left: 50px;
+}
+.assetsBox .fontT{
+    font-size: 25px;
+}
+.assetsBox #Withdrawal{
+    padding-left: 30px;
+    color: #64C6DF;
+}
+.PopupWindow{
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    z-index: 1000;
+}
+.PopupWindow .pwContent{
+    width: 700px;
+    position: relative;
+    margin: 150px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 4px;
+}
+.PopupWindow  .one{
+    font-size: 20px;
+    font-weight: 400;
+    color: #333333;
+}
+.PopupWindow .right{
+    float: right;
+    cursor: pointer;
+    margin-top: -12px;
+    margin-right: -3px;
+}
+.context #paidButton1{
+   width: auto;
+   height: auto; 
+   padding: 12px 30px;
+}
+.PopupWindow .right i{
+    font-size: 20px;
+}
+.PopupWindow .right i:hover{
+    color: #E60012;
+}
+
+.pwContent .body{
+    margin-top: 10px;
+}
+.pwContent .body>p{
+    padding: 12px 0 19px;
+}
+.pwContent .body p span{
+    font-size: 18px;
+}
+.buttonAll button{
+    height: 70px;
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 31%;
+    display: inline-block;
+    background-color: #fff;
+    margin-right: 17px;
+    vertical-align: middle;
+}
+.buttonAll .mBank{
+    margin-right:0px ;
+}
+.buttonAll button span{
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+}
+.borderBlue{
+    border-color: #E60012 !important;
+}
+.PopupWindow .qroucd{
+    margin-top: 20px;
+}
+.PopupWindow .qroucd>div{
+    width: 640px;
+    height: 300px;
+    background: #FFFFFF;
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+}
+ .ewm{
+    width: 123px;
+    height: 123px;
+    position: relative;
+}
+.ewm span{
+    display: inline-block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(51, 51, 51, 0.7);
+    border-radius: 50%;
+    top: 42px;
+    left: 42px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+ .ewm span i{
+    margin-top: 10px;
+    font-size: 21px;
+    color: #fff;
+    z-index: 10;
+}
+ .ewm span i:hover{
+    color: #E60012;
+}
+.wxQ .ewm{
+    margin: 71px auto 0;
+}
+.zfbQ .ewm{
+    margin: 55px auto 0;
+}
+.qroucd .deterMoney,.moneyQ,.qrcodepop .deterMoney{
+    text-align: center;
+    padding: 12px 0 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+}
+.qroucd .deterMoney span,.moneyQ span,.qrcodepop .deterMoney span{
+    font-size: 20px;
+    color: #E60012
+}
+.zfbQ a{
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #2676B5;   
+    padding-top: 10px;
+}
+.paySuccess{
+    width: 632px;
+    height: 276px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.paySuccess i{
+    color: #22A926;
+    margin-top: -3px;
+    vertical-align: middle;
+    margin-right: 15px;
+    display: inline-block;
+}
+.paySuccess p{
+    text-align: center;
+}
+.paySuccess p:nth-child(1){
+    font-size: 24px;
+    font-weight: normal;
+    color: #333333;
+    padding: 60px 0 13px;
+    margin-right: 16px;
+}
+.paySuccess p:nth-child(1) i{
+    font-size: 30px;
+    margin-right: 10px;
+}
+.paySuccess p:nth-child(2){
+    padding-bottom: 49px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #666666;
+}
+.paySuccess button{
+    border: none;
+    display: block;
+    margin: 0 auto;
+    width: 131px;
+    height: 45px;
+    background: #E60012;
+    border-radius: 23px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.paySuccess button:hover{
+    background-color: #FE0012;
+}
+.moneyQ p{
+    padding: 75px 0 33px;
+}
+.moneyQ .determine{
+    width: 131px;
+    height: 45px;
+    background: #E60012;
+    border-radius: 23px;
+    border: none;
+    text-align: center;
+    line-height: 45px;
+    margin: 10px auto 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+.moneyQ .determine:hover{
+    background-color: #FE0012;
+}
+.expandAll{
+    overflow: hidden;
+}
+.expandAll span{
+    float: right;
+    font-size: 14px;
+    color: #999;
+    cursor: pointer;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+.expandAll span i{
+    padding-left: 7px;
+}
+.expandAll span:hover,.transrouter{
+    color: #E60012;
+}
+.buttonAll img{
+    /* height: 30px; */
+    margin-top: 5px;
+}
+.PopupWindow .symbol{
+    position: absolute;
+    top: 15px;
+    left: 264px;
+    font-size: 30px;
+    font-weight: 400;
+    color: #333333;
+}
+.Appreciation{
+    width: 700px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    padding: 30px;
+    margin: 150px auto;
+}
+.Appreciation ul{
+    margin-top: 30px;
+}
+.Appreciation ul li{
+    cursor: pointer;
+    width: 200px;
+    height: 70px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+    margin: 0 20px 20px 0;
+    display: inline-block;
+}
+.Appreciation ul li p{
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    top: 11px;
+}
+.Appreciation ul li p span{
+    font-size: 30px;
+    margin-left: 5px;
+    position: relative;
+    top: 1px;
+}
+.symbolBox{
+    position: relative;
+}
+.Appreciation ul li:nth-child(3n){
+    margin-right: 0;
+}
+.Appreciation ul li:hover{
+    border-color:#E60012 ;
+}
+.Appreciation input{
+    width: 640px;
+    height: 70px;
+    background: #FFFFFF;
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+    padding-left: 295px;
+    font-size: 20px;
+    color: #333;
+}
+.Appreciation input:focus,.Appreciation input:hover{
+    border-color:#E60012 ;
+}
+.Appreciation .method{
+    padding: 29px 0 18px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+}
+button{
+    cursor: pointer;
+}
+.Appreciation .quest{
+    background: #E60012;
+    border-radius: 23px;
+    display: block;
+    margin: 30px auto 20px;
+    text-align: center;
+    color: #fff;
+    padding: 12px 50px;
+    border: none;
+}
+.Appreciation .quest:hover{
+    background-color: #FE0012;
+}
+.qrcodepop{
+    width: 700px;
+    /* height: 305px; */
+    background: #FFFFFF;
+    border-radius: 4px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 30px 30px 50px;
+}
+.qrcodepop p:nth-child(1){
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+}
+.qrcodepop p:nth-child(1) i:nth-child(1){
+    float: left;
+    font-size: 20px;
+    color: #999999;
+}
+.qrcodepop p:nth-child(1) i:nth-child(1):hover{
+    color: #E60012;
+}
+i{
+    cursor: pointer;
+}
+#realname{
+    font-size: 16px !important;
+}
+#telephone{
+    font-size: 16px !important;
+}
+.qrcodepop p:nth-child(1) .layui-icon-close{
+    float: right;
+    font-size: 20px;
+    color: #999999;
+}
+.PopupWindow .layui-icon-close{
+    font-size: 22px !important;
+    color: #999999 !important;
+}
+.PopupWindow .layui-icon-close:hover{
+    color: #E60012 !important;
+}
+.qrcodepop p:nth-child(1) .layui-icon-close:hover{
+    color: #E60012;
+}
+.borderRed{
+    border-color:#E60012 ;
+}
+.Ploging{
+    width: 422px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    position: relative;
+    margin: 225px auto;
+    padding: 30px;
+}
+.transrouter{
+    transform: rotate(270deg);
+    margin-top: 5px !important;
+    margin-right: -27px !important;
+}
+.transrouterT{
+    margin-top: -4px !important;
+    transform: rotate(90deg) !important;
+}
+.PopupWindow .none{
+    display: none !important;
+}
+.Ploging h2{
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 55px;
+}
+.Ploging h2 button{
+    display: block;
+    float: right;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    width: 86px;
+    height: 32px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+    line-height: 32px;
+    text-align: center;
+}
+.Ploging h2 button:hover{
+    color: #E60012;
+    border-color: #E60012;
+}
+.username, .psword ,.code {
+    position: relative;
+}
+.username i, .psword .ago , .code i{
+    position: absolute;
+    top: 12px;
+    left: 45px;
+    color: #999999;
+}
+.psword i{
+    position: absolute;
+    top: 12px;
+    color: #999999;
+    left: 300px;
+}
+.formtable #identity,.formtable #desStr,.code #captcha{
+    width: 283px;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px 15px 5px 30px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #333333;
+}
+.formtable #identity:focus,.formtable #desStr:focus,.formtable #captcha:focus{
+    border-color: #666;
+}
+.formtable #identity::-webkit-input-placeholder,.formtable #desStr::-webkit-input-placeholder,.formtable #captcha::-webkit-input-placeholder{
+    color: #999;
+    
+}
+#priceCustomize::-webkit-input-placeholder {
+    font-size: 20px;
+    color: #333333;
+    line-height: 70px;
+}
+#priceCustomize::-moz-input-placeholder {
+    font-size: 20px;
+    color: #333333;
+    line-height: 70px;
+  }
+#priceCustomize::-ms-input-placeholder {
+    font-size: 20px;
+    color: #333333;
+    line-height: 70px;
+}
+.priceCustomize2::-webkit-input-placeholder {
+    font-size: 30px !important;
+    color: #999999 !important;
+}
+.priceCustomize2::-moz-input-placeholder {
+    font-size:  30px !important;
+    color: #999999 !important;
+  }
+.priceCustomize2::-ms-input-placeholder {
+    font-size:  30px !important;
+    color: #999999 !important;
+}
+.fontSize2{
+    font-size: 30px !important;
+}
+
+.formtable .alogin{
+    width: 285px;
+    height: 43px;
+    background: #E60012;
+    border-radius: 22px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 43px;
+    font-size: 16px;
+    color: #fff;
+}
+.formtable .alogin:hover{
+    background: #FE0012;
+}
+.Ploging .box{
+    width: 285px;
+    margin:0 auto;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: normal;
+    color: #999999;
+    margin-bottom: 65px;
+}
+.Ploging .box span,.Ploging .box input{
+    vertical-align: middle;
+}
+.Ploging .box a{
+    float: right;
+    color: #2075B7;
+    vertical-align: middle;
+}
+.formtable #getCapatchImg{
+    width: 125px;
+    height: 35px;
+    position: absolute;
+    right: 45px;
+    top: -6px;
+}
+.formtable #getCapatchImg img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.none2{
+    display: none !important;
+}

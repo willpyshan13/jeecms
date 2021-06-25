@@ -1,0 +1,73 @@
+/*  政务机构样式 */
+body{
+    height: 100%;
+}
+ .subTitle {
+     margin-top: 39px;
+     margin-bottom: 25px;
+    font-size:24px;
+    font-weight:300;
+    color:#333;
+} 
+.title {
+    margin-bottom: 39px;
+    height: 55px;
+    background-color: #F5F5F5;
+}
+.title .tag {
+    margin: 15px 15px 0 16px;
+    width:3px;
+    height:23px;
+    background:rgba(0,64,153,1);
+}
+.title .titleText {
+    font-size:24px;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+    line-height: 55px;
+}
+.mainmenu {
+    /* margin-top: 39px; */
+    margin-bottom: 39px;
+
+}
+.menuItemBox {
+    /* margin-bottom: 24px; */
+    width: 100%;
+    height: 18px;
+
+    clear: both;
+}
+.menuItemBox:hover .circleStyle {
+    background-color: #002a66;
+}
+.menuItemBox:hover .mainmenuText a{
+    color: #002a66;
+}
+.circle {
+  height: 18px;
+}
+.circleStyle {
+    margin-top: 7px;
+    margin-right: 14px;
+    width:5px;
+    height:5px;
+    background:rgba(221,221,221,1);
+    border-radius:50%;
+   
+}
+.mainmenuText {
+    margin-bottom: 24px;
+    line-height: 18px;
+    font-size:18px;
+    font-weight:normal;
+    color:rgba(51,51,51,1);
+}
+.mainmenu-row {
+    width: 233px;
+    margin-right: 52px;
+}
+.marginStyle {
+    margin-right: 0;
+}
+  

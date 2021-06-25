@@ -1,0 +1,437 @@
+<!-- 政务公开-共民页/法人页 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <script src="../../static/bootstrap/jquery.min.js"></script>
+    <script src="../../static/bootstrap/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../../static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static//common/base.css">
+    <link rel="stylesheet" href="../../static/common/common.css">
+    <link rel="stylesheet" href="../../css/citizen.css">
+    <link rel="stylesheet" href="../../static/font/font_1854318_c2kfu1tuyxu/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="../../static/html5shiv.js"></script>
+    <script src="../../static/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="search w">
+
+            <!-- <div class="change-languange">简体</div> -->
+            <div class="dropdown fl">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    简体
+                    <span class="iconfont iconarrow"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li> 简体</li>
+                    <li> 繁体</li>
+                </ul>
+
+            </div>
+
+            <div class="searchSubBtn fl">
+                <div class="fl">
+                    <a href="#" class="iconfont iconwuzhangaiyuedu"></a>
+                </div>
+                <div class="fl">
+                    <a href="" class="iconfont iconrss"></a>
+                </div>
+                <div class="fl">
+                    <a href="./html/search.html" class="iconfont iconsousuo"></a>
+                </div>
+            </div>
+            <div class="register fr">
+                <div class="registerBtn fl"><a href="#">注册</a></div>
+
+                <div class="loginBtn fl"><a href="">登录</a></div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="header-warry">
+                <div class="header-logo">
+                    <a href="./jiangzhou/index.html">
+                        <div class="header-logo-img"> </div>
+                    </a>
+                </div>
+                <div class="header-nav">
+                    <div class="header-menu"><a href="../../index.html">首页</a></div>
+                    <div class="header-menu"><a href="../news.html">要闻动态</a></div>
+                    <div class="header-menu active"><a href="./zwgk_index.html">政务公开</a></div>
+                    <div class="header-menu"><a href="../zhengfufuwu/serve_index.html">政府服务</a></div>
+                    <div class="header-menu"><a href="../zhengminhudong/zhengminhudong.html">政民互动</a></div>
+                    <div class="header-menu"><a href="../zoujinjiangzhou/zjjz_index.html">走进江州</a></div>
+                </div>
+            </div>
+        </div>
+        <!-- 标签 -->
+        <div class="title w">
+            <div class="tag fl"></div>
+            <div class="titleText fl">依申请公开</div>
+        </div>
+        <!-- 说明 -->
+        <div class="explain w">
+            <div class="explainTitle">
+                <h2>
+                    填写说明:
+                </h2>
+                <p style="margin-top:10px ;">1. 表中标记＊的内容为必填项。
+                </p>
+                <p>2. 如果是代理人申请，须上传授权委托书。
+                </p>
+                <p>3.公民、法人或者其他组织向行政机关申请提供与其自身相关的税费缴纳、社会保障、医疗卫生等政府信息的，公民应当填写身份证号码，法人应当填写组织机构代码和经办人身份证号码。
+                </p>
+            </div>
+        </div>
+        <!-- 表格 -->
+        <div class="table w">
+            <form action="">
+                <table cellspacing="0" cellpadding="0">
+                    <!-- 行一 -->
+                    <tr>
+                        <td style="width: 50px;height: 50px;" colspan="2" align="center">
+                            <span>*</span>
+                            <i> 接受申请的单位</i>
+                        </td>
+                        <td style="width: 175px;" colspan="3" class="position-box">
+                            <ul class="select-style">
+                                <li>
+                                    <a href="javascript:;" class="selectBtn">
+                                        江州省政府
+                                        <i class="iconfont iconarrow"></i>
+                                    </a>
+                                    <ul class="year-style">
+                                        <li>全部</li>
+                                        <li>赣府</li>
+                                        <li>赣府厅</li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <!-- 行二 -->
+                    <tr>
+                        <td style="width: 50px;height: 50px;" rowspan="6">
+                            <div class="max-title">申 请 人 信 息</div>
+                        </td>
+                        <td style="width: 175px;height: 50px;" colspan="4">
+                            <!-- 按钮组 -->
+                            <div class="input-radio">
+                                <input type="radio" name="gender " value="1" />
+                                <label class="input-radio-label" for="">公民 </label>
+                                <input type="radio" name="gender " value="2" />
+                                <label class="input-radio-label" for="">法人或其他组织</label>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 175px;height: 50px;" align="center">
+                            <span>*</span>
+                            <i>申请人姓名</i>
+                        </td>
+                        <td style="width: 401px;">
+                            <input type="text" class="input-text">
+                        </td>
+                        <td style="width: 175px;" align="center">
+                            <span> *</span>
+                            <i>工作单位</i>
+                        </td>
+                        <td style="width: 401px;">
+                            <input type="text" class="input-text">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 175px;height: 50px;" align="center">
+                            <span>*</span>
+                            <i>证件名称</i>
+                        </td>
+                        <td style="width: 401px;">
+                            <ul class="select-style">
+                                <li>
+                                    <a href="javascript:;" class="selectBtn">
+                                        身份证
+                                        <i class="iconfont iconarrow"></i>
+                                    </a>
+                                    <ul class="year-style">
+                                        <li>全部</li>
+                                        <li>赣府</li>
+                                        <li>赣府厅</li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                        <td style="width: 175px;" align="center">
+                            <span>*</span>
+                            <i>证件号码</i>
+                        </td>
+                        <td style="width: 401px;">
+                            <input type="text" class="input-text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 175px;height: 50px;" align="center">
+                            <span>*</span>
+                            <i>联系电话</i>
+                        </td>
+                        <td style="width: 401px;">
+                            <input type="text" class="input-text">
+                        </td>
+                        <td style="width: 175px;" align="center">
+                            <i>邮政编码</i>
+                        </td>
+                        <td style="width: 401px;">
+                            <input type="text" class="input-text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 175px;height: 50px;" align="center">
+                            <span>*</span>
+                            <i>电子邮箱</i>
+                        </td>
+                        <td style="width: 401px;">
+                            <input type="text" class="input-text">
+                        </td>
+                        <td style="width: 175px;" align="center">
+                            <span>*</span>
+                            <i>传真</i>
+                        </td>
+                        <td style="width: 401px;">
+                            <input type="text" class="input-text">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 175px;height: 50px;" align="center">
+                            联系地址
+                        </td>
+                        <td style="width: 401px;">
+                            <input type="text" class="input-text">
+                        </td>
+                        <td style="width: 175px;">
+                            <!-- 空 -->
+                        </td>
+                        <td style="width: 401px;">
+                            <!-- <input type="text" class="input-text"> -->
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 50px;height: 50px;" rowspan="3">
+                            <div class="max-title">所 需 信 息 情 况</div>
+                        </td>
+                        <td style="width: 175px;height: 50px;" align="center">
+                            <span>*</span>
+                            <i>所需信息名称</i>
+                        </td>
+                        <td style="width: 401px;" colspan="3">
+                            <input type="text" class="input-text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style=" width: 175px;height: 150px;" align="center">
+                            <div class="td-details">
+                                <span class="max-style3">*</span>
+                                <div class="max-style2"><i>所需信息 内容描述</i></div>
+                            </div>
+
+                        </td>
+                        <td style="width: 401px;" colspan="3" style="border: 1px solid #e5e5e5;">
+                            <input type="text" class="textarea-input">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 175px;height: 50px;" align="center">
+                            <span>*</span>
+                            <i>所需信息名称</i>
+                        </td>
+                        <td style="width: 401px;" colspan="3">
+                            <div class="check-box">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox1" value="option1"> 邮寄
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox2" value="option2"> 电子邮件
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox3" value="option3"> 传真
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox3" value="option3"> 自行领取
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="btns">
+                    <button type="button" class="save btn-active">保存</button>
+                    <button type="reset" class="reset">重置</button>
+                </div>
+            </form>
+        </div>
+        <div class="siteinfoBox">
+            <div class="siteinfo w">
+                <div class="siteinfoItem fl" style="text-align: left;">
+                    <!-- <div class="siteinfoText fl">
+                            中国政府网及国务院部门网站
+                        </div> -->
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            中国政府网及国务院部门网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                            <li> 国务院台湾事务办公室</li>
+                            <li> 国务院发展研究中心</li>
+                            <li> 国家国防科技工业局</li>
+                            <li> 国家文物局</li>
+                            <li> 国家公园管理局</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            省（区市）政府网站
+                            <div class="triangle fl"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市级政府部门网站
+                            <div class="triangle fl" style="right: 18px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            市县政府网站
+                            <div class="triangle fl" style="right: 21px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+
+                            <li> 国家原子能机构</li>
+                            <li> 国务院参事室</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="siteinfoItem fl marginStyle" style="border: 0;">
+
+                    <div class="dropup">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            新闻媒体网站
+                            <div class="triangle fl" style="right: 25px;"></div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>外交部</li>
+                            <li>公安部</li>
+                            <li> 生态环境部</li>
+                            <li> 国家卫生健康委员会</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="fotter">
+            <div class="contactUs clearfix">
+                <div class="contactUsText fl"><a href="#">关于我们</a></div>
+                <div class="contactUsText fl"><a href="#">建议意见</a></div>
+                <div class="contactUsText fl"><a href="#">站点地图</a></div>
+                <div class="contactUsText fl" style="border: none;"><a href="#">联系我们</a></div>
+
+                <div class="share">
+                    <div class="shareImg fl">
+                        <a href="">
+                            <img src="../../static/img/_r4_c3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="shareImg fl" style="margin-left: 22px;">
+                        <a href="">
+                            <img src="../../static/img/矢量智能对象.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="siteinfo-legal">
+                ICP备案号：赣ICP备 18000538号-1 2007-2019 www.jeecms.com;All Rights
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            //让选项窗与输入窗等宽
+            var flag = 0
+            $('.selectBtn').click(function () {
+                if (flag == 0) {
+                    $(this).siblings().fadeIn()
+                    flag = 1
+                } else {
+                    $(this).siblings().fadeOut()
+                    flag = 0
+                }
+            })
+            $('.year-style li').click(function () {
+                var value = $(this).text()
+                $(this).parent().siblings().html(value + ' <i class="iconfont iconarrow"></i>')
+                $(this).parent().hide()
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>

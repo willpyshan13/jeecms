@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>在线访谈</title>
+    <link rel="stylesheet" href="${res}/css/videoList-newest.css">
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <link rel="stylesheet" href="${res}/css/zxftIndex.css">
+    <meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+    <meta name="description" content="${site.seoDescription!}" />
+</head>
+<body>
+     <!-- 顶部导航 -->
+     <div class="header-children">
+        [#include "../includes/header.html"/]
+    </div>
+    <div class="zxft-middle">
+        <!-- 正在访谈 -->
+        <h2 class="interviewingH">正在访谈</h2>
+        <div class="interviewing">
+         
+        </div>
+        <div class="zxftBox">
+            <!-- 往期回顾 -->
+            <div class="previousReview" style="    margin-right: 58px;">
+                <h2 class="list1">往期回顾<span class="more list1">更多 &nbsp;<i class="iconfont icongengduo"></i></span></h2>
+                <i class="grayLine"></i>
+                <ul class="previousReviewUl">
+                </ul>
+            </div>
+            <!-- 访谈预告 -->
+            <div class="interviewPreview">
+                <h2 class="list2">访谈预告<span class="more list2">更多 &nbsp;<i class="iconfont icongengduo"></i></span></h2>
+                <i class="grayLine"></i>
+                <ul class="interviewPreviewUl">
+                </ul>
+            </div>
+        </div>
+    </div>
+    [#include "../includes/footer.html"/]
+</body>
+<script src="${res}/js/jquery.jSlider.js"></script>
+<script src="${res}/js/unslider.min.js"></script>
+<script src="${res}/js/video.js"></script>
+</html>
+<script>
+    $('.list1').click(function(){
+        window.location.href='zxftlist.htm?type=3'
+    })
+    $('.list2').click(function(){
+        window.location.href='zxftlist.htm?type=1'
+    })
+    var productAppId = ''
+        //获取productAppId
+        api.GET('/cmsmanager/authorizations/product',{},function(result){
+            if(result.code===200){
+                productAppId = result.data.productAppId
+                // 获取正在访谈的信息
+                sendData(1);
+                sendData(2);
+                sendData(3);
+            }
+        })
+        //获取访谈信息
+        function  sendData(status){
+            var data = {
+                productAppId,
+                status,
+                siteId:'1',
+            }
+            if(status == 3){
+                data.size=4
+            }else if(status == 1){
+                data.size=8
+            }
+            api.GET('http://api.jeecms.com/MODULE-INTERVIEW/client/v1/online/list',data,function(result){
+                if(result.code===200){
+                    //未开始
+                    
+                    console.log(result);
+                    if(status==1){
+                        statusOne(result.data.content)
+                    }else if(status==2){//进行中
+                        statusTwo(result.data.content)
+                    }else if(status==3){//已结束
+                        statusThree(result.data.content)
+                    }
+                }
+            })
+        }
+         //访谈预告
+        function  statusOne(data){
+            if(data.length){
+                console.log(data);
+                for(var i = 0 ; i < data.length ; i++){
+                    $('.interviewPreviewUl').append('<li><p class="interviewPreviewUlP" onclick=\"LinkTo(\''+data[i].id+'\')\" style="padding-bottom: 20px;"><span class="interviewPreviewOne">主题：</span><span class="interviewPreviewTwo interviewPreviewTwoHover">'+data[i].title+'</span></p><p class="interviewPreviewUlP"><span class="interviewPreviewOne">时间：</span><span class="interviewPreviewTwo" style="font-weight:300">'+data[i].interviewTime+'</span></p></li>')
+                }
+            }else{
+                $('.interviewPreview').remove()
+            }
+        }
+        //正在访谈
+        function statusTwo(data){
+            if(data.length){
+                for(var i = 0; i < data.length ; i++){
+                    $('.interviewing').append(
+                        '<div class="interviewing-left" onclick="LinkTo(\''+data[i].id+'\')"><img src="'+data[i].coverImage+'" alt="" class="imgIndex"></div><div class="interviewing-right"><p class="interviewing-one" onclick="LinkTo(\''+data[i].id+'\')"><span class="oneLeft" style="padding-right:3px">主题：</span><span class="oneRight">'+data[i].title+'</span></p><p class="interviewing-two"><span  class="oneLeft">嘉宾：</span><span  class="oneRight guests"></span></p><p class="interviewing-three"><span class="oneLeft">单位：</span><span  class="oneRight">'+data[i].organizer+'</span></p><p class="interviewing-four"><span class="oneLeft">时间：</span><span class="oneRight">'+data[i].interviewTime+'</span></p><p class="interviewing-five"><span class="oneLeft" style="float: left;">简介：</span><span class="oneRight briefIntroduction">'+data[i].summary+'</span></p></div>'
+                    )
+                    if(data[i].guests){
+                        for(var j = 0 ; j < data[i].guests.length ; j++){
+                            $('.guests').eq(i).append('<span>'+data[i].guests[j].name+' &nbsp;&nbsp;&nbsp;'+data[i].guests[j].job+'</span>')
+                        }
+                    }
+                    
+                    $('.interviewing-left').eq(i).append('<div class="player pointer"><i class="iconfont iconbofang"></i></div>')
+                }
+            }else{
+                $('.interviewing').remove()
+                $('.interviewingH').remove()
+            }
+         }
+        //往期介绍
+        function statusThree(data){
+            console.log(data);
+            if(data.length){
+                for(var i = 0 ; i < data.length ; i++){
+                    $('.previousReviewUl').append('<li> <div class="box-img"><img src="'+data[i].coverImage+'" alt="" onclick=LinkTo(\''+data[i].id+'\')></div> <div class="previousReviewContent"><p class="previousReviewUlP"><span class="previousReviewOne">主题：</span><span class="previousReviewTwo zuti"  onclick="LinkTo(\''+data[i].id+'\')">'+data[i].title+'</span></p><p class="previousReviewUlP"><span class="previousReviewOne">时间：</span><span class="previousReviewTwo">'+data[i].interviewTime+'</span></p><p class="previousReviewUlP"><span class="previousReviewOne">嘉宾：</span><span class="previousReviewTwo perviousguests"></span></p><p class="previousReviewUlP"><span class="previousReviewOne">单位：</span><span class="previousReviewTwo">'+data[i].organizer+'</span></p><p class="previousReviewUlP" style="padding-bottom: 0;"><span class="previousReviewOne">简介：</span><span class="previousReviewTwo">'+data[i].summary+'</span></p></div></li>')
+                    if(data[i].guests){
+                        for(var j = 0 ; j <data[i].guests.length ; j++){
+                            $('.perviousguests').eq(i).append(''+data[i].guests[j].name+'    '+data[i].guests[j].job+'<br />')
+                        }
+                    }
+                }
+            }else{
+                $('.previousReview').remove()
+            }
+        }
+        
+        function LinkTo(id){
+            window.location.href='zxftDetails.htm?id='+id
+        }
+    </script>

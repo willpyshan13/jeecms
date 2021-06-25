@@ -1,0 +1,63 @@
+<div class="search w">
+    <div class="dropdown fl">
+        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            简体
+            <span class="iconfont iconarrow"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dLabel">
+            <li> 简体</li>
+            <li> 繁体</li>
+        </ul>
+
+    </div>
+
+    <div class="searchSubBtn fl">
+        <div class="fl">
+            <a href="#" class="iconfont iconwuzhangaiyuedu"></a>
+        </div>
+        <div class="fl">
+            <a href="" class="iconfont iconrss"></a>
+        </div>
+        <div class="fl" id="index-search">
+            <a href="javascript:;" class="iconfont iconsousuo"></a>
+        </div>
+    </div>
+    <div class="register fr">
+        <div class="registerBtn fl"><a href="#">注册</a></div>
+
+        <div class="loginBtn fl"><a href="">登录</a></div>
+    </div>
+</div>
+<div class="header">
+    <div class="header-warry">
+        <div class="header-logo">
+            <a href="${base}/">
+                <div class="header-logo-img"> </div>
+            </a>
+        </div>
+        <div class="header-nav">
+            <div [#if channel??||content??]class="header-menu titleHover"[#else]class="header-menu active"[/#if]><a href="${base}/">首页</a></div>
+            [@cms_channel_list count='5']
+            [#list tag_list as a]
+            <div [#if channel??&&channel.topChannel.id==a.id] class="header-menu active"
+                 [#elseif content??&&content.channel.topChannel.id==a.id] class="header-menu active"
+                 [#else] class="header-menu titleHover"[/#if] >
+                <a href="${a.url!}">${a.name!?html}</a>
+            </div>
+            [/#list]
+            [/@cms_channel_list]
+        </div>
+
+    </div>
+    <!--  二级标题-->
+    <div class="secondTitle" id="showTitle" style="display: none;">
+        <div class="title w">
+            [@cms_channel_list count='10' channelPath='ywdt']
+            [#list tag_list as a]
+            <div class="item fl"><a href="${a.url}">${a.name!?html}</a></div>
+            [/#list]
+            [/@cms_channel_list]
+        </div>
+    </div>
+
+</div>

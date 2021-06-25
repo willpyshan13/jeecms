@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>领导信箱</title>
+        <link rel="stylesheet" type="text/css" href="${mobileRes}/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="${mobileRes}/css/letterBox.css" />
+		<script src="${mobileRes}/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${mobileRes}/js/vue.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${mobileRes}/js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${mobileRes}/js/app.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+<body>
+<div id="letterBox">
+    <div v-show='isInit' class='succeed' style="display: none;">
+        <div class='hint-box'>
+            <div class="hint-titles">
+                <div class="title-box">
+                    <span>
+                        给市长写信
+                    </span>
+                    <img @click="noInits" src="${mobileRes}/images/icon/cancel.png" >
+                </div>
+                <div class="hint-item">写信须知</div>
+            </div>
+            <div class="hint-container">
+                <div class="hint-text" v-html="noticeTxt"></div>
+                <div class="radio">
+                    <span :style="checkboxs ? 'border:0':''" class="checked" @click.stop='hintCheck'>
+                        <img v-show='checkboxs' src="${mobileRes}/images/icon/gouxuan.png" alt="" >
+                    </span>
+                    <label>我已阅读并接受用户须知和条款</label>
+                </div>
+                <div @click='goWrite' class='hint-btn' :style="checkboxs ? '	background: #E30B20':''">我要写信</div> 
+            </div>
+        </div>
+    </div>
+    <div class="head">
+        <div class="head-left" @click="goHome"><img src="${mobileRes}/images/icon/houtui.png"></div>
+        <div class="head-center">领导信箱</div>
+        <div class="head-right" @click="goSearch"><img src="${mobileRes}/images/icon/search.png"></div>
+    </div>
+    <div class="survey">
+        <div class="box-head">信件统计:</div>
+        <div class="box-list">
+            <div class="box-item">信件总数: <span style="color: #E30B20;">{{counts.totalCount}}</span> 件</div>
+            <div class="box-item" style="text-align: right;">办结数: <span style="color: #E30B20;">{{counts.replyCount}}</span> 件</div>
+            <div class="box-item">在办数: <span style="color: #E30B20;">{{counts.processingCount}}</span> 件</div>
+        </div>
+    </div>
+    <div class="main">
+        <!-- 内容区域 -->
+        <div class="container" @scroll.passive="getScroll($event)">
+            <div class="container-list" v-for="(item,index) in exampleInfo" :key="index" @click="goDetail(item.id)">
+                <div class="container-title">
+                    {{item.title}}
+                </div>
+                <div class="container-foot">
+                    <span style="margin-right: 1.59375rem;color: #333;">{{item.type.name}}</span>
+                    <span>办结日期：</span><span>{{item.finishTime | timeStamp}}</span>
+                </div>
+            </div>
+	        <div class="my-loading" v-if="isShow"><i v-show="icon" class="my-loading-i"></i><span>{{load}}</span></div>
+        </div>
+    </div>
+    <!-- 按钮 -->
+    <div class="foot" @click="isInits">
+        我要写信
+    </div>
+</div>
+</body>
+<script>
+    var baseUrl='${base}'
+    new Vue({
+    el: '#letterBox',
+    data: {
+		id:1,//写信须知类型id
+        letterBoxList:[],//信箱列表
+        counts:{},//信件统计
+        params:{
+            page:1,
+            size:10
+        },
+        isShow:false,//是否显示加载更多
+        icon:true,//加载图标
+        load: '正在加载',//加载文字提示
+        exampleInfo:[],//渲染上去的信件列表
+        isInit:false,
+        checkboxs:false,
+        noticeTxt:'',
+        LoadMore:false,//是否加载更多
+        noticeOpen:false,//是否显示写信须知弹窗
+    },
+    mounted() {
+        this.getBoxs(1)
+        this.getCount()
+        this.inits()//写信须知内容
+    },
+    filters: {
+            timeStamp: function(value) {//具体到时分秒
+				if (!value) return '';
+				var date = new Date(value); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				var year = date.getFullYear();
+				var month = ("0" + (date.getMonth() + 1)).slice(-2);
+				var sdate = ("0" + date.getDate()).slice(-2);
+				var hour = ("0" + date.getHours()).slice(-2);
+				var minute = ("0" + date.getMinutes()).slice(-2);
+				var second = ("0" + date.getSeconds()).slice(-2);
+				// 拼接
+				var result = year + "-" + month + "-" + sdate + " " + hour + ":" + minute + ":" + second;
+				// 返回
+				return result;
+			}
+		},
+    methods: {
+        //加载更多
+        getScroll(event){
+             // 滚动条距离底部的距离scrollBottom
+            let scrollBottom =
+                event.target.scrollHeight -
+                event.target.scrollTop -
+                event.target.clientHeight;
+                if (scrollBottom < 20 &&this.LoadMore) {
+                    if (this.letterBoxList&&this.letterBoxList.length<this.params.size) {
+                        this.icon = false
+                        this.load = "没有更多了";
+                        return
+                    }
+                    this.LoadMore = false
+                    this.isShow = true
+                    this.icon = true
+                    this.load = "正在加载";
+                    this.params.page++
+                    this.getBoxs(2)
+                    return false;
+                }
+        },
+        //勾选写信须知
+        hintCheck(){
+            this.checkboxs=!this.checkboxs
+        },
+        //写信须知内容
+        inits(){
+            var that = this
+            api.GET('/letter/type/' + that.id, '', function(res) {
+                if (res.code == 200) {
+                    that.noticeTxt=res.data.noticeTxt
+                    that.noticeOpen=res.data.noticeOpen
+                }
+            })
+        },
+        //打开写信须知弹窗
+        isInits(){
+            var that = this
+            that.checkboxs=false
+            if (that.noticeOpen) {
+                that.isInit=true
+            }
+            else{
+                window.location.href=('/interact-letterList-write.htm')
+            }
+        },
+        noInits(){//关闭写信须知弹窗
+            var that = this
+            that.isInit=false
+        },
+        //跳转首页
+        goHome(){
+            window.location.href=('/')
+        },
+        //跳转搜索
+        goSearch(){
+            window.location.href=('/interact-letterList-letterSearch.htm')
+        },
+        //跳转写信
+        goWrite(){
+            if (this.checkboxs) {
+                window.location.href=('/interact-letterList-write.htm')
+            }
+        },
+        //跳转详情页面
+        goDetail(id){
+            window.location.href=('${base}/h5center/index.html#/pages/personal/letter/detail?id='+id+'&isletterBox=true')
+            
+        },
+        //信箱列表（信件分页）
+        getBoxs (type){
+            var that = this
+            axios({
+                method: 'get',
+                url: baseUrl+'/letter/page',
+                params:this.params
+            }).then(res=>{
+                if(res.data.code===200){
+                    that.letterBoxList=res.data.data.content
+                    this.LoadMore=true
+                    setTimeout(() => {
+						let data = this.letterBoxList
+						if (data && data.length > 0) {
+							if (type == 1) {
+                                this.exampleInfo = data;
+								if(this.exampleInfo.length<this.params.size){
+                                    this.load=''
+								}
+								else{
+									this.load = "正在加载";
+								}
+							} else if (type == 2) {
+								this.exampleInfo.push(...data)
+								if(this.exampleInfo.length<20){
+                                    this.load = "没有更多了";
+								}
+								else{
+									this.load = "正在加载";
+								}
+							}
+						} else {
+							if (type == 1) {
+								this.exampleInfo = [];
+								this.load = "";
+							} else if (type == 2) {
+                                this.params.page--
+                                this.load = "没有更多了";
+                                this.icon=false
+							}
+						}
+					}, 200);
+                }
+            })
+        },
+        //信件统计
+        getCount(){
+            var that = this
+            axios({
+                method: 'get',
+                url: baseUrl+'/letter/survey',
+            }).then(res=>{
+                if(res.data.code===200){
+                    this.counts=res.data.data
+                }
+            })
+        },
+        }
+	});
+</script>
+</html>
